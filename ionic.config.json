@@ -1,0 +1,7 @@
+{
+  "name": "motorsport-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
