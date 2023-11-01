@@ -11,10 +11,20 @@
       <ion-label>Calendar</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="search" href="/search">
+    <ion-tab-button id="open-modal" expand="block" href="javascript:void(0)">
       <ion-icon aria-hidden="true" name="search"></ion-icon>
       <ion-label>Search</ion-label>
     </ion-tab-button>
+    <!-- <ion-button id="open-modal" expand="block">Search</ion-button> -->
+    
+    <ion-modal #modal trigger="open-modal" [initialBreakpoint]="0.25" [breakpoints]="[0, 0.25, 0.5, 0.75]">
+      <ng-template>
+        <ion-content>
+          <ion-searchbar placeholder="Search" (click)="modal.setCurrentBreakpoint(0.75)"></ion-searchbar>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
 
     <ion-tab-button tab="notifications" href="/notifications">
       <ion-icon aria-hidden="true" name="notifications"></ion-icon>
@@ -25,7 +35,7 @@
       <ion-icon aria-hidden="true" name="person"></ion-icon>
       <ion-label>Profile</ion-label>
     </ion-tab-button>
-    
+
   </ion-tab-bar>
 
 </ion-tabs>
