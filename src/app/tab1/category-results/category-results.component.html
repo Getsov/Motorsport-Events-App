@@ -1,1 +1,22 @@
-<h2>Selected events: {{ eventType }}</h2>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> {{ eventType }} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ul>
+    <li *ngFor="let event of events">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ event.title }}</ion-card-title>
+          <ion-card-subtitle>{{ event.date }}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{ event.description }}
+        </ion-card-content>
+      </ion-card>
+    </li>
+  </ul>
+</ion-content>

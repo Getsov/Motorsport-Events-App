@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class Tab1Page {
   constructor() {}
 
-  // TODO eventsService and fetch data from server
+  // TODO fetch events type from server
   items: any[] = [
     {
       type: 'All',
