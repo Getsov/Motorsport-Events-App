@@ -3,14 +3,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page {
-
   constructor() {}
 
-<<<<<<< Updated upstream
-=======
   items: any[] = [
     {
       type: 'All',
@@ -46,5 +43,4 @@ export class Tab1Page {
         'https://curiocity.com/wp-content/uploads/2022/05/BeFunky-collage-44.jpg',
     },
   ];
->>>>>>> Stashed changes
 }
