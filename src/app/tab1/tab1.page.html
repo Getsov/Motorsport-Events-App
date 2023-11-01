@@ -6,7 +6,7 @@
 
 <ion-content [fullscreen]="true">
   <ul class="cateogries">
-    <li *ngFor="let item of items">
+    <li *ngFor="let item of items" routerLink="{{item.type}}">
       <h3>{{item.type}}</h3>
       <img src="{{item.imageUrl}}" alt="asdasd" />
     </li>
