@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { ProfilePageRoutingModule } from './profile-routing.module';
-
-import { ProfilePage } from './profile.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
+import { ProfilePageRoutingModule } from './profile-routing.module';
+import { ProfilePage } from './profile.page';
 
 @NgModule({
   imports: [
@@ -19,4 +16,4 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
   ],
   declarations: [ProfilePage]
 })
-export class ProfilePageModule {}
+export class ProfilePageModule { }

@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
 import { CalendarPageRoutingModule } from './calendar-routing.module';
-
 import { CalendarPage } from './calendar.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
+
 
 @NgModule({
   imports: [
@@ -19,4 +17,4 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
   ],
   declarations: [CalendarPage]
 })
-export class CalendarPageModule {}
+export class CalendarPageModule { }
