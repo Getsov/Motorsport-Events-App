@@ -3,8 +3,8 @@ export interface User {
     role: string; 
     firstName?: string; 
     lastName?: string; 
-    city: string;
+    city?: string;
     isDeleted: boolean;
-    likedEvents: string[];
+    likedEvents: {id: string}[];
     _id?: string;
 }
