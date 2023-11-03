@@ -1,0 +1,47 @@
+ion-toolbar {
+    text-align: center;
+}
+
+ul {
+    margin: 6px;
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+
+    li {
+        text-align: center;
+        position: relative;
+        height: 200px;
+        border-radius: 2px;
+      }
+
+      li:first-child {
+        grid-column: span 2; 
+      }
+
+      img {
+
+        height: auto;
+        display: block;
+        height: 100%;
+        width: 100%;
+      }
+      
+      h3 {
+        background: rgba(0, 0, 0, 0.4);
+        color: white;
+        padding: 0; 
+        border-radius: 30px;
+        position: absolute;
+        z-index: 1;
+        top: -8%;
+        left: 50%;
+        transform: translate(-50%);
+        width: 80%;
+      }
+  }
+  
