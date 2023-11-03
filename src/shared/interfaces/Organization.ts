@@ -1,7 +1,8 @@
 export interface Organisation {
     name: string;
-    createdEvents: string[],
+    createdEvents?: {id: string}[],
     phone: string; 
     email: string;
     isDeleted: boolean;
+    id: string;
   };
