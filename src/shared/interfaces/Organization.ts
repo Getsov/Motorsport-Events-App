@@ -1,4 +1,4 @@
-export interface Organisation {
+export interface Organization {
     name: string;
     createdEvents?: {id: string}[],
     phone: string; 
