@@ -3,4 +3,5 @@ export interface Organisation {
     createdEvents: string[],
     phone: string; 
     email: string;
+    isDeleted: boolean;
   };
