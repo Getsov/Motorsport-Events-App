@@ -1,14 +1,28 @@
-.a{
+.events-container{
     height: 22vh;
     margin-top: 10px;
-    .b{
-        .c{
+    .swiper-container{
+        .events-slide{
             height: 22vh;
             img {
+                position: relative;
                 width: 100%;
                 height: 18vh;
                 border-radius: 5px;
                 box-shadow: -1px 11px 13px -6px rgb(87, 86, 85);
+                z-index: 1;
+            }
+            .like-icon{
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 4px;
+                margin: 2px 2px 12px 12px;
+                font-size: 32px;
+                background-color: white;
+                color: red;
+                border-radius: 100%;
+                z-index: 2;
             }
         }
     }

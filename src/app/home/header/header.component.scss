@@ -1,7 +1,4 @@
-.home-header {
-  padding: 10px;
-  background: none;
-}
+
 
 .header-icons {
   display: flex;
@@ -9,11 +6,11 @@
   justify-content: space-between;
 
   .logo-container img {
-    width: 100px;
+    width: 70px;
   }
 
   ion-icon {
-    margin-top: 10px;
+    margin-top: 16px;
     font-size: 60px;
   }
 
@@ -27,7 +24,7 @@
   .notifination-icon ion-icon {
     position: absolute;
     top: 50%;
-    transform: translateY(-80%);
+    transform: translateY(-87%);
   }
 
   .notifination-icon ion-card-content{

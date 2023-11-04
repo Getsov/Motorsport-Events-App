@@ -18,12 +18,13 @@ register();
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class UpcomingEventsComponent implements OnInit {
-  // TODO: add events interface
-  @Input() slides: any[] = [];
+  @Input() upcomingEvents: any[] = [];
   swiperModule = [IonicSlides];
 
   constructor() {}
   // TODO: redirect to  details page of the selected event
+  // TODO: add events interface
+  // TODO: attach like functionality to like icon, _id is passed
 
   ngOnInit() {}
 }

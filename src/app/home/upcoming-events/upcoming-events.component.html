@@ -1,13 +1,14 @@
-<div *ngIf="slides.length > 0" class="a">
+<div *ngIf="upcomingEvents.length > 0" class="events-container">
   <swiper-container
-    class="b"
+    class="swiper-container"
     [slidesPerView]="1.2"
     [spaceBetween]="20"
     [autoplay]="true"
     [pagination]="{ clickable: true, dynamicBullets: true }"
   >
-    <swiper-slide *ngFor="let slide of slides" class="c">
-      <img src="{{ slide?.banner }}" alt="" />
+    <swiper-slide *ngFor="let event of upcomingEvents" class="events-slide">
+      <ion-icon name="heart" class="like-icon"></ion-icon>
+      <img src="{{ event?.banner }}" alt="" />
     </swiper-slide>
   </swiper-container>
 </div>

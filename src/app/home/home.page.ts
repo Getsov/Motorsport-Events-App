@@ -8,23 +8,25 @@ import { Component, OnInit } from '@angular/core';
 export class HomePage implements OnInit {
   constructor() {}
   // TODO: import interfaces
-  slides: any[] = [];
+  upcomingEvents: any[] = [];
   eventsType: any[] = [];
 
   ngOnInit() {
     // TODO : fetch lastest events data
-    this.slides = [
+    this.upcomingEvents = [
       {
         banner:
-          'https://media.istockphoto.com/id/1268369774/photo/1957-chevrolet-belair-hardtop-coupe.jpg?s=612x612&w=0&k=20&c=EgjIEjkroLQCAaRvIzD_F502NLeU2mfKgZxWdMdYnSE=',
+          'https://images.squarespace-cdn.com/content/v1/5a8227a58fd4d2d73f0e95c4/1550018105210-0RDB6YCPR7IJ6RNRJVGA/Drift-Rides-030.png?format=1000w',
+        _id: 'asdasdsadsa',
+      },
+      {
+        banner: 'https://superlift.com/images/Blog/ORE_Image2.jpg',
+        _id: 'asdasdas',
       },
       {
         banner:
-          'https://logodownload.org/wp-content/uploads/2014/04/mercedes-benz-logo-0.png',
-      },
-      {
-        banner:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Audi_logo_detail.svg/2560px-Audi_logo_detail.svg.png',
+          'https://www.timeattack.co.uk/wp-content/uploads/2021/03/TA2018r3_Brands-Hatch-Pitlane-web.jpg',
+        _id: 'asdasdasd',
       },
     ];
     // TODO: fetch events type list

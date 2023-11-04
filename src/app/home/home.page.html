@@ -1,8 +1,10 @@
-<app-header />
+<ion-header class="home-header">
+  <app-header />
+</ion-header>
 
 <ion-content>
   <div class="home-content">
-    <app-upcoming-events [slides]="slides" />
+    <app-upcoming-events [upcomingEvents]="upcomingEvents" />
     <app-events-type-list [eventsType]="eventsType" />
     <app-footer />
   </div>
