@@ -1,14 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Categories </ion-title>
+    <ion-title class="categories-title"> Categories </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ul class="cateogries">
-    <li *ngFor="let item of items">
-      <h3>{{item.type}}</h3>
-      <img src="{{item.imageUrl}}" alt="asdasd" />
-    </li>
-  </ul>
+<ion-content>
+  <ion-list lines="none" class="categories-list">
+    <ion-item *ngFor="let item of items">
+      <ion-card class="category-card">
+        <img
+          [src]="item.imageUrl"
+          alt="Category Image"
+          class="category-image"
+        />
+        <ion-card-header class="category-title">
+          {{ item.type }}
+        </ion-card-header>
+      </ion-card>
+    </ion-item>
+  </ion-list>
 </ion-content>
