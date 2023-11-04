@@ -1,0 +1,44 @@
+
+.home-header{
+    padding: 10px;
+    background: none;
+    
+  }
+  
+  .header-icons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  
+    .logo-container img{
+      width: 100px;
+    }
+    
+    ion-icon {
+      margin-top: 5px;
+      font-size: 50px; 
+    }
+  }
+  
+  
+  
+  .home-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  
+    .links {
+      margin-top: 15px;
+      
+    
+      ion-col a {
+        text-decoration: none;
+        color: white;
+      }
+    
+      ion-col:last-child {
+        text-align: right;
+      }
+    }
+  }

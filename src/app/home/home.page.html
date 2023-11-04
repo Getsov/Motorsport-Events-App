@@ -1,10 +1,17 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title class="categories-title"> Categories </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header />
 
 <ion-content>
-  <app-upcoming-events [slides]="slides" />
-  <app-events-type-list [eventsType]="eventsType" />
+  <div class="home-content">
+    <app-upcoming-events [slides]="slides" />
+    <app-events-type-list [eventsType]="eventsType" />
+
+    <div class="links">
+      <ion-grid>
+        <ion-row>
+          <ion-col><a href="">Terms and conditions</a></ion-col>
+          <ion-col><a href="">About us</a></ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
 </ion-content>

@@ -7,6 +7,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.component';
 import { EventsTypeListComponent } from './events-type-list/events-type-list.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { EventsTypeListComponent } from './events-type-list/events-type-list.com
     HomePageRoutingModule,
     UpcomingEventsComponent,
   ],
-  declarations: [HomePage, EventsTypeListComponent],
+  declarations: [HomePage, EventsTypeListComponent, HeaderComponent],
 })
 export class HomePageModule {}
