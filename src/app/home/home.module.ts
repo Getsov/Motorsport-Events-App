@@ -5,6 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
+import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.component';
+import { EventsTypeListComponent } from './events-type-list/events-type-list.component';
 
 @NgModule({
   imports: [
@@ -12,8 +14,9 @@ import { HomePage } from './home.page';
     ExploreContainerComponentModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    UpcomingEventsComponent,
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, EventsTypeListComponent],
 })
-export class HomePageModule { }
+export class HomePageModule {}

@@ -1,0 +1,7 @@
+<div *ngIf="slides.length > 0" class="a">
+  <swiper-container class="b" [slidesPerView]="1.3">
+    <swiper-slide *ngFor="let slide of slides" class="c">
+      <img src="{{ slide?.banner }}" alt="" />
+    </swiper-slide>
+  </swiper-container>
+</div>
