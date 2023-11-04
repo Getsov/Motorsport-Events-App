@@ -1,25 +1,40 @@
+.home-header {
+  padding: 10px;
+  background: none;
+}
 
-.home-header{
-    padding: 10px;
-    background: none;
-    
+.header-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .logo-container img {
+    width: 100px;
   }
-  
-  .header-icons{
+
+  ion-icon {
+    margin-top: 10px;
+    font-size: 60px;
+  }
+
+  .notifination-icon {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  
-    .logo-container img{
-      width: 100px;
-    }
-    
-    ion-icon {
-      margin-top: 5px;
-      font-size: 50px; 
-    }
+    flex-direction: column;
+    align-items: center;
+    position: relative;
   }
-  
+
+  .notifination-icon ion-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-80%);
+  }
+
+  .notifination-icon ion-card-content{
+    font-size: 18px;
+  }
+}
+
   
   
   
