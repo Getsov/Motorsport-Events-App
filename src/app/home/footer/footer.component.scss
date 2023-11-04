@@ -1,0 +1,15 @@
+
+
+.footer {
+    margin-top: 15px;
+    display: block;
+  
+    ion-col a {
+      text-decoration: none;
+      color: white;
+    }
+  
+    ion-col:last-child {
+      text-align: right;
+    }
+  }

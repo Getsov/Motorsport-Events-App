@@ -22,23 +22,4 @@
   
   
   
-  .home-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
   
-    .links {
-      margin-top: 15px;
-      
-    
-      ion-col a {
-        text-decoration: none;
-        color: white;
-      }
-    
-      ion-col:last-child {
-        text-align: right;
-      }
-    }
-  }
