@@ -8,6 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   constructor() {}
   notification: number = 5;
-
+  // TODO: fetch notifications
   ngOnInit() {}
 }

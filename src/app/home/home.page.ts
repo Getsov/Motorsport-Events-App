@@ -7,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
   constructor() {}
-
+  // TODO: import interfaces
   slides: any[] = [];
   eventsType: any[] = [];
 
   ngOnInit() {
+    // TODO : fetch lastest events data
     this.slides = [
       {
         banner:
@@ -26,7 +27,7 @@ export class HomePage implements OnInit {
           'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Audi_logo_detail.svg/2560px-Audi_logo_detail.svg.png',
       },
     ];
-
+    // TODO: fetch events type list
     this.eventsType = [
       {
         type: 'All',
@@ -63,6 +64,4 @@ export class HomePage implements OnInit {
       },
     ];
   }
-
-  // TODO fetch events type from server
 }

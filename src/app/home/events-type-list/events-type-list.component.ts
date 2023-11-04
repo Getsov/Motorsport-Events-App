@@ -8,6 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class EventsTypeListComponent implements OnInit {
   @Input() eventsType: any[] = [];
   constructor() {}
-
+  // TODO: redirect to eventsList and pass the selected filter(type of the event)
   ngOnInit() {}
 }
