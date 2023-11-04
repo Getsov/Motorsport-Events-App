@@ -7,21 +7,18 @@
     align-items: center;
     margin: 6px;
     list-style: none;
-    padding: 0;
+    background: none;
+
   }
 
-  .categories-list ion-item:first-child {
-    grid-column: span 2;
-    width: 100%;
-  }
 
   .category-card {
     text-align: center;
     height: 100px;
-    width: 100%;
     border-radius: 2px;
-    overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    box-shadow: -1px 11px 13px -6px rgb(87, 86, 85);
   }
   
   
