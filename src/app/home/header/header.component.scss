@@ -6,11 +6,11 @@
   justify-content: space-between;
 
   .logo-container img {
-    width: 70px;
+    width: 60px;
   }
 
   ion-icon {
-    margin-top: 16px;
+    margin-top: 20px;
     font-size: 60px;
   }
 
@@ -28,8 +28,13 @@
   }
 
   .notifination-icon ion-card-content{
-    font-size: 18px;
+    font-size: 16px;
   }
+}
+
+h1{
+  font-size: 18px;
+  text-align: center;
 }
 
   
