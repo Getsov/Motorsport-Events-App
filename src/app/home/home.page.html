@@ -1,14 +1,11 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> Categories </ion-title>
-  </ion-toolbar>
+<ion-header class="home-header">
+  <app-header />
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ul class="cateogries">
-    <li *ngFor="let item of items">
-      <h3>{{item.type}}</h3>
-      <img src="{{item.imageUrl}}" alt="asdasd" />
-    </li>
-  </ul>
+<ion-content>
+  <div class="home-content">
+    <app-upcoming-events [upcomingEvents]="upcomingEvents" />
+    <app-events-type-list [eventsType]="eventsType" />
+    <app-footer />
+  </div>
 </ion-content>
