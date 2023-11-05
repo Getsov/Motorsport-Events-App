@@ -12,5 +12,32 @@
 
 .event-title {
     font-size: 1.5em;
+    font-weight: 600;
 }
 
+.date-wrapper ion-grid {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.category-city-wrapper {
+    display: flex;
+    margin: 16px 0;
+    justify-content: center;
+    gap: 1em;
+}
+
+.badge {
+    color: #acacac;
+    border: 1px solid #acacac;
+    border-radius: 6px;
+    padding: 6px;
+}
+
+.contacts h5, .where h5 {
+    font-weight: 600;
+}
+
+.contacts p, .where p {
+    color: #acacac;
+}

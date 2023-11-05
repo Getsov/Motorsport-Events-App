@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Event } from 'src/shared/interfaces/Event';
 
+import { getDayOfWeek } from 'src/shared/utils/date-utils';
+
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.page.html',
@@ -16,7 +18,7 @@ export class EventDetailPage implements OnInit {
     shortDescription: 'Драг Рейсинг - Кондофрей [29-30 Април]',
     longDescription: `Събитието ще се проведе на познатата ни писта на летище Sofia West Airport, с. Кондофрей до гр. Радомир.
     Вход: 20лв - Такса свободни стартове: 50лв - Такса участие: 60лв`,
-    dates: [{date: '29 Apr 2023', startTime: '9AM', endTime: '7:30PM'}, {date: '30 Apr 2023', startTime: '9AM', endTime: '7:30PM'}],
+    dates: [{date: '29.04.2023', startTime: '9:00', endTime: '19:30'}, {date: '30.04.2023', startTime: '10:00', endTime: '16:30'}],
     contacts: {
       city: 'Кондофрей',
       address: 'Sofia West Airport',
@@ -29,9 +31,11 @@ export class EventDetailPage implements OnInit {
     id: '01',
     isDeleted: false,
     likedCount: 2,
-    price: 15
+    visitorPrice: 15,
+    participantPrice: 55
   };
   errorMessage: string = '';
+  getDayOfWeek = getDayOfWeek;
 
   constructor(private activatedRoute: ActivatedRoute, private navController: NavController) {}
 
@@ -52,6 +56,7 @@ export class EventDetailPage implements OnInit {
       //     this.errorMessage = error.message;
       //   },
       // })
-    })
+    });
   }
+
 }
