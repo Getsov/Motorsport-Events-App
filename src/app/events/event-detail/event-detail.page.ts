@@ -10,7 +10,7 @@ export class EventDetailPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('ttest')
+    
   }
 
 }
