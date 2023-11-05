@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { Event } from 'src/shared/interfaces/Event';
 
 @Component({
@@ -6,7 +8,7 @@ import { Event } from 'src/shared/interfaces/Event';
   templateUrl: './event-detail.page.html',
   styleUrls: ['./event-detail.page.scss'],
 })
-export class EventDetailPage implements OnInit {
+export class EventDetailPage {
   mockEvent: Event = {
     title: 'Драг Рейсинг на Кондофрей',
     imageUrl:
@@ -29,7 +31,18 @@ export class EventDetailPage implements OnInit {
     likedCount: 2
   };
 
-  constructor() {}
+  eventId: string = '';
 
-  ngOnInit() {}
+  constructor(private activatedRoute: ActivatedRoute, private navController: NavController) {}
+
+  ngOnInit () {
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      if (!paramMap.has('eventId')) {
+        this.navController.navigateBack('/tabs/events');
+        return;
+      }
+      this.eventId = paramMap.get('eventId')!;
+      console.log(this.eventId)
+    })
+  }
 }
