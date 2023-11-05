@@ -1,4 +1,13 @@
 <ion-list lines="none" class="categories-list">
+  <ion-card class="category-card all">
+    <ion-card-header class="category-title"> All </ion-card-header>
+    <img
+      src="../../../assets/icon/final-flag.jpg"
+      alt="Category Image"
+      class="category-image"
+    />
+  </ion-card>
+
   <ion-card class="category-card" *ngFor="let eventType of eventsType">
     <ion-card-header class="category-title">
       {{ eventType.type }}

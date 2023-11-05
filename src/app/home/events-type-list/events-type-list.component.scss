@@ -20,6 +20,10 @@
     width: 100%;
     box-shadow: -1px 11px 13px -6px rgb(87, 86, 85);
   }
+
+  .category-card.all{
+    grid-column: span 2;
+  }
   
   
   .category-image-container {

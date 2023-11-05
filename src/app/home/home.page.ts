@@ -32,10 +32,6 @@ export class HomePage implements OnInit {
     // TODO: fetch events type list
     this.eventsType = [
       {
-        type: 'All',
-        imageUrl: 'https://m.media-amazon.com/images/I/41i2wgm-JsL.jpg',
-      },
-      {
         type: 'Off road',
         imageUrl:
           'https://www.rudaw.net/Library/Assets//Gallery/Photos/Photos2020/1April-1june/BlindTahir/peshbrke-09092020/peshbrki-09092020%20(10).JPG',
