@@ -8,8 +8,8 @@ export interface Event {
     coordinates: { lat: string; long: string };
     city: string;
     address: string;
-    phone?: string;
-    email: string;
+    phone: string;
+    email?: string;
   };
   category: string;
   likedCount: number;
