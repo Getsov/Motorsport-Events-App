@@ -30,19 +30,27 @@ export class EventDetailPage {
     isDeleted: false,
     likedCount: 2
   };
-
-  eventId: string = '';
+  errorMessage: string = '';
 
   constructor(private activatedRoute: ActivatedRoute, private navController: NavController) {}
 
   ngOnInit () {
     this.activatedRoute.paramMap.subscribe(paramMap => {
+
       if (!paramMap.has('eventId')) {
         this.navController.navigateBack('/tabs/events');
         return;
       }
-      this.eventId = paramMap.get('eventId')!;
-      console.log(this.eventId)
+
+      //   TODO: Fetch event from service
+      //   eventsService.getEvent(paramMap.get('eventId').subscribe({
+      //   next: (response) => {
+      //     this.mockEvent = response;
+      //   },
+      //   error: (error) => {
+      //     this.errorMessage = error.message;
+      //   },
+      // })
     })
   }
 }

@@ -6,6 +6,16 @@
     <ion-title>Event Details</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
-  <img alt="Silhouette of mountains" src="{{mockEvent.imageUrl}}" />
+  <div>
+    <div class="image-wrapper">
+      <img alt="{{mockEvent.title}}" src="{{mockEvent.imageUrl}}" class="event-image"/>
+      <ion-icon name="heart-outline" class="event-like-btn"></ion-icon>
+    </div>
+    <ion-card-header>
+      <ion-card-title class="event-title">{{mockEvent.title}}</ion-card-title>
+      <ion-card-subtitle>{{mockEvent.shortDescription}}</ion-card-subtitle>
+    </ion-card-header>
+  </div>
 </ion-content>
