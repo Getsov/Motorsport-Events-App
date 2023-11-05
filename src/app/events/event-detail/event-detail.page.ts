@@ -8,7 +8,7 @@ import { Event } from 'src/shared/interfaces/Event';
   templateUrl: './event-detail.page.html',
   styleUrls: ['./event-detail.page.scss'],
 })
-export class EventDetailPage {
+export class EventDetailPage implements OnInit {
   mockEvent: Event = {
     title: 'Драг Рейсинг на Кондофрей',
     imageUrl:
@@ -28,7 +28,8 @@ export class EventDetailPage {
     creator: 'Drag Racing Bulgaria',
     id: '01',
     isDeleted: false,
-    likedCount: 2
+    likedCount: 2,
+    price: 15
   };
   errorMessage: string = '';
 

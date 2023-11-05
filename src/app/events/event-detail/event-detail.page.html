@@ -13,9 +13,10 @@
       <img alt="{{mockEvent.title}}" src="{{mockEvent.imageUrl}}" class="event-image"/>
       <ion-icon name="heart-outline" class="event-like-btn"></ion-icon>
     </div>
-    <ion-card-header>
-      <ion-card-title class="event-title">{{mockEvent.title}}</ion-card-title>
-      <ion-card-subtitle>{{mockEvent.shortDescription}}</ion-card-subtitle>
-    </ion-card-header>
+    <div>
+      <h1 class="event-title">{{mockEvent.title}}</h1>
+      <p>{{mockEvent.shortDescription}}</p>
+      <p *ngIf="mockEvent.price">Цена за зрители: {{mockEvent.price}} лв.</p>
+    </div>
   </div>
 </ion-content>
