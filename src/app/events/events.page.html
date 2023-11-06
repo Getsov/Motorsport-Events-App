@@ -1,14 +1,29 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
     <ion-title>Events</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Events</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <app-explore-container name="Events"></app-explore-container>
+  <div>
+    <ion-searchbar show-clear-button="focus" placeholder="Търсене"></ion-searchbar>
+    <!-- TODO: Град Дата Категория -->
+  </div>
+  <div class="event-container" *ngFor="let event of eventsData" (click)="eventRedirect(event.id)">
+    <div class="image-wrapper">
+      <img alt="{{event.title}}" src="{{event.imageUrl}}" class="event-image" />
+      <ion-icon name="heart-outline" class="event-like-btn"></ion-icon>
+    </div>
+    <div class="event-info">
+      <h3 class="event-title">{{event.title}}</h3>
+      <p class="event-description">{{event.shortDescription}}</p>
+      <p class="event-location">{{event.contacts.city}}, {{event.contacts.address}}</p>
+      <p class="event-price">Цена за зрители: {{event.visitorPrice}}лв.</p>
+      <p class="event-likes"><ion-icon name="thumbs-up-outline"></ion-icon>{{event.likedCount}}</p>
+    </div>
+  </div>
 </ion-content>
