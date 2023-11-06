@@ -1,0 +1,63 @@
+
+
+.event-image {
+    position: relative;
+}
+
+.event-like-btn {
+    position: absolute;
+    font-size: 24px;
+    color: #F44336;
+    top: 1%;
+    right: 5%;
+}
+
+.event-title {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.date-wrapper ion-grid {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.category-city-wrapper {
+    display: flex;
+    margin: 16px 0;
+    justify-content: center;
+    gap: 1em;
+}
+
+.badge {
+    color: #acacac;
+    border: 1px solid #acacac;
+    border-radius: 6px;
+    padding: 6px;
+}
+
+.contacts h5, .where h5 {
+    font-weight: 600;
+}
+
+.contacts p, .contacts p a, .where p {
+    color: #acacac;
+}
+
+.contacts p a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+// google maps
+.google-maps-wrapper {
+    display: inline-block;
+    height: 240px;
+    width: 100%;
+}
+
+capacitor-google-map {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}

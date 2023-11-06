@@ -2,14 +2,16 @@ export interface Event {
   title: string;
   shortDescription: string;
   longDescription: string;
+  visitorPrice?: number;
+  participantPrice?: number;
   dates: { date: string; startTime: string; endTime: string }[];
   imageUrl: string;
   contacts: {
-    coordinates: { lat: string; long: string };
+    coordinates: { lat: number; long: number };
     city: string;
     address: string;
-    phone?: string;
-    email: string;
+    phone: string;
+    email?: string;
   };
   category: string;
   likedCount: number;
