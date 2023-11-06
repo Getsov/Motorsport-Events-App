@@ -7,7 +7,7 @@ export interface Event {
   dates: { date: string; startTime: string; endTime: string }[];
   imageUrl: string;
   contacts: {
-    coordinates: { lat: string; long: string };
+    coordinates: { lat: number; long: number };
     city: string;
     address: string;
     phone: string;
