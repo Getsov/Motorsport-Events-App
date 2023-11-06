@@ -1,3 +1,5 @@
+
+
 .event-image {
     position: relative;
 }
@@ -40,4 +42,17 @@
 
 .contacts p, .where p {
     color: #acacac;
+}
+
+// google maps
+.google-maps-wrapper {
+    display: inline-block;
+    height: 240px;
+    width: 100%;
+}
+
+capacitor-google-map {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
 }
