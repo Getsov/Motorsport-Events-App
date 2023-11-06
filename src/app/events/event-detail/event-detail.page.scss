@@ -40,8 +40,13 @@
     font-weight: 600;
 }
 
-.contacts p, .where p {
+.contacts p, .contacts p a, .where p {
     color: #acacac;
+}
+
+.contacts p a {
+    text-decoration: none;
+    cursor: pointer;
 }
 
 // google maps

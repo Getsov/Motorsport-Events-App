@@ -36,8 +36,12 @@
       <p>{{mockEvent.longDescription}}</p>
       <div class="contacts">
         <h5>Контакти</h5>
-        <p>{{mockEvent.contacts.phone}}<ng-container *ngIf="mockEvent.contacts.email">,
-            {{mockEvent.contacts.email}}</ng-container></p>
+        <p> 
+          <a href="tel:{{mockEvent.contacts.phone}}">{{mockEvent.contacts.phone}}</a>
+          <ng-container *ngIf="mockEvent.contacts.email">,
+            <a href="mailto:{{mockEvent.contacts.email}}">{{mockEvent.contacts.email}}</a>
+          </ng-container>
+        </p>
       </div>
       <div class="where">
         <h5>Къде?</h5>
