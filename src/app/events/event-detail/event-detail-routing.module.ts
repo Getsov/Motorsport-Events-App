@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: EventDetailPage
+  },
+  {
+    path: 'event-marker-modal',
+    loadChildren: () => import('./event-marker-modal/event-marker-modal.module').then( m => m.EventMarkerModalPageModule)
   }
 ];
 

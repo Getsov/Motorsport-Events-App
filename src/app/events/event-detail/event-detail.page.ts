@@ -1,11 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GoogleMap } from '@capacitor/google-maps';
-import { NavController } from '@ionic/angular';
+import { GoogleMap, Marker } from '@capacitor/google-maps';
+import { ModalController, NavController } from '@ionic/angular';
 
 import { environment } from 'src/environments/environment';
 import { Event } from 'src/shared/interfaces/Event';
 import { getDayOfWeek } from 'src/shared/utils/date-utils';
+import { EventMarkerModalPage } from './event-marker-modal/event-marker-modal.page';
 
 @Component({
   selector: 'app-event-detail',
@@ -29,10 +30,10 @@ export class EventDetailPage implements OnInit {
     ],
     contacts: {
       city: 'Кондофрей',
-      address: 'Sofia West Airport',
+      address: 'София Уест Еърпорт',
       phone: '0888888888',
       email: 'kondofrey@abv.bg',
-      coordinates: { lat: '42.448154', long: '22.963561' },
+      coordinates: { lat: 42.448154, long: 22.963561 },
     },
     category: 'Драг',
     creator: 'Drag Racing Bulgaria',
@@ -47,7 +48,8 @@ export class EventDetailPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private navController: NavController
+    private navController: NavController,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -80,11 +82,40 @@ export class EventDetailPage implements OnInit {
       element: this.mapRef.nativeElement,
       config: {
         center: {
-          lat: Number(this.mockEvent.contacts.coordinates.lat),
-          lng: Number(this.mockEvent.contacts.coordinates.long)
+          lat: this.mockEvent.contacts.coordinates.lat,
+          lng: this.mockEvent.contacts.coordinates.long,
         },
-        zoom: 14
+        zoom: 13,
       },
     });
+
+    await this.addMarker();
+  }
+
+  async addMarker() {
+    const marker: Marker = {
+      coordinate: {
+        lat: this.mockEvent.contacts.coordinates.lat,
+        lng: this.mockEvent.contacts.coordinates.long,
+      },
+      title: this.mockEvent.title,
+      snippet: `${this.mockEvent.contacts.city}, ${this.mockEvent.contacts.address}`
+    };
+
+    await this.map.addMarker(marker);
+    
+    await this.map.setOnMarkerClickListener(async () => {
+      const modal = await this.modalController.create({
+        component: EventMarkerModalPage,
+        componentProps: {
+          marker
+        },
+        breakpoints: [0, 0.12],
+        initialBreakpoint: 0.12,
+        showBackdrop: false
+      });
+
+      modal.present();
+    })
   }
 }

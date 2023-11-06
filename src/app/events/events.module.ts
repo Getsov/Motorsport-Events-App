@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { EventsPageRoutingModule } from './events-routing.module';
 import { EventsPage } from './events.page';
+import { EventMarkerModalPageModule } from './event-detail/event-marker-modal/event-marker-modal.module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { EventsPage } from './events.page';
     ExploreContainerComponentModule,
     FormsModule,
     IonicModule,
-    EventsPageRoutingModule
+    EventsPageRoutingModule,
+    EventMarkerModalPageModule
   ],
   declarations: [EventsPage]
 })
