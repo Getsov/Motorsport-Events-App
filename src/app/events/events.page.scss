@@ -1,0 +1,29 @@
+.event-info{
+    padding: 0.6em;
+}
+h3{
+    font-weight: 600;
+}
+.event-location{
+    font-size: 14px;
+}
+.image-wrapper{
+    position: relative;
+}
+.event-like-btn{
+    position: absolute;
+    font-size: 30px;
+    color: #F44336;
+    top: 4%;
+    right: 3%;
+}
+
+.event-info{
+    position: relative;
+}
+
+.event-likes{
+    position: absolute;
+    bottom: 4%;
+    right: 3.5%;
+}
