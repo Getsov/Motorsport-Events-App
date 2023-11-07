@@ -1,5 +1,42 @@
-.events-container{
-    .swiper-container{
+.upcoming-events-title{
+    position: relative;
+    overflow: hidden;
+    height: 32px;
+    h2{
+        margin: 0;
+        height: 32px;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 21.6px; 
+        text-align: center;
+        background: linear-gradient(270deg, transparent 15%, #FF7418 100%);
+        color: #FFFFFF;
+        position: relative;
+
+     }
+     .first-line{
+        border: 9px solid black;
+        height: 100px;
+        width: 100px;
+        position: absolute;
+        transform: translateY(-50%) rotate(45deg);
+        top: 50%;
+        left: -14%;
+     }
+
+     .second-line{
+        border: 9px solid black;
+        height: 80px;
+        width: 80px;
+        position: absolute;
+        transform: translateY(-50%) rotate(45deg);
+        top: 50%;
+        left: -14%;
+     }
+}
+
+swiper-container{
+    
         .events-slide{
             height: 22vh;
             img {
@@ -24,4 +61,3 @@
             }
         }
     }
-}
