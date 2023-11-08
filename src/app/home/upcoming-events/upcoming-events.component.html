@@ -11,7 +11,7 @@
         <p class="event-title">{{ event.shortTitle }}</p>
         <p class="event-dates">{{ event.startDate }} - {{ event.endDate }}</p>
       </ion-card-header>
-      <ion-icon name="heart" class="like-icon"></ion-icon>
+      <app-like-icon />
       <img src="{{ event.banner }}" alt="" />
     </ion-card>
   </swiper-slide>
