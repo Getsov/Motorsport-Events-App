@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { LikeIconComponent } from './like-icon.component';
+import { LikeIconComponent } from './like-icon/like-icon.component';
 
 @NgModule({
   imports: [
