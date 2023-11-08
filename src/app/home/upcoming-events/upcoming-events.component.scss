@@ -4,7 +4,6 @@
     height: 32px;
     background: linear-gradient(270deg, transparent , #FF7418 20%);
     h2{
-        margin: 0;
         padding-top: 7px;
         height: 32px;
         font-weight: 700;
@@ -84,8 +83,6 @@ swiper-container{
                     line-height: 18px;
                     text-align: center;
                     color: #FFFFFF;
-                    padding: 0;
-                    margin: 0;
                     position: absolute;
                     top: 0;
                     left: 0;
@@ -93,8 +90,6 @@ swiper-container{
 
                 .event-dates {
                     width: 100%;
-                    padding: 0;
-                    margin: 0;
                     height: 15px;
                     font-weight: 300;
                     font-size: 10px;
