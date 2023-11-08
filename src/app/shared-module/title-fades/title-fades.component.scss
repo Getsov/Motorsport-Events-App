@@ -1,0 +1,76 @@
+.upcoming-events-title-orange{
+    position: relative;
+    overflow: hidden;
+    height: 32px;
+    background: linear-gradient(270deg, transparent , #FF7418 20%);
+    h2{
+        padding-top: 7px;
+        height: 32px;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 21.6px; 
+        text-align: center;
+        color: #0D0D0D;
+        position: relative;
+
+     }
+     .first-fade{
+        border: 9px solid black;
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        transform: translateY(-50%) rotate(45deg);
+        top: 50%;
+        right: 92%;
+     }
+
+     .second-fade{
+        border: 9px solid black;
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        transform: translateY(-50%) rotate(45deg);
+        top: 50%;
+        right: 98%;
+     }
+
+}
+
+// If needed change the background
+.upcoming-events-title-yellow{
+   position: relative;
+   overflow: hidden;
+   height: 32px;
+   background: linear-gradient(270deg, transparent , #FFDC23 20%);
+   h2{
+       padding-top: 7px;
+       height: 32px;
+       font-weight: 700;
+       font-size: 18px;
+       line-height: 21.6px; 
+       text-align: center;
+       color: #0D0D0D;
+       position: relative;
+
+    }
+    .first-fade{
+       border: 9px solid black;
+       height: 200px;
+       width: 200px;
+       position: absolute;
+       transform: translateY(-50%) rotate(45deg);
+       top: 50%;
+       right: 92%;
+    }
+
+    .second-fade{
+       border: 9px solid black;
+       height: 200px;
+       width: 200px;
+       position: absolute;
+       transform: translateY(-50%) rotate(45deg);
+       top: 50%;
+       right: 98%;
+    }
+
+}

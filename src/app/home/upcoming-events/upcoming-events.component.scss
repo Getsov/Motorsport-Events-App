@@ -1,42 +1,5 @@
-.upcoming-events-title{
-    position: relative;
-    overflow: hidden;
-    height: 32px;
-    background: linear-gradient(270deg, transparent , #FF7418 20%);
-    h2{
-        padding-top: 7px;
-        height: 32px;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 21.6px; 
-        text-align: center;
-        color: #0D0D0D;
-        position: relative;
-
-     }
-     .first-line{
-        border: 9px solid black;
-        height: 200px;
-        width: 200px;
-        position: absolute;
-        transform: translateY(-50%) rotate(45deg);
-        top: 50%;
-        right: 92%;
-     }
-
-     .second-line{
-        border: 9px solid black;
-        height: 200px;
-        width: 200px;
-        position: absolute;
-        transform: translateY(-50%) rotate(45deg);
-        top: 50%;
-        right: 98%;
-     }
-
-}
-
 swiper-container{
+    margin-bottom: 24px;
         .events-card{
             position: relative;
             margin: 16px 16px 0 16px;

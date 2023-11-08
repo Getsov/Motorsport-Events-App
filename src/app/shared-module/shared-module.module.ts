@@ -4,6 +4,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { LikeIconComponent } from './like-icon/like-icon.component';
+import { TitleFadesComponent } from './title-fades/title-fades.component';
 
 @NgModule({
   imports: [
@@ -12,8 +13,8 @@ import { LikeIconComponent } from './like-icon/like-icon.component';
     FormsModule,
     IonicModule,
   ],
-  declarations: [LikeIconComponent],
+  declarations: [LikeIconComponent, TitleFadesComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  exports: [LikeIconComponent],
+  exports: [LikeIconComponent, TitleFadesComponent],
 })
 export class SharedModule {}

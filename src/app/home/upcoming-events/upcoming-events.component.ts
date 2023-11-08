@@ -12,10 +12,14 @@ export class UpcomingEventsComponent implements OnInit {
   @Input() upcomingEvents: any[] = [];
   swiperModule = [IonicSlides];
 
+  titleColor: string = '';
+
   constructor() {}
   // TODO: redirect to  details page of the selected event
   // TODO: add events interface
   // TODO: attach like functionality to like icon, _id is passed
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.titleColor = 'orange';
+  }
 }

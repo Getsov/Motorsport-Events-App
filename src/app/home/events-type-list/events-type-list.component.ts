@@ -8,6 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class EventsTypeListComponent implements OnInit {
   @Input() eventsType: any[] = [];
   constructor() {}
+
+  titleColor: string = '';
   // TODO: redirect to eventsList and pass the selected filter(type of the event)
-  ngOnInit() {}
+  ngOnInit() {
+    this.titleColor = 'yellow';
+  }
 }
