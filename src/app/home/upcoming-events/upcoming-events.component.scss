@@ -2,50 +2,57 @@
     position: relative;
     overflow: hidden;
     height: 32px;
+    background-color: #ff7418;
+    background: linear-gradient(270deg, transparent 0%, rgba(255,116,24,0.8793503480278422) 20%);
     h2{
         margin: 0;
+        padding-top: 7px;
         height: 32px;
         font-weight: 700;
         font-size: 18px;
         line-height: 21.6px; 
         text-align: center;
-        background: linear-gradient(270deg, transparent 15%, #FF7418 100%);
-        color: #FFFFFF;
+        color: #0D0D0D;
         position: relative;
 
      }
      .first-line{
         border: 9px solid black;
-        height: 100px;
-        width: 100px;
+        height: 200px;
+        width: 200px;
         position: absolute;
         transform: translateY(-50%) rotate(45deg);
         top: 50%;
-        left: -14%;
+        right: 92%;
      }
 
      .second-line{
         border: 9px solid black;
-        height: 80px;
-        width: 80px;
+        height: 200px;
+        width: 200px;
         position: absolute;
         transform: translateY(-50%) rotate(45deg);
         top: 50%;
-        left: -14%;
+        right: 98%;
      }
+
 }
 
 swiper-container{
     
-        .events-slide{
-            height: 22vh;
+        .events-card{
+            height: 124px;
+            margin: 16px 0 16px 16px;
+            width: 124px;
+            height: 124px;
+            border-radius: 4px;
+            box-shadow: 0 0 6px -1px #FF7418;
             img {
                 position: relative;
-                width: 100%;
-                height: 18vh;
-                border-radius: 5px;
-                box-shadow: -1px 11px 13px -6px rgb(87, 86, 85);
+                width: 124px;
+                height: 124px;
                 z-index: 1;
+
             }
             .like-icon{
                 position: absolute;
@@ -53,11 +60,53 @@ swiper-container{
                 right: 0;
                 padding: 4px;
                 margin: 2px 2px 12px 12px;
-                font-size: 32px;
-                background-color: white;
-                color: red;
+                color: #FF7418;
                 border-radius: 100%;
                 z-index: 2;
+                height: 20px;
+                width: 20px;
+            }
+            .card-header{
+                position: absolute;
+                bottom: 0;
+                z-index: 2;
+                background-color: rgba(0, 0, 0, 0.7);
+                width: 124px;
+                height: 51px;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+
+                .event-title{
+                    width: 100%;
+                    height: 36px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    line-height: 18px;
+                    text-align: center;
+                    color: #FFFFFF;
+                    padding: 0;
+                    margin: 0;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+
+                .event-dates {
+                    width: 100%;
+                    padding: 0;
+                    margin: 0;
+                    height: 15px;
+                    font-weight: 400;
+                    font-size: 10px;
+                    line-height: 15px;
+                    text-align: center;
+                    position: absolute;
+                    top: 36px;
+                    left: 0;
+                    justify-content: center;
+                    color: #C2BFBE;
+                }
             }
         }
     }

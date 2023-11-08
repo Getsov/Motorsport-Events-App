@@ -10,8 +10,14 @@
   [autoplay]="true"
   [pagination]="{ clickable: true, dynamicBullets: true }"
 >
-  <swiper-slide *ngFor="let event of upcomingEvents" class="events-slide">
-    <ion-icon name="heart" class="like-icon"></ion-icon>
-    <img src="{{ event?.banner }}" alt="" />
+  <swiper-slide *ngFor="let event of upcomingEvents">
+    <ion-card class="events-card">
+      <ion-card-header class="card-header">
+        <p class="event-title">{{ event.shortTitle }}</p>
+        <p class="event-dates">{{ event.startDate }} - {{ event.endDate }}</p>
+      </ion-card-header>
+      <ion-icon name="heart" class="like-icon"></ion-icon>
+      <img src="{{ event.banner }}" alt="" />
+    </ion-card>
   </swiper-slide>
 </swiper-container>

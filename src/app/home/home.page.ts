@@ -18,15 +18,24 @@ export class HomePage implements OnInit {
         banner:
           'https://images.squarespace-cdn.com/content/v1/5a8227a58fd4d2d73f0e95c4/1550018105210-0RDB6YCPR7IJ6RNRJVGA/Drift-Rides-030.png?format=1000w',
         _id: 'asdasdsadsa',
+        shortTitle: 'Кондофрей Драг 2023',
+        startDate: '12-11-2023',
+        endDate: '14.11.23',
       },
       {
         banner: 'https://superlift.com/images/Blog/ORE_Image2.jpg',
         _id: 'asdasdas',
+        shortTitle: 'Кондофрей Драг 2023',
+        startDate: '12-11-2023',
+        endDate: '14.11.23',
       },
       {
         banner:
           'https://www.timeattack.co.uk/wp-content/uploads/2021/03/TA2018r3_Brands-Hatch-Pitlane-web.jpg',
         _id: 'asdasdasd',
+        shortTitle: 'Кондофрей Драг 2023',
+        startDate: '12-11-2023',
+        endDate: '14.11.23',
       },
     ];
     // TODO: fetch events type list
