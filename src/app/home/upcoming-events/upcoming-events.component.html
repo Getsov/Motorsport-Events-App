@@ -4,12 +4,7 @@
   <div class="second-line"></div>
 </div>
 
-<swiper-container
-  [slidesPerView]="2.8"
-  [spaceBetween]="20"
-  [autoplay]="true"
-  [pagination]="{ clickable: true, dynamicBullets: true }"
->
+<swiper-container [slidesPerView]="2.8" [spaceBetween]="20" [autoplay]="true">
   <swiper-slide *ngFor="let event of upcomingEvents">
     <ion-card class="events-card">
       <ion-card-header class="card-header">
