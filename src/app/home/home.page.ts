@@ -71,7 +71,7 @@ export class HomePage implements OnInit {
         imageUrl: '../../assets/icon/category-icons/drag.jpg',
       },
       {
-        type: 'Drift',
+        type: 'Дрифт',
         imageUrl: '../../assets/icon/category-icons/drift.jpg',
       },
       {
@@ -83,7 +83,7 @@ export class HomePage implements OnInit {
         imageUrl: '../../assets/icon/category-icons/mountain.jpg',
       },
       {
-        type: 'Тайм Трак',
+        type: 'Тайм Атак',
         imageUrl: '../../assets/icon/category-icons/time-track.jpg',
       },
       {
