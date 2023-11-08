@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { LikeIconComponent } from './like-icon/like-icon.component';
 import { TitleFadesComponent } from './title-fades/title-fades.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   imports: [
@@ -13,8 +14,8 @@ import { TitleFadesComponent } from './title-fades/title-fades.component';
     FormsModule,
     IonicModule,
   ],
-  declarations: [LikeIconComponent, TitleFadesComponent],
+  declarations: [LikeIconComponent, TitleFadesComponent, HeaderComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  exports: [LikeIconComponent, TitleFadesComponent],
+  exports: [LikeIconComponent, TitleFadesComponent, HeaderComponent],
 })
 export class SharedModule {}
