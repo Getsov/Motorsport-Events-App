@@ -3,8 +3,11 @@ export interface Organization {
   createdEvents?: { createdEventId: string }[];
   phone: string;
   email: string;
+  managerFirstName: string;
+  managerLastName: string;
+  region: string;
   isDeleted: boolean;
-  id: string;
+  _id: string;
   address?: string;
   manager?: string;
 }

@@ -13,16 +13,18 @@
     <ion-searchbar show-clear-button="focus" placeholder="Търсене"></ion-searchbar>
     <!-- TODO: Град Дата Категория -->
   </div>
-  <div class="event-container" *ngFor="let event of eventsData" (click)="eventRedirect(event.id)">
+  <div class="event-container" *ngFor="let event of eventsData" (click)="eventRedirect(event._id)">
     <div class="image-wrapper">
-      <img alt="{{event.title}}" src="{{event.imageUrl}}" class="event-image" />
+      <img alt="{{event.shortTitle}}" src="{{event.imageUrl}}" class="event-image" />
       <ion-icon name="heart-outline" class="event-like-btn"></ion-icon>
     </div>
     <div class="event-info">
-      <h3 class="event-title">{{event.title}}</h3>
+      <h3 class="event-title">{{event.shortTitle}}</h3>
       <p class="event-description">{{event.shortDescription}}</p>
-      <p class="event-location">{{event.contacts.city}}, {{event.contacts.address}}</p>
-      <p class="event-price">Цена за зрители: {{event.visitorPrice}}лв.</p>
+      <p class="event-location">{{event.contacts.region}}, {{event.contacts.address}}</p>
+      <ng-container *ngIf="event.visitorPrices">
+        <p *ngFor="let visitorPrice of event.visitorPrices">{{visitorPrice.description}}: {{visitorPrice.price}} лв.</p>
+      </ng-container>
       <p class="event-likes"><ion-icon name="thumbs-up-outline"></ion-icon>{{event.likedCount}}</p>
     </div>
   </div>

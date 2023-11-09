@@ -18,9 +18,10 @@ export class EventDetailPage implements OnInit {
   map!: GoogleMap;
 
   mockEvent: Event = {
-    title: 'Драг Рейсинг на Кондофрей',
+    shortTitle: 'Драг Рейсинг на Кондофрей',
+    longTitle: '"Кондофрей Драг 2023" - село Кондофрей, летище "София-Запад"',
     imageUrl:
-      'https://scontent.fsof8-1.fna.fbcdn.net/v/t39.30808-6/336647635_186029427479392_3389018506494843726_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=LHyD876d-rQAX-SWQ9P&_nc_ht=scontent.fsof8-1.fna&oh=00_AfAEeMnhiiEjYIDFUtzU3HZtFuUM91SO06_xGj1cC45yuw&oe=654C5316',
+      'https://i.ytimg.com/vi/t52ovr-qdB0/maxresdefault.jpg',
     shortDescription: 'Драг Рейсинг - Кондофрей [29-30 Април]',
     longDescription: `Събитието ще се проведе на познатата ни писта на летище Sofia West Airport, с. Кондофрей до гр. Радомир.
     Вход: 20лв - Такса свободни стартове: 50лв - Такса участие: 60лв`,
@@ -29,7 +30,7 @@ export class EventDetailPage implements OnInit {
       { date: '30.04.2023', startTime: '10:00', endTime: '16:30' },
     ],
     contacts: {
-      city: 'Кондофрей',
+      region: 'Кондофрей',
       address: 'София Уест Еърпорт',
       phone: '0888888888',
       email: 'kondofrey@abv.bg',
@@ -37,11 +38,11 @@ export class EventDetailPage implements OnInit {
     },
     category: 'Драг',
     creator: 'Drag Racing Bulgaria',
-    id: '01',
+    _id: '01',
     isDeleted: false,
     likedCount: 2,
-    visitorPrice: 15,
-    participantPrice: 55,
+    visitorPrices: [{price: 5, description: 'За всички'}],
+    participantPrices: [{price: 25, description: 'За всички'}],
   };
   errorMessage: string = '';
   getDayOfWeek = getDayOfWeek;
@@ -77,7 +78,7 @@ export class EventDetailPage implements OnInit {
 
   async createMap() {
     this.map = await GoogleMap.create({
-      id: this.mockEvent.id,
+      id: this.mockEvent._id,
       apiKey: environment.mapsKey,
       element: this.mapRef.nativeElement,
       config: {
@@ -98,8 +99,8 @@ export class EventDetailPage implements OnInit {
         lat: this.mockEvent.contacts.coordinates.lat,
         lng: this.mockEvent.contacts.coordinates.long,
       },
-      title: this.mockEvent.title,
-      snippet: `${this.mockEvent.contacts.city}, ${this.mockEvent.contacts.address}`
+      title: this.mockEvent.shortTitle,
+      snippet: `${this.mockEvent.contacts.region}, ${this.mockEvent.contacts.address}`
     };
 
     await this.map.addMarker(marker);

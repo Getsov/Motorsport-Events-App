@@ -11,14 +11,18 @@
 
   <div>
     <div class="image-wrapper">
-      <img alt="{{mockEvent.title}}" src="{{mockEvent.imageUrl}}" class="event-image" />
+      <img alt="{{mockEvent.shortTitle}}" src="{{mockEvent.imageUrl}}" class="event-image" />
       <ion-icon name="heart-outline" class="event-like-btn"></ion-icon>
     </div>
     <div class="ion-padding">
-      <h1 class="event-title">{{mockEvent.title}}</h1>
+      <h1 class="event-title">{{mockEvent.shortTitle}}</h1>
       <p>{{mockEvent.shortDescription}}</p>
-      <p *ngIf="mockEvent.visitorPrice">Цена за зрители: {{mockEvent.visitorPrice}} лв.</p>
-      <p *ngIf="mockEvent.participantPrice">Цена за участници: {{mockEvent.participantPrice}} лв.</p>
+      <ng-container *ngIf="mockEvent.visitorPrices">
+        <p *ngFor="let visitorPrice of mockEvent.visitorPrices">{{visitorPrice.description}}: {{visitorPrice.price}} лв.</p>
+      </ng-container>
+      <ng-container *ngIf="mockEvent.participantPrices">
+        <p *ngFor="let participantPrice of mockEvent.participantPrices">{{participantPrice.description}}: {{participantPrice.price}} лв.</p>
+      </ng-container>
       <div class="date-wrapper">
         <ion-grid>
           <ion-row *ngFor="let date of mockEvent.dates">
@@ -31,7 +35,7 @@
       </div>
       <div class="category-city-wrapper">
         <span class="badge">{{mockEvent.category}}</span>
-        <span class="badge">{{mockEvent.contacts.city}}</span>
+        <span class="badge">{{mockEvent.contacts.region}}</span>
       </div>
       <p>{{mockEvent.longDescription}}</p>
       <div class="contacts">
@@ -45,7 +49,7 @@
       </div>
       <div class="where">
         <h5>Къде?</h5>
-        <p>град/село {{mockEvent.contacts.city}}, {{mockEvent.contacts.address}}</p>
+        <p>град/село {{mockEvent.contacts.region}}, {{mockEvent.contacts.address}}</p>
       </div>
     </div>
     <div class="google-maps-wrapper">
