@@ -10,8 +10,10 @@ export class EventsTypeListComponent implements OnInit {
   constructor() {}
 
   titleColor: string = '';
+  titleText: string = '';
   // TODO: redirect to eventsList and pass the selected filter(type of the event)
   ngOnInit() {
     this.titleColor = 'yellow';
+    this.titleText = 'Категории';
   }
 }

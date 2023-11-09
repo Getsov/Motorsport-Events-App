@@ -13,6 +13,7 @@ export class UpcomingEventsComponent implements OnInit {
   swiperModule = [IonicSlides];
 
   titleColor: string = '';
+  titleText: string = '';
 
   constructor() {}
   // TODO: redirect to  details page of the selected event
@@ -21,5 +22,6 @@ export class UpcomingEventsComponent implements OnInit {
 
   ngOnInit() {
     this.titleColor = 'orange';
+    this.titleText = 'Предстоящи събития';
   }
 }

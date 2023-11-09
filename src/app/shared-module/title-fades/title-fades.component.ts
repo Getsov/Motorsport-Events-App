@@ -9,6 +9,7 @@ export class TitleFadesComponent implements OnInit {
   constructor() {}
 
   @Input() color: string = '';
+  @Input() title: string = '';
 
   isYellow: boolean = false;
   isOrange: boolean = false;
