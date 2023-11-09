@@ -4,7 +4,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared-module/shared-module.module';
+import { SharedModule } from 'src/shared/components-directives/shared-module.module';
 
 @NgModule({
   declarations: [AppComponent],

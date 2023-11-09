@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HomePageModule } from 'src/app/home/home.module';
 
 @Component({
   selector: 'app-like-icon',
