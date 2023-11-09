@@ -2,8 +2,8 @@
 
 <div
   [ngClass]="{
-    'upcoming-events-title-yellow': isYellow,
-    'upcoming-events-title-orange': isOrange
+    'upcoming-events-title-yellow': color === 'yellow',
+    'upcoming-events-title-orange': color === 'orange'
   }"
 >
   <h2>{{ title }}</h2>

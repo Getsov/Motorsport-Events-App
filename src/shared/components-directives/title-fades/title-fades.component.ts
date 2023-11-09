@@ -11,16 +11,5 @@ export class TitleFadesComponent implements OnInit {
   @Input() color: string = '';
   @Input() title: string = '';
 
-  isYellow: boolean = false;
-  isOrange: boolean = false;
-
-  ngOnInit() {
-    if (this.color == 'yellow') {
-      this.isYellow = true;
-      this.isOrange = false;
-    } else if (this.color == 'orange') {
-      this.isOrange = true;
-      this.isYellow = false;
-    }
-  }
+  ngOnInit() {}
 }
