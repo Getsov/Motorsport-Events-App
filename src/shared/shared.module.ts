@@ -1,6 +1,6 @@
-import { LikeIconComponent } from './like-icon/like-icon.component';
-import { TitleFadesComponent } from './title-fades/title-fades.component';
-import { HeaderComponent } from './header/header.component';
+import { LikeIconComponent } from './components/like-icon/like-icon.component';
+import { TitleFadesComponent } from './components/title-fades/title-fades.component';
+import { HeaderComponent } from './components/header/header.component';
 import { CommonModule } from '@angular/common';
 import { ExploreContainerComponentModule } from 'src/app/explore-container/explore-container.module';
 import { FormsModule } from '@angular/forms';
