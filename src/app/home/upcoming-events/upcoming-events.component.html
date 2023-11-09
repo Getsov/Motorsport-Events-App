@@ -1,8 +1,4 @@
-<div class="upcoming-events-title">
-  <h2>Предстоящи събития</h2>
-  <div class="first-line"></div>
-  <div class="second-line"></div>
-</div>
+<app-title-fades [color]="titleColor" [title]="titleText" />
 
 <swiper-container [slidesPerView]="2.8" [spaceBetween]="20" [autoplay]="true">
   <swiper-slide *ngFor="let event of upcomingEvents">
@@ -11,7 +7,7 @@
         <p class="event-title">{{ event.shortTitle }}</p>
         <p class="event-dates">{{ event.startDate }} - {{ event.endDate }}</p>
       </ion-card-header>
-      <ion-icon name="heart" class="like-icon"></ion-icon>
+      <app-like-icon />
       <img src="{{ event.banner }}" alt="" />
     </ion-card>
   </swiper-slide>

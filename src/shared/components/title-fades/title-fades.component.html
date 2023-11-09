@@ -1,0 +1,17 @@
+<!-- Pass 'orange' or 'yellow' -->
+
+<div
+  [ngClass]="{
+    'upcoming-events-title-yellow': color === 'yellow',
+    'upcoming-events-title-orange': color === 'orange'
+  }"
+>
+  <h2>{{ title }}</h2>
+  <div class="first-fade"></div>
+  <div class="second-fade"></div>
+</div>
+
+<!-- If invalid color is selected, we render red title with description -->
+<div class="invalid-color" *ngIf="color !== 'yellow' && color !== 'orange'">
+  <p>You selected invalid color: {{ color }}</p>
+</div>

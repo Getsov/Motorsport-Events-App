@@ -8,6 +8,7 @@ import { HomePage } from './home.page';
 import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.component';
 import { EventsTypeListComponent } from './events-type-list/events-type-list.component';
 import { FooterComponent } from './footer/footer.component';
+import { SharedModule } from 'src/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
+    SharedModule,
   ],
   declarations: [
     HomePage,
