@@ -14,10 +14,11 @@
     text-align: center;
     height: 156px;
     border-radius: 2px;
-    width: 100%;
     border-radius: 4px;
     background: transparent;
     box-shadow: 0 0 10.5px -5px #FFDC23;
+    margin: 0;
+    padding: 0;
   }
 
 
@@ -28,7 +29,6 @@
   
   
   .category-image-container {
-    position: relative;
     height: 100%;
     width: 100%; 
   }
