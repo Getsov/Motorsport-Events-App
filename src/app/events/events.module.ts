@@ -6,16 +6,20 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { EventsPageRoutingModule } from './events-routing.module';
 import { EventsPage } from './events.page';
 import { EventMarkerModalPageModule } from './event-detail/event-marker-modal/event-marker-modal.module';
+import { SharedModule } from "../../shared/shared.module";
+import { SearchComponent } from './components/search/search.component';
+import { SelectComponent } from './components/select/select.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ExploreContainerComponentModule,
-    FormsModule,
-    IonicModule,
-    EventsPageRoutingModule,
-    EventMarkerModalPageModule
-  ],
-  declarations: [EventsPage]
+    declarations: [EventsPage, SearchComponent, SelectComponent],
+    imports: [
+        CommonModule,
+        ExploreContainerComponentModule,
+        FormsModule,
+        IonicModule,
+        EventsPageRoutingModule,
+        EventMarkerModalPageModule,
+        SharedModule
+    ]
 })
 export class EventsPageModule { }
