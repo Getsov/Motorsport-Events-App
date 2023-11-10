@@ -20,8 +20,7 @@ export class EventDetailPage implements OnInit {
   mockEvent: Event = {
     shortTitle: 'Кондофрей Драг 2023',
     longTitle: '"Кондофрей Драг 2023" - село Кондофрей, летище "София-Запад"',
-    imageUrl:
-      'https://i.ytimg.com/vi/t52ovr-qdB0/maxresdefault.jpg',
+    imageUrl: 'https://i.ytimg.com/vi/t52ovr-qdB0/maxresdefault.jpg',
     shortDescription: 'Драг Рейсинг - Кондофрей [29-30 Април]',
     longDescription: `Кондофрей Драг е най-голямото и вълнуващо драг състезание в България, което привлича състезатели и фенове от цялата страна и дори извън нея. Събитието включва разнообразие от класове, от улични автомобили до професионални драгстери. Зрителите могат да се насладят на страхотното състезание, както и на храна и напитки. Гледайте как мощни машини ускоряват от 0 до 60 за секунди и достигат скорости от над 200км/ч.`,
     dates: [
@@ -40,14 +39,23 @@ export class EventDetailPage implements OnInit {
     _id: '01',
     isDeleted: false,
     likedCount: 2,
-    visitorPrices: [{price: 5, description: 'За всички'}],
-    participantPrices: [{price: 25, description: 'За всички'}],
+    visitorPrices: [
+      { price: 50, description: 'за 1 ден вход - събота или неделя' },
+      { price: 80, description: 'за 2 ден вход - събота и неделя' },
+      { price: 120, description: 'за 2 дена вход - събота и неделя + VIP' },
+    ],
+    participantPrices: [
+      { price: 150, description: 'за плащане по банков път' },
+      { price: 120, description: 'за плащане по банков път и член на “БМВ Клуб България”' },
+      { price: 200, description: 'за плащане на място' },
+      { price: 160, description: 'за плащане на място и член на “БМВ Клуб България”' },
+    ],
   };
-  
+
   titleSeparatorColor: string = 'orange';
 
-  infoSeparatorText: string = 'Информация за събитието'
-  infoSeparatorColor: string = 'yellow'
+  infoSeparatorText: string = 'Информация за събитието';
+  infoSeparatorColor: string = 'yellow';
 
   errorMessage: string = '';
   getDayOfWeek = getDayOfWeek;
@@ -105,23 +113,23 @@ export class EventDetailPage implements OnInit {
         lng: this.mockEvent.contacts.coordinates.long,
       },
       title: this.mockEvent.shortTitle,
-      snippet: `${this.mockEvent.contacts.region}, ${this.mockEvent.contacts.address}`
+      snippet: `${this.mockEvent.contacts.region}, ${this.mockEvent.contacts.address}`,
     };
 
     await this.map.addMarker(marker);
-    
+
     await this.map.setOnMarkerClickListener(async () => {
       const modal = await this.modalController.create({
         component: EventMarkerModalPage,
         componentProps: {
-          marker
+          marker,
         },
         breakpoints: [0, 0.12],
         initialBreakpoint: 0.12,
-        showBackdrop: false
+        showBackdrop: false,
       });
 
       modal.present();
-    })
+    });
   }
 }

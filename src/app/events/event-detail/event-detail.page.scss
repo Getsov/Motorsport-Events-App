@@ -31,6 +31,7 @@
 
   .info-title {
     font-weight: 600;
+    line-height: 24px;
   }
 
   .date-wrapper ion-grid {
@@ -49,6 +50,41 @@
     border: 1px solid #acacac;
     border-radius: 6px;
     padding: 4px 10px;
+  }
+
+//   prices
+
+  .prices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .price-wrapper {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .price-holder {
+    
+    color: #0D0D0D;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 4px;
+    width: 60px;
+    height: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    flex: 0 0 60px; 
+  }
+
+  .price-visitors {
+    background-color: #FFDC23;
+  }
+
+  .price-participants {
+    background-color: #FF7418;
   }
 
   .contacts h5,
