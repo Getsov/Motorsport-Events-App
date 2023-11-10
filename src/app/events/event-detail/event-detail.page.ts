@@ -85,6 +85,10 @@ export class EventDetailPage implements OnInit {
     });
   }
 
+  addEventToFavourites () {
+    // TODO: add event to favourites via service
+  }
+
   ionViewDidEnter() {
     this.createMap();
   }
