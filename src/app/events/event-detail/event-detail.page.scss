@@ -12,8 +12,15 @@
     text-align: center;
   }
 
+//   event image
+
   .image-wrapper {
     position: relative;
+}
+
+.image-wrapper img {
+    border-radius: 4px;
+    box-shadow: 0 0 6px -2px #FF7418;
   }
 
   .event-like-btn {
@@ -114,6 +121,8 @@
     display: inline-block;
     height: 100%;
     width: 100%;
+    box-shadow: 0 0 10.5px -5px #FFDC23;
+    border-radius: 4px;
   }
 
 //   add to favourite
