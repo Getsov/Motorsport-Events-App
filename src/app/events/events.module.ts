@@ -11,15 +11,15 @@ import { SearchComponent } from './components/search/search.component';
 import { SelectComponent } from './components/select/select.component';
 
 @NgModule({
-    declarations: [EventsPage, SearchComponent, SelectComponent],
-    imports: [
-        CommonModule,
-        ExploreContainerComponentModule,
-        FormsModule,
-        IonicModule,
-        EventsPageRoutingModule,
-        EventMarkerModalPageModule,
-        SharedModule
-    ]
+  declarations: [EventsPage, SearchComponent, SelectComponent],
+  imports: [
+    CommonModule,
+    ExploreContainerComponentModule,
+    FormsModule,
+    IonicModule,
+    EventsPageRoutingModule,
+    EventMarkerModalPageModule,
+    SharedModule
+  ]
 })
 export class EventsPageModule { }
