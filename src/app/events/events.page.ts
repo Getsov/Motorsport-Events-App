@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {events} from 'src/shared/data/events';
+import { events } from 'src/shared/data/events';
 import { Event } from 'src/shared/interfaces/Event';
 @Component({
   selector: 'app-events',
@@ -9,8 +9,10 @@ import { Event } from 'src/shared/interfaces/Event';
 })
 export class EventsPage implements OnInit {
   eventsData: Event[] = events;
+  @Input() titleColor: string = 'yellow';
+  @Input() titleText: string = 'Списък със събития';
   constructor(private router: Router) { }
-  eventRedirect(id: string): void{
+  eventRedirect(id: string): void {
     this.router.navigate(['/tabs/events/' + id]);
   }
   ngOnInit() {
