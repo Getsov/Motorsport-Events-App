@@ -1,12 +1,12 @@
 <ion-content>
-  <ion-header>
+  <!-- <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/tabs/events"></ion-back-button>
       </ion-buttons>
       <ion-title>Детайли за събитие</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
 
   <div class="ion-margin-vertical">
     <app-title-fades [color]="titleSeparatorColor" [title]="mockEvent.shortTitle" />
@@ -26,18 +26,28 @@
     </div>
 
     <p class="long-description">{{mockEvent.longDescription}}</p>
+  </div>
 
-    <!-- <h1 class="event-title">{{mockEvent.shortTitle}}</h1> -->
+  <div class="ion-margin-vertical">
+    <app-title-fades [color]="infoSeparatorColor" [title]="infoSeparatorText" />
+  </div>
 
-    <!-- <p>{{mockEvent.shortDescription}}</p> -->
-
-    <div class="ion-margin-vertical">
-      <app-title-fades [color]="infoSeparatorColor" [title]="infoSeparatorText" />
+  <div class="ion-padding-horizontal">
+    <div>
+      <p class="info-title">Организатор на събитието:</p>
+      <p>"{{mockEvent.creator}}"</p>
     </div>
 
-    <div>
-      <p class="creator-title">Организатор на събитието:</p>
-      <p>"{{mockEvent.creator}}"</p>
+    <div class="date-wrapper">
+      <p class="info-title">{{mockEvent.dates.length > 1 ? 'Дати:' : 'Дата:'}}</p>
+      <ion-grid class="ion-no-padding">
+        <ion-row *ngFor="let date of mockEvent.dates">
+          <ion-col class="ion-text-justify" size="medium">{{date.date}} г.</ion-col>
+          <ion-col size="auto" class="ion-text-center"> &nbsp; - &nbsp; от {{ date.startTime }} </ion-col>
+          <ion-col size="auto">&nbsp; до &nbsp;</ion-col>
+          <ion-col size="auto" class="ion-text-center"> {{ date.endTime }}</ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
 
     <ng-container *ngIf="mockEvent.visitorPrices">
@@ -48,19 +58,6 @@
       <p *ngFor="let participantPrice of mockEvent.participantPrices">{{participantPrice.description}}:
         {{participantPrice.price}} лв.</p>
     </ng-container>
-
-    <div class="date-wrapper">
-      <ion-grid>
-        <ion-row *ngFor="let date of mockEvent.dates">
-          <ion-col class="ion-text-justify" size="medium">{{ getDayOfWeek(date.date) }} {{date.date}}</ion-col>
-          <ion-col size="auto" class="ion-text-center">{{ date.startTime }}</ion-col>
-          <ion-col size="small">до</ion-col>
-          <ion-col size="auto" class="ion-text-center">{{ date.endTime }}</ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-    
-    
 
     <div class="contacts">
       <h5>Контакти</h5>
