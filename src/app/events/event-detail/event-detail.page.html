@@ -59,32 +59,35 @@
         </div>
       </div>
     </div>
-    
-      <div *ngIf="mockEvent.participantPrices">
-        <p class="info-title">Цени за участници:</p>
-        <div class="prices-container">
-          <div class="price-wrapper" *ngFor="let participantPrice of mockEvent.participantPrices">
-            <div class="price-holder price-participants">{{participantPrice.price}} лв.</div>
-            <span>{{participantPrice.description}}</span>
-          </div>
+
+    <div *ngIf="mockEvent.participantPrices">
+      <p class="info-title">Цени за участници:</p>
+      <div class="prices-container">
+        <div class="price-wrapper" *ngFor="let participantPrice of mockEvent.participantPrices">
+          <div class="price-holder price-participants">{{participantPrice.price}} лв.</div>
+          <span>{{participantPrice.description}}</span>
         </div>
       </div>
+    </div>
+
+    <div class="location">
+      <p class="info-title">Локация:</p>
+      <p>{{mockEvent.contacts.region}}, {{mockEvent.contacts.address}}</p>
+      <div class="google-maps-wrapper">
+        <capacitor-google-map #map></capacitor-google-map>
+      </div>
+    </div>
 
     <div class="contacts">
-      <h5>Контакти</h5>
-      <p>
-        <a href="tel:{{mockEvent.contacts.phone}}">{{mockEvent.contacts.phone}}</a>
-        <ng-container *ngIf="mockEvent.contacts.email">,
+      <p class="info-title">Контакти</p>
+      <div class="contacts-wrapper">
+        <div><a href="tel:{{mockEvent.contacts.phone}}">{{mockEvent.contacts.phone}}</a></div>
+        <div *ngIf="mockEvent.contacts.email">
           <a href="mailto:{{mockEvent.contacts.email}}">{{mockEvent.contacts.email}}</a>
-        </ng-container>
-      </p>
-    </div>
-    <div class="where">
-      <h5>Къде?</h5>
-      <p>град/село {{mockEvent.contacts.region}}, {{mockEvent.contacts.address}}</p>
-    </div>
-    <div class="google-maps-wrapper">
-      <capacitor-google-map #map></capacitor-google-map>
+        </div>
+      </div>
     </div>
   </div>
+
+
 </ion-content>

@@ -86,21 +86,16 @@
   .price-participants {
     background-color: #FF7418;
   }
-
-  .contacts h5,
-  .where h5 {
-    font-weight: 600;
+  
+//   contacts
+  .contacts-wrapper {
+    display: flex;
+    justify-content: space-between;
   }
 
-  .contacts p,
-  .contacts p a,
-  .where p {
-    color: #acacac;
-  }
-
-  .contacts p a {
+  .contacts-wrapper a {
     text-decoration: none;
-    cursor: pointer;
+    color: #C2BFBE;
   }
 
   // google maps
