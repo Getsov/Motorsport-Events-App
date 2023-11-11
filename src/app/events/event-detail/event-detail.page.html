@@ -1,59 +1,96 @@
 <ion-content>
-  <ion-header>
+  <!-- <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/tabs/events"></ion-back-button>
       </ion-buttons>
-      <ion-title>Event Details</ion-title>
+      <ion-title>Детайли за събитие</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
 
+  <div class="ion-margin-vertical">
+    <app-title-fades [color]="titleSeparatorColor" [title]="mockEvent.shortTitle" />
+  </div>
 
-  <div>
+  <div class="ion-padding-horizontal">
+    <p class="long-title">{{mockEvent.longTitle}}</p>
+
     <div class="image-wrapper">
       <img alt="{{mockEvent.shortTitle}}" src="{{mockEvent.imageUrl}}" class="event-image" />
-      <ion-icon name="heart-outline" class="event-like-btn"></ion-icon>
+      <app-like-icon></app-like-icon>
     </div>
-    <div class="ion-padding">
-      <h1 class="event-title">{{mockEvent.shortTitle}}</h1>
-      <p>{{mockEvent.shortDescription}}</p>
-      <ng-container *ngIf="mockEvent.visitorPrices">
-        <p *ngFor="let visitorPrice of mockEvent.visitorPrices">{{visitorPrice.description}}: {{visitorPrice.price}} лв.</p>
-      </ng-container>
-      <ng-container *ngIf="mockEvent.participantPrices">
-        <p *ngFor="let participantPrice of mockEvent.participantPrices">{{participantPrice.description}}: {{participantPrice.price}} лв.</p>
-      </ng-container>
-      <div class="date-wrapper">
-        <ion-grid>
-          <ion-row *ngFor="let date of mockEvent.dates">
-            <ion-col class="ion-text-justify" size="medium">{{ getDayOfWeek(date.date) }} {{date.date}}</ion-col>
-            <ion-col size="auto" class="ion-text-center">{{ date.startTime }}</ion-col>
-            <ion-col size="small">до</ion-col>
-            <ion-col size="auto" class="ion-text-center">{{ date.endTime }}</ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
-      <div class="category-city-wrapper">
-        <span class="badge">{{mockEvent.category}}</span>
-        <span class="badge">{{mockEvent.contacts.region}}</span>
-      </div>
-      <p>{{mockEvent.longDescription}}</p>
-      <div class="contacts">
-        <h5>Контакти</h5>
-        <p> 
-          <a href="tel:{{mockEvent.contacts.phone}}">{{mockEvent.contacts.phone}}</a>
-          <ng-container *ngIf="mockEvent.contacts.email">,
-            <a href="mailto:{{mockEvent.contacts.email}}">{{mockEvent.contacts.email}}</a>
-          </ng-container>
-        </p>
-      </div>
-      <div class="where">
-        <h5>Къде?</h5>
-        <p>град/село {{mockEvent.contacts.region}}, {{mockEvent.contacts.address}}</p>
+
+    <div class="category-city-wrapper">
+      <span class="badge">{{mockEvent.category}}</span>
+      <span class="badge">{{mockEvent.contacts.region}}</span>
+    </div>
+
+    <p class="long-description">{{mockEvent.longDescription}}</p>
+  </div>
+
+  <div class="ion-margin-vertical">
+    <app-title-fades [color]="infoSeparatorColor" [title]="infoSeparatorText" />
+  </div>
+
+  <div class="ion-padding-horizontal">
+    <div>
+      <p class="info-title">Организатор на събитието:</p>
+      <p class="info-details">"{{mockEvent.creator}}"</p>
+    </div>
+
+    <div class="date-wrapper">
+      <p class="info-title">{{mockEvent.dates.length > 1 ? 'Дати:' : 'Дата:'}}</p>
+      <ion-grid class="ion-no-padding">
+        <ion-row *ngFor="let date of mockEvent.dates">
+          <ion-col class="ion-text-justify" size="medium" class="info-details">{{date.date}} г.</ion-col>
+          <ion-col size="auto" class="ion-text-center info-details"> &nbsp; - &nbsp; от {{ date.startTime }} </ion-col>
+          <ion-col size="auto" class="info-details">&nbsp; до &nbsp;</ion-col>
+          <ion-col size="auto" class="ion-text-center info-details"> {{ date.endTime }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div>
+      <p class="info-title">Цени за зрители:</p>
+      <div class="prices-container">
+        <div class="price-wrapper" *ngFor="let visitorPrice of mockEvent.visitorPrices">
+          <div class="price-holder price-visitors">{{visitorPrice.price}} лв.</div>
+          <span class="info-details">{{visitorPrice.description}}</span>
+        </div>
       </div>
     </div>
-    <div class="google-maps-wrapper">
-      <capacitor-google-map #map></capacitor-google-map>
+
+    <div *ngIf="mockEvent.participantPrices">
+      <p class="info-title">Цени за участници:</p>
+      <div class="prices-container">
+        <div class="price-wrapper" *ngFor="let participantPrice of mockEvent.participantPrices">
+          <div class="price-holder price-participants">{{participantPrice.price}} лв.</div>
+          <span class="info-details">{{participantPrice.description}}</span>
+        </div>
+      </div>
     </div>
+
+    <div class="location">
+      <p class="info-title">Локация:</p>
+      <p class="info-details">{{mockEvent.contacts.region}}, {{mockEvent.contacts.address}}</p>
+      <div class="google-maps-wrapper">
+        <capacitor-google-map #map></capacitor-google-map>
+      </div>
+    </div>
+
+    <div class="contacts">
+      <p class="info-title">Контакти</p>
+      <div class="contacts-wrapper">
+        <div><a href="tel:{{mockEvent.contacts.phone}}" class="info-details">{{mockEvent.contacts.phone}}</a></div>
+        <div *ngIf="mockEvent.contacts.email">
+          <a href="mailto:{{mockEvent.contacts.email}}" class="info-details">{{mockEvent.contacts.email}}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="add-favourite" (click)="addEventToFavourites()">
+      <button href="#">Добави в любими</button>
+    </div>
+
   </div>
 </ion-content>

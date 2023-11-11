@@ -1,63 +1,149 @@
+.ion-padding-horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 
+  .long-description,
+  .badge {
+    font-size: 14px;
+  }
 
-.event-image {
+  .long-title {
+    text-align: center;
+    font-weight: 600;
+  }
+
+//   event image
+
+  .image-wrapper {
     position: relative;
 }
 
-.event-like-btn {
+.image-wrapper img {
+    border-radius: 4px;
+    box-shadow: 0 0 6px -2px #FF7418;
+  }
+
+  .event-like-btn {
     position: absolute;
     font-size: 24px;
-    color: #F44336;
+    color: #f44336;
     top: 1%;
     right: 5%;
-}
+  }
 
-.event-title {
+  .event-title {
     font-size: 1.5em;
     font-weight: 600;
-}
+  }
 
-.date-wrapper ion-grid {
+  .info-title {
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .date-wrapper ion-grid {
     padding-top: 0;
     padding-bottom: 0;
-}
+  }
 
-.category-city-wrapper {
+//   city and category badges
+
+  .category-city-wrapper {
     display: flex;
-    margin: 16px 0;
     justify-content: center;
     gap: 1em;
-}
+  }
 
-.badge {
+  .badge {
     color: #acacac;
     border: 1px solid #acacac;
     border-radius: 6px;
-    padding: 6px;
-}
+    padding: 4px 10px;
+  }
 
-.contacts h5, .where h5 {
+//   prices
+
+  .prices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .price-wrapper {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .price-holder {
+    color: #0D0D0D;
     font-weight: 600;
-}
+    text-align: center;
+    border-radius: 4px;
+    width: 60px;
+    height: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    flex: 0 0 60px; 
+  }
 
-.contacts p, .contacts p a, .where p {
-    color: #acacac;
-}
+  .price-visitors {
+    background-color: #FFDC23;
+  }
 
-.contacts p a {
+  .price-participants {
+    background-color: #FF7418;
+  }
+
+//   location
+  .info-details {
+    color: #C2BFBE;
+  }
+  
+//   contacts
+  .contacts-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .contacts-wrapper a {
     text-decoration: none;
-    cursor: pointer;
-}
+  }
 
-// google maps
-.google-maps-wrapper {
+  // google maps
+  .google-maps-wrapper {
     display: inline-block;
     height: 240px;
     width: 100%;
-}
+  }
 
-capacitor-google-map {
+  capacitor-google-map {
     display: inline-block;
     height: 100%;
     width: 100%;
+    box-shadow: 0 0 10.5px -5px #FFDC23;
+    border-radius: 4px;
+  }
+
+//   add to favourites
+  .add-favourite {
+    width: 100%;
+    height: 44px;
+    background-color: #FF7418;
+    border-radius: 4px;
+    padding: 8px 24px;
+    text-align: center;
+  }
+
+  .add-favourite button {
+    all: unset;
+    text-decoration: none;
+    color: #0D0D0D;
+    font-weight: 600;
+  }
+
+}
+.ion-padding-horizontal:last-of-type {
+    margin-bottom: 24px;
 }
