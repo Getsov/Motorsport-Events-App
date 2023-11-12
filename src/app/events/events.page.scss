@@ -1,38 +1,103 @@
-<<<<<<< Updated upstream
-.title{
-    text-align: center;
-=======
-
-.event-container{
-    margin-top: 0.6em;
->>>>>>> Stashed changes
-}
-.event-info{
-    padding: 0.6em;
-}
-h3{
-    font-weight: 600;
-}
-.event-location{
-    font-size: 14px;
-}
-.image-wrapper{
-    position: relative;
-}
-.event-like-btn{
-    position: absolute;
-    font-size: 30px;
-    color: #F44336;
-    top: 4%;
-    right: 3%;
+.title {
+  text-align: center;
 }
 
-.event-info{
-    position: relative;
+.event-container {
+  border-radius: 4px;
+  background: var(--surface-screen-screen-card-black-dark, #0D0D0D);
+  box-shadow: 0px 0px 8px 1px rgba(255, 220, 35, 0.30);
+  padding: 8px;
+  width: 328px;
+  margin: 0.6em auto;
 }
 
-.event-likes{
-    position: absolute;
-    bottom: 4%;
-    right: 3.5%;
+h3 {
+  margin: 4px 0;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.event-description {
+  margin-bottom: 8px;
+  color:#C2BFBE;
+  font-family: Open Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+.image-wrapper {
+  position: relative;
+}
+
+.event-image {
+  border-radius: 4px;
+}
+.event-location {
+  color: #0D0D0D;
+  font-family: Open Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  display: inline-flex;
+  padding: 0px 4px;
+  align-items: flex-start;
+  gap: 4px;
+  border-radius: 4px;
+  background: #FF7418;
+  position: absolute;
+  bottom: 26px;
+  left: 8px;
+}
+.event-date {
+  display: inline-flex;
+  padding: 0px 4px;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 4px;
+  background-color: #FFDC23;
+  color: #0D0D0D;
+  font-family: Open Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  position: absolute;
+  bottom: 4px;
+  left: 8px;
+}
+
+.event-like-btn {
+  position: absolute;
+  font-size: 30px;
+  color: #f44336;
+  top: 4px;
+  right: 4px;
+}
+
+.event-info {
+  position: relative;
+}
+
+.more-btn {
+  display: flex;
+  width: 156px;
+  padding: 4px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+  background: #FF7418;
+}
+
+.more-btn p {
+  color: #0D0D0D;
+  text-align: center;
+  font-family: Open Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
 }
