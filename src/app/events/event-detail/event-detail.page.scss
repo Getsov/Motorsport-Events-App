@@ -17,11 +17,11 @@
 
   .image-wrapper {
     position: relative;
-}
-
-.image-wrapper img {
+  }
+  
+  .image-wrapper img {
     border-radius: 4px;
-    box-shadow: 0 0 6px -2px #FF7418;
+    box-shadow: 0px 0px 8px 1px rgba(255, 116, 24, 0.30);
   }
 
   .event-like-btn {
@@ -122,7 +122,7 @@
     display: inline-block;
     height: 100%;
     width: 100%;
-    box-shadow: 0 0 10.5px -5px #FFDC23;
+    box-shadow: 0px 0px 8px 1px rgba(255, 220, 35, 0.30);
     border-radius: 4px;
   }
 
