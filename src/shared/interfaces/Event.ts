@@ -1,22 +1,23 @@
 export interface Event {
-  title: string;
+  shortTitle: string;
+  longTitle: string;
   shortDescription: string;
   longDescription: string;
-  visitorPrice?: number;
-  participantPrice?: number;
+  visitorPrices: { price: number; description: string }[];
+  participantPrices?: { price: number; description: string }[];
   dates: { date: string; startTime: string; endTime: string }[];
   imageUrl: string;
   contacts: {
     coordinates: { lat: number; long: number };
-    city: string;
+    region: string;
     address: string;
     phone: string;
-    email?: string;
+    email: string;
   };
   category: string;
   likedCount: number;
   creator: string;
-  winners?: {name: string, vehicle: string}[];
+  winners?: { name: string; vehicle: string; place: number }[];
   isDeleted: boolean;
-  id: string;
+  _id: string;
 }

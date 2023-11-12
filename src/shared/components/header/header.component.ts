@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   constructor() {}
-  notification: number = 5;
+  notification: number = 3;
   // TODO: fetch notifications
+  // TODO: add conditional rendering for notifications number container
   ngOnInit() {}
 }

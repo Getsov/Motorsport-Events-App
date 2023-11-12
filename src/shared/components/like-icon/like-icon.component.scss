@@ -1,0 +1,14 @@
+.like-icon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px;
+    margin: 2px 2px 12px 12px;
+    // TODO: Add red stroke
+    color: white;
+    stroke: red;
+    stroke-width: 2px;
+    z-index: 2;
+    height: 20px;
+    width: 20px;
+} 

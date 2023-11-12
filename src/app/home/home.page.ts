@@ -15,50 +15,88 @@ export class HomePage implements OnInit {
     // TODO : fetch lastest events data
     this.upcomingEvents = [
       {
-        banner:
-          'https://images.squarespace-cdn.com/content/v1/5a8227a58fd4d2d73f0e95c4/1550018105210-0RDB6YCPR7IJ6RNRJVGA/Drift-Rides-030.png?format=1000w',
+        banner: '../../assets/icon/Image.jpg',
         _id: 'asdasdsadsa',
+        shortTitle: 'Кондофрей Драг 2023',
+        startDate: '12-11-2023',
+        endDate: '14.11.23',
       },
       {
-        banner: 'https://superlift.com/images/Blog/ORE_Image2.jpg',
+        banner: '../../assets/icon/Image.jpg',
         _id: 'asdasdas',
+        shortTitle: 'Кондофрей Драг 2023',
+        startDate: '12-11-2023',
+        endDate: '14.11.23',
       },
       {
-        banner:
-          'https://www.timeattack.co.uk/wp-content/uploads/2021/03/TA2018r3_Brands-Hatch-Pitlane-web.jpg',
+        banner: '../../assets/icon/Image.jpg',
         _id: 'asdasdasd',
+        shortTitle: 'Кондофрей Драг 2023',
+        startDate: '12-11-2023',
+        endDate: '14.11.23',
+      },
+      {
+        banner: '../../assets/icon/Image.jpg',
+        _id: 'asdasdasd',
+        shortTitle: 'Кондофрей Драг 2023',
+        startDate: '12-11-2023',
+        endDate: '14.11.23',
+      },
+      {
+        banner: '../../assets/icon/Image.jpg',
+        _id: 'asdasdasd',
+        shortTitle: 'Кондофрей Драг 2023',
+        startDate: '12-11-2023',
+        endDate: '14.11.23',
+      },
+      {
+        banner: '../../assets/icon/Image.jpg',
+        _id: 'asdasdasd',
+        shortTitle: 'Кондофрей Драг 2023',
+        startDate: '12-11-2023',
+        endDate: '14.11.23',
+      },
+      {
+        banner: '../../assets/icon/Image.jpg',
+        _id: 'asdasdasd',
+        shortTitle: 'Кондофрей Драг 2023',
+        startDate: '12-11-2023',
+        endDate: '14.11.23',
       },
     ];
     // TODO: fetch events type list
     this.eventsType = [
       {
-        type: 'Off road',
-        imageUrl:
-          'https://www.rudaw.net/Library/Assets//Gallery/Photos/Photos2020/1April-1june/BlindTahir/peshbrke-09092020/peshbrki-09092020%20(10).JPG',
+        type: 'Драг',
+        imageUrl: '../../assets/icon/category-icons/drag.jpg',
       },
       {
-        type: 'Drag racing',
-        imageUrl: 'https://i.ytimg.com/vi/KpPni9A0jfY/maxresdefault.jpg',
+        type: 'Дрифт',
+        imageUrl: '../../assets/icon/category-icons/drift.jpg',
       },
       {
-        type: 'Drift',
-        imageUrl:
-          'https://gatebil.no/wp-content/uploads/2023/04/r6_l4692-scaled.jpg',
+        type: 'Писта',
+        imageUrl: '../../assets/icon/category-icons/pista.jpg',
       },
       {
-        type: 'Rally',
-        imageUrl:
-          'https://www.firestone.com.mx/content/dam/consumer/fst/la/mx/tips/otros/rally_b.jpg',
+        type: 'Планинско',
+        imageUrl: '../../assets/icon/category-icons/mountain.jpg',
       },
       {
-        type: 'Festival',
-        imageUrl:
-          'https://i0.wp.com/coloradocarshow.com/wp-content/uploads/2023/06/welcome.jpg?fit=1000%2C667&ssl=1',
+        type: 'Тайм Атак',
+        imageUrl: '../../assets/icon/category-icons/time-track.jpg',
       },
       {
-        type: 'Carting race',
-        imageUrl:
-          'https://curiocity.com/wp-content/uploads/2022/05/BeFunky-collage-44.jpg',
+        type: 'Рали',
+        imageUrl: '../../assets/icon/category-icons/rally.jpg',
+      },
+      {
+        type: 'Мотори',
+        imageUrl: '../../assets/icon/category-icons/bikes.jpg',
+      },
+      {
+        type: 'Събори',
+        imageUrl: 'https://www.haskovo.net/uploads/recipes/2015/04/02/5367.jpg',
       },
     ];
   }

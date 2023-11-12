@@ -1,86 +1,85 @@
-export const events:any = [
-    {
-        title: 'Дрифт Инвазия Сливен',
-        imageUrl:
-          'https://scontent.fsof9-1.fna.fbcdn.net/v/t39.30808-6/349584349_1271727883705766_8205814337725211385_n.jpg?stp=dst-jpg_p180x540&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ack7wHI2blUAX9QK4XG&_nc_ht=scontent.fsof9-1.fna&oh=00_AfCEaTwKc7EkRULIeQyQak3hkqXhlNgykzB2H4JROj3PoA&oe=654D6BF4',
-        shortDescription: 'Дрифт Инвазия Сливен 3-4 Юни',
-        longDescription: ``,
-        dates: [{date: '03.06.2023', startTime: '9:00', endTime: '17:00'}, {date: '04.06.2023', startTime: '08:30', endTime: '14:30'}],
-        contacts: {
-          city: 'Сливен',
-          address: 'Писта Буршен',
-          phone: '+359899979744',
-          email: 'driftofbulgaria@gmail.com',
-          coordinates: {lat: '42.6450536257009',long: '26.359077588351823'},
-        },
-        category: 'Дрифт',
-        creator: 'Drift of Bulgaria',
-        id: '01aclasd320777777',
-        isDeleted: false,
-        likedCount: 23,
-        visitorPrice: 20,
-      },
-      {
-        title: 'Планинско изкачване "Шумен"',
-        imageUrl:
-          'https://scontent.fsof9-1.fna.fbcdn.net/v/t39.30808-6/334945002_243101244721078_4918550363785543511_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Kjsq1RDvDY0AX8YKDi_&_nc_ht=scontent.fsof9-1.fna&oh=00_AfCnUgBTkI7NKDl7iYesXacuDwqwdKgwH5w9V57z9wn4mg&oe=654DBF8E',
-        shortDescription: 'Планинско изкачване "Шумен" 08.04-09.04.2023г',
-        longDescription: ``,
-        dates: [{date: '08.04.2023', startTime: '08:30', endTime: '18:00'}, {date: '09.04.2023', startTime: '10:00', endTime: '17:30'}],
-        contacts: {
-          city: 'Шумен',
-          address: 'Писта Шумен',
-          phone: '+359899979744',
-          email: 'ralibulgariashumen@gmail.com',
-          coordinates: {lat: '42.6450536257009',long: '26.359077588351823'},
-        },
-        category: 'Рали',
-        creator: 'Автомобилна федерация на България',
-        id: '01acl23523aefaef055555555',
-        isDeleted: false,
-        likedCount: 13,
-        visitorPrice: 10,
-      },
-      {
-        title: 'Дрифт Инвазия Сливен',
-        imageUrl:
-          'https://scontent.fsof9-1.fna.fbcdn.net/v/t39.30808-6/349584349_1271727883705766_8205814337725211385_n.jpg?stp=dst-jpg_p180x540&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ack7wHI2blUAX9QK4XG&_nc_ht=scontent.fsof9-1.fna&oh=00_AfCEaTwKc7EkRULIeQyQak3hkqXhlNgykzB2H4JROj3PoA&oe=654D6BF4',
-        shortDescription: 'Дрифт Инвазия Сливен 3-4 Юни',
-        longDescription: ``,
-        dates: [{date: '03.06.2023', startTime: '9:00', endTime: '17:00'}, {date: '04.06.2023', startTime: '08:30', endTime: '14:30'}],
-        contacts: {
-          city: 'Сливен',
-          address: 'Писта Буршен',
-          phone: '+359899979744',
-          email: 'driftofbulgaria@gmail.com',
-          coordinates: {lat: '42.6450536257009',long: '26.359077588351823'},
-        },
-        category: 'Дрифт',
-        creator: 'Drift of Bulgaria',
-        id: '01aclasd320kaca0d32',
-        isDeleted: false,
-        likedCount: 23,
-        visitorPrice: 20,
-      },
-      {
-        title: 'Планинско изкачване "Шумен"',
-        imageUrl:
-          'https://scontent.fsof9-1.fna.fbcdn.net/v/t39.30808-6/334945002_243101244721078_4918550363785543511_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Kjsq1RDvDY0AX8YKDi_&_nc_ht=scontent.fsof9-1.fna&oh=00_AfCnUgBTkI7NKDl7iYesXacuDwqwdKgwH5w9V57z9wn4mg&oe=654DBF8E',
-        shortDescription: 'Планинско изкачване "Шумен" 08.04-09.04.2023г',
-        longDescription: ``,
-        dates: [{date: '08.04.2023', startTime: '08:30', endTime: '18:00'}, {date: '09.04.2023', startTime: '10:00', endTime: '17:30'}],
-        contacts: {
-          city: 'Шумен',
-          address: 'Писта Шумен',
-          phone: '+359899979744',
-          email: 'ralibulgariashumen@gmail.com',
-          coordinates: {lat: '42.6450536257009',long: '26.359077588351823'},
-        },
-        category: 'Рали',
-        creator: 'Автомобилна федерация на България',
-        id: '01acl23523aefaef0ka8888',
-        isDeleted: false,
-        likedCount: 13,
-        visitorPrice: 10,
-      }
+import { Event } from "../interfaces/Event";
+
+export const events: Event[] = [
+  {
+    shortTitle: 'Драг Рейсинг на Кондофрей',
+    longTitle: '"Кондофрей Драг 2023" - село Кондофрей, летище "София-Запад"',
+    imageUrl:
+      'https://i.ytimg.com/vi/t52ovr-qdB0/maxresdefault.jpg',
+    shortDescription: 'Драг Рейсинг - Кондофрей [29-30 Април]',
+    longDescription: `Събитието ще се проведе на познатата ни писта на летище Sofia West Airport, с. Кондофрей до гр. Радомир.
+    Вход: 20лв - Такса свободни стартове: 50лв - Такса участие: 60лв`,
+    dates: [
+      { date: '29.04.2023', startTime: '9:00', endTime: '19:30' },
+      { date: '30.04.2023', startTime: '10:00', endTime: '16:30' },
+    ],
+    contacts: {
+      region: 'Кондофрей',
+      address: 'София Уест Еърпорт',
+      phone: '0888888888',
+      email: 'kondofrey@abv.bg',
+      coordinates: { lat: 42.448154, long: 22.963561 },
+    },
+    category: 'Драг',
+    creator: 'Drag Racing Bulgaria',
+    _id: '01',
+    isDeleted: false,
+    likedCount: 2,
+    visitorPrices: [{price: 5, description: 'За всички'}],
+    participantPrices: [{price: 25, description: 'За всички'}],
+  },
+  {
+    shortTitle: 'Драг Рейсинг на Кондофрей',
+    longTitle: '"Кондофрей Драг 2023" - село Кондофрей, летище "София-Запад"',
+    imageUrl:
+      'https://i.ytimg.com/vi/t52ovr-qdB0/maxresdefault.jpg',
+    shortDescription: 'Драг Рейсинг - Кондофрей [29-30 Април]',
+    longDescription: `Събитието ще се проведе на познатата ни писта на летище Sofia West Airport, с. Кондофрей до гр. Радомир.
+    Вход: 20лв - Такса свободни стартове: 50лв - Такса участие: 60лв`,
+    dates: [
+      { date: '29.04.2023', startTime: '9:00', endTime: '19:30' },
+      { date: '30.04.2023', startTime: '10:00', endTime: '16:30' },
+    ],
+    contacts: {
+      region: 'Кондофрей',
+      address: 'София Уест Еърпорт',
+      phone: '0888888888',
+      email: 'kondofrey@abv.bg',
+      coordinates: { lat: 42.448154, long: 22.963561 },
+    },
+    category: 'Драг',
+    creator: 'Drag Racing Bulgaria',
+    _id: '01',
+    isDeleted: false,
+    likedCount: 2,
+    visitorPrices: [{price: 5, description: 'За всички'}],
+    participantPrices: [{price: 25, description: 'За всички'}],
+  },
+  {
+    shortTitle: 'Драг Рейсинг на Кондофрей',
+    longTitle: '"Кондофрей Драг 2023" - село Кондофрей, летище "София-Запад"',
+    imageUrl:
+      'https://i.ytimg.com/vi/t52ovr-qdB0/maxresdefault.jpg',
+    shortDescription: 'Драг Рейсинг - Кондофрей [29-30 Април]',
+    longDescription: `Събитието ще се проведе на познатата ни писта на летище Sofia West Airport, с. Кондофрей до гр. Радомир.
+    Вход: 20лв - Такса свободни стартове: 50лв - Такса участие: 60лв`,
+    dates: [
+      { date: '29.04.2023', startTime: '9:00', endTime: '19:30' },
+      { date: '30.04.2023', startTime: '10:00', endTime: '16:30' },
+    ],
+    contacts: {
+      region: 'Кондофрей',
+      address: 'София Уест Еърпорт',
+      phone: '0888888888',
+      email: 'kondofrey@abv.bg',
+      coordinates: { lat: 42.448154, long: 22.963561 },
+    },
+    category: 'Драг',
+    creator: 'Drag Racing Bulgaria',
+    _id: '01',
+    isDeleted: false,
+    likedCount: 2,
+    visitorPrices: [{price: 5, description: 'За всички'}],
+    participantPrices: [{price: 25, description: 'За всички'}],
+  }
     ]

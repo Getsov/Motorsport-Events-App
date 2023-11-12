@@ -10,6 +10,12 @@ register();
 })
 export class UpcomingEventsComponent implements OnInit {
   @Input() upcomingEvents: any[] = [];
+
+  //  We set default values on titleText and titleColor.
+  // If data is passed they will change its value.
+  @Input() titleText: string = 'Предстоящи събития';
+  @Input() titleColor: string = 'orange';
+
   swiperModule = [IonicSlides];
 
   constructor() {}

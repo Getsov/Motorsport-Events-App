@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
 import { ModalController, NavController } from '@ionic/angular';
@@ -18,31 +18,45 @@ export class EventDetailPage implements OnInit {
   map!: GoogleMap;
 
   mockEvent: Event = {
-    title: 'Драг Рейсинг на Кондофрей',
-    imageUrl:
-      'https://scontent.fsof8-1.fna.fbcdn.net/v/t39.30808-6/336647635_186029427479392_3389018506494843726_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=LHyD876d-rQAX-SWQ9P&_nc_ht=scontent.fsof8-1.fna&oh=00_AfAEeMnhiiEjYIDFUtzU3HZtFuUM91SO06_xGj1cC45yuw&oe=654C5316',
+    shortTitle: 'Кондофрей Драг 2023',
+    longTitle: '"Кондофрей Драг 2023" - село Кондофрей, летище "София-Запад"',
+    imageUrl: 'https://i.ytimg.com/vi/t52ovr-qdB0/maxresdefault.jpg',
     shortDescription: 'Драг Рейсинг - Кондофрей [29-30 Април]',
-    longDescription: `Събитието ще се проведе на познатата ни писта на летище Sofia West Airport, с. Кондофрей до гр. Радомир.
-    Вход: 20лв - Такса свободни стартове: 50лв - Такса участие: 60лв`,
+    longDescription: `Кондофрей Драг е най-голямото и вълнуващо драг състезание в България, което привлича състезатели и фенове от цялата страна и дори извън нея. Събитието включва разнообразие от класове, от улични автомобили до професионални драгстери. Зрителите могат да се насладят на страхотното състезание, както и на храна и напитки. Гледайте как мощни машини ускоряват от 0 до 60 за секунди и достигат скорости от над 200км/ч.`,
     dates: [
-      { date: '29.04.2023', startTime: '9:00', endTime: '19:30' },
-      { date: '30.04.2023', startTime: '10:00', endTime: '16:30' },
+      { date: '15 декември 2023', startTime: '9:00', endTime: '19:30' },
+      { date: '16 декември 2023', startTime: '10:00', endTime: '16:30' },
     ],
     contacts: {
-      city: 'Кондофрей',
+      region: 'Кондофрей',
       address: 'София Уест Еърпорт',
       phone: '0888888888',
       email: 'kondofrey@abv.bg',
       coordinates: { lat: 42.448154, long: 22.963561 },
     },
     category: 'Драг',
-    creator: 'Drag Racing Bulgaria',
-    id: '01',
+    creator: 'Драг Клуб - София',
+    _id: '01',
     isDeleted: false,
     likedCount: 2,
-    visitorPrice: 15,
-    participantPrice: 55,
+    visitorPrices: [
+      { price: 50, description: 'за 1 ден вход - събота или неделя' },
+      { price: 80, description: 'за 2 ден вход - събота и неделя' },
+      { price: 120, description: 'за 2 дена вход - събота и неделя + VIP' },
+    ],
+    participantPrices: [
+      { price: 150, description: 'за плащане по банков път' },
+      { price: 120, description: 'за плащане по банков път и член на “БМВ Клуб България”' },
+      { price: 200, description: 'за плащане на място' },
+      { price: 160, description: 'за плащане на място и член на “БМВ Клуб България”' },
+    ],
   };
+
+  titleSeparatorColor: string = 'orange';
+
+  infoSeparatorText: string = 'Информация за събитието';
+  infoSeparatorColor: string = 'yellow';
+
   errorMessage: string = '';
   getDayOfWeek = getDayOfWeek;
 
@@ -71,13 +85,17 @@ export class EventDetailPage implements OnInit {
     });
   }
 
+  addEventToFavourites () {
+    // TODO: add event to favourites via service
+  }
+
   ionViewDidEnter() {
     this.createMap();
   }
 
   async createMap() {
     this.map = await GoogleMap.create({
-      id: this.mockEvent.id,
+      id: this.mockEvent._id,
       apiKey: environment.mapsKey,
       element: this.mapRef.nativeElement,
       config: {
@@ -98,24 +116,24 @@ export class EventDetailPage implements OnInit {
         lat: this.mockEvent.contacts.coordinates.lat,
         lng: this.mockEvent.contacts.coordinates.long,
       },
-      title: this.mockEvent.title,
-      snippet: `${this.mockEvent.contacts.city}, ${this.mockEvent.contacts.address}`
+      title: this.mockEvent.shortTitle,
+      snippet: `${this.mockEvent.contacts.region}, ${this.mockEvent.contacts.address}`,
     };
 
     await this.map.addMarker(marker);
-    
+
     await this.map.setOnMarkerClickListener(async () => {
       const modal = await this.modalController.create({
         component: EventMarkerModalPage,
         componentProps: {
-          marker
+          marker,
         },
         breakpoints: [0, 0.12],
         initialBreakpoint: 0.12,
-        showBackdrop: false
+        showBackdrop: false,
       });
 
       modal.present();
-    })
+    });
   }
 }
