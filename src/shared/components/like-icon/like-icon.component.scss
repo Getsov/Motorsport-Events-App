@@ -1,17 +1,38 @@
-        .like-icon{
-            position: absolute;
-            top: 3px;
-            right: 3px;
-            padding: 4px 2px 8px 8px;
-            z-index: 2;
-        } 
-        
-        .likes-count{
-            position: absolute;
-            z-index: 3;
-            top: 9px;
-            right: 13px;
-            color: #E80000;
-            font-size: 10px;
-            font-weight: 700;
-        }
+.like-icon {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  padding: 4px 2px 8px 8px;
+  z-index: 2;
+}
+
+.likes-count {
+  position: absolute;
+  z-index: 3;
+  top: 6px;
+  right: 8px;
+  font-weight: 700;
+}
+
+.like-icon-liked {
+  color: #ffffff;
+}
+
+.like-icon-not-liked {
+  color: #e80000;
+}
+
+.like-count-small {
+  top: 6px;
+  right: 10px;
+}
+
+.like-count-medium {
+  top: 5.5px;
+  right: 9.5px;
+}
+
+.like-count-large {
+  top: 6px;
+  right: 7.5px;
+}

@@ -1,6 +1,21 @@
-<img
-  src="../../../assets/icon/like-icons/not-liked-small.png"
-  alt="Like-icon"
+<div
+  (click)="likeEvent()"
   class="like-icon"
-/>
-<p class="likes-count">5</p>
+  [ngClass]="{
+    'like-icon-liked': isLiked,
+    'like-icon-not-liked': !isLiked,
+  }"
+>
+  <img [src]="likeIconSrc" alt="Like-icon" />
+  <p
+    class="likes-count"
+    [style.font-size]="fontSize"
+    [ngClass]="{
+      'like-count-small': fontSize === '10px',
+      'like-count-medium': fontSize === '12px',
+      'like-count-large': fontSize === '14px'
+    }"
+  >
+    {{ likedCount }}
+  </p>
+</div>
