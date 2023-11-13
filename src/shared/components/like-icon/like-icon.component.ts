@@ -51,8 +51,7 @@ export class LikeIconComponent implements OnInit {
     this.likedCount++;
 
     if (this.likedCount < 10) {
-      this.isLiked;
-      '../../../assets/icon/like-icons/not-liked-small.png'
+      this.isLiked
         ? (this.likeIconSrc = '../../../assets/icon/like-icons/small-liked.png')
         : (this.likeIconSrc =
             '../../../assets/icon/like-icons/not-liked-small.png');
