@@ -1,7 +1,21 @@
 <div
   (click)="likeEvent()"
-  [ngClass]="{ 'like-icon-liked': isLiked, 'like-icon-not-liked': !isLiked }"
+  class="like-icon"
+  [ngClass]="{
+    'like-icon-liked': isLiked,
+    'like-icon-not-liked': !isLiked,
+  }"
 >
-  <img [src]="likeIconSrc" alt="Like-icon" class="like-icon" />
-  <p class="likes-count" [style.font-size]="fontSize">{{ likedCount }}</p>
+  <img [src]="likeIconSrc" alt="Like-icon" />
+  <p
+    class="likes-count"
+    [style.font-size]="fontSize"
+    [ngClass]="{
+      'like-count-small': fontSize === '10px',
+      'like-count-medium': fontSize === '12px',
+      'like-count-large': fontSize === '14px'
+    }"
+  >
+    {{ likedCount }}
+  </p>
 </div>
