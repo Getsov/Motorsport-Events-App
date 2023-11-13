@@ -10,7 +10,7 @@ export class LikeIconComponent implements OnInit {
   constructor() {}
 
   @Input() eventId: string = '';
-  @Input() likesCount: number = 0;
+  @Input() likedCount: number = 0;
 
   likeIconSrc: string = '../../../assets/icon/like-icons/not-liked-small.png';
   isLiked: boolean = false;
@@ -20,16 +20,16 @@ export class LikeIconComponent implements OnInit {
 
   likeEvent() {
     this.isLiked = !this.isLiked;
-    this.likesCount++;
+    this.likedCount++;
 
-    if (this.likesCount < 10) {
+    if (this.likedCount < 10) {
       this.likeIconSrc =
         this.likeIconSrc ===
         '../../../assets/icon/like-icons/not-liked-small.png'
           ? '../../../assets/icon/like-icons/small-liked.png'
           : '../../../assets/icon/like-icons/not-liked-small.png';
-    } else if (this.likesCount < 100) {
-      if (this.likesCount === 10) {
+    } else if (this.likedCount < 100) {
+      if (this.likedCount === 10) {
         this.fontSize = '12px';
         console.log('fontsizre changed');
       }
@@ -38,7 +38,7 @@ export class LikeIconComponent implements OnInit {
         '../../../assets/icon/like-icons/not-liked-medium.png'
           ? '../../../assets/icon/like-icons/medium-liked.png'
           : '../../../assets/icon/like-icons/not-liked-medium.png';
-    } else if (this.likesCount < 1000) {
+    } else if (this.likedCount < 1000) {
       this.likeIconSrc =
         this.likeIconSrc ===
         '../../../assets/icon/like-icons/not-liked-large.png'

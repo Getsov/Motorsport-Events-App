@@ -8,8 +8,8 @@
         </p>
       </div>
     </ion-card-header>
-    <img src="{{ event.imageUrl }}" alt="" />
+    <img src="{{ event.imageUrl }}" alt="{{ event.shortTitle }}" />
   </div>
 
-  <app-like-icon [eventId]="event._id" />
+  <app-like-icon [eventId]="event._id" [likedCount]="event.likedCount" />
 </ion-card>
