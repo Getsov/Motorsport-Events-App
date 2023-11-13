@@ -9,7 +9,7 @@ import { ShortenedEvent } from 'src/shared/interfaces/ShortenedEvent';
 })
 export class HomePage implements OnInit {
   constructor() {}
-  // TODO: import interfaces
+
   upcomingEvents: ShortenedEvent[] = [];
   categories: Category[] = [];
 
