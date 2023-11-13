@@ -2,8 +2,8 @@
 
     .like-icon{
         position: absolute;
-        top: 1;
-        right: 0;
+        top: 3px;
+        right: 3px;
         padding: 4px 2px 8px 8px;
         z-index: 2;
     } 
@@ -11,10 +11,10 @@
     .likes-count{
         position: absolute;
         z-index: 3;
-        top: 5px;
-        right: 9.5px;
+        top: 9px;
+        right: 13px;
         color: #E80000;
-        font-size: 12px;
+        font-size: 10px;
         font-weight: 700;
     }
 

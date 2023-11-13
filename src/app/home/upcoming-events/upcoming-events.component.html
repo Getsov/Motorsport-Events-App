@@ -4,8 +4,10 @@
   <swiper-slide *ngFor="let event of upcomingEvents">
     <ion-card class="events-card">
       <ion-card-header class="card-header">
-        <p class="event-title">{{ event.shortTitle }}</p>
-        <p class="event-dates">{{ event.startDate }} - {{ event.endDate }}</p>
+        <div class="header-container">
+          <p class="event-title">{{ event.shortTitle }}</p>
+          <p class="event-dates">{{ event.startDate }} - {{ event.endDate }}</p>
+        </div>
       </ion-card-header>
       <app-like-icon />
       <img src="{{ event.banner }}" alt="" />
