@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/shared/interfaces/Category';
 import { ShortenedEvent } from 'src/shared/interfaces/ShortenedEvent';
 
 @Component({
@@ -10,7 +11,7 @@ export class HomePage implements OnInit {
   constructor() {}
   // TODO: import interfaces
   upcomingEvents: ShortenedEvent[] = [];
-  eventsType: any[] = [];
+  categories: Category[] = [];
 
   ngOnInit() {
     // TODO : fetch lastest events data
@@ -77,7 +78,7 @@ export class HomePage implements OnInit {
       },
     ];
     // TODO: fetch events type list
-    this.eventsType = [
+    this.categories = [
       {
         type: 'Драг',
         imageUrl: '../../assets/icon/category-icons/drag.jpg',
