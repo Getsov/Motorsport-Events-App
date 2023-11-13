@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ShortenedEvent } from 'src/shared/interfaces/ShortenedEvent';
+import { Event } from 'src/shared/interfaces/Event';
 
 @Component({
   selector: 'app-slide-card',
@@ -7,12 +7,29 @@ import { ShortenedEvent } from 'src/shared/interfaces/ShortenedEvent';
   styleUrls: ['./slide-card.component.scss'],
 })
 export class SlideCardComponent implements OnInit {
-  @Input() event: ShortenedEvent = {
+  @Input() event: Event = {
     shortTitle: '',
     dates: [],
     imageUrl: '',
     _id: '',
     likedCount: 0,
+    longTitle: '',
+    shortDescription: '',
+    longDescription: '',
+    visitorPrices: [],
+    contacts: {
+      coordinates: {
+        lat: 0,
+        long: 0,
+      },
+      region: '',
+      address: '',
+      phone: '',
+      email: '',
+    },
+    category: '',
+    creator: '',
+    isDeleted: false,
   };
 
   constructor() {}

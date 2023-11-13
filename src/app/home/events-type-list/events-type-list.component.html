@@ -1,7 +1,10 @@
 <app-title-fades [color]="titleColor" [title]="titleText" />
 
 <ion-list lines="none" class="categories-list">
-  <ion-card class="category-card all" [routerLink]="['/tabs/events']">
+  <ion-card
+    class="category-card all"
+    [routerLink]="['/tabs/events', { sortBy: 'all' }]"
+  >
     <ion-card-header class="category-title">Всички категории</ion-card-header>
     <img
       src="../../../assets//icon/category-icons/all.jpg"

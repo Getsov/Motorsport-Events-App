@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IonicSlides } from '@ionic/angular';
-import { ShortenedEvent } from 'src/shared/interfaces/ShortenedEvent';
+import { Event } from 'src/shared/interfaces/Event';
 import { register } from 'swiper/element/bundle';
 register();
 
@@ -10,7 +10,7 @@ register();
   styleUrls: ['./upcoming-events.component.scss'],
 })
 export class UpcomingEventsComponent implements OnInit {
-  @Input() upcomingEvents: ShortenedEvent[] = [];
+  @Input() upcomingEvents: Event[] = [];
 
   @Input() titleText: string = 'Предстоящи събития';
   @Input() titleColor: string = 'orange';
