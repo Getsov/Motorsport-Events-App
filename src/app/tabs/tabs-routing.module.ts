@@ -21,7 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        loadChildren: () => import('../user/profile/profile.module').then(m => m.ProfilePageModule)
+        loadChildren: () => import('../user/login/login.module').then(m => m.LoginPageModule)
       },
       {
         path: 'notifications',
