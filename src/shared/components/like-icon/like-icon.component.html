@@ -3,5 +3,5 @@
   [ngClass]="{ 'like-icon-liked': isLiked, 'like-icon-not-liked': !isLiked }"
 >
   <img [src]="likeIconSrc" alt="Like-icon" class="like-icon" />
-  <p class="likes-count">{{ likesCount }}</p>
+  <p class="likes-count" [style.font-size]="fontSize">{{ likesCount }}</p>
 </div>
