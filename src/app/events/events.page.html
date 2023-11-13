@@ -9,7 +9,8 @@
       <p class="event-location">{{event.contacts.region}}, {{event.contacts.address}}</p>
       <p *ngIf="event.dates.length > 1" class="event-date">От {{event.dates[0].date}} г. до {{event.dates[event.dates.length - 1].date}} г.</p>
       <p *ngIf="event.dates.length == 1">{{event.dates[0].date}} г.</p>
-      <ion-icon name="heart-outline" class="event-like-btn"></ion-icon>
+      <!-- <ion-icon name="heart-outline" class="event-like-btn"></ion-icon> -->
+      <app-like-icon class="event-like-btn"></app-like-icon>
     </div>
     <div class="event-info">
       <h3 class="event-title">{{event.shortTitle}}</h3>
