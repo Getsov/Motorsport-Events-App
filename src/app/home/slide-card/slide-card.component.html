@@ -1,12 +1,15 @@
 <ion-card class="events-card">
-  <ion-card-header class="card-header">
-    <div class="header-container">
-      <p class="event-title">{{ event.shortTitle }}</p>
-      <p class="event-dates">
-        {{ event.dates[0].date }} - {{ event.dates[lastDateIndex].date }}
-      </p>
-    </div>
-  </ion-card-header>
+  <div class="link-to-details" [routerLink]="['/tabs/events', event._id]">
+    <ion-card-header class="card-header">
+      <div class="header-container">
+        <p class="event-title">{{ event.shortTitle }}</p>
+        <p class="event-dates">
+          {{ event.dates[0].date }} - {{ event.dates[lastDateIndex].date }}
+        </p>
+      </div>
+    </ion-card-header>
+    <img src="{{ event.imageUrl }}" alt="" />
+  </div>
+
   <app-like-icon [eventId]="event._id" />
-  <img src="{{ event.imageUrl }}" alt="" />
 </ion-card>
