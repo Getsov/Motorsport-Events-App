@@ -1,31 +1,21 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
-    </ion-buttons>
-    <ion-title class="title">Събития</ion-title>
-
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content [fullscreen]="true">
   <div>
-    <ion-searchbar show-clear-button="focus" placeholder="Търсене"></ion-searchbar>
-    <!-- TODO: Град Дата Категория -->
+    <app-search show-clear-button="focus" placeholder="Търсене"></app-search>
   </div>
+  <app-title-fades [color]="titleColor" [title]="titleText" />
   <div class="event-container" *ngFor="let event of eventsData" (click)="eventRedirect(event._id)">
     <div class="image-wrapper">
       <img alt="{{event.shortTitle}}" src="{{event.imageUrl}}" class="event-image" />
-      <ion-icon name="heart-outline" class="event-like-btn"></ion-icon>
+      <p class="event-location">{{event.contacts.region}}, {{event.contacts.address}}</p>
+      <p *ngIf="event.dates.length > 1" class="event-date">От {{event.dates[0].date}} г. до {{event.dates[event.dates.length - 1].date}} г.</p>
+      <p *ngIf="event.dates.length == 1">{{event.dates[0].date}} г.</p>
+      <!-- <ion-icon name="heart-outline" class="event-like-btn"></ion-icon> -->
+      <app-like-icon class="event-like-btn"></app-like-icon>
     </div>
     <div class="event-info">
       <h3 class="event-title">{{event.shortTitle}}</h3>
       <p class="event-description">{{event.shortDescription}}</p>
-      <p class="event-location">{{event.contacts.region}}, {{event.contacts.address}}</p>
-      <ng-container *ngIf="event.visitorPrices">
-        <p *ngFor="let visitorPrice of event.visitorPrices">{{visitorPrice.description}}: {{visitorPrice.price}} лв.</p>
-      </ng-container>
-      <p class="event-likes"><ion-icon name="thumbs-up-outline"></ion-icon>{{event.likedCount}}</p>
+      <button class="more-btn"><p>Прочети повече</p></button>
     </div>
   </div>
 </ion-content>
