@@ -1,0 +1,12 @@
+<ion-card class="events-card">
+  <ion-card-header class="card-header">
+    <div class="header-container">
+      <p class="event-title">{{ event.shortTitle }}</p>
+      <p class="event-dates">
+        {{ event.dates[0].date }} - {{ event.dates[lastDateIndex].date }}
+      </p>
+    </div>
+  </ion-card-header>
+  <app-like-icon />
+  <img src="{{ event.imageUrl }}" alt="" />
+</ion-card>
