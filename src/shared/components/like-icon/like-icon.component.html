@@ -1,6 +1,7 @@
-<img
-  src="../../../assets/icon/like-icons/not-liked-small.png"
-  alt="Like-icon"
-  class="like-icon"
-/>
-<p class="likes-count">5</p>
+<div
+  (click)="likeEvent()"
+  [ngClass]="{ 'like-icon-liked': isLiked, 'like-icon-not-liked': !isLiked }"
+>
+  <img [src]="likeIconSrc" alt="Like-icon" class="like-icon" />
+  <p class="likes-count">{{ likesCount }}</p>
+</div>

@@ -11,7 +11,15 @@
             z-index: 3;
             top: 9px;
             right: 13px;
-            color: #E80000;
+            
             font-size: 10px;
             font-weight: 700;
         }
+
+        .like-icon-liked {
+            color: #fffFFF;
+          }
+          
+          .like-icon-not-liked {
+            color: #E80000;
+          }
