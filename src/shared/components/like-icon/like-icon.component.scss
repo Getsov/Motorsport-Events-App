@@ -1,14 +1,38 @@
-.like-icon{
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 4px;
-    margin: 2px 2px 12px 12px;
-    // TODO: Add red stroke
-    color: white;
-    stroke: red;
-    stroke-width: 2px;
-    z-index: 2;
-    height: 20px;
-    width: 20px;
-} 
+.like-icon {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  padding: 4px 2px 8px 8px;
+  z-index: 2;
+}
+
+.likes-count {
+  position: absolute;
+  z-index: 3;
+  top: 6px;
+  right: 8px;
+  font-weight: 700;
+}
+
+.like-icon-liked {
+  color: #ffffff;
+}
+
+.like-icon-not-liked {
+  color: #e80000;
+}
+
+.like-count-small {
+  top: 6px;
+  right: 10px;
+}
+
+.like-count-medium {
+  top: 5.5px;
+  right: 9.5px;
+}
+
+.like-count-large {
+  top: 6px;
+  right: 7.5px;
+}

@@ -1,57 +1,6 @@
+
 swiper-container{
-    margin-bottom: 24px;
-        .events-card{
-            position: relative;
-            margin: 16px 16px 0 16px;
-            width: 100%;
-            height: 124px;
-            border-radius: 4px;
-            box-shadow: 0 0 6px -2px #FF7418;
-            img {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                z-index: 1;
-
-            }
-
-            .card-header{
-                position: absolute;
-                bottom: 0;
-                z-index: 2;
-                background-color: rgba(0, 0, 0, 0.7);
-                width: 100%;
-                height: 51px;
-                display: flex;
-                flex-direction: column;
-                flex-wrap: wrap;
-
-                .event-title{
-                    width: 100%;
-                    height: 36px;
-                    font-weight: 500;
-                    font-size: 14px;
-                    line-height: 18px;
-                    text-align: center;
-                    color: #FFFFFF;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                }
-
-                .event-dates {
-                    width: 100%;
-                    height: 15px;
-                    font-weight: 300;
-                    font-size: 10px;
-                    line-height: 15px;
-                    text-align: center;
-                    position: absolute;
-                    top: 36px;
-                    left: 0;
-                    justify-content: center;
-                    color: #C2BFBE;
-                }
-            }
-        }
+    margin-bottom: 22px;
+       
     }
+

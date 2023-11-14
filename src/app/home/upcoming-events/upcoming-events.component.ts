@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IonicSlides } from '@ionic/angular';
+import { Event } from 'src/shared/interfaces/Event';
 import { register } from 'swiper/element/bundle';
 register();
 
@@ -9,10 +10,8 @@ register();
   styleUrls: ['./upcoming-events.component.scss'],
 })
 export class UpcomingEventsComponent implements OnInit {
-  @Input() upcomingEvents: any[] = [];
+  @Input() upcomingEvents: Event[] = [];
 
-  //  We set default values on titleText and titleColor.
-  // If data is passed they will change its value.
   @Input() titleText: string = 'Предстоящи събития';
   @Input() titleColor: string = 'orange';
 
@@ -21,7 +20,6 @@ export class UpcomingEventsComponent implements OnInit {
   constructor() {}
   // TODO: redirect to  details page of the selected event
   // TODO: add events interface
-  // TODO: attach like functionality to like icon, _id is passed
 
   ngOnInit() {}
 }

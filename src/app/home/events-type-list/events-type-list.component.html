@@ -1,7 +1,10 @@
 <app-title-fades [color]="titleColor" [title]="titleText" />
 
 <ion-list lines="none" class="categories-list">
-  <ion-card class="category-card all">
+  <ion-card
+    class="category-card all"
+    [routerLink]="['/tabs/events', { sortBy: 'all' }]"
+  >
     <ion-card-header class="category-title">Всички категории</ion-card-header>
     <img
       src="../../../assets//icon/category-icons/all.jpg"
@@ -10,7 +13,11 @@
     />
   </ion-card>
 
-  <ion-card class="category-card" *ngFor="let eventType of eventsType">
+  <ion-card
+    class="category-card"
+    *ngFor="let eventType of eventsType"
+    [routerLink]="['/tabs/events', { sortBy: eventType.type }]"
+  >
     <ion-card-header class="category-title">
       {{ eventType.type }}
     </ion-card-header>

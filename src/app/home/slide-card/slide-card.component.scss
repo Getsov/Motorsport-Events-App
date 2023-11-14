@@ -1,0 +1,66 @@
+.events-card{
+    position: relative;
+    margin: 16px 16px 2px 16px;
+    min-width: 120px;
+    min-height: 140px;
+    border-radius: 4px;
+    box-shadow: 0 0 6px -2px #FF7418;
+    --background: #0D0D0D;
+
+    img {
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        height: 81px;
+        z-index: 1;
+        padding: 4px 4px 0 4px;
+        border-radius: 6px;
+    }
+
+    .card-header{
+        position: absolute;
+        bottom: 0;
+        z-index: 2;
+        width: 100%;
+        padding: 2px 4px 0 4px;
+        .header-container{
+            height: 59px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-evenly;
+            .event-title{
+                // TODO: check how title will handle the text. Wait for design
+                word-break:break-all;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                max-height: 36px; 
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 100%;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 18px;
+                text-align: left;
+                color: #FFFFFF;
+                text-align: left;
+            }
+
+            .event-dates {
+                width: 100%;
+                height: 30%;
+                font-weight: 300;
+                font-size: 10px;
+                line-height: 15px;
+                text-align: left;
+                top: 36px;
+                left: 0;
+                color: #C2BFBE;
+            }
+        }
+
+        
+    }
+}

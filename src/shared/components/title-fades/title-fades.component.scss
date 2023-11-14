@@ -8,8 +8,8 @@
         height: 32px;
         font-weight: 700;
         font-size: 18px;
+        padding-left: 80px;
         line-height: 21.6px; 
-        text-align: center;
         color: #0D0D0D;
         position: relative;
 
@@ -49,8 +49,8 @@
        height: 32px;
        font-weight: 700;
        font-size: 18px;
+       padding-left: 80px;
        line-height: 21.6px; 
-       text-align: center;
        color: #0D0D0D;
        position: relative;
 
@@ -80,4 +80,17 @@
 .invalid-color{
    background-color: red;
 
+}
+
+@media (min-width: 380px) {
+   .upcoming-events-title-orange .first-fade,
+   .upcoming-events-title-yellow .first-fade
+    {
+       right: 93%; 
+   }
+
+   .upcoming-events-title-yellow .second-fade,
+   .upcoming-events-title-orange .second-fade{
+      right: 99%;
+   }
 }
