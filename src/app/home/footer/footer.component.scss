@@ -1,19 +1,17 @@
 .footer {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 12px 26px 22px 26px;
-
-    a{
-      text-decoration: none;
-      color: #C2BFBE;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 18px;
-      text-align: center;
-    }
-  
+  height: 36px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 16px;
+  a {
+    flex: 1 1 50%;
+    text-decoration: none;
+    color: #c2bfbe;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
   }
-
-  
+}
