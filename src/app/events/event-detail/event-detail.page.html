@@ -1,12 +1,5 @@
 <ion-content>
-  <!-- <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/tabs/events"></ion-back-button>
-      </ion-buttons>
-      <ion-title>Детайли за събитие</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
+  <app-header [headerTitle]="headerTitle" [defaultHref]="defaultHref"></app-header>
 
   <div class="ion-margin-vertical">
     <app-title-fades [color]="titleSeparatorColor" [title]="mockEvent.shortTitle" />
