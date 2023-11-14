@@ -1,8 +1,7 @@
 <ion-content [fullscreen]="true">
-  <ion-header class="header-menu">
-    <app-header></app-header>
+  <ion-header class="header-menu" >
+    <app-header [backButton]="backButton" [defaultHref]="defaultHref"></app-header>
     <div class="login-header-image">
-      <!-- <img src="../../../assets/images/login-img-cars.jpg" alt="login-img-cars"> -->
     </div>
   </ion-header>
 
@@ -38,7 +37,6 @@
           </div>
         </div>
 
-        
         <div class="main-button-wrapper">
           <button class="main-button">Вход</button>
         </div>

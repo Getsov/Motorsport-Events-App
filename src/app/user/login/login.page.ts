@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  defaultHref: string = '/tabs/events';
+  backButton: boolean = true;
 
   constructor() { }
 
