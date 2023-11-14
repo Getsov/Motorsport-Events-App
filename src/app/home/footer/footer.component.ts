@@ -7,6 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
   constructor() {}
-  // TODO: add terms and about us path and create pages
+  // TODO: Waiting for modals design
   ngOnInit() {}
 }
