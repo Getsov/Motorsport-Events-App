@@ -6,6 +6,7 @@ import { ExploreContainerComponentModule } from 'src/app/explore-container/explo
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
     ExploreContainerComponentModule,
     FormsModule,
     IonicModule,
+    RouterModule
   ],
   declarations: [LikeIconComponent, TitleFadesComponent, HeaderComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
