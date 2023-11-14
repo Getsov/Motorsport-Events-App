@@ -12,4 +12,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  segmentChanged(ev: any) {
+    // TODO: Redirect to register page
+  }
 }
