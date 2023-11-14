@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/shared/interfaces/Category';
+import { events } from 'src/shared/data/events';
+import { Event } from 'src/shared/interfaces/Event';
 
 @Component({
   selector: 'app-home',
@@ -7,65 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
   constructor() {}
-  // TODO: import interfaces
-  upcomingEvents: any[] = [];
-  eventsType: any[] = [];
+
+  upcomingEvents: Event[] = events;
+  categories: Category[] = [];
 
   ngOnInit() {
     // TODO : fetch lastest events data
-    this.upcomingEvents = [
-      {
-        banner: '../../assets/icon/Image.jpg',
-        _id: 'asdasdsadsa',
-        shortTitle: 'Кондофрей Драг 2023',
-        startDate: '12-11-2023',
-        endDate: '14.11.23',
-      },
-      {
-        banner: '../../assets/icon/Image.jpg',
-        _id: 'asdasdas',
-        shortTitle: 'Кондофрей Драг 2023',
-        startDate: '12-11-2023',
-        endDate: '14.11.23',
-      },
-      {
-        banner: '../../assets/icon/Image.jpg',
-        _id: 'asdasdasd',
-        shortTitle: 'Кондофрей Драг 2023',
-        startDate: '12-11-2023',
-        endDate: '14.11.23',
-      },
-      {
-        banner: '../../assets/icon/Image.jpg',
-        _id: 'asdasdasd',
-        shortTitle: 'Кондофрей Драг 2023',
-        startDate: '12-11-2023',
-        endDate: '14.11.23',
-      },
-      {
-        banner: '../../assets/icon/Image.jpg',
-        _id: 'asdasdasd',
-        shortTitle: 'Кондофрей Драг 2023',
-        startDate: '12-11-2023',
-        endDate: '14.11.23',
-      },
-      {
-        banner: '../../assets/icon/Image.jpg',
-        _id: 'asdasdasd',
-        shortTitle: 'Кондофрей Драг 2023',
-        startDate: '12-11-2023',
-        endDate: '14.11.23',
-      },
-      {
-        banner: '../../assets/icon/Image.jpg',
-        _id: 'asdasdasd',
-        shortTitle: 'Кондофрей Драг 2023',
-        startDate: '12-11-2023',
-        endDate: '14.11.23',
-      },
-    ];
+
     // TODO: fetch events type list
-    this.eventsType = [
+    this.categories = [
       {
         type: 'Драг',
         imageUrl: '../../assets/icon/category-icons/drag.jpg',
