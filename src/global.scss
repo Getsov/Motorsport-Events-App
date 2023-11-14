@@ -87,7 +87,7 @@ select {
   border-radius: 4px;
   padding: 8px 24px;
   text-align: center;
-  
+  height: auto;
 }
 
 .main-button {
@@ -95,6 +95,7 @@ select {
   text-decoration: none;
   color: #0D0D0D;
   font-weight: 600;
+  line-height: 1;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
