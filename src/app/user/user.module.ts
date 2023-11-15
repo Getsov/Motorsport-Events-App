@@ -5,10 +5,6 @@ import { LoginPageModule } from './login/login.module';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    LoginPageModule
-  ]
+  imports: [CommonModule, UserRoutingModule, LoginPageModule],
 })
-export class UserModule { }
+export class UserModule {}
