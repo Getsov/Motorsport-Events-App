@@ -17,6 +17,7 @@
   h1 {
     font-size: 2em;
     color: #ff7418;
+    font-family: "Exo 2";
     font-weight: 600;
   }
 
@@ -78,22 +79,21 @@ ion-segment {
 // sign-up-link
 
 .sign-up-link {
-    margin-top: 0.5em;
-    text-align: center;
+  margin-top: 0.5em;
+  text-align: center;
 
-    p {
-        color: #C2BFBE;
-        font-size: 12px;
-        padding: 0 11%;
+  p {
+    color: #c2bfbe;
+    font-size: 12px;
+    padding: 0 11%;
 
-        span {
-            a {
-                font-weight: 700;
-                color: white;
-                text-decoration: underline;
-                cursor: pointer;
-            }
-
-        }
+    span {
+      a {
+        font-weight: 700;
+        color: white;
+        text-decoration: underline;
+        cursor: pointer;
+      }
     }
+  }
 }
