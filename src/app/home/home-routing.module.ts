@@ -17,6 +17,11 @@ const routes: Routes = [
     path: 'privacy-policy',
     component: GeneralTermsComponent,
   },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
