@@ -1,3 +1,8 @@
-<p>
-  general-terms works!
-</p>
+<ion-content>
+  <section *ngFor="let section of pageContent">
+    <header>
+      <app-title-fades [color]="section.titleColor" [title]="section.title" />
+    </header>
+    <p *ngFor="let paragraph of section.content">{{ paragraph }}</p>
+  </section>
+</ion-content>

@@ -10,6 +10,7 @@ import { EventsTypeListComponent } from './events-type-list/events-type-list.com
 import { FooterComponent } from './footer/footer.component';
 import { SharedModule } from 'src/shared/shared.module';
 import { SlideCardComponent } from './slide-card/slide-card.component';
+import { GeneralTermsComponent } from './general-terms/general-terms.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { SlideCardComponent } from './slide-card/slide-card.component';
     FooterComponent,
     UpcomingEventsComponent,
     SlideCardComponent,
+    GeneralTermsComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
