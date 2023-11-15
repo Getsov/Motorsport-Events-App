@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'general-terms',
     component: GeneralTermsComponent,
   },
+  {
+    path: 'privacy-policy',
+    component: GeneralTermsComponent,
+  },
 ];
 
 @NgModule({

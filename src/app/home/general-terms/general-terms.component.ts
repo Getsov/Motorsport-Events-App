@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-general-terms',
@@ -6,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./general-terms.component.scss'],
 })
 export class GeneralTermsComponent implements OnInit {
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
 
-  pageContent: { title: string; titleColor: string; content: string[] }[] = [
+  pageContent: { title: string; titleColor: string; content: string[] }[] = [];
+
+  companyInfo: {
+    name: string;
+    adress: string;
+    email: string;
+    updatedAt: string;
+  } = {
+    name: 'Рейс Фанатик” ООД',
+    adress: 'гр. Русе, бул. “България” № 23',
+    email: 'support@racefanatic.bg',
+    updatedAt: '05.01.2024 г.',
+  };
+
+  generalTerms: { title: string; titleColor: string; content: string[] }[] = [
     {
       title: '1. Приемане на Условията',
       titleColor: 'orange',
@@ -50,5 +65,62 @@ export class GeneralTermsComponent implements OnInit {
     },
   ];
 
-  ngOnInit() {}
+  privacyPolicy: { title: string; titleColor: string; content: string[] }[] = [
+    {
+      title: '1. Събиране',
+      titleColor: 'orange',
+      content: [
+        '1.1. При използването на "Race Fanatic" можем да събираме лична информация, като например име, електронна поща и предпочитани настройки. Тази информация се събира само с Вашето изрично съгласие или ако това е необходимо за предоставянето на определени услуги в приложението.',
+        '1.2. Освен това, можем автоматично да събираме техническа информация, като IP адреси, тип устройство, версия на операционната система и други подобни данни.',
+      ],
+    },
+    {
+      title: '2. Използване',
+      titleColor: 'yellow',
+      content: [
+        '2.1. Личната информация, която събираме, се използва за персонализиране на приложението и подобряване на Вашето потребителско преживяване.',
+        '2.2. Можем да използваме личната информация и за изпращане на съобщения и информация относно нови функции, актуализации или специални предложения във връзка с приложението.',
+      ],
+    },
+    {
+      title: '3. Споделяне',
+      titleColor: 'orange',
+      content: [
+        'Ние не продаваме, не обменяме и не предоставяме лична информация на трети страни без Вашето изрично съгласие, освен ако това не е необходимо за предоставянето на услугите в рамките на приложението.',
+      ],
+    },
+    {
+      title: '4. Защита',
+      titleColor: 'yellow',
+      content: [
+        '4.1. Спазваме изискванията на Общия регламент за защита на личните данни (GDPR) за защита на личната информация. Прилагаме подходящи технически и организационни мерки, за да гарантираме адекватна сигурност на обработваната лична информация и за да предотвратим неправомерен достъп, загуба, унищожаване или изменение на данните.r',
+        '4.2. В случай на инцидент, свързан с нарушение на сигурността на личните данни, съгласно GDPR, ще предприемем необходимите стъпки за уведомяване на регулаторните органи и засегнатите лица в сроковете, предвидени в GDPR.',
+        '4.3. Ако имате въпроси относно защитата на личната информация или искате да упражните своите права по силата на GDPR, моля, свържете се с нас на support@racefanatic.bg',
+      ],
+    },
+    {
+      title: '5. Промени',
+      titleColor: 'orange',
+      content: [
+        'Можем да актуализираме тази Политика за поверителност при необходимост. Всички промени ще бъдат публикувани в приложението, и Вие ще бъдете уведомени за тях. Продължавайки използването на приложението след такива промени, Вие се съгласявате с актуализираната Политика за поверителност.',
+      ],
+    },
+  ];
+
+  dynamicPageTitle: string = '';
+
+  ngOnInit() {
+    // Change the page title based on url segment
+    // TODO: fetch the new app header and set page title
+    const urlSegments = this.route.snapshot.url;
+    this.dynamicPageTitle = urlSegments[urlSegments.length - 1].path;
+
+    // Pass the correct data to template
+    if (this.dynamicPageTitle == 'general-terms') {
+      this.pageContent = this.generalTerms;
+    }
+    if (this.dynamicPageTitle == 'privacy-policy') {
+      this.pageContent = this.privacyPolicy;
+    }
+  }
 }
