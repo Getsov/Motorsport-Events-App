@@ -1,11 +1,11 @@
 .events-card {
   position: relative;
-  margin: 16px 16px 2px 16px;
   min-width: 120px;
   min-height: 140px;
   border-radius: 4px;
   box-shadow: 0 0 6px -2px #ff7418;
   --background: #0d0d0d;
+  margin: 16px 16px 24px 16px;
 
   img {
     top: 0;
@@ -25,7 +25,7 @@
     width: 100%;
     padding: 2px 4px 0 4px;
     .header-container {
-      height: 59px;
+      min-height: 59px;
       display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
@@ -35,7 +35,7 @@
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
-        max-height: 36px;
+        min-height: 36px;
         overflow: hidden;
         text-overflow: ellipsis;
         width: 100%;
