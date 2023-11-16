@@ -15,18 +15,8 @@ export class EventsTypeListComponent implements OnInit {
   @Input() titleColor = 'yellow';
   @Input() titleText = 'Категории';
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   // TODO: redirect to eventsList and pass the selected filter(type of the event)
   ngOnInit() {}
-
-  redirectWithState(filter: string) {
-    let navigationExtras: NavigationExtras = {
-      state: {
-        filter,
-      },
-    };
-
-    this.router.navigate(['/tabs/events'], navigationExtras);
-  }
 }
