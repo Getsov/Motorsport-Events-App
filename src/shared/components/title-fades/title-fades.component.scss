@@ -9,6 +9,14 @@ h2 {
   position: relative;
 }
 
+.fade {
+  border: 9px solid black;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  transform: translateY(-50%) rotate(45deg);
+}
+
 .upcoming-events-title-orange {
   position: relative;
   overflow: hidden;
@@ -16,21 +24,11 @@ h2 {
   background: linear-gradient(270deg, transparent, rgba(255, 116, 24, 0.8) 20%);
 
   .first-fade {
-    border: 9px solid black;
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    transform: translateY(-50%) rotate(45deg);
     top: 50%;
     right: 92%;
   }
 
   .second-fade {
-    border: 9px solid black;
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    transform: translateY(-50%) rotate(45deg);
     top: 50%;
     right: 98%;
   }
@@ -44,21 +42,11 @@ h2 {
   // fix gradients
   background: linear-gradient(270deg, transparent, rgba(255, 220, 35, 0.8) 20%);
   .first-fade {
-    border: 9px solid black;
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    transform: translateY(-50%) rotate(45deg);
     top: 50%;
     right: 92%;
   }
 
   .second-fade {
-    border: 9px solid black;
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    transform: translateY(-50%) rotate(45deg);
     top: 50%;
     right: 98%;
   }
