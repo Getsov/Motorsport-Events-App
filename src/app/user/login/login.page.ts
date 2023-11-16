@@ -8,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class LoginPage implements OnInit {
   backButton: boolean = false;
 
+  authSegment: string = 'login';
+
   constructor() {}
 
   ngOnInit() {}
 
   segmentChanged(ev: any) {
-    // TODO: Redirect to register page
+    this.authSegment = ev.detail.value;
   }
 }

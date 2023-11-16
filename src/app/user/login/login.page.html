@@ -13,7 +13,7 @@
     </div>
 
     <div class="segment">
-      <ion-segment value="login" (ionChange)="segmentChanged($event)">
+      <ion-segment value="login" [(ngModel)]="authSegment" (ionChange)="segmentChanged($event)">
         <ion-segment-button value="login">
           <ion-label>Вход</ion-label>
         </ion-segment-button>
@@ -23,7 +23,8 @@
       </ion-segment>
     </div>
     <!-- TODO: Working template form -->
-    <div class="login-form">
+
+    <div class="login-form" *ngIf="authSegment == 'login' else register">
       <form>
         <div class="input-wrapper">
           <div class="input-with-icon">
@@ -41,11 +42,18 @@
           <button class="main-button">Вход</button>
         </div>
       </form>
+      <div class="sign-up-link">
+        <p>Ако нямате създаден профил можете да се регистрирате от <span><a
+              [routerLink]="['/tabs/user/register']">ТУК</a></span>
+        </p>
+      </div>
     </div>
 
-    <div class="sign-up-link">
-      <p>Ако нямате създаден профил можете да се регистрирате от <span><a href="">ТУК</a></span></p>
-    </div>
+    <ng-template #register>
+      <p>register</p>
+    </ng-template>
+
+
 
   </div>
 </ion-content>
