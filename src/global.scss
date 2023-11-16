@@ -109,6 +109,27 @@ select {
   line-height: 1;
 }
 
+/* Event page search */
+
+.searchbar-input-container.sc-ion-searchbar-ios {
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+
+.searchbar-input.sc-ion-searchbar-ios {
+  display: block;
+  position: relative;
+  right: 30px;
+}
+
+.searchbar-search-icon.sc-ion-searchbar-ios.ios.hydrated{
+  position: relative;
+  left: -14px;
+  height: 20px;
+
+}
+
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
