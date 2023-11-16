@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @Input() headerTitle: string = '';
+  @Input() backButton: boolean = false;
+  @Input() defaultHref: string = '';
+
   constructor() {}
   notification: number = 3;
   // TODO: fetch notifications

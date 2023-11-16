@@ -1,12 +1,5 @@
 <ion-content>
-  <!-- <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/tabs/events"></ion-back-button>
-      </ion-buttons>
-      <ion-title>Детайли за събитие</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
+  <app-header [headerTitle]="headerTitle" [backButton]="backButton" [defaultHref]="defaultHref"></app-header>
 
   <div class="ion-margin-vertical">
     <app-title-fades [color]="titleSeparatorColor" [title]="mockEvent.shortTitle" />
@@ -88,8 +81,8 @@
       </div>
     </div>
 
-    <div class="add-favourite" (click)="addEventToFavourites()">
-      <button href="#">Добави в любими</button>
+    <div class="main-button-wrapper" (click)="addEventToFavourites()">
+      <button class="main-button">Добави в любими</button>
     </div>
 
   </div>
