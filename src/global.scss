@@ -76,7 +76,9 @@ td,
 th,
 dt,
 dd,
-dl {
+dl,
+div,
+input {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font-family: "Open Sans", "Inter", "Roboto";
