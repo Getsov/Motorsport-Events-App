@@ -17,6 +17,10 @@ export class EventDetailPage implements OnInit {
   @ViewChild('map') mapRef!: ElementRef;
   map!: GoogleMap;
 
+  headerTitle: string = 'Детайли за събитие';
+  defaultHref: string = '/tabs/events';
+  backButton: boolean = true;
+
   mockEvent: Event = {
     shortTitle: 'Кондофрей Драг 2023',
     longTitle: '"Кондофрей Драг 2023" - село Кондофрей, летище "София-Запад"',
