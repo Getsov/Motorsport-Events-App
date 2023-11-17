@@ -13,8 +13,8 @@ import { OrganizationRegisterPage } from './organization-register.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    OrganizationRegisterPageRoutingModule
+    OrganizationRegisterPageRoutingModule,
   ],
-  declarations: [OrganizationRegisterPage]
+  declarations: [OrganizationRegisterPage],
 })
 export class OrganizationRegisterPageModule {}

@@ -50,9 +50,15 @@ export class EventDetailPage implements OnInit {
     ],
     participantPrices: [
       { price: 150, description: 'за плащане по банков път' },
-      { price: 120, description: 'за плащане по банков път и член на “БМВ Клуб България”' },
+      {
+        price: 120,
+        description: 'за плащане по банков път и член на “БМВ Клуб България”',
+      },
       { price: 200, description: 'за плащане на място' },
-      { price: 160, description: 'за плащане на място и член на “БМВ Клуб България”' },
+      {
+        price: 160,
+        description: 'за плащане на място и член на “БМВ Клуб България”',
+      },
     ],
   };
 
@@ -89,7 +95,7 @@ export class EventDetailPage implements OnInit {
     });
   }
 
-  addEventToFavourites () {
+  addEventToFavourites() {
     // TODO: add event to favourites via service
   }
 
