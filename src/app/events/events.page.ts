@@ -8,6 +8,9 @@ import { Event } from 'src/shared/interfaces/Event';
   styleUrls: ['./events.page.scss'],
 })
 export class EventsPage implements OnInit {
+  headerTitle: string = 'Събития';
+  defaultHref: string = '/tabs/home';
+  backButton: boolean = true;
   eventsData: Event[] = events;
   @Input() titleColor: string = 'yellow';
   @Input() titleText: string = 'Списък със събития';
