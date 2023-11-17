@@ -17,8 +17,4 @@ export class AuthPage implements OnInit {
   segmentChanged(ev: any) {
     this.authSegment = ev.detail.value;
   }
-
-  toggleAuthSegmentChange(newSegment: string) {
-    this.authSegment = newSegment;
-  }
 }
