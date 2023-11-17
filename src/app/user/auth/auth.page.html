@@ -25,6 +25,12 @@
 
     <div class="login-form" *ngIf="authSegment == 'login' else register">
       <app-login></app-login>
+      <div class="auth-redirect-link">
+        <p>Ако нямате създаден профил можете да се регистрирате от <span><a
+              [routerLink]="['/tabs/user/register']">ТУК</a></span>
+        </p>
+      </div>
+
     </div>
 
     <ng-template #register>
