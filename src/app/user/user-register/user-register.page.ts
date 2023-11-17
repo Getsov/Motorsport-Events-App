@@ -10,8 +10,9 @@ import BulgarianRegions from 'src/shared/data/regions';
 export class UserRegisterPage implements OnInit {
   userChecked: boolean = true;
 
-  bulgarianRegions: string[] = Object.keys(BulgarianRegions);
-
+  bulgarianRegions: string[] = Object.keys(BulgarianRegions).filter((v) =>
+    isNaN(Number(v))
+  );
   constructor() {}
 
   ngOnInit() {}
