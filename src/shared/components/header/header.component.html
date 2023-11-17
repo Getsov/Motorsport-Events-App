@@ -1,13 +1,15 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="none">
     <div class="page-header">
-
       <div *ngIf="backButton; else logoContainer" class="back-button-container">
         <ion-buttons slot="start">
-          <ion-back-button [defaultHref]="defaultHref" text=""></ion-back-button>
+          <ion-back-button
+            [defaultHref]="defaultHref"
+            text=""
+          ></ion-back-button>
         </ion-buttons>
       </div>
-      
+
       <ng-template #logoContainer>
         <div class="logo-container" [routerLink]="['/tabs/home']">
           <img src="../../../assets/icon/Logo-white-transparent.png" />
@@ -15,16 +17,15 @@
       </ng-template>
 
       <div class="header-title" *ngIf="headerTitle">
-        <h1>{{headerTitle}}</h1>
+        <h1>{{ headerTitle }}</h1>
       </div>
-      
+
       <div class="notifinations-icon">
         <ion-icon name="notifications-outline" stroke="currentColor"></ion-icon>
         <div class="notifications">
           {{ notification }}
         </div>
       </div>
-
     </div>
   </ion-toolbar>
 </ion-header>

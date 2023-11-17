@@ -12,8 +12,8 @@ import { NotificationsPage } from './notifications.page';
     ExploreContainerComponentModule,
     FormsModule,
     IonicModule,
-    NotificationsPageRoutingModule
+    NotificationsPageRoutingModule,
   ],
-  declarations: [NotificationsPage]
+  declarations: [NotificationsPage],
 })
-export class NotificationsPageModule { }
+export class NotificationsPageModule {}
