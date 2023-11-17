@@ -17,11 +17,17 @@ h2 {
   transform: translateY(-50%) rotate(45deg);
 }
 
-.upcoming-events-orange-title {
+div {
   position: relative;
   overflow: hidden;
   height: 32px;
+}
+.orange-title {
   background: linear-gradient(270deg, transparent, rgba(255, 116, 24, 0.8) 20%);
+}
+
+.yellow-title {
+  background: linear-gradient(270deg, transparent, rgba(255, 220, 35, 0.8) 20%);
 }
 
 .first-fade {
@@ -32,13 +38,6 @@ h2 {
 .second-fade {
   top: 50%;
   right: 98%;
-}
-
-.upcoming-events-yellow-title {
-  position: relative;
-  overflow: hidden;
-  height: 32px;
-  background: linear-gradient(270deg, transparent, rgba(255, 220, 35, 0.8) 20%);
 }
 
 .invalid-color {

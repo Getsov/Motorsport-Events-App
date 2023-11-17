@@ -3,7 +3,8 @@
 <ion-list lines="none" class="categories-list">
   <ion-card
     class="category-card all"
-    [routerLink]="['/tabs/events', { filterBy: 'all' }]"
+    [routerLink]="['/tabs/events']"
+    [queryParams]="{ sortBy: 'all' }"
   >
     <ion-card-header class="category-title">Всички категории</ion-card-header>
     <img
@@ -16,7 +17,8 @@
   <ion-card
     class="category-card"
     *ngFor="let eventType of eventsType"
-    [routerLink]="['/tabs/events', { filterBy: eventType.type }]"
+    [routerLink]="['/tabs/events']"
+    [queryParams]="{ sortBy: 'all' }"
   >
     <ion-card-header class="category-title">
       {{ eventType.type }}
