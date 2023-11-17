@@ -1,5 +1,6 @@
 <ion-content [fullscreen]="true">
-  <ion-header class="header-menu">
+  <ion-header
+    [ngClass]="{'header-menu': true, 'login-background-image': authSegment === 'login', 'register-background-image': authSegment === 'register'}">
     <app-header [backButton]="backButton"></app-header>
     <div class="login-header-image">
     </div>
@@ -8,8 +9,8 @@
   <div class="container ion-padding-horizontal">
 
     <div class="heading-title">
-      <h1>Вход</h1>
-      <p>Влезте във Вашия акаунт</p>
+      <h1>{{authSegment === 'login' ? 'Вход' : 'Регистрация'}}</h1>
+      <p>{{authSegment === 'login' ? 'Влезте във Вашия акаунт' : 'Регистрирайте нов акаунт'}} </p>
     </div>
 
     <div class="segment">
@@ -27,14 +28,22 @@
       <app-login></app-login>
       <div class="auth-redirect-link">
         <p>Ако нямате създаден профил можете да се регистрирате от <span><a
-              [routerLink]="['/tabs/user/register']">ТУК</a></span>
+              (click)="toggleAuthSegmentChange('register')">ТУК</a></span>
         </p>
       </div>
 
     </div>
 
     <ng-template #register>
-      <app-register></app-register>
+      <app-user-register></app-user-register>
+      <div class="auth-redirect-link">
+        <p>Вече имате акаунт? <span><a (click)="toggleAuthSegmentChange('login')">ВХОД</a></span>
+        </p>
+      </div>
+      <div class="register-tos-agreement">
+        <p>С регистрацията се съгласявате на <span><a href="#">Общите условия</a></span> и <span><a href="#">Правилата
+              за поверителност</a></span></p>
+      </div>
     </ng-template>
 
 
