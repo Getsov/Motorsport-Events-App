@@ -9,8 +9,8 @@ describe('GeneralTermsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ GeneralTermsComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [GeneralTermsComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GeneralTermsComponent);

@@ -9,8 +9,8 @@ describe('EventsTypeListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventsTypeListComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [EventsTypeListComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EventsTypeListComponent);

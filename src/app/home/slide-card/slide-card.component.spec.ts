@@ -9,8 +9,8 @@ describe('SlideCardComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SlideCardComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [SlideCardComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SlideCardComponent);

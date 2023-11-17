@@ -3,11 +3,29 @@
     <app-search show-clear-button="focus" placeholder="Търсене"></app-search>
   </div>
   <app-title-fades [color]="titleColor" [title]="titleText" />
-  <div class="event-container" *ngFor="let event of eventsData" (click)="eventRedirect(event._id)">
+  <div
+    class="event-container"
+    *ngFor="let event of eventsData"
+    (click)="eventRedirect(event._id)"
+  >
     <div class="image-wrapper">
-      <img alt="{{event.shortTitle}}" src="{{event.imageUrl}}" class="event-image" />
-      <p class="event-location"><ion-icon [src]="location" name="location" class="location-img"></ion-icon>{{event.contacts.region}}</p>
-      <p *ngIf="event.dates.length > 1" class="event-date">От {{event.dates[0].date}} г. до {{event.dates[event.dates.length - 1].date}} г.</p>
+      <img
+        alt="{{event.shortTitle}}"
+        src="{{event.imageUrl}}"
+        class="event-image"
+      />
+      <p class="event-location">
+        <ion-icon
+          [src]="location"
+          name="location"
+          class="location-img"
+        ></ion-icon
+        >{{event.contacts.region}}
+      </p>
+      <p *ngIf="event.dates.length > 1" class="event-date">
+        От {{event.dates[0].date}} г. до {{event.dates[event.dates.length -
+        1].date}} г.
+      </p>
       <p *ngIf="event.dates.length == 1">{{event.dates[0].date}} г.</p>
       <app-like-icon class="event-like-btn"></app-like-icon>
     </div>

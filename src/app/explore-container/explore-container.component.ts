@@ -6,7 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./explore-container.component.scss'],
 })
 export class ExploreContainerComponent {
-
   @Input() name?: string;
-
 }

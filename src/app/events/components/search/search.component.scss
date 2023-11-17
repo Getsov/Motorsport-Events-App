@@ -1,27 +1,27 @@
 ion-searchbar.custom {
-    margin: 1em auto;
-    padding-left: 8px;
-    border: 1px solid #FFF;
-    width: 91%;
-    min-height: 40px;
-    height: 40px;
-    --background: #000;
-    --color: #fff;
-    --placeholder-color: #fff;
-    --icon-color: #fff;
-    --clear-button-color: #fff;
-    --placeholder-opacity: 1;
-    border-radius: 4px;
-  }
+  margin: 1em auto;
+  padding-left: 8px;
+  border: 1px solid #fff;
+  width: 91%;
+  min-height: 40px;
+  height: 40px;
+  --background: #000;
+  --color: #fff;
+  --placeholder-color: #fff;
+  --icon-color: #fff;
+  --clear-button-color: #fff;
+  --placeholder-opacity: 1;
+  border-radius: 4px;
+}
 .select-section {
-    max-width: 91%;
-    margin: 16px auto;
-    margin-bottom: 24px;
-    display: flex;
-    justify-content: space-between;
-    gap: 16px
+  max-width: 91%;
+  margin: 16px auto;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .select-item {
-    flex: 1 0 47%;
+  flex: 1 0 47%;
 }

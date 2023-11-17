@@ -6,15 +6,14 @@ import { CalendarPageRoutingModule } from './calendar-routing.module';
 import { CalendarPage } from './calendar.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
-
 @NgModule({
   imports: [
     CommonModule,
     ExploreContainerComponentModule,
     FormsModule,
     IonicModule,
-    CalendarPageRoutingModule
+    CalendarPageRoutingModule,
   ],
-  declarations: [CalendarPage]
+  declarations: [CalendarPage],
 })
-export class CalendarPageModule { }
+export class CalendarPageModule {}
