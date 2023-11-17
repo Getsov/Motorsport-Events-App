@@ -11,13 +11,13 @@ ion-toolbar {
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    padding: 0 24px 0 24px;
     height: 56px;
     position: relative;
 
     .logo-container {
       height: 56px;
       position: relative;
+      margin: 0 24px;
     }
 
     .logo-container img {
@@ -34,6 +34,7 @@ ion-toolbar {
       position: relative;
       height: 56px;
       width: 40px;
+      margin: 0 24px;
     }
 
     // header title
