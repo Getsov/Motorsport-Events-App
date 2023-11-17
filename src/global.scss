@@ -18,6 +18,16 @@
   src: url("assets/fonts/Roboto-Regular.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Lato";
+  src: url("assets/fonts/Lato-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("assets/fonts/Montserrat-Regular.ttf") format("truetype");
+}
+
 /* CSS RESET
 /* Box sizing rules */
 *,
@@ -54,7 +64,21 @@ html:focus-within {
 }
 
 /* Set core body defaults */
-body {
+body,
+p,
+a,
+ol,
+ul,
+li,
+span,
+tr,
+td,
+th,
+dt,
+dd,
+dl,
+div,
+input {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font-family: "Open Sans", "Inter", "Roboto";
@@ -66,6 +90,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: "Exo 2", "Montserrat", "Lato";
   line-height: 1.2;
 }
 
@@ -123,11 +148,10 @@ select {
   right: 30px;
 }
 
-.searchbar-search-icon.sc-ion-searchbar-ios.ios.hydrated{
+.searchbar-search-icon.sc-ion-searchbar-ios.ios.hydrated {
   position: relative;
   left: -14px;
   height: 20px;
-
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
