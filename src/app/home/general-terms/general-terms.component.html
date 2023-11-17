@@ -1,6 +1,5 @@
-<app-header [headerTitle]="bulgarianTitle" [backButton]="true" />
-
 <ion-content>
+  <app-header [headerTitle]="bulgarianTitle" [backButton]="true" />
   <section *ngFor="let section of pageContent">
     <header>
       <app-title-fades [color]="section.titleColor" [title]="section.title" />
