@@ -109,6 +109,40 @@ select {
   line-height: 1;
 }
 
+// FORM: Universal form styles
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-bottom: 4.3em;
+
+  .input-with-icon {
+    position: relative;
+
+    input {
+      background: transparent;
+      width: 100%;
+      height: 40px;
+      border-radius: 4px;
+      border: 1px solid white;
+      padding-left: 42px;
+    }
+
+    ::placeholder {
+      color: #ffffff;
+    }
+
+    .input-icons {
+      position: absolute;
+      left: 0.5em;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 22px;
+    }
+  }
+}
+
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
