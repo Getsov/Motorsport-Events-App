@@ -9,7 +9,7 @@ import { AuthPageRoutingModule } from './auth-routing.module';
 import { AuthPage } from './auth.page';
 import { SharedModule } from 'src/shared/shared.module';
 import { LoginPage } from '../login/login.page';
-import { RegisterPage } from '../register/register.page';
+import { UserRegisterPage } from '../user-register/user-register.page';
 
 @NgModule({
   imports: [
@@ -19,6 +19,6 @@ import { RegisterPage } from '../register/register.page';
     AuthPageRoutingModule,
     SharedModule,
   ],
-  declarations: [AuthPage, LoginPage, RegisterPage],
+  declarations: [AuthPage, LoginPage, UserRegisterPage],
 })
 export class AuthPageModule {}

@@ -1,11 +1,19 @@
 .header-menu {
   position: relative;
-  background-image: linear-gradient(0deg, #0b0b0b 0%, rgba(0, 0, 0, 0) 93%),
-    url("../../../assets/images/login-img-cars.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 9em;
+}
+
+.login-background-image {
+  background-image: linear-gradient(0deg, #0b0b0b 0%, rgba(0, 0, 0, 0) 93%),
+    url("../../../assets/images/login-img-cars.jpg");
+}
+
+.register-background-image {
+  background-image: linear-gradient(0deg, #0b0b0b 0%, rgba(0, 0, 0, 0) 93%),
+    url("../../../assets/images/speedometer_v2.jpg");
 }
 
 .heading-title {
