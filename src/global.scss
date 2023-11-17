@@ -120,7 +120,8 @@ select {
   .input-with-icon {
     position: relative;
 
-    input {
+    input,
+    .region-select {
       background: transparent;
       width: 100%;
       height: 40px;
