@@ -47,8 +47,17 @@ ion-toolbar {
       }
     }
 
-    ion-back-button {
-      color: #c2bfbe;
+    .back-button-container {
+      margin: 0 24px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      ion-back-button {
+        color: #c2bfbe;
+        height: 100%;
+      }
     }
 
     ion-icon {
