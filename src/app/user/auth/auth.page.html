@@ -1,0 +1,36 @@
+<ion-content [fullscreen]="true">
+  <ion-header class="header-menu">
+    <app-header [backButton]="backButton"></app-header>
+    <div class="login-header-image">
+    </div>
+  </ion-header>
+
+  <div class="container ion-padding-horizontal">
+
+    <div class="heading-title">
+      <h1>Вход</h1>
+      <p>Влезте във Вашия акаунт</p>
+    </div>
+
+    <div class="segment">
+      <ion-segment value="login" [(ngModel)]="authSegment" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="login">
+          <ion-label>Вход</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="register">
+          <ion-label>Регистрация</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <div class="login-form" *ngIf="authSegment == 'login' else register">
+      <app-login></app-login>
+    </div>
+
+    <ng-template #register>
+      <app-register></app-register>
+    </ng-template>
+
+
+  </div>
+</ion-content>
