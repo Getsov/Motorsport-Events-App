@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
+import { Category } from 'src/shared/interfaces/Category';
 
 @Component({
   selector: 'app-events-type-list',
@@ -6,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./events-type-list.component.scss'],
 })
 export class EventsTypeListComponent implements OnInit {
-  @Input() eventsType: any[] = [];
+  @Input() eventsType: Category[] = [];
 
   //  We set default values on titleText and titleColor.
   // If data is passed they will change its value.

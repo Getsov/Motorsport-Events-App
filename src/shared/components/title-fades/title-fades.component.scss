@@ -1,75 +1,43 @@
-.upcoming-events-title-orange {
-  position: relative;
-  overflow: hidden;
+h2 {
+  padding-top: 7px;
   height: 32px;
-  background: linear-gradient(270deg, transparent, #ff7418 20%);
-  h2 {
-    padding-top: 7px;
-    height: 32px;
-    font-weight: 700;
-    font-size: 18px;
-    padding-left: 80px;
-    line-height: 21.6px;
-    color: #0d0d0d;
-    position: relative;
-    font-family: "Exo 2";
-  }
-  .first-fade {
-    border: 9px solid black;
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    transform: translateY(-50%) rotate(45deg);
-    top: 50%;
-    right: 92%;
-  }
-
-  .second-fade {
-    border: 9px solid black;
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    transform: translateY(-50%) rotate(45deg);
-    top: 50%;
-    right: 98%;
-  }
+  font-weight: 700;
+  font-size: 18px;
+  padding-left: 80px;
+  line-height: 21.6px;
+  color: #0d0d0d;
+  position: relative;
 }
 
-// If needed change the background
-.upcoming-events-title-yellow {
+.fade {
+  border: 9px solid black;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+div {
   position: relative;
   overflow: hidden;
   height: 32px;
-  background: linear-gradient(270deg, transparent, #ffdc23 20%);
-  h2 {
-    padding-top: 7px;
-    height: 32px;
-    font-weight: 700;
-    font-size: 18px;
-    padding-left: 80px;
-    line-height: 21.6px;
-    color: #0d0d0d;
-    position: relative;
-  }
-  .first-fade {
-    border: 9px solid black;
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    transform: translateY(-50%) rotate(45deg);
-    top: 50%;
-    right: 92%;
-  }
+}
+.orange-title {
+  background: linear-gradient(270deg, transparent, rgba(255, 116, 24, 0.8) 20%);
+}
 
-  .second-fade {
-    border: 9px solid black;
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    transform: translateY(-50%) rotate(45deg);
-    top: 50%;
-    right: 98%;
-  }
+.yellow-title {
+  background: linear-gradient(270deg, transparent, rgba(255, 220, 35, 0.8) 20%);
+}
+
+.first-fade {
+  top: 50%;
+  right: 92%;
+}
+
+.second-fade {
+  top: 50%;
+  right: 98%;
 }
 
 .invalid-color {
@@ -77,13 +45,13 @@
 }
 
 @media (min-width: 380px) {
-  .upcoming-events-title-orange .first-fade,
-  .upcoming-events-title-yellow .first-fade {
+  .upcoming-events.orange-title .first-fade,
+  .upcoming-events.yellow-title .first-fade {
     right: 93%;
   }
 
-  .upcoming-events-title-yellow .second-fade,
-  .upcoming-events-title-orange .second-fade {
+  .upcoming-events.yellow-title .second-fade,
+  .upcoming-events.orange-title .second-fade {
     right: 99%;
   }
 }

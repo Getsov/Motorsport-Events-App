@@ -1,5 +1,5 @@
-.title {
-  text-align: center;
+.page-title{
+  margin-top: 16px;
 }
 
 .event-container {
@@ -7,8 +7,8 @@
   background: var(--surface-screen-screen-card-black-dark, #0D0D0D);
   box-shadow: 0px 0px 8px 1px rgba(255, 220, 35, 0.30);
   padding: 8px;
-  width: 328px;
-  margin: 0.6em auto;
+  width: 91%;
+  margin: 16px auto;
 }
 
 h3 {
@@ -16,12 +16,13 @@ h3 {
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
+  line-height: 150%;
 }
 
 .event-description {
   margin-bottom: 8px;
   color:#C2BFBE;
-  font-family: Open Sans;
+  /* font-family: Open Sans; */
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -49,7 +50,7 @@ h3 {
   background: #FF7418;
   position: absolute;
   bottom: 26px;
-  left: 8px;
+  left: 4px;
 }
 .event-date {
   display: inline-flex;
@@ -59,14 +60,14 @@ h3 {
   border-radius: 4px;
   background-color: #FFDC23;
   color: #0D0D0D;
-  font-family: Open Sans;
+  /* font-family: Open Sans; */
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
   line-height: 150%;
   position: absolute;
   bottom: 4px;
-  left: 8px;
+  left: 4px;
 }
 
 .event-like-btn {
@@ -83,7 +84,7 @@ h3 {
 
 .more-btn {
   display: flex;
-  width: 156px;
+  width: 47%;
   padding: 4px 16px;
   justify-content: center;
   align-items: center;
@@ -100,4 +101,9 @@ h3 {
   font-style: normal;
   font-weight: 600;
   line-height: 150%;
+}
+
+.location-img{
+  width: 16px;
+  height: 16px;
 }

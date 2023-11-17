@@ -1,0 +1,14 @@
+<ion-content>
+  <section *ngFor="let section of pageContent">
+    <header>
+      <app-title-fades [color]="section.titleColor" [title]="section.title" />
+    </header>
+    <p *ngFor="let paragraph of section.content">{{ paragraph }}</p>
+  </section>
+  <footer>
+    <p>{{ companyInfo.name }}</p>
+    <p>{{ companyInfo.adress }}</p>
+    <p>e-mail: {{ companyInfo.email }}</p>
+    <p>Дата на последна актуализация: {{ companyInfo.updatedAt }}</p>
+  </footer>
+</ion-content>

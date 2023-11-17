@@ -12,7 +12,7 @@ export class LikeIconComponent implements OnInit {
   @Input() eventId: string = '';
   @Input() likedCount: number = 0;
 
-  likeIconSrc: string = '../../../assets/icon/like-icons/not-liked-small.png';
+  likeIconSrc: string = '../../../assets/icon/like-icons/not-liked-small.svg';
   isLiked: boolean = false;
   fontSize: string = '10px';
 
@@ -25,24 +25,24 @@ export class LikeIconComponent implements OnInit {
       this.fontSize = '10px';
 
       this.isLiked
-        ? (this.likeIconSrc = '../../../assets/icon/like-icons/small-liked.png')
+        ? (this.likeIconSrc = '../../../assets/icon/like-icons/small-liked.svg')
         : (this.likeIconSrc =
-            '../../../assets/icon/like-icons/not-liked-small.png');
+            '../../../assets/icon/like-icons/not-liked-small.svg');
     } else if (this.likedCount < 100) {
       this.fontSize = '12px';
 
       this.isLiked
         ? (this.likeIconSrc =
-            '../../../assets/icon/like-icons/medium-liked.png')
+            '../../../assets/icon/like-icons/medium-liked.svg')
         : (this.likeIconSrc =
-            '../../../assets/icon/like-icons/not-liked-medium.png');
+            '../../../assets/icon/like-icons/not-liked-medium.svg');
     } else if (this.likedCount < 1000) {
       this.fontSize = '14px';
 
       this.isLiked
-        ? (this.likeIconSrc = '../../../assets/icon/like-icons/large-liked.png')
+        ? (this.likeIconSrc = '../../../assets/icon/like-icons/large-liked.svg')
         : (this.likeIconSrc =
-            '../../../assets/icon/like-icons/not-liked-large.png');
+            '../../../assets/icon/like-icons/not-liked-large.svg');
     }
   }
 
@@ -52,9 +52,9 @@ export class LikeIconComponent implements OnInit {
 
     if (this.likedCount < 10) {
       this.isLiked
-        ? (this.likeIconSrc = '../../../assets/icon/like-icons/small-liked.png')
+        ? (this.likeIconSrc = '../../../assets/icon/like-icons/small-liked.svg')
         : (this.likeIconSrc =
-            '../../../assets/icon/like-icons/not-liked-small.png');
+            '../../../assets/icon/like-icons/not-liked-small.svg');
     } else if (this.likedCount < 100) {
       if (this.likedCount === 10) {
         this.fontSize = '12px';
@@ -62,22 +62,20 @@ export class LikeIconComponent implements OnInit {
 
       this.isLiked
         ? (this.likeIconSrc =
-            '../../../assets/icon/like-icons/medium-liked.png')
+            '../../../assets/icon/like-icons/medium-liked.svg')
         : (this.likeIconSrc =
-            '../../../assets/icon/like-icons/not-liked-medium.png');
+            '../../../assets/icon/like-icons/not-liked-medium.svg');
     } else if (this.likedCount < 1000) {
       if (this.likedCount === 10) {
         this.fontSize = '14px';
       }
 
       this.isLiked
-        ? (this.likeIconSrc = '../../../assets/icon/like-icons/large-liked.png')
+        ? (this.likeIconSrc = '../../../assets/icon/like-icons/large-liked.svg')
         : (this.likeIconSrc =
-            '../../../assets/icon/like-icons/not-liked-large.png');
+            '../../../assets/icon/like-icons/not-liked-large.svg');
     }
 
     // Send a request to like the event using the eventId
-
-    console.log(`Liked event with ID: ${this.eventId}`);
   }
 }

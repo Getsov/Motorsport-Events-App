@@ -11,6 +11,7 @@ export class EventsPage implements OnInit {
   eventsData: Event[] = events;
   @Input() titleColor: string = 'yellow';
   @Input() titleText: string = 'Списък със събития';
+  location = "assets/icon/icon-location.svg";
   constructor(private router: Router) { }
   eventRedirect(id: string): void {
     this.router.navigate(['/tabs/events/' + id]);

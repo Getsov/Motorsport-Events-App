@@ -1,9 +1,10 @@
 <div>
   <app-title-fades [color]="titleColor" [title]="titleText" />
-  <ion-searchbar show-clear-button="focus" placeholder="Търси събитие" class="search"></ion-searchbar>
+  <ion-searchbar placeholder="Търси събитие" class="custom"></ion-searchbar>
+  <!-- <input type="text" class="custom-search" placeholder="Търси събитие"> -->
   <div class="select-section">
-    <app-select [placeholder]="Category"></app-select>
-    <app-select [placeholder]="Location"></app-select>
+    <app-select [placeholder]="Category" class="select-item"></app-select>
+    <app-select [placeholder]="Location" class="select-item"></app-select>
   </div>
   <!-- TODO: Град Дата Категория -->
 </div>
