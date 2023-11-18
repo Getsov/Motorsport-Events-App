@@ -108,7 +108,7 @@ export class GeneralTermsComponent implements OnInit {
   ];
 
   dynamicPageTitle: string = '';
-  bulgarianTitle: string = '';
+  pageTitle: string = '';
 
   ngOnInit() {
     // Change the page title based on url segment
@@ -119,11 +119,11 @@ export class GeneralTermsComponent implements OnInit {
     // Pass the correct data to template
     if (this.dynamicPageTitle == 'general-terms') {
       this.pageContent = this.generalTerms;
-      this.bulgarianTitle = 'Общи условия';
+      this.pageTitle = 'Общи условия';
     }
     if (this.dynamicPageTitle == 'privacy-policy') {
       this.pageContent = this.privacyPolicy;
-      this.bulgarianTitle = 'Поверителност';
+      this.pageTitle = 'Поверителност';
     }
   }
 }
