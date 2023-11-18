@@ -5,9 +5,9 @@ const routes: Routes = [
   // TODO: Auth guard to check if user is logged in
   // If yes - redirect to Profile page. If no - redirect to Login page.
   {
-    path: 'login',
+    path: 'auth',
     loadChildren: () =>
-      import('./login/login.module').then((m) => m.LoginPageModule),
+      import('./auth/auth.module').then((m) => m.AuthPageModule),
   },
   {
     path: 'profile',

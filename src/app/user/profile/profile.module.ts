@@ -12,8 +12,8 @@ import { ProfilePage } from './profile.page';
     ExploreContainerComponentModule,
     FormsModule,
     IonicModule,
-    ProfilePageRoutingModule
+    ProfilePageRoutingModule,
   ],
-  declarations: [ProfilePage]
+  declarations: [ProfilePage],
 })
-export class ProfilePageModule { }
+export class ProfilePageModule {}

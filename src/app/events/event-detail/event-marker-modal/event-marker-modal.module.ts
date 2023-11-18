@@ -13,8 +13,8 @@ import { EventMarkerModalPage } from './event-marker-modal.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    EventMarkerModalPageRoutingModule
+    EventMarkerModalPageRoutingModule,
   ],
-  declarations: [EventMarkerModalPage]
+  declarations: [EventMarkerModalPage],
 })
 export class EventMarkerModalPageModule {}

@@ -9,8 +9,8 @@ describe('UpcomingEventsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ UpcomingEventsComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [UpcomingEventsComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(UpcomingEventsComponent);

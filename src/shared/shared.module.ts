@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
     ExploreContainerComponentModule,
     FormsModule,
     IonicModule,
-    RouterModule
+    RouterModule,
   ],
   declarations: [LikeIconComponent, TitleFadesComponent, HeaderComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

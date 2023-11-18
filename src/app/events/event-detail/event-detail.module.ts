@@ -15,11 +15,9 @@ import { SharedModule } from 'src/shared/shared.module';
     FormsModule,
     IonicModule,
     EventDetailPageRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [EventDetailPage],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class EventDetailPageModule {}

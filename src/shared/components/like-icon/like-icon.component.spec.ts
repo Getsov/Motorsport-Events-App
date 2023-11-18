@@ -9,8 +9,8 @@ describe('LikeIconComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LikeIconComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [LikeIconComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LikeIconComponent);

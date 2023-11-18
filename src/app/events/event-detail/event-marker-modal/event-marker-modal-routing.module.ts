@@ -6,8 +6,8 @@ import { EventMarkerModalPage } from './event-marker-modal.page';
 const routes: Routes = [
   {
     path: '',
-    component: EventMarkerModalPage
-  }
+    component: EventMarkerModalPage,
+  },
 ];
 
 @NgModule({
