@@ -71,6 +71,7 @@ ion-toolbar {
       color: rgba(255, 255, 255, 1);
     }
 
+    // small by default
     .notifications {
       width: 12px;
       height: 12px;
@@ -87,5 +88,14 @@ ion-toolbar {
       align-items: center;
       justify-content: center;
     }
+
+    .notifications.medium {
+      top: 14px;
+      right: 4px;
+      width: 14px;
+      height: 14px;
+    }
+
+    // TODO: discuss with designer for larger than 99notifications view
   }
 }
