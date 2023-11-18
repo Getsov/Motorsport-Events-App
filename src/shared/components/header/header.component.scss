@@ -1,73 +1,100 @@
-.page-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  padding: 0 24px 0 24px;
-  height: 56px;
-  position: relative;
+ion-toolbar {
+  --padding-bottom: 0px;
+  --padding-start: 0px;
+  --padding-end: 0px;
+  --padding-top: 0px;
+  --background: #0d0d0d;
 
-  .logo-container {
-    height: 56px;
-    position: relative;
-  }
-
-  .logo-container img {
-    width: 26px;
-    height: 26px;
-    position: relative;
-    top: 14px;
-  }
-
-  .notifinations-icon {
+  .page-header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    position: relative;
     height: 56px;
-    width: 40px;
-  }
+    position: relative;
 
-  // header title
-  .header-title {
-    h1 {
-      color: #ff7418;
-      font-size: 18px;
-      font-weight: 700;
-      font-family: "Exo 2";
+    .logo-container {
+      height: 56px;
+      position: relative;
+      margin: 0 24px;
     }
-  }
 
-  ion-back-button {
-    color: #c2bfbe;
-  }
+    .logo-container img {
+      width: 26px;
+      height: 26px;
+      position: relative;
+      top: 14px;
+    }
 
-  ion-icon {
-    width: 24px;
-    height: 24px;
-    margin-top: 5px;
-    position: absolute;
-    top: 10px;
-    color: #c2bfbe;
-    --ionicon-stroke-width: 48px;
-  }
+    .notifinations-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 56px;
+      width: 40px;
+      margin: 0 24px;
+    }
 
-  .notifications {
-    width: 12px;
-    height: 12px;
-    position: absolute;
-    text-align: center;
-    top: 12px;
-    right: 1px;
-    padding: 8px;
-    background-color: rgba(255, 116, 24, 1);
-    border-radius: 100%;
-    font-weight: 900;
-    color: rgba(0, 0, 0, 1);
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    // header title
+    .header-title {
+      h1 {
+        color: #ff7418;
+        font-size: 18px;
+        font-weight: 700;
+        font-family: "Exo 2";
+      }
+    }
+
+    .back-button-container {
+      margin: 0 24px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      ion-back-button {
+        color: #c2bfbe;
+        height: 100%;
+      }
+    }
+
+    ion-icon {
+      width: 20px;
+      height: 20px;
+      color: rgba(194, 191, 190, 1);
+    }
+
+    .with-notifications {
+      color: rgba(255, 255, 255, 1);
+    }
+
+    // small by default
+    .notifications {
+      width: 12px;
+      height: 12px;
+      position: absolute;
+      top: 15px;
+      right: 7px;
+      padding: 6px;
+      background-color: rgba(255, 116, 24, 1);
+      border-radius: 100%;
+      font-weight: 900;
+      color: rgba(0, 0, 0, 1);
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .notifications.medium {
+      top: 14px;
+      right: 4px;
+      width: 14px;
+      height: 14px;
+    }
+
+    // TODO: discuss with designer for larger than 99notifications view
   }
 }

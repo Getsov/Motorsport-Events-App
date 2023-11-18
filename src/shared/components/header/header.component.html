@@ -1,5 +1,5 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar color="none">
+  <ion-toolbar color="none" class="toolbar">
     <div class="page-header">
       <div *ngIf="backButton; else logoContainer" class="back-button-container">
         <ion-buttons slot="start">
@@ -21,9 +21,20 @@
       </div>
 
       <div class="notifinations-icon">
-        <ion-icon name="notifications-outline" stroke="currentColor"></ion-icon>
-        <div class="notifications">
-          {{ notification }}
+        <ion-icon
+          name="notifications"
+          [ngClass]="{
+            'with-notifications': notifications >= 1,
+         }"
+        />
+        <div
+          class="notifications"
+          [ngClass]="{
+            'medium': notifications < 100,
+        }"
+          *ngIf="notifications > 0"
+        >
+          {{ notifications }}
         </div>
       </div>
     </div>

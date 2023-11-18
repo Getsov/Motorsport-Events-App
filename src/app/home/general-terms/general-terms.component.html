@@ -1,4 +1,5 @@
 <ion-content>
+  <app-header [headerTitle]="pageTitle" [backButton]="true" />
   <section *ngFor="let section of pageContent">
     <header>
       <app-title-fades [color]="section.titleColor" [title]="section.title" />
