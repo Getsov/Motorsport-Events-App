@@ -5,10 +5,9 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
 })
-export class SelectComponent  implements OnInit {
+export class SelectComponent implements OnInit {
   @Input() placeholder: string = '';
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
-
 }

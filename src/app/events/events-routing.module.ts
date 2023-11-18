@@ -6,13 +6,15 @@ import { EventsPage } from './events.page';
 const routes: Routes = [
   {
     path: '',
-    component: EventsPage
+    component: EventsPage,
   },
   {
     path: ':eventId',
-    loadChildren: () => import('./event-detail/event-detail.module').then( m => m.EventDetailPageModule)
-  }
-
+    loadChildren: () =>
+      import('./event-detail/event-detail.module').then(
+        (m) => m.EventDetailPageModule
+      ),
+  },
 ];
 
 @NgModule({

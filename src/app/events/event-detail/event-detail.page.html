@@ -1,15 +1,26 @@
 <ion-content>
-  <app-header [headerTitle]="headerTitle" [backButton]="backButton" [defaultHref]="defaultHref"></app-header>
+  <app-header
+    [headerTitle]="headerTitle"
+    [backButton]="backButton"
+    [defaultHref]="defaultHref"
+  ></app-header>
 
   <div class="ion-margin-vertical">
-    <app-title-fades [color]="titleSeparatorColor" [title]="mockEvent.shortTitle" />
+    <app-title-fades
+      [color]="titleSeparatorColor"
+      [title]="mockEvent.shortTitle"
+    />
   </div>
 
   <div class="ion-padding-horizontal">
     <p class="long-title">{{mockEvent.longTitle}}</p>
 
     <div class="image-wrapper">
-      <img alt="{{mockEvent.shortTitle}}" src="{{mockEvent.imageUrl}}" class="event-image" />
+      <img
+        alt="{{mockEvent.shortTitle}}"
+        src="{{mockEvent.imageUrl}}"
+        class="event-image"
+      />
       <app-like-icon></app-like-icon>
     </div>
 
@@ -32,13 +43,21 @@
     </div>
 
     <div class="date-wrapper">
-      <p class="info-title">{{mockEvent.dates.length > 1 ? 'Дати:' : 'Дата:'}}</p>
+      <p class="info-title">
+        {{mockEvent.dates.length > 1 ? 'Дати:' : 'Дата:'}}
+      </p>
       <ion-grid class="ion-no-padding">
         <ion-row *ngFor="let date of mockEvent.dates">
-          <ion-col class="ion-text-justify" size="medium" class="info-details">{{date.date}} г.</ion-col>
-          <ion-col size="auto" class="ion-text-center info-details"> &nbsp; - &nbsp; от {{ date.startTime }} </ion-col>
+          <ion-col class="ion-text-justify" size="medium" class="info-details"
+            >{{date.date}} г.</ion-col
+          >
+          <ion-col size="auto" class="ion-text-center info-details">
+            &nbsp; - &nbsp; от {{ date.startTime }}
+          </ion-col>
           <ion-col size="auto" class="info-details">&nbsp; до &nbsp;</ion-col>
-          <ion-col size="auto" class="ion-text-center info-details"> {{ date.endTime }}</ion-col>
+          <ion-col size="auto" class="ion-text-center info-details">
+            {{ date.endTime }}</ion-col
+          >
         </ion-row>
       </ion-grid>
     </div>
@@ -46,8 +65,13 @@
     <div>
       <p class="info-title">Цени за зрители:</p>
       <div class="prices-container">
-        <div class="price-wrapper" *ngFor="let visitorPrice of mockEvent.visitorPrices">
-          <div class="price-holder price-visitors">{{visitorPrice.price}} лв.</div>
+        <div
+          class="price-wrapper"
+          *ngFor="let visitorPrice of mockEvent.visitorPrices"
+        >
+          <div class="price-holder price-visitors">
+            {{visitorPrice.price}} лв.
+          </div>
           <span class="info-details">{{visitorPrice.description}}</span>
         </div>
       </div>
@@ -56,8 +80,13 @@
     <div *ngIf="mockEvent.participantPrices">
       <p class="info-title">Цени за участници:</p>
       <div class="prices-container">
-        <div class="price-wrapper" *ngFor="let participantPrice of mockEvent.participantPrices">
-          <div class="price-holder price-participants">{{participantPrice.price}} лв.</div>
+        <div
+          class="price-wrapper"
+          *ngFor="let participantPrice of mockEvent.participantPrices"
+        >
+          <div class="price-holder price-participants">
+            {{participantPrice.price}} лв.
+          </div>
           <span class="info-details">{{participantPrice.description}}</span>
         </div>
       </div>
@@ -65,7 +94,9 @@
 
     <div class="location">
       <p class="info-title">Локация:</p>
-      <p class="info-details">{{mockEvent.contacts.region}}, {{mockEvent.contacts.address}}</p>
+      <p class="info-details">
+        {{mockEvent.contacts.region}}, {{mockEvent.contacts.address}}
+      </p>
       <div class="google-maps-wrapper">
         <capacitor-google-map #map></capacitor-google-map>
       </div>
@@ -74,9 +105,15 @@
     <div class="contacts">
       <p class="info-title">Контакти</p>
       <div class="contacts-wrapper">
-        <div><a href="tel:{{mockEvent.contacts.phone}}" class="info-details">{{mockEvent.contacts.phone}}</a></div>
+        <div>
+          <a href="tel:{{mockEvent.contacts.phone}}" class="info-details"
+            >{{mockEvent.contacts.phone}}</a
+          >
+        </div>
         <div *ngIf="mockEvent.contacts.email">
-          <a href="mailto:{{mockEvent.contacts.email}}" class="info-details">{{mockEvent.contacts.email}}</a>
+          <a href="mailto:{{mockEvent.contacts.email}}" class="info-details"
+            >{{mockEvent.contacts.email}}</a
+          >
         </div>
       </div>
     </div>
@@ -84,6 +121,5 @@
     <div class="main-button-wrapper" (click)="addEventToFavourites()">
       <button class="main-button">Добави в любими</button>
     </div>
-
   </div>
 </ion-content>

@@ -9,8 +9,8 @@ describe('TitleFadesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TitleFadesComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [TitleFadesComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TitleFadesComponent);

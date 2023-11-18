@@ -6,12 +6,15 @@ import { EventDetailPage } from './event-detail.page';
 const routes: Routes = [
   {
     path: '',
-    component: EventDetailPage
+    component: EventDetailPage,
   },
   {
     path: 'event-marker-modal',
-    loadChildren: () => import('./event-marker-modal/event-marker-modal.module').then( m => m.EventMarkerModalPageModule)
-  }
+    loadChildren: () =>
+      import('./event-marker-modal/event-marker-modal.module').then(
+        (m) => m.EventMarkerModalPageModule
+      ),
+  },
 ];
 
 @NgModule({
