@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   @Input() defaultHref: string = '';
 
   constructor() {}
-  notification: number = 3;
+  notifications: number = 1;
   // TODO: fetch notifications
   // TODO: add conditional rendering for notifications number container
   ngOnInit() {}

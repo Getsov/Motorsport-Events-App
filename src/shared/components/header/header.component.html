@@ -21,9 +21,9 @@
       </div>
 
       <div class="notifinations-icon">
-        <ion-icon name="notifications-outline" stroke="currentColor"></ion-icon>
-        <div class="notifications">
-          {{ notification }}
+        <ion-icon name="notifications"></ion-icon>
+        <div class="notifications" *ngIf="notifications > 0">
+          {{ notifications }}
         </div>
       </div>
     </div>
