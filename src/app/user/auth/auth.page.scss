@@ -55,7 +55,7 @@ ion-segment {
 // .auth-redirect-link
 .auth-redirect-link,
 .register-tos-agreement {
-  margin-top: 0.5em;
+  margin-top: 1em;
   text-align: center;
 
   p {
@@ -72,4 +72,8 @@ ion-segment {
       }
     }
   }
+}
+
+.register-tos-agreement {
+  margin: 24px 0 24px 0;
 }
