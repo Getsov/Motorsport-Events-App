@@ -21,7 +21,12 @@
       </div>
 
       <div class="notifinations-icon">
-        <ion-icon name="notifications"></ion-icon>
+        <ion-icon
+          name="notifications"
+          [ngClass]="{
+            'with-notifications': notifications >= 1,
+         }"
+        />
         <div class="notifications" *ngIf="notifications > 0">
           {{ notifications }}
         </div>
