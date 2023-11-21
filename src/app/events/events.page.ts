@@ -8,10 +8,17 @@ import { Event } from 'src/shared/interfaces/Event';
   styleUrls: ['./events.page.scss'],
 })
 export class EventsPage implements OnInit {
+  
   eventsData: Event[] = events;
+
   @Input() titleColor: string = 'yellow';
   @Input() titleText: string = 'Списък със събития';
   location = 'assets/icon/icon-location.svg';
+
+  headerTitle: string = 'Събития';
+  defaultHref: string = '/tabs/home';
+  backButton: boolean = true;
+
   constructor(private router: Router) {}
   eventRedirect(id: string): void {
     this.router.navigate(['/tabs/events/' + id]);
