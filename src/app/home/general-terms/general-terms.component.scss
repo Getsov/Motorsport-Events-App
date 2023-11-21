@@ -1,0 +1,26 @@
+p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+section {
+  p {
+    margin: 16px;
+  }
+  p:nth-child(even) {
+    margin-bottom: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 24px;
+  }
+}
+
+footer {
+  margin: 0 16px 24px 16px;
+
+  p {
+    color: rgba(194, 191, 190, 1);
+  }
+}

@@ -1,0 +1,44 @@
+<form>
+  <div class="input-wrapper">
+    <div class="input-with-icon">
+      <input type="text" name="name" placeholder="Име на организацията" />
+      <ion-icon name="globe-outline" class="input-icons"></ion-icon>
+    </div>
+
+    <div class="input-with-icon">
+      <input type="text" name="managerFirstName" placeholder="Име на мениджъра" />
+      <ion-icon name="person" class="input-icons"></ion-icon>
+    </div>
+
+    <div class="input-with-icon">
+      <input type="text" name="managerLastName" placeholder="Фамилия на мениджъра" />
+      <ion-icon name="person" class="input-icons"></ion-icon>
+    </div>
+
+    <div class="input-with-icon">
+      <ion-icon name="location-sharp" class="input-icons"></ion-icon>
+      <ion-select interface="popover" placeholder="Населено място" class="region-select" slot="end" name="region">
+        <ion-select-option value="{{region}}" *ngFor="let region of bulgarianRegions">{{region}}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <div class="input-with-icon">
+      <input type="text" name="email" placeholder="Имейл" />
+      <ion-icon name="mail" class="input-icons"></ion-icon>
+    </div>
+
+    <div class="input-with-icon">
+      <input type="password" name="password" placeholder="Парола" />
+      <ion-icon name="lock-closed" class="input-icons"></ion-icon>
+    </div>
+
+    <div class="input-with-icon">
+      <input type="password" name="repeatPassword" placeholder="Повтори парола" />
+      <ion-icon name="lock-closed" class="input-icons"></ion-icon>
+    </div>
+  </div>
+
+  <div class="main-button-wrapper">
+    <button class="main-button">Регистрация</button>
+  </div>
+</form>

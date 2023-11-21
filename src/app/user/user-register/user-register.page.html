@@ -1,0 +1,55 @@
+<div class="user-organization-toggle-wrapper">
+  <label [ngClass]="userChecked ? 'checked-toggle' : ''">Потребител</label>
+  <ion-toggle (ionChange)="userChecked = !userChecked"></ion-toggle>
+  <label [ngClass]="!userChecked ? 'checked-toggle' : ''">Организатор</label>
+</div>
+
+<ng-container *ngIf="userChecked">
+  <form>
+    <div class="input-wrapper">
+      <div class="input-with-icon">
+        <input type="text" name="firstName" placeholder="Име" />
+        <ion-icon name="person" class="input-icons"></ion-icon>
+      </div>
+
+      <div class="input-with-icon">
+        <input type="text" name="lastName" placeholder="Фамилия" />
+        <ion-icon name="person" class="input-icons"></ion-icon>
+      </div>
+
+      <div class="input-with-icon">
+        <ion-icon name="location-sharp" class="input-icons"></ion-icon>
+        <ion-select interface="popover" placeholder="Населено място" class="region-select" slot="end" name="region">
+          <ion-select-option value="{{region}}" *ngFor="let region of bulgarianRegions">{{region}}</ion-select-option>
+        </ion-select>
+      </div>
+
+      <div class="input-with-icon">
+        <input type="text" name="email" placeholder="Телефон" />
+        <ion-icon name="call" class="input-icons"></ion-icon>
+      </div>
+
+      <div class="input-with-icon">
+        <input type="text" name="email" placeholder="Имейл" />
+        <ion-icon name="mail" class="input-icons"></ion-icon>
+      </div>
+
+      <div class="input-with-icon">
+        <input type="password" name="password" placeholder="Парола" />
+        <ion-icon name="lock-closed" class="input-icons"></ion-icon>
+      </div>
+
+      <div class="input-with-icon">
+        <input type="password" name="repeatPassword" placeholder="Повтори парола" />
+        <ion-icon name="lock-closed" class="input-icons"></ion-icon>
+      </div>
+    </div>
+
+    <div class="main-button-wrapper">
+      <button class="main-button">Регистрация</button>
+    </div>
+  </form>
+</ng-container>
+<ng-container *ngIf="!userChecked">
+  <app-organization-register></app-organization-register>
+</ng-container>

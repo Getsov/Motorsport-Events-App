@@ -1,0 +1,79 @@
+.header-menu {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 9em;
+}
+
+.login-background-image {
+  background-image: linear-gradient(0deg, #0b0b0b 0%, rgba(0, 0, 0, 0) 93%),
+    url("../../../assets/images/login-img-cars.jpg");
+}
+
+.register-background-image {
+  background-image: linear-gradient(0deg, #0b0b0b 0%, rgba(0, 0, 0, 0) 93%),
+    url("../../../assets/images/speedometer_v2.jpg");
+}
+
+.heading-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2em;
+  h1 {
+    font-size: 2em;
+    color: #ff7418;
+    font-family: "Exo 2";
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+// segment
+ion-segment {
+  --background: #d6d4d3;
+  ion-label {
+    color: #0d0d0d;
+    font-weight: 600;
+  }
+
+  ion-segment-button::part(indicator-background) {
+    background-color: #ff7418;
+  }
+}
+
+// login form
+.login-form {
+  margin-top: 4.3em;
+}
+
+// .auth-redirect-link
+.auth-redirect-link,
+.register-tos-agreement {
+  margin-top: 1em;
+  text-align: center;
+
+  p {
+    color: #c2bfbe;
+    font-size: 12px;
+    padding: 0 11%;
+
+    span {
+      a {
+        font-weight: 700;
+        color: white;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.register-tos-agreement {
+  margin: 24px 0 24px 0;
+}

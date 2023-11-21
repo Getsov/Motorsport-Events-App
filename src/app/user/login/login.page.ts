@@ -6,13 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  backButton: boolean = false;
-
   constructor() {}
 
   ngOnInit() {}
-
-  segmentChanged(ev: any) {
-    // TODO: Redirect to register page
-  }
 }

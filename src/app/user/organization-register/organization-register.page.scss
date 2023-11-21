@@ -1,0 +1,17 @@
+ion-select {
+  --placeholder-color: #ffffff;
+  --placeholder-opacity: 1;
+  width: 100%;
+  justify-content: flex-end;
+  position: relative;
+}
+
+ion-select::part(icon) {
+  color: #ffffff;
+  content: url("../../../assets/icon/arrow-down.svg");
+  position: absolute;
+  right: 5%;
+  top: transform(translateY(-50%));
+  height: 24px;
+  width: 24px;
+}

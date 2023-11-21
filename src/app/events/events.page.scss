@@ -1,11 +1,11 @@
-.page-title{
+.page-title {
   margin-top: 16px;
 }
 
 .event-container {
   border-radius: 4px;
-  background: var(--surface-screen-screen-card-black-dark, #0D0D0D);
-  box-shadow: 0px 0px 8px 1px rgba(255, 220, 35, 0.30);
+  background: var(--surface-screen-screen-card-black-dark, #0d0d0d);
+  box-shadow: 0px 0px 8px 1px rgba(255, 220, 35, 0.3);
   padding: 8px;
   width: 91%;
   margin: 0 auto;
@@ -21,7 +21,7 @@ h3 {
 
 .event-description {
   margin-bottom: 8px;
-  color:#C2BFBE;
+  color: #c2bfbe;
   /* font-family: Open Sans; */
   font-size: 12px;
   font-style: normal;
@@ -36,7 +36,7 @@ h3 {
   border-radius: 4px;
 }
 .event-location {
-  color: #0D0D0D;
+  color: #0d0d0d;
   font-family: Open Sans;
   font-size: 12px;
   font-style: normal;
@@ -47,7 +47,7 @@ h3 {
   align-items: flex-start;
   gap: 4px;
   border-radius: 4px;
-  background: #FF7418;
+  background: #ff7418;
   position: absolute;
   bottom: 26px;
   left: 4px;
@@ -58,8 +58,8 @@ h3 {
   align-items: flex-start;
   gap: 10px;
   border-radius: 4px;
-  background-color: #FFDC23;
-  color: #0D0D0D;
+  background-color: #ffdc23;
+  color: #0d0d0d;
   /* font-family: Open Sans; */
   font-size: 12px;
   font-style: normal;
@@ -90,11 +90,11 @@ h3 {
   align-items: center;
   gap: 10px;
   border-radius: 4px;
-  background: #FF7418;
+  background: #ff7418;
 }
 
 .more-btn p {
-  color: #0D0D0D;
+  color: #0d0d0d;
   text-align: center;
   font-family: Open Sans;
   font-size: 14px;
@@ -103,7 +103,7 @@ h3 {
   line-height: 150%;
 }
 
-.location-img{
+.location-img {
   width: 16px;
   height: 16px;
 }
