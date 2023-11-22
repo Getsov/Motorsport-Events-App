@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { DATE_PIPE_DEFAULT_OPTIONS } from "@angular/common";
 
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { EventsPageRoutingModule } from './events-routing.module';
@@ -22,12 +21,6 @@ import { SelectComponent } from './components/select/select.component';
     EventsPageRoutingModule,
     EventMarkerModalPageModule,
     SharedModule,
-  ],
-  providers: [
-    {
-      provide: DATE_PIPE_DEFAULT_OPTIONS,
-      useValue: { dateFormat: "shortDate" }
-    }
-  ],
+  ]
 })
 export class EventsPageModule {}

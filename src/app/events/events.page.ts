@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, InjectionToken, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventsService } from './events.service';
+import { DatePipeConfig } from '@angular/common';
 
 @Component({
   selector: 'app-events',
@@ -10,9 +11,11 @@ import { EventsService } from './events.service';
 export class EventsPage implements OnInit {
   //TODO: CHANGE TYPE OF EVENTS!!!
   eventsData: any = [];
-
+  DATE_PIPE_DEFAULT_OPTIONS: InjectionToken<DatePipeConfig> | undefined;
+  
   @Input() titleColor: string = 'yellow';
   @Input() titleText: string = 'Списък със събития';
+  
   location = 'assets/icon/icon-location.svg';
 
   headerTitle: string = 'Събития';

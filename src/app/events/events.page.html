@@ -24,10 +24,10 @@
         >{{event.contacts.region}}
       </p>
       <p *ngIf="event.dates.length > 1" class="event-date">
-        От {{event.dates[0].startDate | date}} г. до {{event.dates[event.dates.length -
-        1].startDate | date}} г.
+        От {{event.dates[0].startDate | date : 'shortDate'}} г. до {{event.dates[event.dates.length -
+        1].startDate | date : 'shortDate'}} г.
       </p>
-      <p *ngIf="event.dates.length == 1" class="event-date">{{event.dates[0].startDate | date}} г.</p>
+      <p *ngIf="event.dates.length == 1" class="event-date">{{event.dates[0].startDate | date : 'shortDate'}} г.</p>
       <app-like-icon class="event-like-btn"></app-like-icon>
     </div>
     <div class="event-info">
