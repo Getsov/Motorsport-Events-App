@@ -1,14 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventsService } from './events.service';
-import { dateFormatPipe } from '../dateFormat.pipe';
+
 @Component({
   selector: 'app-events',
   templateUrl: './events.page.html',
   styleUrls: ['./events.page.scss'],
 })
 export class EventsPage implements OnInit {
-  dateFormatPipe: any = dateFormatPipe
   //TODO: CHANGE TYPE OF EVENTS!!!
   eventsData: any = [];
 
