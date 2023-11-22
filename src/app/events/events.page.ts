@@ -28,8 +28,6 @@ export class EventsPage implements OnInit {
     this.eventService.getEvents().subscribe({
       next: (events) =>{
         this.eventsData = events;
-        console.log(this.eventsData);
-        
       },
       error: (err) => {
         console.log(err);
