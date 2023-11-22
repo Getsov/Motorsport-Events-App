@@ -9,9 +9,10 @@ import { EventMarkerModalPageModule } from './event-detail/event-marker-modal/ev
 import { SharedModule } from '../../shared/shared.module';
 import { SearchComponent } from './components/search/search.component';
 import { SelectComponent } from './components/select/select.component';
+import { dateFormatPipe } from '../dateFormat.pipe';
 
 @NgModule({
-  declarations: [EventsPage, SearchComponent, SelectComponent],
+  declarations: [EventsPage, SearchComponent, SelectComponent, dateFormatPipe],
   imports: [
     CommonModule,
     ExploreContainerComponentModule,
