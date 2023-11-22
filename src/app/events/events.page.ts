@@ -9,6 +9,7 @@ import { dateFormatPipe } from '../dateFormat.pipe';
 })
 export class EventsPage implements OnInit {
   dateFormatPipe: any = dateFormatPipe
+  //TODO: CHANGE TYPE OF EVENTS!!!
   eventsData: any = [];
 
   @Input() titleColor: string = 'yellow';
