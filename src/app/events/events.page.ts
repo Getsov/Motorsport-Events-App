@@ -35,8 +35,4 @@ export class EventsPage implements OnInit {
       }
     })
   }
-
-  eventRedirect(id: string): void {
-    this.router.navigate(['/tabs/events/' + id]);
-  }
 }
