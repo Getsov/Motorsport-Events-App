@@ -6,7 +6,9 @@
     [routerLink]="['/tabs/events']"
     [queryParams]="{ sortBy: 'all' }"
   >
-    <ion-card-header class="category-title">Всички категории</ion-card-header>
+    <ion-card-header class="category-title">
+      <h3>Всички категории</h3>
+    </ion-card-header>
     <img
       src="../../../assets//icon/category-icons/all.png"
       alt="Category Image"
@@ -21,7 +23,7 @@
     [queryParams]="{ sortBy: eventType.type }"
   >
     <ion-card-header class="category-title">
-      {{ eventType.type }}
+      <h3>{{ eventType.type }}</h3>
     </ion-card-header>
     <img
       [src]="eventType.imageUrl"
