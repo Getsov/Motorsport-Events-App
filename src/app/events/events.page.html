@@ -7,7 +7,6 @@
   <div
     class="event-container"
     *ngFor="let event of eventsData"
-    (click)="eventRedirect(event._id)"
   >
     <div class="image-wrapper">
       <img
@@ -24,16 +23,16 @@
         >{{event.contacts.region}}
       </p>
       <p *ngIf="event.dates.length > 1" class="event-date">
-        От {{event.dates[0].date}} г. до {{event.dates[event.dates.length -
-        1].date}} г.
+        От {{event.dates[0].startDate | date : 'dd.MM.yyyy'}} г. до {{event.dates[event.dates.length -
+        1].startDate | date :  'dd.MM.yyyy'}} г.
       </p>
-      <p *ngIf="event.dates.length == 1">{{event.dates[0].date}} г.</p>
+      <p *ngIf="event.dates.length == 1" class="event-date">{{event.dates[0].startDate | date :  'dd.MM.yyyy'}} г.</p>
       <app-like-icon class="event-like-btn"></app-like-icon>
     </div>
     <div class="event-info">
       <h3 class="event-title">{{event.shortTitle}}</h3>
       <p class="event-description">{{event.shortDescription}}</p>
-      <button class="more-btn"><p>Прочети повече</p></button>
+      <button class="more-btn" [routerLink] = "event._id" ><p>Прочети повече</p></button>
     </div>
   </div>
 </ion-content>

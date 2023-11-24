@@ -5,6 +5,9 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from 'src/shared/shared.module';
+import { EventsPageModule } from './events/events.module';
+import { EventsService } from '../shared/services/events.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,8 +16,10 @@ import { SharedModule } from 'src/shared/shared.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     SharedModule,
+    EventsPageModule,
+    HttpClientModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, EventsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
