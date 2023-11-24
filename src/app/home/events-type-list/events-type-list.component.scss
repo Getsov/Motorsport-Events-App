@@ -12,11 +12,11 @@
 .category-card {
   text-align: center;
   min-height: 160px;
-  width: 100%;
+  width: auto;
   background: transparent;
   box-shadow: 0 0 10.5px -5px #ffdc23;
   margin: 0;
-  padding: 4px;
+  padding: 4px 6px 0 6px;
 }
 
 .category-card.all {
@@ -31,10 +31,10 @@
 
 .category-title {
   width: 100%;
-  height: 21px;
+  height: auto;
   text-align: center;
   position: absolute;
-  bottom: 4px;
+  bottom: 0px;
   left: 0;
   line-height: 21px;
   padding: 0;
@@ -43,8 +43,9 @@
   align-items: center;
 
   h3 {
-    color: white;
+    color: rgba(255, 255, 255, 1);
     font-weight: 600;
     font-size: 14px;
+    padding-bottom: 4px;
   }
 }
