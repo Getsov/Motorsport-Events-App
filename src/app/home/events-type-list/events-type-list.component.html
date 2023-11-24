@@ -18,7 +18,7 @@
     class="category-card"
     *ngFor="let eventType of eventsType"
     [routerLink]="['/tabs/events']"
-    [queryParams]="{ sortBy: 'all' }"
+    [queryParams]="{ sortBy: eventType.type }"
   >
     <ion-card-header class="category-title">
       {{ eventType.type }}
