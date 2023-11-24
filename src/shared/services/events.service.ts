@@ -14,4 +14,8 @@ export class EventsService {
     getEvents(){
       return this.http.get<Event>(`${baseUrl}/event`);
     }
+
+    getEvent(id: string){
+      return this.http.get<Event>(`${baseUrl}/event/${id}`);
+    }
 }

@@ -9,5 +9,7 @@ export class SelectComponent implements OnInit {
   @Input() placeholder: string = '';
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 }

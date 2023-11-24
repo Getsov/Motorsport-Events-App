@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from 'src/shared/shared.module';
 import { EventsPageModule } from './events/events.module';
-import { EventsService } from './events/events.service';
+import { EventsService } from '../shared/services/events.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component, InjectionToken, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { EventsService } from './events.service';
+import { EventsService } from '../../shared/services/events.service';
 import { DatePipeConfig } from '@angular/common';
 
 @Component({
