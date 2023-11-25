@@ -25,27 +25,20 @@
 
 .category-image {
   width: 100%;
-  height: 127px;
+  height: auto;
   border-radius: 4px;
 }
 
 .category-title {
+  margin-top: 4px;
   width: 100%;
   height: auto;
   text-align: center;
-  position: absolute;
-  bottom: 0px;
-  left: 0;
   line-height: 21px;
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  h3 {
-    color: rgba(255, 255, 255, 1);
-    font-weight: 600;
-    font-size: 14px;
-    padding-bottom: 4px;
-  }
+  color: rgba(255, 255, 255, 1);
+  font-weight: 600;
+  font-size: 14px;
 }
