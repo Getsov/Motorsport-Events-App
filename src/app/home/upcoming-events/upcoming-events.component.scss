@@ -4,14 +4,15 @@ swiper-container {
   --swiper-pagination-bullet-inactive-opacity: 100%;
   --swiper-pagination-bullet-size: 16px;
   --swiper-pagination-bullet-horizontal-gap: 8px;
-  --margin-top: 16px;
-  --swiper-pagination-bottom: 24px;
+  --swiper-pagination-bottom: 26px;
+  --swiper-pagination-bullet-inactive-size: 12px;
 }
 
 swiper-slide:first-child {
   margin-left: 16px;
 }
 
-app-slide-card {
-  width: 140px;
+swiper-slide {
+  margin-top: 16px;
+  margin-bottom: 42px;
 }

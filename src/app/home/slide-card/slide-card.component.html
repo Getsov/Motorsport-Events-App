@@ -1,12 +1,11 @@
 <ion-card class="events-card">
   <div class="link-to-details" [routerLink]="['/tabs/events', event._id]">
-    <div class="header-container">
-      <p class="event-title">{{ event.shortTitle }}</p>
-      <p class="event-dates">
-        {{ event.dates[0].date }} - {{ event.dates[lastDateIndex].date }}
-      </p>
-    </div>
     <img src="{{ event.imageUrl }}" alt="{{ event.shortTitle }}" />
+
+    <p class="event-title">{{ event.shortTitle }}</p>
+    <p class="event-dates">
+      {{ event.dates[0].date }} - {{ event.dates[lastDateIndex].date }}
+    </p>
   </div>
 
   <app-like-icon [eventId]="event._id" [likedCount]="event.likedCount" />
