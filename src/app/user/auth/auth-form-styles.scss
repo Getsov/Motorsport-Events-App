@@ -1,0 +1,68 @@
+.auth-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5em;
+
+  .auth-input {
+    position: relative;
+    height: 56px;
+
+    ion-input {
+      --padding-start: 1em;
+      border-bottom: 1px solid #fff;
+      label .label-text-wrapper {
+        position: absolute;
+        top: -15%;
+      }
+
+      label .native-input {
+        position: absolute;
+        top: 50%;
+      }
+
+      .input-clear-icon {
+        margin: auto 1em 1px auto;
+        z-index: 1;
+        ion-icon {
+          content: url("../../../assets/icon/clear-input-icon.svg");
+          height: 11.7px;
+          width: 11.7px;
+        }
+      }
+    }
+
+    .has-focus {
+      border-bottom: 1px solid #ff7418;
+      .label-text {
+        color: #ff7418;
+      }
+      .native-input {
+        caret-color: #fff;
+      }
+    }
+
+    .region-select {
+      background: transparent;
+      width: 100%;
+      height: 56px;
+      border-bottom: 1px solid white;
+      padding-left: 1em;
+    }
+
+    ::placeholder {
+      color: #ffffff;
+    }
+
+    .input-icons {
+      position: absolute;
+      left: 0.5em;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 22px;
+    }
+
+    ion-input::part(icon) {
+      color: white;
+    }
+  }
+}
