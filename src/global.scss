@@ -159,6 +159,16 @@ select {
       }
     }
 
+    .has-focus {
+      border-bottom: 1px solid #ff7418;
+      .label-text {
+        color: #ff7418;
+      }
+      .native-input {
+        caret-color: #fff;
+      }
+    }
+
     .region-select {
       background: transparent;
       width: 100%;
