@@ -157,6 +157,16 @@ select {
         position: absolute;
         top: 50%;
       }
+
+      .input-clear-icon {
+        margin: auto 1em 1px auto;
+        z-index: 1;
+        ion-icon {
+          content: url("assets/icon/clear-input-icon.svg");
+          height: 11.7px;
+          width: 11.7px;
+        }
+      }
     }
 
     .has-focus {
@@ -187,6 +197,10 @@ select {
       top: 50%;
       transform: translateY(-50%);
       font-size: 22px;
+    }
+
+    ion-input::part(icon) {
+      color: white;
     }
   }
 }
