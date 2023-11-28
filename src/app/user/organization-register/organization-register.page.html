@@ -1,26 +1,48 @@
 <form>
   <div class="auth-wrapper">
 
+    <!-- email -->
     <div class="auth-input">
-      <ion-input type="email" fill="solid" label="Имейл*" labelPlacement="floating" clearInput></ion-input>
+      <ion-input type="email" fill="solid" label="Имейл*" labelPlacement="floating" clearInput name="email" ngModel
+        #email="ngModel" clearInput required pattern="^[a-zA-Z0-9\._+\-]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,}$"></ion-input>
     </div>
 
+    <ng-container *ngIf="email.touched">
+      <p class="auth-validation-error-message" *ngIf="email.errors?.['required']">
+        Полето е задължително за попълване!
+      </p>
+      <p class="auth-validation-error-message" *ngIf="email.errors?.['pattern']">
+        Моля въведете валиден имейл!
+      </p>
+
+      <!-- TODO: When server returns email already taken -->
+      <!-- <p class="auth-validation-error-message" *ngIf="emailError">
+        Този имейл вече е използван!
+      </p> -->
+    </ng-container>
+
+    <!-- password -->
     <div class="auth-input">
       <ion-input type="password" fill="solid" label="Парола*" labelPlacement="floating" clearInput></ion-input>
     </div>
+
+    <!-- repeat password -->
 
     <div class="auth-input">
       <ion-input type="password" fill="solid" label="Повтори парола*" labelPlacement="floating" clearInput></ion-input>
     </div>
 
+    <!-- organizator name -->
     <div class="auth-input">
       <ion-input type="text" fill="solid" label="Име на организатор*" labelPlacement="floating" clearInput></ion-input>
     </div>
 
+    <!-- manager name -->
     <div class="auth-input">
       <ion-input type="text" fill="solid" label="Име на мениджъра*" labelPlacement="floating" clearInput></ion-input>
     </div>
 
+    <!-- region -->
     <div class="auth-input">
       <ion-select interface="popover" placeholder="Населено място" class="region-select" slot="end" name="region">
         <ion-select-option value="{{region}}" *ngFor="let region of bulgarianRegions">{{region}}</ion-select-option>
