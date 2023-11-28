@@ -48,6 +48,14 @@
       .label-text {
         color: #ff0000;
       }
+
+      .input-clear-icon {
+        margin: auto 1em 1px auto;
+        z-index: 1;
+        ion-icon {
+          content: url("../../../assets/icon/error-clear-input-icon.svg");
+        }
+      }
     }
 
     .region-select {
