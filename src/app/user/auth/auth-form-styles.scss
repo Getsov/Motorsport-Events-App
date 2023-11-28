@@ -32,11 +32,6 @@
       }
     }
 
-    .has-focus,
-    .has-value {
-      //   margin-top: 10px;
-    }
-
     .has-focus {
       border-bottom: 1px solid #ff7418;
       .label-text {
@@ -44,6 +39,14 @@
       }
       .native-input {
         caret-color: #fff;
+      }
+    }
+
+    ion-input.ng-invalid.ng-touched {
+      border-bottom: 1px solid #ff0000;
+
+      .label-text {
+        color: #ff0000;
       }
     }
 
@@ -70,5 +73,12 @@
     ion-input::part(icon) {
       color: white;
     }
+  }
+
+  .auth-validation-error-message {
+    color: #ff0000;
+    padding-left: 16px;
+    font-size: 12px;
+    margin-top: 5px;
   }
 }
