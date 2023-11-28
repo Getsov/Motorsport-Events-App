@@ -67,13 +67,54 @@
 
     <!-- organizator name -->
     <div class="auth-input">
-      <ion-input type="text" fill="solid" label="Име на организатор*" labelPlacement="floating" clearInput></ion-input>
+      <ion-input type="text" fill="solid" label="Име на организатор*" labelPlacement="floating" clearInput
+        name="organizatorName" ngModel #organizatorName="ngModel" required pattern="^[a-zA-Zа-яА-Я0-9]+$"></ion-input>
     </div>
 
-    <!-- manager name -->
+    <ng-container *ngIf="organizatorName.touched">
+      <p class="auth-validation-error-message" *ngIf="organizatorName.errors?.['required']">
+        Полето е задължително за попълване!
+      </p>
+      <p class="auth-validation-error-message" *ngIf="organizatorName.errors?.['pattern']">
+        Непозволен символ в името на организатор!
+      </p>
+    </ng-container>
+
+    <!-- manager first name -->
     <div class="auth-input">
-      <ion-input type="text" fill="solid" label="Име на мениджъра*" labelPlacement="floating" clearInput></ion-input>
+      <ion-input type="text" fill="solid" label="Име на мениджъра*" labelPlacement="floating" clearInput
+        name="firstName" ngModel #firstName="ngModel" required pattern="^[a-zA-Zа-яА-Я]+$"></ion-input>
     </div>
+
+    <ng-container *ngIf="firstName.touched">
+      <p class="auth-validation-error-message" *ngIf="firstName.errors?.['required']">
+        Полето е задължително за попълване!
+      </p>
+      <p class="auth-validation-error-message" *ngIf="firstName.errors?.['pattern']">
+        Името трябва да съдържа само букви!
+      </p>
+      <p class="auth-validation-error-message" *ngIf="firstName.value && firstName.value.includes(' ')">
+        Не може да съдържа празни пространства!
+      </p>
+    </ng-container>
+
+    <!-- manager last name -->
+    <div class="auth-input">
+      <ion-input type="text" fill="solid" label="Фамилия на мениджъра*" labelPlacement="floating" clearInput
+        name="lastName" ngModel #lastName="ngModel" required pattern="^[a-zA-Zа-яА-Я]+$"></ion-input>
+    </div>
+
+    <ng-container *ngIf="lastName.touched">
+      <p class="auth-validation-error-message" *ngIf="lastName.errors?.['required']">
+        Полето е задължително за попълване!
+      </p>
+      <p class="auth-validation-error-message" *ngIf="lastName.errors?.['pattern']">
+        Името трябва да съдържа само букви!
+      </p>
+      <p class="auth-validation-error-message" *ngIf="lastName.value && lastName.value.includes(' ')">
+        Не може да съдържа празни пространства!
+      </p>
+    </ng-container>
 
     <!-- region -->
     <div class="auth-input">
