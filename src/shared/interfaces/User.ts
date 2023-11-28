@@ -5,9 +5,9 @@ export interface User {
   firstName?: string;
   lastName?: string;
   region?: string;
-  address?: string;
+  // address?: string;
   phone?: string;
-  createdEvents: { createdEventsId: string }[];
+  createdEvents?: { createdEventsId: string }[];
   isDeleted: boolean;
   likedEvents?: { likedEventId: string }[];
   _id?: string;
