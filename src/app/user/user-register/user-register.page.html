@@ -61,12 +61,12 @@
         </p> -->
       </ng-container>
 
+      <!-- repeat password -->
       <div class="auth-input">
         <ion-input type="password" fill="solid" label="Повтори парола*" labelPlacement="floating" name="repeatPassword"
           ngModel #repeatPassword="ngModel" required clearInput pattern="{{ password.value }}"></ion-input>
       </div>
 
-      <!-- repeat password -->
       <ng-container *ngIf="repeatPassword.touched">
         <p class="auth-validation-error-message" *ngIf="repeatPassword.errors?.['required']">
           Полето е задължително за попълване!
@@ -78,15 +78,33 @@
 
       <!-- first name -->
       <div class="auth-input">
-        <ion-input type="text" fill="solid" label="Име" labelPlacement="floating" clearInput
-          name="firstName"></ion-input>
+        <ion-input type="text" fill="solid" label="Име" labelPlacement="floating" clearInput name="firstName" ngModel
+          #firstName="ngModel" pattern="^[a-zA-Zа-яА-Я]+$"></ion-input>
       </div>
+
+      <ng-container *ngIf="firstName.touched">
+        <p class="auth-validation-error-message" *ngIf="firstName.errors?.['pattern']">
+          Името трябва да съдържа само букви!
+        </p>
+        <p class="auth-validation-error-message" *ngIf="firstName.value && firstName.value.includes(' ')">
+          Не може да съдържа празни пространства!
+        </p>
+      </ng-container>
 
       <!-- last name -->
       <div class="auth-input">
-        <ion-input type="text" fill="solid" label="Фамилия" labelPlacement="floating" name="lastName"
-          clearInput></ion-input>
+        <ion-input type="text" fill="solid" label="Фамилия" labelPlacement="floating" name="lastName" clearInput ngModel
+          #lastName="ngModel" pattern="^[a-zA-Zа-яА-Я]+$"></ion-input>
       </div>
+
+      <ng-container *ngIf="lastName.touched">
+        <p class="auth-validation-error-message" *ngIf="lastName.errors?.['pattern']">
+          Името трябва да съдържа само букви!
+        </p>
+        <p class="auth-validation-error-message" *ngIf="lastName.value && lastName.value.includes(' ')">
+          Не може да съдържа празни пространства!
+        </p>
+      </ng-container>
 
       <div class="auth-input">
         <ion-select interface="popover" placeholder="Населено място" class="region-select" slot="end" name="region">
