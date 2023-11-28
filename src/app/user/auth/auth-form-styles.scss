@@ -5,11 +5,12 @@
 
   .auth-input {
     position: relative;
-    height: 56px;
+    height: 54px;
 
     ion-input {
       --padding-start: 1em;
       border-bottom: 1px solid #fff;
+
       label .label-text-wrapper {
         position: absolute;
         top: -15%;
@@ -29,6 +30,11 @@
           width: 11.7px;
         }
       }
+    }
+
+    .has-focus,
+    .has-value {
+      //   margin-top: 10px;
     }
 
     .has-focus {
