@@ -16,6 +16,7 @@ export class LoginPage implements OnInit {
       return;
     }
 
-    console.log(loginFormData);
+    const { email, password } = loginFormData.value;
+    // TODO: userservice.register()
   }
 }
