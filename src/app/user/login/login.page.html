@@ -4,7 +4,7 @@
 
     <div class="auth-input">
       <ion-input type="text" fill="solid" label="Имейл*" name="email" labelPlacement="floating" clearInput ngModel
-        #email="ngModel" required pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}">
+        #email="ngModel" required pattern="^[a-zA-Z0-9\._+\-]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,}$">
       </ion-input>
     </div>
 

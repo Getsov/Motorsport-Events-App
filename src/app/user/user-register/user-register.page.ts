@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import BulgarianRegions from 'src/shared/data/regions';
 
@@ -16,4 +17,6 @@ export class UserRegisterPage implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  onRegister(registerForm: NgForm) {}
 }
