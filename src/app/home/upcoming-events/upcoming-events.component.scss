@@ -5,13 +5,14 @@ swiper-container {
   --swiper-pagination-bullet-size: 16px;
   --swiper-pagination-bullet-horizontal-gap: 8px;
   --swiper-pagination-bottom: 26px;
-}
-
-swiper-slide:first-child {
-  margin-left: 16px;
+  padding: 0 16px;
 }
 
 swiper-slide {
   margin-top: 16px;
   margin-bottom: 42px;
+}
+
+.swiper-wrapper {
+  gap: 32px;
 }
