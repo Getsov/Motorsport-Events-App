@@ -58,6 +58,22 @@
       }
     }
 
+    ion-input.ng-valid.ng-touched {
+      border-bottom: 1px solid #008000;
+
+      .label-text {
+        color: #008000;
+      }
+
+      .input-clear-icon {
+        margin: auto 1em 1px auto;
+        z-index: 1;
+        ion-icon {
+          content: url("../../../assets/icon/success-input-icon.svg");
+        }
+      }
+    }
+
     .region-select {
       background: transparent;
       width: 100%;
