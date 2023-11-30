@@ -16,8 +16,8 @@ export class OrganizationRegisterPage implements OnInit {
 
   ngOnInit() {}
 
-  onOrganizatorRegisterSubmit(organizationRegisterForm: NgForm) {
-    if (organizationRegisterForm.invalid) {
+  onOrganizatorRegisterSubmit(organizatorRegisterForm: NgForm) {
+    if (organizatorRegisterForm.invalid) {
       return;
     }
   }
