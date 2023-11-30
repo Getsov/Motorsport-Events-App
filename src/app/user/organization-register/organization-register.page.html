@@ -1,4 +1,4 @@
-<form #organizationRegister="ngForm" (submit)="onOrganizationRegisterSubmit(organizationRegister)">
+<form #organizatorRegister="ngForm" (submit)="onOrganizatorRegisterSubmit(organizatorRegister)">
   <div class="auth-wrapper">
 
     <!-- email -->
@@ -33,6 +33,9 @@
       </p>
       <p class="auth-validation-error-message" *ngIf="password.errors?.['minlength']">
         Паролата трябва да е с дължина поне 6 символа!
+      </p>
+      <p class="auth-validation-error-message" *ngIf="password.errors?.['maxlength']">
+        Паролата трябва да е с максимална дължина 24 символа!
       </p>
       <p class="auth-validation-error-message" *ngIf="password.value && password.value.includes(' ')">
         Паролата не трябва да съдържа празни места!
