@@ -11,13 +11,9 @@ import { Event } from 'src/shared/interfaces/Event';
 export class HomePage implements OnInit {
   constructor() {}
 
-  upcomingEvents: Event[] = events;
   categories: Category[] = [];
 
   ngOnInit() {
-    // TODO : fetch lastest events data
-
-    // TODO: fetch events type list
     this.categories = [
       {
         type: 'Драг',

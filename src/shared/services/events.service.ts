@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Event } from 'src/shared/interfaces/Event';
+import { Observable } from 'rxjs';
 
 const { baseUrl } = environment;
 @Injectable({
@@ -16,5 +17,10 @@ export class EventsService {
 
   getEvent(id: string) {
     return this.http.get<Event>(`${baseUrl}/events/${id}`);
+  }
+
+  getPaginationEvents(page: number, limit: number): Observable<any> {
+    const url = `${baseUrl}/events?page=${page}&limit=${limit}`;
+    return this.http.get(url);
   }
 }

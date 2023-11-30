@@ -12,7 +12,7 @@ export class SlideCardComponent implements OnInit {
     dates: [],
     imageUrl: '',
     _id: '',
-    likedCount: 0,
+    likes: [],
     longTitle: '',
     shortDescription: '',
     longDescription: '',
@@ -35,7 +35,5 @@ export class SlideCardComponent implements OnInit {
   constructor() {}
 
   lastDateIndex: number = 0;
-  ngOnInit() {
-    this.lastDateIndex = this.event.dates.length - 1;
-  }
+  ngOnInit() {}
 }

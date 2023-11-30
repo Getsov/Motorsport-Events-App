@@ -15,7 +15,7 @@ export interface Event {
     email: string;
   };
   category: string;
-  likedCount: number;
+  likes: [];
   creator: string;
   winners?: { name: string; vehicle: string; place: number }[];
   isDeleted: boolean;

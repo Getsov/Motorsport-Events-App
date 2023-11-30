@@ -20,5 +20,14 @@ export class UpcomingEventsComponent implements OnInit {
 
   constructor(private eventService: EventsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.eventService.getPaginationEvents(1, 5).subscribe({
+      next: (response) => {
+        console.log(response.results);
+
+        this.upcomingEvents = response.results;
+      },
+      error: (error) => console.log(error),
+    });
+  }
 }

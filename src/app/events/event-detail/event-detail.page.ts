@@ -42,7 +42,7 @@ export class EventDetailPage implements OnInit {
     creator: 'Драг Клуб - София',
     _id: '01',
     isDeleted: false,
-    likedCount: 2,
+    likes: [],
     visitorPrices: [
       { price: 50, description: 'за 1 ден вход - събота или неделя' },
       { price: 80, description: 'за 2 ден вход - събота и неделя' },
