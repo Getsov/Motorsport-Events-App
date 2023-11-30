@@ -58,12 +58,15 @@
     <!-- organizator name -->
     <div class="auth-input">
       <ion-input type="text" fill="solid" label="Име на организатор*" labelPlacement="floating" clearInput
-        name="organizatorName" ngModel #organizatorName="ngModel" required></ion-input>
+        name="organizatorName" ngModel #organizatorName="ngModel" required pattern="^[^<>\/]+$"></ion-input>
     </div>
 
     <ng-container *ngIf="organizatorName.touched">
       <p class="auth-validation-error-message" *ngIf="organizatorName.errors?.['required']">
         Полето е задължително за попълване!
+      </p>
+      <p class="auth-validation-error-message" *ngIf="organizatorName.errors?.['pattern']">
+        Използват се непозволени символи!
       </p>
     </ng-container>
 
