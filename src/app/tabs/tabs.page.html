@@ -1,28 +1,28 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="home" href="/home">
-      <ion-icon [src]="home" name="home"></ion-icon>
-      <ion-label>Начало</ion-label>
+      <ion-icon [src]="home" class="tab-icon" name="home"></ion-icon>
+      <ion-label class="label">Начало</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="calendar" href="/calendar">
-      <ion-icon aria-hidden="true" name="calendar"></ion-icon>
-      <ion-label>Календар</ion-label>
+      <ion-icon [src]="calendar" class="tab-icon" name="calendar"></ion-icon>
+      <ion-label class="label">Календар</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="events" href="/events">
-      <ion-icon aria-hidden="true" name="flag"></ion-icon>
-      <ion-label>Събития</ion-label>
+      <ion-icon [src]="events" class="tab-icon" name="flag"></ion-icon>
+      <ion-label class="label">Събития</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="notifications" href="/notifications">
-      <ion-icon aria-hidden="true" name="heart"></ion-icon>
-      <ion-label>Любими</ion-label>
+      <ion-icon [src]="favorite" class="tab-icon" name="heart"></ion-icon>
+      <ion-label class="label">Любими</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="user/auth" href="/user/auth">
-      <ion-icon [src]="profile" name="person"></ion-icon>
-      <ion-label>Профил</ion-label>
+    <ion-tab-button tab="user" href="/user/auth">
+      <ion-icon [src]="profile" class="tab-icon" name="person"></ion-icon>
+      <ion-label class="label">Профил</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
