@@ -31,8 +31,7 @@
       <!-- password -->
       <div class="auth-input">
         <ion-input type="password" fill="solid" label="Парола*" labelPlacement="floating" name="password" ngModel
-          #password="ngModel" required minlength="8" clearInput
-          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!\s).+$"></ion-input>
+          #password="ngModel" required minlength="6" maxlength="24" clearInput pattern="^\S+$"></ion-input>
       </div>
 
       <ng-container *ngIf="password.touched">
@@ -40,16 +39,7 @@
           Полето е задължително за попълване!
         </p>
         <p class="auth-validation-error-message" *ngIf="password.errors?.['minlength']">
-          Паролата трябва да е с дължина поне 8 символа!
-        </p>
-        <p class="auth-validation-error-message" *ngIf="password.value && !password.value.match('\\d')">
-          Изисква се поне една цифра в паролата!
-        </p>
-        <p class="auth-validation-error-message" *ngIf="password.value && !password.value.match('[a-z]')">
-          Паролата трябва да съдържа поне 1 малка буква!
-        </p>
-        <p class="auth-validation-error-message" *ngIf="password.value && !password.value.match('[A-Z]')">
-          Паролата трябва да съдържа поне 1 голяма буква!
+          Паролата трябва да е с дължина поне 6 символа!
         </p>
         <p class="auth-validation-error-message" *ngIf="password.value && password.value.includes(' ')">
           Паролата не трябва да съдържа празни места!
@@ -74,27 +64,24 @@
       <!-- first name -->
       <div class="auth-input">
         <ion-input type="text" fill="solid" label="Име" labelPlacement="floating" clearInput name="firstName" ngModel
-          #firstName="ngModel" pattern="^[a-zA-Zа-яА-Я]+$"></ion-input>
+          #firstName="ngModel" pattern="^[a-zA-Zа-яА-Я \-]+$"></ion-input>
       </div>
 
       <ng-container *ngIf="firstName.touched">
         <p class="auth-validation-error-message" *ngIf="firstName.errors?.['pattern']">
-          Името трябва да съдържа само букви!
-        </p>
-        <p class="auth-validation-error-message" *ngIf="firstName.value && firstName.value.includes(' ')">
-          Не може да съдържа празни пространства!
+          Неползволен символ в името!
         </p>
       </ng-container>
 
       <!-- last name -->
       <div class="auth-input">
         <ion-input type="text" fill="solid" label="Фамилия" labelPlacement="floating" name="lastName" clearInput ngModel
-          #lastName="ngModel" pattern="^[a-zA-Zа-яА-Я]+$"></ion-input>
+          #lastName="ngModel" pattern="^[a-zA-Zа-яА-Я \-]+$"></ion-input>
       </div>
 
       <ng-container *ngIf="lastName.touched">
         <p class="auth-validation-error-message" *ngIf="lastName.errors?.['pattern']">
-          Името трябва да съдържа само букви!
+          Неползволен символ в името!
         </p>
         <p class="auth-validation-error-message" *ngIf="lastName.value && lastName.value.includes(' ')">
           Не може да съдържа празни пространства!
