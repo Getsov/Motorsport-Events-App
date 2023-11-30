@@ -124,8 +124,18 @@
     </div>
 
     <div class="auth-input">
-      <ion-input type="text" fill="solid" label="Телефон" labelPlacement="floating" clearInput></ion-input>
+      <ion-input type="text" fill="solid" label="Телефон*" labelPlacement="floating" name="phone" clearInput required
+        ngModel #phone="ngModel" pattern="^[\d\+\-\(\) ]+$"></ion-input>
     </div>
+
+    <ng-container *ngIf="phone.touched">
+      <p class="auth-validation-error-message" *ngIf="phone.errors?.['required']">
+        Полето е задължително за попълване!
+      </p>
+      <p class="auth-validation-error-message" *ngIf="phone.errors?.['pattern']">
+        Телефона трябва да съдържа само числа
+      </p>
+    </ng-container>
 
   </div>
 
