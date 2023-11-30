@@ -42,6 +42,7 @@
       }
     }
 
+    // error form state
     ion-input.ng-invalid.ng-touched {
       border-bottom: 1px solid #ff0000;
 
@@ -58,6 +59,7 @@
       }
     }
 
+    // success form state
     ion-input.ng-valid.ng-touched {
       border-bottom: 1px solid #008000;
 
