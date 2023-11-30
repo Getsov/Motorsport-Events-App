@@ -1,4 +1,4 @@
-<form #loginForm="ngForm" (submit)="onLogin(loginForm)">
+<form #loginForm="ngForm" (submit)="onLoginSubmit(loginForm)">
 
   <div class="auth-wrapper">
 
@@ -44,7 +44,7 @@
   </div>
 
   <div class="main-button-wrapper">
-    <button class="main-button" [disabled]="loginForm.invalid" #button>Вход</button>
+    <button class="main-button" [disabled]="loginForm.invalid">Вход</button>
   </div>
 
 </form>

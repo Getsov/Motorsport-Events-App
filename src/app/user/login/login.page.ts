@@ -11,12 +11,13 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
-  onLogin(loginFormData: NgForm) {
+  onLoginSubmit(loginFormData: NgForm) {
     if (loginFormData.invalid) {
       return;
     }
 
     const { email, password } = loginFormData.value;
-    // TODO: userservice.register()
+    // TODO: userservice.login()
+    console.log('submitted');
   }
 }
