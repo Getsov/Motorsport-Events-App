@@ -1,0 +1,18 @@
+swiper-container {
+  --swiper-pagination-color: rgba(255, 116, 24, 1);
+  --swiper-pagination-bullet-inactive-color: rgba(194, 191, 190, 1);
+  --swiper-pagination-bullet-inactive-opacity: 100%;
+  --swiper-pagination-bullet-size: 16px;
+  --swiper-pagination-bullet-horizontal-gap: 8px;
+  --swiper-pagination-bottom: 26px;
+  --swiper-pagination-bullet-inactive-size: 12px;
+}
+
+swiper-slide:first-child {
+  margin-left: 16px;
+}
+
+swiper-slide {
+  margin-top: 16px;
+  margin-bottom: 42px;
+}

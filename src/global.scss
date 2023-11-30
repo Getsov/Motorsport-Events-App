@@ -90,6 +90,7 @@ h3,
 h4,
 h5,
 h6 {
+  text-rendering: optimizeSpeed;
   font-family: "Exo 2", "Montserrat", "Lato";
   line-height: 1.2;
 }
