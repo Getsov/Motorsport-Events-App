@@ -42,11 +42,37 @@
       }
     }
 
+    // error form state
     ion-input.ng-invalid.ng-touched {
       border-bottom: 1px solid #ff0000;
 
       .label-text {
         color: #ff0000;
+      }
+
+      .input-clear-icon {
+        margin: auto 1em 1px auto;
+        z-index: 1;
+        ion-icon {
+          content: url("../../../assets/icon/error-clear-input-icon.svg");
+        }
+      }
+    }
+
+    // success form state
+    ion-input.ng-valid.ng-touched {
+      border-bottom: 1px solid #008000;
+
+      .label-text {
+        color: #008000;
+      }
+
+      .input-clear-icon {
+        margin: auto 1em 1px auto;
+        z-index: 1;
+        ion-icon {
+          content: url("../../../assets/icon/success-input-icon.svg");
+        }
       }
     }
 

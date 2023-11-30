@@ -5,29 +5,88 @@
 </div>
 
 <ng-container *ngIf="userChecked">
-  <form>
+  <form #userRegisterForm="ngForm" (submit)="onRegisterUserSubmit(userRegisterForm)">
     <div class="auth-wrapper">
 
+      <!-- email -->
       <div class="auth-input">
-        <ion-input type="email" fill="solid" label="Имейл*" labelPlacement="floating" clearInput></ion-input>
+        <ion-input type="email" fill="solid" label="Имейл*" labelPlacement="floating" name="email" ngModel
+          #email="ngModel" clearInput required pattern="^[a-zA-Z0-9\._+\-]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,}$"></ion-input>
       </div>
 
+      <ng-container *ngIf="email.touched">
+        <p class="auth-validation-error-message" *ngIf="email.errors?.['required']">
+          Полето е задължително за попълване!
+        </p>
+        <p class="auth-validation-error-message" *ngIf="email.errors?.['pattern']">
+          Моля въведете валиден имейл!
+        </p>
+
+        <!-- TODO: When server returns email already taken -->
+        <!-- <p class="auth-validation-error-message" *ngIf="emailError">
+          Този имейл вече е използван!
+        </p> -->
+      </ng-container>
+
+      <!-- password -->
       <div class="auth-input">
-        <ion-input type="password" fill="solid" label="Парола*" labelPlacement="floating" clearInput></ion-input>
+        <ion-input type="password" fill="solid" label="Парола*" labelPlacement="floating" name="password" ngModel
+          #password="ngModel" required minlength="6" maxlength="24" clearInput pattern="^\S+$"></ion-input>
       </div>
 
+      <ng-container *ngIf="password.touched">
+        <p class="auth-validation-error-message" *ngIf="password.errors?.['required']">
+          Полето е задължително за попълване!
+        </p>
+        <p class="auth-validation-error-message" *ngIf="password.errors?.['minlength']">
+          Паролата трябва да е с дължина поне 6 символа!
+        </p>
+        <p class="auth-validation-error-message" *ngIf="password.errors?.['maxlength']">
+          Паролата трябва да е с максимална дължина 24 символа!
+        </p>
+        <p class="auth-validation-error-message" *ngIf="password.value && password.value.includes(' ')">
+          Паролата не трябва да съдържа празни места!
+        </p>
+      </ng-container>
+
+      <!-- repeat password -->
       <div class="auth-input">
-        <ion-input type="password" fill="solid" label="Повтори парола*" labelPlacement="floating"
-          clearInput></ion-input>
+        <ion-input type="password" fill="solid" label="Повтори парола*" labelPlacement="floating" name="repeatPassword"
+          ngModel #repeatPassword="ngModel" required clearInput pattern="{{ password.value }}"></ion-input>
       </div>
 
+      <ng-container *ngIf="repeatPassword.touched">
+        <p class="auth-validation-error-message" *ngIf="repeatPassword.errors?.['required']">
+          Полето е задължително за попълване!
+        </p>
+        <p class="auth-validation-error-message" *ngIf="repeatPassword.errors?.['pattern']">
+          Моля уверете се, че паролите съвпадат!
+        </p>
+      </ng-container>
+
+      <!-- first name -->
       <div class="auth-input">
-        <ion-input type="text" fill="solid" label="Име" labelPlacement="floating" clearInput></ion-input>
+        <ion-input type="text" fill="solid" label="Име" labelPlacement="floating" clearInput name="firstName" ngModel
+          #firstName="ngModel" pattern="^[a-zA-Zа-яА-Я \-]+$"></ion-input>
       </div>
 
+      <ng-container *ngIf="firstName.touched">
+        <p class="auth-validation-error-message" *ngIf="firstName.errors?.['pattern']">
+          Неползволен символ в името!
+        </p>
+      </ng-container>
+
+      <!-- last name -->
       <div class="auth-input">
-        <ion-input type="text" fill="solid" label="Фамилия" labelPlacement="floating" clearInput></ion-input>
+        <ion-input type="text" fill="solid" label="Фамилия" labelPlacement="floating" name="lastName" clearInput ngModel
+          #lastName="ngModel" pattern="^[a-zA-Zа-яА-Я \-]+$"></ion-input>
       </div>
+
+      <ng-container *ngIf="lastName.touched">
+        <p class="auth-validation-error-message" *ngIf="lastName.errors?.['pattern']">
+          Неползволен символ в името!
+        </p>
+      </ng-container>
 
       <div class="auth-input">
         <ion-select interface="popover" placeholder="Населено място" class="region-select" slot="end" name="region">
@@ -37,9 +96,15 @@
 
     </div>
 
+    <!-- TODO: When server returns email already taken -->
+    <!-- <p class="auth-validation-error-message" *ngIf="emailError">
+        Този имейл вече е използван!
+      </p> -->
+
     <div class="main-button-wrapper">
       <button class="main-button">Регистрация</button>
     </div>
+
   </form>
 </ng-container>
 <ng-container *ngIf="!userChecked">
