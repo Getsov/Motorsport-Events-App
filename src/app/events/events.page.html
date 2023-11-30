@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
   <div class="page-title">
-    <app-header [headerTitle]="headerTitle" [backButton]="backButton" [defaultHref]="defaultHref"></app-header>
-    <app-search show-clear-button="focus" placeholder="Търсене"></app-search>
+    <app-header [headerTitle]="headerTitle" [backButton]="backButton" [defaultHref]="defaultHref" ></app-header>
+    <app-search show-clear-button="focus" placeholder="Търсене" (sendData) = "getData($event)"></app-search>
   </div>
   <app-title-fades [color]="titleColor" [title]="titleText" />
   <div

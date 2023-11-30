@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Event } from 'src/shared/interfaces/Event';
+import { Observable } from 'rxjs/internal/Observable';
 
 const {baseUrl} = environment;
 @Injectable({
@@ -11,8 +12,11 @@ export class EventsService {
 
   constructor(private http: HttpClient) {}
     
-    getEvents(){
-      return this.http.get<Event>(`${baseUrl}/event`);
+    getEvents(query:string = ''): Observable<Event[]>{
+      if(query){
+        return this.http.get<Event[]>(`${baseUrl}/events/category/${query}`);
+      }
+      return this.http.get<Event[]>(`${baseUrl}/events/${query}`);
     }
 
     getEvent(id: string){
