@@ -83,9 +83,6 @@
         <p class="auth-validation-error-message" *ngIf="lastName.errors?.['pattern']">
           Неползволен символ в името!
         </p>
-        <p class="auth-validation-error-message" *ngIf="lastName.value && lastName.value.includes(' ')">
-          Не може да съдържа празни пространства!
-        </p>
       </ng-container>
 
       <div class="auth-input">
