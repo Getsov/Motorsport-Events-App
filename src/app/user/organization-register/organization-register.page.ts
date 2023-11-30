@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import BulgarianRegions from 'src/shared/data/regions';
 
 @Component({
@@ -14,4 +15,10 @@ export class OrganizationRegisterPage implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  onOrganizationRegisterSubmit(organizationRegister: NgForm) {
+    if (organizationRegister.invalid) {
+      return;
+    }
+  }
 }
