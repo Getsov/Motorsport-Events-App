@@ -18,7 +18,7 @@ export class UserRegisterPage implements OnInit {
 
   ngOnInit() {}
 
-  onRegister(registerForm: NgForm) {
+  onRegisterUserSubmit(registerForm: NgForm) {
     if (registerForm.invalid) {
       return;
     }

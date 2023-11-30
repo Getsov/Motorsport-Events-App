@@ -5,7 +5,7 @@
 </div>
 
 <ng-container *ngIf="userChecked">
-  <form #registerForm="ngForm" (submit)="onRegister(registerForm)">
+  <form #userRegisterForm="ngForm" (submit)="onRegisterUserSubmit(userRegisterForm)">
     <div class="auth-wrapper">
 
       <!-- email -->
