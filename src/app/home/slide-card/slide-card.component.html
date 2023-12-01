@@ -3,7 +3,7 @@
     <img src="{{ event.imageUrl }}" alt="{{ event.shortTitle }}" />
 
     <p class="event-title">{{ event.shortTitle }}</p>
-    <p class="event-dates">21-21-03 - 21-21-03</p>
+    <p class="event-dates">{{ startDate }} - {{ endDate }}</p>
   </div>
 
   <app-like-icon [eventId]="event._id" [likedCount]="event.likes.length" />
