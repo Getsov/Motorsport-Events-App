@@ -29,7 +29,7 @@ export class EventsPage implements OnInit{
     this.getEvents();
   }
 
-  getData(event:any): any {
+  getFilteredEvents(event:any): any {
     this.eventsData = event;
   }
 

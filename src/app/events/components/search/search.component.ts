@@ -11,7 +11,7 @@ import { EventsService } from 'src/shared/services/events.service';
 export class SearchComponent implements OnInit {
   @Input() titleColor: string = 'orange';
   @Input() titleText: string = 'Филтриране на събития';
-  @Output() sendData = new EventEmitter<any>();
+  @Output() filteredEvents = new EventEmitter<any>();
 
   Category: string = 'Категория';
   Location: string = 'Регион';
@@ -37,7 +37,7 @@ export class SearchComponent implements OnInit {
   getEvents (query: string = "") {
     this.eventService.getEvents(query).subscribe({
       next: (events) =>{
-        this.sendData.emit(events);
+        this.filteredEvents.emit(events);
       },
       error: (err) => {
         console.log(err);
