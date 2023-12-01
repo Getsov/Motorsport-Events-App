@@ -171,25 +171,25 @@ select {
 /* Event page search */
 
 .searchbar-input-container.sc-ion-searchbar-ios {
-  position: absolute;
-  display: flex;
-  align-items: center;
+  position: relative;
+  right: 35px;
+  min-height: 0;
 }
 
 .searchbar-input.sc-ion-searchbar-ios {
-  display: block;
-  position: relative;
-  right: 30px;
-  font-size: 16px;
+  height: 24px;
+  padding: 0 0 0 34px;
 }
 
 .searchbar-search-icon.sc-ion-searchbar-ios.ios.hydrated {
-  position: relative;
-  left: -102%;
+  width: 20px;
   height: 20px;
+  position: absolute;
+  top: 3px;
 }
 .searchbar-clear-button.sc-ion-searchbar-ios{
-  left: 258px;
+  position: absolute;
+  right: -43px;
 }
 .item.ios.item-lines-default.item-fill-none.item-has-interactive-control.in-list.ion-activatable.ion-focusable.hydrated{
   width: 100%;
@@ -197,9 +197,6 @@ select {
 ion-select:host{
   border-style: none !important;
 }
-
-/* Tab-Btns */
-
 
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
