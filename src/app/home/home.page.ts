@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/shared/interfaces/Category';
-import { events } from 'src/shared/data/events';
-import { Event } from 'src/shared/interfaces/Event';
 
 @Component({
   selector: 'app-home',
