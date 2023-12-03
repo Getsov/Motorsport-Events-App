@@ -13,8 +13,8 @@ export class SearchComponent implements OnInit {
   @Input() titleText: string = 'Филтриране на събития';
   @Output() filteredEvents = new EventEmitter<any>();
 
-  Category: string = 'Категория';
-  Location: string = 'Регион';
+  category: string = 'Категория';
+  location: string = 'Регион';
 
   regions: {} = Object.values(BulgarianRegions).filter((key) =>
     isNaN(Number(key))
