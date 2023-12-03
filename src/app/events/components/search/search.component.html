@@ -11,7 +11,7 @@
           class="select-item"
           [multiple]="true"
           (ionChange)="categoryChangeHandler($event)"
-        > <ion-select-option value="">{{Category}}</ion-select-option>
+        > <ion-select-option value="">{{category}}</ion-select-option>
           <ion-select-option *ngFor="let item of categories | keyvalue" [value]="item.key">{{ item.value }}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -26,7 +26,7 @@
           [multiple]="true"
           (ionChange)="locationChangeHandler($event)"
         >
-          <ion-select-option value="">{{Location}}</ion-select-option>
+          <ion-select-option value="">{{location}}</ion-select-option>
           <ion-select-option *ngFor="let item of regions | keyvalue" [value]="item.value">{{ item.value }}</ion-select-option>
         </ion-select>
       </ion-item>
