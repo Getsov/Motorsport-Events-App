@@ -29,9 +29,6 @@ export class UpcomingEventsComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.upcomingEvents = response.results;
-          console.log(this.upcomingEvents);
-
-          console.log(this.pageToLoad);
           this.pageToLoad++;
         },
         error: (error) => console.log(error),
@@ -53,8 +50,6 @@ export class UpcomingEventsComponent implements OnInit {
           next: (response) => {
             if (response.nextPage) {
               this.upcomingEvents.push(...response.results);
-              console.log(this.upcomingEvents);
-              console.log(this.pageToLoad);
               this.pageToLoad++;
             } else {
               // Set the flag if no more events are available

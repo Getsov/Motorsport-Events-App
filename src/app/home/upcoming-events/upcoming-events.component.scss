@@ -6,6 +6,8 @@ swiper-container {
   --swiper-pagination-bullet-horizontal-gap: 8px;
   --swiper-pagination-bottom: 26px;
   padding: 0 16px;
+  min-height: 216px;
+  width: 100%;
 }
 
 swiper-slide {

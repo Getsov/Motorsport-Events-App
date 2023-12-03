@@ -1,0 +1,47 @@
+.about-us {
+  color: rgba(194, 191, 190, 1);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  padding: 16px 16px 24px 16px;
+
+  p,
+  .contacts {
+    margin-right: 8px;
+  }
+
+  .contacts {
+    margin-top: 24px;
+
+    .email {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+
+  .links {
+    min-height: 48px;
+    margin-top: 24px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      flex: 1 1 50%;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 1);
+      font-weight: 600;
+      text-align: center;
+      color: rgba(255, 116, 24, 1);
+    }
+
+    a:first-child {
+      margin-right: 8px;
+    }
+
+    a:last-child {
+      margin-left: 8px;
+    }
+  }
+}
