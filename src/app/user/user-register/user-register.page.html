@@ -94,12 +94,14 @@
         </ion-select>
       </div>
 
+      <!-- Error returned from server -->
+      <p class="auth-validation-error-message" *ngIf="authResponseError">
+        {{authResponseError}}
+      </p>
+
     </div>
 
-    <!-- TODO: When server returns email already taken -->
-    <!-- <p class="auth-validation-error-message" *ngIf="emailError">
-        Този имейл вече е използван!
-      </p> -->
+
 
     <div class="main-button-wrapper">
       <button class="main-button">Регистрация</button>
