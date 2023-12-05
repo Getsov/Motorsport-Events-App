@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/shared/services/auth.service';
 
 import BulgarianRegions from 'src/shared/data/regions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-register',
@@ -21,7 +22,7 @@ export class UserRegisterPage implements OnInit, OnDestroy {
   bulgarianRegions: string[] = Object.keys(BulgarianRegions).filter((v) =>
     isNaN(Number(v))
   );
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -37,13 +38,13 @@ export class UserRegisterPage implements OnInit, OnDestroy {
     this.userRegisterSubscription$ = this.authService
       .registerUser(email, password, repass, firstName, lastName, region)
       .subscribe({
-        next: (authResponse) => {
-          console.log(authResponse);
-          // TODO: do something with the response
-          // TODO: navigate to home
+        next: () => {
+          this.authResponseError = '';
+          this.router.navigateByUrl('/');
         },
         error: (error) => {
           this.authResponseError = error.error.error;
+          registerForm.reset();
         },
       });
   }

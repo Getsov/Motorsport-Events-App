@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/shared/services/auth.service';
 
@@ -12,7 +13,7 @@ export class LoginPage implements OnInit, OnDestroy {
   loginSubscription$!: Subscription;
   loginResponseError: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -26,13 +27,13 @@ export class LoginPage implements OnInit, OnDestroy {
     this.loginSubscription$ = this.authService
       .login(email, password)
       .subscribe({
-        next: (authResponse) => {
-          console.log(authResponse);
-          // TODO: do something with the response
-          // TODO: navigate to home
+        next: () => {
+          this.loginResponseError = '';
+          this.router.navigateByUrl('/');
         },
         error: (error) => {
           this.loginResponseError = error.error.error;
+          loginFormData.reset();
         },
       });
   }

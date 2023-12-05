@@ -4,6 +4,7 @@ import { AuthService } from 'src/shared/services/auth.service';
 
 import BulgarianRegions from 'src/shared/data/regions';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-organization-register',
@@ -20,7 +21,7 @@ export class OrganizationRegisterPage implements OnInit, OnDestroy {
   authResponseError: string = '';
   selectedRegion: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -46,13 +47,13 @@ export class OrganizationRegisterPage implements OnInit, OnDestroy {
         role
       )
       .subscribe({
-        next: (authResponse) => {
-          console.log(authResponse);
-          // TODO: do something with the response
-          // TODO: navigate to home
+        next: () => {
+          this.authResponseError = '';
+          this.router.navigateByUrl('/');
         },
         error: (error) => {
           this.authResponseError = error.error.error;
+          organizatorRegisterForm.reset();
         },
       });
   }
