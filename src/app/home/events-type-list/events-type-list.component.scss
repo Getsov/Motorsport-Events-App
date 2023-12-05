@@ -5,7 +5,7 @@
   align-items: center;
   gap: 16px;
   background: #0d0d0d;
-  padding: 16px;
+  padding: 16px 16px 24px 16px;
   margin: 0;
 }
 
@@ -30,15 +30,16 @@
 }
 
 .category-title {
+  letter-spacing: 0%;
   margin: 4px 0;
   width: 100%;
-  height: auto;
+  min-height: 21px;
   text-align: center;
   line-height: 21px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: rgba(255, 255, 255, 1);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
 }

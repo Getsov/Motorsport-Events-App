@@ -3,10 +3,8 @@
     <img src="{{ event.imageUrl }}" alt="{{ event.shortTitle }}" />
 
     <p class="event-title">{{ event.shortTitle }}</p>
-    <p class="event-dates">
-      {{ event.dates[0].date }} - {{ event.dates[lastDateIndex].date }}
-    </p>
+    <p class="event-dates">{{ startDate }} - {{ endDate }}</p>
   </div>
 
-  <app-like-icon [eventId]="event._id" [likedCount]="event.likedCount" />
+  <app-like-icon [eventId]="event._id" [likedCount]="event.likes.length" />
 </ion-card>

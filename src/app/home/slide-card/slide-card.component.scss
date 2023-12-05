@@ -3,7 +3,7 @@
   padding: 0;
   background-color: rgba(13, 13, 13, 1);
   box-shadow: 0 0 6px -2px #ff7418;
-  min-width: 184px;
+  width: 100%;
   min-height: 140px;
 
   .link-to-details {
@@ -23,7 +23,7 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-weight: 600;
+      font-weight: 500;
       color: rgba(255, 255, 255, 1);
       font-size: 12px;
       line-height: 18px;
@@ -36,4 +36,8 @@
       line-height: 15px;
     }
   }
+}
+
+.events-card:first-child {
+  margin-left: 2px;
 }
