@@ -66,6 +66,7 @@ export class AuthService {
       .pipe(tap((userData) => this.setUserData(userData)));
   }
 
+  // get user token
   getUserToken(): string | null {
     const storedData = localStorage.getItem('authData');
     const userData: AuthResponseData | null = storedData
@@ -73,6 +74,11 @@ export class AuthService {
       : null;
 
     return userData ? userData.accessToken : null;
+  }
+
+  // return if user is authenticated
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('authData');
   }
 
   // Store it in BehaviorSubject & localStorage for persistence
