@@ -89,12 +89,16 @@
 
     <!-- region -->
     <div class="auth-input">
-      <ion-select interface="popover" placeholder="Населено място" class="region-select" slot="end" name="region">
+      <ion-select interface="popover" placeholder="Населено място" class="region-select" slot="end" name="region"
+        #region (ionChange)="onRegionChange($event.detail.value)">
         <ion-select-option value="{{region}}" *ngFor="let region of bulgarianRegions">{{region}}</ion-select-option>
       </ion-select>
     </div>
 
-
+    <!-- Error returned from server -->
+    <p class="auth-validation-error-message" *ngIf="authResponseError">
+      {{authResponseError}}
+    </p>
 
   </div>
 
