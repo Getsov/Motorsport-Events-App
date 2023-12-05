@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { AuthService } from 'src/shared/services/auth.service';
 
@@ -10,7 +11,8 @@ import BulgarianRegions from 'src/shared/data/regions';
   templateUrl: './user-register.page.html',
   styleUrls: ['./user-register.page.scss'],
 })
-export class UserRegisterPage implements OnInit {
+export class UserRegisterPage implements OnInit, OnDestroy {
+  userRegisterSubscription$!: Subscription;
   userChecked: boolean = true;
 
   authResponseError: string = '';
@@ -32,11 +34,13 @@ export class UserRegisterPage implements OnInit {
 
     const region = this.selectedRegion;
 
-    this.authService
+    this.userRegisterSubscription$ = this.authService
       .registerUser(email, password, repass, firstName, lastName, region)
       .subscribe({
         next: (authResponse) => {
           console.log(authResponse);
+          // TODO: do something with the response
+          // TODO: navigate to home
         },
         error: (error) => {
           this.authResponseError = error.error.error;
@@ -46,5 +50,11 @@ export class UserRegisterPage implements OnInit {
 
   onRegionChange(region: string) {
     this.selectedRegion = region;
+  }
+
+  ngOnDestroy(): void {
+    if (this.userRegisterSubscription$) {
+      this.userRegisterSubscription$.unsubscribe();
+    }
   }
 }

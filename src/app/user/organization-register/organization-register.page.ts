@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/shared/services/auth.service';
 
 import BulgarianRegions from 'src/shared/data/regions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-organization-register',
   templateUrl: './organization-register.page.html',
   styleUrls: ['./organization-register.page.scss'],
 })
-export class OrganizationRegisterPage implements OnInit {
+export class OrganizationRegisterPage implements OnInit, OnDestroy {
+  organizationSubscription$!: Subscription;
+
   bulgarianRegions: string[] = Object.keys(BulgarianRegions).filter((v) =>
     isNaN(Number(v))
   );
@@ -32,7 +35,7 @@ export class OrganizationRegisterPage implements OnInit {
     const role = 'organizer';
     const region = this.selectedRegion;
 
-    this.authService
+    this.organizationSubscription$ = this.authService
       .registerOrganizator(
         email,
         password,
@@ -45,6 +48,8 @@ export class OrganizationRegisterPage implements OnInit {
       .subscribe({
         next: (authResponse) => {
           console.log(authResponse);
+          // TODO: do something with the response
+          // TODO: navigate to home
         },
         error: (error) => {
           this.authResponseError = error.error.error;
@@ -54,5 +59,11 @@ export class OrganizationRegisterPage implements OnInit {
 
   onRegionChange(region: string) {
     this.selectedRegion = region;
+  }
+
+  ngOnDestroy(): void {
+    if (this.organizationSubscription$) {
+      this.organizationSubscription$.unsubscribe();
+    }
   }
 }
