@@ -30,6 +30,7 @@ export class LoginPage implements OnInit, OnDestroy {
         next: () => {
           this.loginResponseError = '';
           this.router.navigateByUrl('/');
+          loginFormData.reset();
         },
         error: (error) => {
           this.loginResponseError = error.error.error;

@@ -41,6 +41,7 @@ export class UserRegisterPage implements OnInit, OnDestroy {
         next: () => {
           this.authResponseError = '';
           this.router.navigateByUrl('/');
+          registerForm.reset();
         },
         error: (error) => {
           this.authResponseError = error.error.error;

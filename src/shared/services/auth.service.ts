@@ -75,7 +75,7 @@ export class AuthService {
     return userData ? userData.accessToken : null;
   }
 
-  // Store it in localStorage for persistence
+  // Store it in BehaviorSubject & localStorage for persistence
   setUserData(userData: AuthResponseData): void {
     this.userDataSubject.next(userData);
     localStorage.setItem('authData', JSON.stringify(userData));

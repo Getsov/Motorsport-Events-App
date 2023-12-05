@@ -50,6 +50,7 @@ export class OrganizationRegisterPage implements OnInit, OnDestroy {
         next: () => {
           this.authResponseError = '';
           this.router.navigateByUrl('/');
+          organizatorRegisterForm.reset();
         },
         error: (error) => {
           this.authResponseError = error.error.error;
