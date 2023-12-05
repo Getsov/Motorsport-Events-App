@@ -66,6 +66,15 @@ export class AuthService {
       .pipe(tap((userData) => this.setUserData(userData)));
   }
 
+  getUserToken(): string | null {
+    const storedData = localStorage.getItem('authData');
+    const userData: AuthResponseData | null = storedData
+      ? JSON.parse(storedData)
+      : null;
+
+    return userData ? userData.accessToken : null;
+  }
+
   // Store it in localStorage for persistence
   setUserData(userData: AuthResponseData): void {
     this.userDataSubject.next(userData);
