@@ -51,15 +51,15 @@
 
       <!-- repeat password -->
       <div class="auth-input">
-        <ion-input type="password" fill="solid" label="Повтори парола*" labelPlacement="floating" name="repeatPassword"
-          ngModel #repeatPassword="ngModel" required clearInput pattern="{{ password.value }}"></ion-input>
+        <ion-input type="password" fill="solid" label="Повтори парола*" labelPlacement="floating" name="repass" ngModel
+          #repass="ngModel" required clearInput pattern="{{ password.value }}"></ion-input>
       </div>
 
-      <ng-container *ngIf="repeatPassword.touched">
-        <p class="auth-validation-error-message" *ngIf="repeatPassword.errors?.['required']">
+      <ng-container *ngIf="repass.touched">
+        <p class="auth-validation-error-message" *ngIf="repass.errors?.['required']">
           Полето е задължително за попълване!
         </p>
-        <p class="auth-validation-error-message" *ngIf="repeatPassword.errors?.['pattern']">
+        <p class="auth-validation-error-message" *ngIf="repass.errors?.['pattern']">
           Моля уверете се, че паролите съвпадат!
         </p>
       </ng-container>
