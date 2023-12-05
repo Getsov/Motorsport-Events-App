@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
+import { AuthService } from 'src/shared/services/auth.service';
+
 import BulgarianRegions from 'src/shared/data/regions';
 
 @Component({
@@ -11,10 +13,13 @@ import BulgarianRegions from 'src/shared/data/regions';
 export class UserRegisterPage implements OnInit {
   userChecked: boolean = true;
 
+  authResponseError: string = '';
+  selectedRegion: string = '';
+
   bulgarianRegions: string[] = Object.keys(BulgarianRegions).filter((v) =>
     isNaN(Number(v))
   );
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {}
 
@@ -22,8 +27,24 @@ export class UserRegisterPage implements OnInit {
     if (registerForm.invalid) {
       return;
     }
-    console.log(registerForm.value);
 
-    // TODO: userService.register()
+    const { email, password, repass, firstName, lastName } = registerForm.value;
+
+    const region = this.selectedRegion;
+
+    this.authService
+      .registerUser(email, password, repass, firstName, lastName, region)
+      .subscribe({
+        next: (authResponse) => {
+          console.log(authResponse);
+        },
+        error: (error) => {
+          this.authResponseError = error.error.error;
+        },
+      });
+  }
+
+  onRegionChange(region: string) {
+    this.selectedRegion = region;
   }
 }
