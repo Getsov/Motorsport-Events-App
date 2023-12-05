@@ -12,3 +12,15 @@ export interface User {
   likedEvents?: { likedEventId: string }[];
   _id?: string;
 }
+
+export interface AuthResponseData {
+  _id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+  region: string;
+  phone: string;
+  isDeleted: boolean;
+  accessToken: string;
+}
