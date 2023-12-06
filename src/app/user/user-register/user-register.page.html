@@ -51,15 +51,15 @@
 
       <!-- repeat password -->
       <div class="auth-input">
-        <ion-input type="password" fill="solid" label="Повтори парола*" labelPlacement="floating" name="repeatPassword"
-          ngModel #repeatPassword="ngModel" required clearInput pattern="{{ password.value }}"></ion-input>
+        <ion-input type="password" fill="solid" label="Повтори парола*" labelPlacement="floating" name="repass" ngModel
+          #repass="ngModel" required clearInput pattern="{{ password.value }}"></ion-input>
       </div>
 
-      <ng-container *ngIf="repeatPassword.touched">
-        <p class="auth-validation-error-message" *ngIf="repeatPassword.errors?.['required']">
+      <ng-container *ngIf="repass.touched">
+        <p class="auth-validation-error-message" *ngIf="repass.errors?.['required']">
           Полето е задължително за попълване!
         </p>
-        <p class="auth-validation-error-message" *ngIf="repeatPassword.errors?.['pattern']">
+        <p class="auth-validation-error-message" *ngIf="repass.errors?.['pattern']">
           Моля уверете се, че паролите съвпадат!
         </p>
       </ng-container>
@@ -89,17 +89,20 @@
       </ng-container>
 
       <div class="auth-input">
-        <ion-select interface="popover" placeholder="Населено място" class="region-select" slot="end" name="region">
+        <ion-select interface="popover" placeholder="Населено място" class="region-select" slot="end" name="region"
+          #region (ionChange)="onRegionChange($event.detail.value)">
           <ion-select-option value="{{region}}" *ngFor="let region of bulgarianRegions">{{region}}</ion-select-option>
         </ion-select>
       </div>
 
+      <!-- Error returned from server -->
+      <p class="auth-validation-error-message" *ngIf="authResponseError">
+        {{authResponseError}}
+      </p>
+
     </div>
 
-    <!-- TODO: When server returns email already taken -->
-    <!-- <p class="auth-validation-error-message" *ngIf="emailError">
-        Този имейл вече е използван!
-      </p> -->
+
 
     <div class="main-button-wrapper">
       <button class="main-button">Регистрация</button>

@@ -15,16 +15,11 @@
       <p class="auth-validation-error-message" *ngIf="email.errors?.['pattern']">
         Моля въведете валиден имейл!
       </p>
-
-      <!-- TODO: When server returns email already taken -->
-      <!-- <p class="auth-validation-error-message" *ngIf="emailError">
-        Този имейл вече е използван!
-      </p> -->
     </ng-container>
 
     <div class="auth-input">
       <ion-input type="password" fill="solid" label="Парола*" name="password" labelPlacement="floating" clearInput
-        ngModel #password="ngModel" required minlength="8"></ion-input>
+        ngModel #password="ngModel" required minlength="6" maxlength="24"></ion-input>
     </div>
 
     <ng-container *ngIf="password.touched">
@@ -32,13 +27,16 @@
         Полето е задължително за попълване!
       </p>
       <p class="auth-validation-error-message" *ngIf="password.errors?.['minlength']">
-        Парола трябва да е с дължина поне 8 символа!
+        Парола трябва да е с дължина поне 6 символа!
+      </p>
+      <p class="auth-validation-error-message" *ngIf="password.errors?.['maxlength']">
+        Паролата трябва да е с максимална дължина 24 символа!
       </p>
 
       <!-- TODO: When server returns email already taken -->
-      <!-- <p class="auth-validation-error-message" *ngIf="passwordError">
-        Грешна парола!
-      </p> -->
+      <p class="auth-validation-error-message" *ngIf="loginResponseError">
+        {{loginResponseError}}
+      </p>
     </ng-container>
 
   </div>
