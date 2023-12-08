@@ -3,7 +3,7 @@
   padding: 0;
   background-color: rgba(13, 13, 13, 1);
   box-shadow: 0 0 6px -2px #ff7418;
-  min-height: 140px;
+  min-height: 180px;
   width: 100%;
 
   .link-to-details {
@@ -13,7 +13,8 @@
     img {
       width: 100%;
       border-radius: 4px;
-      height: 91px;
+      height: 131px;
+      object-fit: contain;
     }
 
     .event-title {
