@@ -49,8 +49,11 @@ export class UpcomingEventsComponent implements OnInit {
         .subscribe({
           next: (response) => {
             if (response.nextPage) {
+              console.log(response.nextPage);
+
               this.upcomingEvents.push(...response.results);
               this.pageToLoad++;
+              console.log(this.upcomingEvents);
             } else {
               // Set the flag if no more events are available
               this.isAllEventsLoaded = true;

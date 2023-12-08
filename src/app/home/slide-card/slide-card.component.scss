@@ -3,16 +3,17 @@
   padding: 0;
   background-color: rgba(13, 13, 13, 1);
   box-shadow: 0 0 6px -2px #ff7418;
-  width: 100%;
   min-height: 140px;
+  width: 100%;
 
   .link-to-details {
     padding: 4px 4px 4px 4px;
+    height: 140px;
 
     img {
       width: 100%;
-      height: 100%;
       border-radius: 4px;
+      height: 91px;
     }
 
     .event-title {
@@ -30,6 +31,7 @@
     }
 
     .event-dates {
+      flex: 1 1 30%;
       margin-top: 4px;
       font-weight: 400;
       font-size: 10px;
