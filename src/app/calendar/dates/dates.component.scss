@@ -5,5 +5,8 @@
 
 ion-datetime {
   background-color: inherit;
-  box-shadow: 0 0 6px -2px #ff7418;
+  width: 100% !important;
+  box-shadow: rgba(255, 116, 24, 0.3) 0px 0px 8px;
+  border-radius: 4px;
+  grid-template-rows: repeat(5, 1fr);
 }
