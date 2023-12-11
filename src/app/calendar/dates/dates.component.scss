@@ -5,8 +5,17 @@
 
 ion-datetime {
   background-color: inherit;
-  width: 100% !important;
   box-shadow: rgba(255, 116, 24, 0.3) 0px 0px 8px;
   border-radius: 4px;
-  grid-template-rows: repeat(5, 1fr);
+}
+
+ion-datetime::part(calendar-day) {
+  color: rgba(255, 255, 255, 1);
+}
+
+ion-datetime.md::part(calendar-day active),
+ion-datetime.md::part(calendar-day active):focus {
+  background-color: #9ad162;
+  border-color: none;
+  color: red;
 }
