@@ -10,22 +10,23 @@ export class DatesComponent implements OnInit {
 
   highlightedDates = [
     {
-      date: '2024-01-05',
+      date: '2023-12-05',
+      textColor: '#0D0D0D',
+      backgroundColor: '#FF7418',
+      borderRadius: '0px',
+    },
+    {
+      date: '2023-12-10',
       textColor: '#0D0D0D',
       backgroundColor: '#FF7418',
     },
     {
-      date: '2024-01-10',
+      date: '2023-12-20',
       textColor: '#0D0D0D',
       backgroundColor: '#FF7418',
     },
     {
-      date: '2024-01-20',
-      textColor: '#0D0D0D',
-      backgroundColor: '#FF7418',
-    },
-    {
-      date: '2024-01-23',
+      date: '2023-12-23',
       textColor: '#0D0D0D',
       backgroundColor: '#FF7418',
     },
