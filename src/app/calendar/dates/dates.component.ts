@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dates.component.scss'],
 })
 export class DatesComponent implements OnInit {
-  constructor() {}
+  constructor(private datePipe: DatePipe) {}
 
   highlightedDates = [
     {
@@ -32,4 +33,17 @@ export class DatesComponent implements OnInit {
   ];
 
   ngOnInit() {}
+
+  onDateFocus(event: any) {
+    const date = event.detail.value;
+    const formattedDate = this.datePipe.transform(
+      date,
+      'dd.MM.yy' || undefined
+    );
+
+    if (formattedDate) {
+      //TODO fetch data
+      console.log(formattedDate);
+    }
+  }
 }
