@@ -6,7 +6,7 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanLoad {
+export class GuestGuard implements CanLoad {
   constructor(private authService: AuthService, private router: Router) {}
 
   canLoad(
@@ -17,10 +17,11 @@ export class AuthGuard implements CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (!this.authService.isAuthenticated()) {
-      this.router.navigateByUrl('tabs/user/auth');
+    // if the user is logged in - redirect to home
+    if (this.authService.isAuthenticated()) {
+      this.router.navigateByUrl('/');
     }
 
-    return this.authService.isAuthenticated();
+    return true;
   }
 }
