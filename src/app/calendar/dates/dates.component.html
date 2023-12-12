@@ -1,9 +1,17 @@
 <section class="dates">
   <ion-datetime
     presentation="date"
-    [multiple]="true"
     size="cover"
+    preferWheel="false"
     [highlightedDates]="highlightedDates"
+    [multiple]="false"
     locale="bg-BG"
   ></ion-datetime>
+
+  <div class="calendar-info">
+    <div class="existing-event"></div>
+    <p class="existing-event-text">Дати със събития</p>
+    <div class="marked"></div>
+    <p class="marked-text">Маркирана дата</p>
+  </div>
 </section>

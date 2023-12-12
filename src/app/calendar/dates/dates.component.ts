@@ -13,7 +13,6 @@ export class DatesComponent implements OnInit {
       date: '2023-12-05',
       textColor: '#0D0D0D',
       backgroundColor: '#FF7418',
-      borderRadius: '0px',
     },
     {
       date: '2023-12-10',
