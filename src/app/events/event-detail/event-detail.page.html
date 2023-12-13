@@ -6,30 +6,27 @@
   ></app-header>
 
   <div class="ion-margin-vertical">
-    <app-title-fades
-      [color]="titleSeparatorColor"
-      [title]="mockEvent.shortTitle"
-    />
+    <app-title-fades [color]="titleSeparatorColor" [title]="event.shortTitle" />
   </div>
 
   <div class="ion-padding-horizontal">
-    <p class="long-title">{{mockEvent.longTitle}}</p>
+    <p class="long-title">{{event.longTitle}}</p>
 
     <div class="image-wrapper">
       <img
-        alt="{{mockEvent.shortTitle}}"
-        src="{{mockEvent.imageUrl}}"
+        alt="{{event.shortTitle}}"
+        src="{{event.imageUrl}}"
         class="event-image"
       />
       <app-like-icon></app-like-icon>
     </div>
 
     <div class="category-city-wrapper">
-      <span class="badge">{{mockEvent.category}}</span>
-      <span class="badge">{{mockEvent.contacts.region}}</span>
+      <span class="badge">{{event.category}}</span>
+      <span class="badge">{{event.contacts.region}}</span>
     </div>
 
-    <p class="long-description">{{mockEvent.longDescription}}</p>
+    <p class="long-description">{{event.longDescription}}</p>
   </div>
 
   <div class="ion-margin-vertical">
@@ -39,15 +36,13 @@
   <div class="ion-padding-horizontal">
     <div>
       <p class="info-title">Организатор на събитието:</p>
-      <p class="info-details">"{{mockEvent.creator}}"</p>
+      <p class="info-details">"{{event.creator}}"</p>
     </div>
 
     <div class="date-wrapper">
-      <p class="info-title">
-        {{mockEvent.dates.length > 1 ? 'Дати:' : 'Дата:'}}
-      </p>
+      <p class="info-title">{{event.dates.length > 1 ? 'Дати:' : 'Дата:'}}</p>
       <ion-grid class="ion-no-padding">
-        <ion-row *ngFor="let date of mockEvent.dates">
+        <ion-row *ngFor="let date of event.dates">
           <ion-col class="ion-text-justify" size="medium" class="info-details"
             >{{date.date}} г.</ion-col
           >
@@ -67,7 +62,7 @@
       <div class="prices-container">
         <div
           class="price-wrapper"
-          *ngFor="let visitorPrice of mockEvent.visitorPrices"
+          *ngFor="let visitorPrice of event.visitorPrices"
         >
           <div class="price-holder price-visitors">
             {{visitorPrice.price}} лв.
@@ -77,12 +72,12 @@
       </div>
     </div>
 
-    <div *ngIf="mockEvent.participantPrices">
+    <div *ngIf="event.participantPrices">
       <p class="info-title">Цени за участници:</p>
       <div class="prices-container">
         <div
           class="price-wrapper"
-          *ngFor="let participantPrice of mockEvent.participantPrices"
+          *ngFor="let participantPrice of event.participantPrices"
         >
           <div class="price-holder price-participants">
             {{participantPrice.price}} лв.
@@ -95,7 +90,7 @@
     <div class="location">
       <p class="info-title">Локация:</p>
       <p class="info-details">
-        {{mockEvent.contacts.region}}, {{mockEvent.contacts.address}}
+        {{event.contacts.region}}, {{event.contacts.address}}
       </p>
       <div class="google-maps-wrapper">
         <capacitor-google-map #map></capacitor-google-map>
@@ -106,13 +101,13 @@
       <p class="info-title">Контакти</p>
       <div class="contacts-wrapper">
         <div>
-          <a href="tel:{{mockEvent.contacts.phone}}" class="info-details"
-            >{{mockEvent.contacts.phone}}</a
+          <a href="tel:{{event.contacts.phone}}" class="info-details"
+            >{{event.contacts.phone}}</a
           >
         </div>
-        <div *ngIf="mockEvent.contacts.email">
-          <a href="mailto:{{mockEvent.contacts.email}}" class="info-details"
-            >{{mockEvent.contacts.email}}</a
+        <div *ngIf="event.contacts.email">
+          <a href="mailto:{{event.contacts.email}}" class="info-details"
+            >{{event.contacts.email}}</a
           >
         </div>
       </div>

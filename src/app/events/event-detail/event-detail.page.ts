@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { Event } from 'src/shared/interfaces/Event';
 import { getDayOfWeek } from 'src/shared/utils/date-utils';
 import { EventMarkerModalPage } from './event-marker-modal/event-marker-modal.page';
+import { EventsService } from 'src/shared/services/events.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -21,45 +22,29 @@ export class EventDetailPage implements OnInit {
   defaultHref: string = '/tabs/events';
   backButton: boolean = true;
 
-  mockEvent: Event = {
-    shortTitle: 'Кондофрей Драг 2023',
-    longTitle: '"Кондофрей Драг 2023" - село Кондофрей, летище "София-Запад"',
-    imageUrl: 'https://i.ytimg.com/vi/t52ovr-qdB0/maxresdefault.jpg',
-    shortDescription: 'Драг Рейсинг - Кондофрей [29-30 Април]',
-    longDescription: `Кондофрей Драг е най-голямото и вълнуващо драг състезание в България, което привлича състезатели и фенове от цялата страна и дори извън нея. Събитието включва разнообразие от класове, от улични автомобили до професионални драгстери. Зрителите могат да се насладят на страхотното състезание, както и на храна и напитки. Гледайте как мощни машини ускоряват от 0 до 60 за секунди и достигат скорости от над 200км/ч.`,
-    dates: [
-      { date: '15 декември 2023', startTime: '9:00', endTime: '19:30' },
-      { date: '16 декември 2023', startTime: '10:00', endTime: '16:30' },
-    ],
+  eventId: string = '';
+
+  event: Event = {
+    shortTitle: '',
+    longTitle: '',
+    imageUrl: '',
+    shortDescription: '',
+    longDescription: '',
+    dates: [],
     contacts: {
-      region: 'Кондофрей',
-      address: 'София Уест Еърпорт',
-      phone: '0888888888',
-      email: 'kondofrey@abv.bg',
-      coordinates: { lat: 42.448154, long: 22.963561 },
+      region: '',
+      address: '',
+      phone: '',
+      email: '',
+      coordinates: { lat: 0, long: 0 },
     },
-    category: 'Драг',
-    creator: 'Драг Клуб - София',
-    _id: '01',
+    category: '',
+    creator: '',
+    _id: '',
     isDeleted: false,
     likes: [],
-    visitorPrices: [
-      { price: 50, description: 'за 1 ден вход - събота или неделя' },
-      { price: 80, description: 'за 2 ден вход - събота и неделя' },
-      { price: 120, description: 'за 2 дена вход - събота и неделя + VIP' },
-    ],
-    participantPrices: [
-      { price: 150, description: 'за плащане по банков път' },
-      {
-        price: 120,
-        description: 'за плащане по банков път и член на “БМВ Клуб България”',
-      },
-      { price: 200, description: 'за плащане на място' },
-      {
-        price: 160,
-        description: 'за плащане на място и член на “БМВ Клуб България”',
-      },
-    ],
+    visitorPrices: [],
+    participantPrices: [],
   };
 
   titleSeparatorColor: string = 'orange';
@@ -73,7 +58,8 @@ export class EventDetailPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private navController: NavController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private eventService: EventsService
   ) {}
 
   ngOnInit() {
@@ -82,16 +68,17 @@ export class EventDetailPage implements OnInit {
         this.navController.navigateBack('/tabs/events');
         return;
       }
+      this.eventId = paramMap.get('eventId')!;
+    });
 
-      //   TODO: Fetch event from service
-      //   eventsService.getEvent(paramMap.get('eventId').subscribe({
-      //   next: (response) => {
-      //     this.mockEvent = response;
-      //   },
-      //   error: (error) => {
-      //     this.errorMessage = error.message;
-      //   },
-      // })
+    this.eventService.getEvent(this.eventId).subscribe({
+      next: (response) => {
+        this.event = response;
+        this.createMap();
+      },
+      error: (error) => {
+        this.errorMessage = error.message;
+      },
     });
   }
 
@@ -99,19 +86,15 @@ export class EventDetailPage implements OnInit {
     // TODO: add event to favourites via service
   }
 
-  ionViewDidEnter() {
-    this.createMap();
-  }
-
   async createMap() {
     this.map = await GoogleMap.create({
-      id: this.mockEvent._id,
+      id: this.event._id,
       apiKey: environment.mapsKey,
       element: this.mapRef.nativeElement,
       config: {
         center: {
-          lat: this.mockEvent.contacts.coordinates.lat,
-          lng: this.mockEvent.contacts.coordinates.long,
+          lat: Number(this.event.contacts.coordinates.lat),
+          lng: Number(this.event.contacts.coordinates.long),
         },
         zoom: 13,
       },
@@ -123,11 +106,11 @@ export class EventDetailPage implements OnInit {
   async addMarker() {
     const marker: Marker = {
       coordinate: {
-        lat: this.mockEvent.contacts.coordinates.lat,
-        lng: this.mockEvent.contacts.coordinates.long,
+        lat: Number(this.event.contacts.coordinates.lat),
+        lng: Number(this.event.contacts.coordinates.long),
       },
-      title: this.mockEvent.shortTitle,
-      snippet: `${this.mockEvent.contacts.region}, ${this.mockEvent.contacts.address}`,
+      title: this.event.shortTitle,
+      snippet: `${this.event.contacts.region}, ${this.event.contacts.address}`,
     };
 
     await this.map.addMarker(marker);
