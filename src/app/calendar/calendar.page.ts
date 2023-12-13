@@ -8,5 +8,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CalendarPage implements OnInit {
   constructor() {}
   @Input() pageTitle: string = 'Календар';
+  selectedDate: string = '';
+
+  handleSelectedDateChange(date: string) {
+    this.selectedDate = date;
+    console.log(this.selectedDate);
+  }
   ngOnInit() {}
 }

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-dates',
@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DatesComponent implements OnInit {
   constructor(private datePipe: DatePipe) {}
+
+  @Output() selectedDateChange: EventEmitter<string> =
+    new EventEmitter<string>();
 
   highlightedDates = [
     {
@@ -43,7 +46,7 @@ export class DatesComponent implements OnInit {
 
     if (formattedDate) {
       //TODO fetch data
-      console.log(formattedDate);
+      this.selectedDateChange.emit(formattedDate);
     }
   }
 }

@@ -8,6 +8,10 @@ ion-datetime {
   box-shadow: rgba(255, 116, 24, 0.3) 0px 0px 8px;
   border-radius: 4px;
   --ion-color-step-650: white;
+
+  .calendar-day.calendar-day-active {
+    color: black;
+  }
 }
 
 ion-datetime::part(calendar-day) {
@@ -17,10 +21,6 @@ ion-datetime::part(calendar-day) {
   line-height: 24px;
   border-radius: 4px;
   border: none;
-}
-
-ion-datetime::part(wheel-item active) {
-  color: rgb(128, 30, 171);
 }
 
 ion-datetime::part(calendar-day):focus {

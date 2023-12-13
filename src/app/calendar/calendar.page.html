@@ -1,4 +1,6 @@
 <ion-content>
   <app-header [headerTitle]="pageTitle" />
-  <app-dates />
+  <app-dates
+    (selectedDateChange)="handleSelectedDateChange($event)"
+  ></app-dates>
 </ion-content>
