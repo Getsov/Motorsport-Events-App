@@ -38,7 +38,7 @@ export class DatesComponent implements OnInit {
     const date = event.detail.value;
     const formattedDate = this.datePipe.transform(
       date,
-      'dd.MM.yy' || undefined
+      'dd.MM.yyyy' || undefined
     );
 
     if (formattedDate) {

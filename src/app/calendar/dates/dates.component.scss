@@ -19,12 +19,29 @@ ion-datetime::part(calendar-day) {
   border: none;
 }
 
+ion-datetime::part(wheel-item active) {
+  color: rgb(128, 30, 171);
+}
+
 ion-datetime::part(calendar-day):focus {
   background-color: rgba(255, 220, 35, 1);
   color: rgba(13, 13, 13, 1);
   font-weight: 600;
   border: none;
   border-color: none;
+}
+
+ion-datetime::part(wheel-item) {
+  font-weight: 300;
+  line-height: 24px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  margin: 2.5px 0;
+}
+
+ion-datetime::part(wheel-item active) {
+  color: rgb(128, 30, 171);
 }
 
 .calendar-action-buttons ion-item ion-label {
@@ -37,10 +54,12 @@ ion-datetime::part(calendar-day):focus {
 
 .calendar-info {
   width: 100%;
+  margin-top: 8px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: center;
 
   .existing-event-text,
   .marked-text {
