@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { EventsService } from 'src/shared/services/events.service';
 
 @Component({
   selector: 'app-calendar-list',
@@ -6,10 +7,11 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./calendar-list.component.scss'],
 })
 export class CalendarListComponent implements OnInit {
-  constructor() {}
+  constructor(private eventService: EventsService) {}
 
   @Input() selectedDate: string = '';
   @Input() titleColor: string = 'orange';
+  @Input() events: any = [];
 
   ngOnInit() {}
 }

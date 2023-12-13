@@ -1,3 +1,15 @@
 <section class="calendar-list" *ngIf="selectedDate">
-  <app-title-fades [title]="selectedDate" [color]="titleColor" />
+  <app-title-fades
+    *ngIf="events.length > 0"
+    [title]="selectedDate"
+    [color]="titleColor"
+  />
+
+  <div class="events-list" *ngIf="events.length > 0; else noEvents">
+    <app-event *ngFor="let event of events" [event]="event" />
+  </div>
 </section>
+
+<ng-template #noEvents>
+  <p>No events available for the selected date.</p>
+</ng-template>
