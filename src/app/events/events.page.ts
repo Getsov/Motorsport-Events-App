@@ -12,11 +12,9 @@ export class EventsPage implements OnInit {
   //TODO: CHANGE TYPE OF EVENTS!!!
   eventsData: any = [];
   DATE_PIPE_DEFAULT_OPTIONS: InjectionToken<DatePipeConfig> | undefined;
-  
+
   @Input() titleColor: string = 'yellow';
   @Input() titleText: string = 'Списък със събития';
-  
-  location = 'assets/icon/icon-location.svg';
 
   headerTitle: string = 'Събития';
   defaultHref: string = '/tabs/home';
@@ -26,13 +24,12 @@ export class EventsPage implements OnInit {
 
   ngOnInit(): void {
     this.eventService.getEvents().subscribe({
-      next: (events) =>{
+      next: (events) => {
         this.eventsData = events;
       },
       error: (err) => {
         console.log(err);
-        
-      }
-    })
+      },
+    });
   }
 }

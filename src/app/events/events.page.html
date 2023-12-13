@@ -1,38 +1,14 @@
 <ion-content [fullscreen]="true">
   <div class="page-title">
-    <app-header [headerTitle]="headerTitle" [backButton]="backButton" [defaultHref]="defaultHref"></app-header>
+    <app-header
+      [headerTitle]="headerTitle"
+      [backButton]="backButton"
+      [defaultHref]="defaultHref"
+    ></app-header>
     <app-search show-clear-button="focus" placeholder="Търсене"></app-search>
   </div>
   <app-title-fades [color]="titleColor" [title]="titleText" />
-  <div
-    class="event-container"
-    *ngFor="let event of eventsData"
-  >
-    <div class="image-wrapper">
-      <img
-        alt="{{event.shortTitle}}"
-        src="{{event.imageUrl}}"
-        class="event-image"
-      />
-      <p class="event-location">
-        <ion-icon
-          [src]="location"
-          name="location"
-          class="location-img"
-        ></ion-icon
-        >{{event.contacts.region}}
-      </p>
-      <p *ngIf="event.dates.length > 1" class="event-date">
-        От {{event.dates[0].startDate | date : 'dd.MM.yyyy'}} г. до {{event.dates[event.dates.length -
-        1].startDate | date :  'dd.MM.yyyy'}} г.
-      </p>
-      <p *ngIf="event.dates.length == 1" class="event-date">{{event.dates[0].startDate | date :  'dd.MM.yyyy'}} г.</p>
-      <app-like-icon class="event-like-btn"></app-like-icon>
-    </div>
-    <div class="event-info">
-      <h3 class="event-title">{{event.shortTitle}}</h3>
-      <p class="event-description">{{event.shortDescription}}</p>
-      <button class="more-btn" [routerLink] = "event._id" ><p>Прочети повече</p></button>
-    </div>
+  <div class="event-container" *ngFor="let event of eventsData">
+    <app-event [event]="event" />
   </div>
 </ion-content>

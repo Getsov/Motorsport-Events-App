@@ -3,4 +3,6 @@
   <app-dates
     (selectedDateChange)="handleSelectedDateChange($event)"
   ></app-dates>
+
+  <app-calendar-list [selectedDate]="selectedDate" />
 </ion-content>

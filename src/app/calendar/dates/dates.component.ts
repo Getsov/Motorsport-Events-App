@@ -45,7 +45,7 @@ export class DatesComponent implements OnInit {
     );
 
     if (formattedDate) {
-      //TODO fetch data
+      // send the selected date in parent component
       this.selectedDateChange.emit(formattedDate);
     }
   }

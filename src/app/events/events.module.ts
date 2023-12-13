@@ -10,9 +10,10 @@ import { EventMarkerModalPageModule } from './event-detail/event-marker-modal/ev
 import { SharedModule } from '../../shared/shared.module';
 import { SearchComponent } from './components/search/search.component';
 import { SelectComponent } from './components/select/select.component';
+import { EventComponent } from './event/event.component';
 
 @NgModule({
-  declarations: [EventsPage, SearchComponent, SelectComponent],
+  declarations: [EventsPage, SearchComponent, SelectComponent, EventComponent],
   imports: [
     CommonModule,
     ExploreContainerComponentModule,
@@ -21,6 +22,6 @@ import { SelectComponent } from './components/select/select.component';
     EventsPageRoutingModule,
     EventMarkerModalPageModule,
     SharedModule,
-  ]
+  ],
 })
 export class EventsPageModule {}

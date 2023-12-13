@@ -12,7 +12,6 @@ export class CalendarPage implements OnInit {
 
   handleSelectedDateChange(date: string) {
     this.selectedDate = date;
-    console.log(this.selectedDate);
   }
   ngOnInit() {}
 }
