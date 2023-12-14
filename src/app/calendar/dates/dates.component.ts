@@ -37,7 +37,7 @@ export class DatesComponent implements OnInit {
 
   ngOnInit() {}
 
-  onDateFocus(event: any) {
+  onDateChange(event: any) {
     const date = event.detail.value;
     const formattedDate = this.datePipe.transform(
       date,
@@ -45,7 +45,6 @@ export class DatesComponent implements OnInit {
     );
 
     if (formattedDate) {
-      // send the selected date in parent component
       this.selectedDateChange.emit(formattedDate);
     }
   }

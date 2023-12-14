@@ -23,4 +23,8 @@ export class EventsService {
     const url = `${baseUrl}/events?page=${page}&limit=${limit}`;
     return this.http.get(url);
   }
+
+  getMonthEvents(yearMonth: string) {
+    return this.http.get<Event>(`${baseUrl}/${yearMonth}`);
+  }
 }

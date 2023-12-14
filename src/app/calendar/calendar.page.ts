@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -6,12 +7,18 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./calendar.page.scss'],
 })
 export class CalendarPage implements OnInit {
-  constructor() {}
+  constructor(private datePipe: DatePipe) {}
+
   @Input() pageTitle: string = 'Календар';
-  selectedDate: string = '';
+  @Input() selectedDate: string = '';
+  @Input() selectedYearMonth: string = '';
 
   handleSelectedDateChange(date: string) {
     this.selectedDate = date;
+    // format the selectedYearMonth to specific string rerquired by the service.
+    this.selectedYearMonth = date.slice(3).replace('.', '/');
+    console.log(this.selectedYearMonth);
   }
+
   ngOnInit() {}
 }
