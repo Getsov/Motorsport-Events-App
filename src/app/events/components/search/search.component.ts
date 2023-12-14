@@ -16,22 +16,28 @@ export class SearchComponent implements OnInit {
   category: string = 'Категория';
   location: string = 'Регион';
 
-  regions: {} = Object.values(BulgarianRegions).filter((key) =>
-    isNaN(Number(key))
-  );
-
-  categories: {} = Object.values(Categories).filter((value) =>
+  regions: {} = Object.values(BulgarianRegions).filter((value) =>
     isNaN(Number(value))
   );
 
+  categories: any = Object.values(Categories).filter((value) =>
+    isNaN(Number(value))
+  )
   constructor(private eventService: EventsService) {}
 
   locationChangeHandler(event: any): void {
-    this.getEvents(event.detail.value);
+    const query = `region=${event.detail.value}`
+    this.getEvents(query);
   }
 
   categoryChangeHandler(event: any): void {
-    this.getEvents(event.detail.value);
+    const query = `category=${event.detail.value}`
+    this.getEvents(query);
+  }
+
+  searchChangeHandler(event: any): void {
+    const query = `search=${event.detail.value}`;
+    this.getEvents(query);
   }
 
   getEvents (query: string = "") {

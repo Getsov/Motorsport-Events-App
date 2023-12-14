@@ -1,6 +1,6 @@
 <div>
   <app-title-fades [color]="titleColor" [title]="titleText" />
-  <ion-searchbar placeholder="Търси събитие" class="custom"></ion-searchbar>
+  <ion-searchbar placeholder="Търси събитие" class="custom" (ionChange)="searchChangeHandler($event)"></ion-searchbar>
   <!-- <input type="text" class="custom-search" placeholder="Търси събитие"> -->
   <div class="select-section">
     <ion-list class="select">
@@ -27,7 +27,7 @@
           (ionChange)="locationChangeHandler($event)"
         >
           <ion-select-option value="">{{location}}</ion-select-option>
-          <ion-select-option *ngFor="let item of regions | keyvalue" [value]="item.value">{{ item.value }}</ion-select-option>
+          <ion-select-option *ngFor="let item of regions | keyvalue" [value]="item.key">{{ item.value }}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list>
