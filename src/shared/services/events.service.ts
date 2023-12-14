@@ -25,6 +25,6 @@ export class EventsService {
   }
 
   getMonthEvents(yearMonth: string) {
-    return this.http.get<Event>(`${baseUrl}/${yearMonth}`);
+    return this.http.get<Event>(`${baseUrl}/events/month/${yearMonth}`);
   }
 }

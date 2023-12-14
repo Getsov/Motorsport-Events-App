@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-dates',
@@ -12,30 +12,11 @@ export class DatesComponent implements OnInit {
   @Output() selectedDateChange: EventEmitter<string> =
     new EventEmitter<string>();
 
-  highlightedDates = [
-    {
-      date: '2023-12-05',
-      textColor: '#0D0D0D',
-      backgroundColor: '#FF7418',
-    },
-    {
-      date: '2023-12-10',
-      textColor: '#0D0D0D',
-      backgroundColor: '#FF7418',
-    },
-    {
-      date: '2023-12-20',
-      textColor: '#0D0D0D',
-      backgroundColor: '#FF7418',
-    },
-    {
-      date: '2023-12-23',
-      textColor: '#0D0D0D',
-      backgroundColor: '#FF7418',
-    },
-  ];
+  @Input() highlightedDates: [] = [];
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.highlightedDates);
+  }
 
   onDateChange(event: any) {
     const date = event.detail.value;

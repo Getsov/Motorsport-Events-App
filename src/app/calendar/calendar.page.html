@@ -1,8 +1,15 @@
 <ion-content>
+  <div class="loader" *ngIf="isLoading">
+    <p>loading...</p>
+  </div>
   <app-header [headerTitle]="pageTitle" />
-  <app-dates
-    (selectedDateChange)="handleSelectedDateChange($event)"
-  ></app-dates>
 
-  <app-calendar-list [selectedDate]="selectedDate" />
+  <ng-container *ngIf="!isLoading">
+    <app-dates
+      (selectedDateChange)="handleSelectedDateChange($event)"
+      [highlightedDates]="highlightedDates"
+    ></app-dates>
+
+    <app-calendar-list [selectedDate]="selectedDate" />
+  </ng-container>
 </ion-content>
