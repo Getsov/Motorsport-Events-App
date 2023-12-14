@@ -7,10 +7,10 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.component';
 import { EventsTypeListComponent } from './events-type-list/events-type-list.component';
-import { FooterComponent } from './footer/footer.component';
 import { SharedModule } from 'src/shared/shared.module';
 import { SlideCardComponent } from './slide-card/slide-card.component';
 import { GeneralTermsComponent } from './general-terms/general-terms.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   imports: [
@@ -24,11 +24,12 @@ import { GeneralTermsComponent } from './general-terms/general-terms.component';
   declarations: [
     HomePage,
     EventsTypeListComponent,
-    FooterComponent,
     UpcomingEventsComponent,
     SlideCardComponent,
     GeneralTermsComponent,
+    AboutUsComponent,
   ],
+
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomePageModule {}

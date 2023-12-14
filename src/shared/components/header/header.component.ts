@@ -13,6 +13,6 @@ export class HeaderComponent implements OnInit {
   constructor() {}
   notifications: number = 23;
   // TODO: fetch notifications
-  // TODO: add conditional rendering for notifications number container
+  // TODO: set limit to 99 after the fetch.
   ngOnInit() {}
 }

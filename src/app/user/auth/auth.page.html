@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" mode="ios">
   <ion-header
     [ngClass]="{'header-menu': true, 'login-background-image': authSegment === 'login', 'register-background-image': authSegment === 'register'}">
     <app-header [backButton]="backButton"></app-header>
@@ -30,6 +30,12 @@
         <p>
           Ако нямате създаден профил можете да се регистрирате от
           <span><a (click)="toggleAuthSegmentChange('register')">ТУК</a></span>
+        </p>
+      </div>
+      <div class="auth-redirect-link">
+        <p>
+          <!-- TODO: Redirect to forgotten password page -->
+          <span><a (click)="toggleAuthSegmentChange('register')">Забравена парола</a></span>
         </p>
       </div>
     </div>

@@ -5,18 +5,18 @@
   align-items: center;
   gap: 16px;
   background: #0d0d0d;
-  padding: 16px;
+  padding: 16px 16px 24px 16px;
   margin: 0;
 }
 
 .category-card {
   text-align: center;
   min-height: 160px;
-  width: 100%;
+  width: auto;
   background: transparent;
   box-shadow: 0 0 10.5px -5px #ffdc23;
   margin: 0;
-  padding: 4px;
+  padding: 4px 6px 0 6px;
 }
 
 .category-card.all {
@@ -25,23 +25,21 @@
 
 .category-image {
   width: 100%;
-  height: 127px;
+  height: auto;
   border-radius: 4px;
 }
 
 .category-title {
-  color: white;
+  letter-spacing: 0%;
+  margin: 4px 0;
   width: 100%;
-  height: 21px;
+  min-height: 21px;
   text-align: center;
-  position: absolute;
-  bottom: 4px;
-  left: 0;
-  font-weight: 500;
-  font-size: 14px;
   line-height: 21px;
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+  font-size: 14px;
 }

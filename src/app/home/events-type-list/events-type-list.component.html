@@ -6,27 +6,25 @@
     [routerLink]="['/tabs/events']"
     [queryParams]="{ sortBy: 'all' }"
   >
-    <ion-card-header class="category-title">Всички категории</ion-card-header>
     <img
       src="../../../assets//icon/category-icons/all.png"
       alt="Category Image"
       class="category-image"
     />
+    <p class="category-title">Всички категории</p>
   </ion-card>
 
   <ion-card
     class="category-card"
     *ngFor="let eventType of eventsType"
     [routerLink]="['/tabs/events']"
-    [queryParams]="{ sortBy: 'all' }"
+    [queryParams]="{ sortBy: eventType.type }"
   >
-    <ion-card-header class="category-title">
-      {{ eventType.type }}
-    </ion-card-header>
     <img
       [src]="eventType.imageUrl"
       alt="Category Image"
       class="category-image"
     />
+    <p class="category-title">{{ eventType.type }}</p>
   </ion-card>
 </ion-list>

@@ -8,6 +8,7 @@ import { SharedModule } from 'src/shared/shared.module';
 import { EventsPageModule } from './events/events.module';
 import { EventsService } from '../shared/services/events.service';
 import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,9 +18,13 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     SharedModule,
     EventsPageModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, EventsService],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    EventsService,
+    DatePipe,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

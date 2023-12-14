@@ -1,6 +1,6 @@
 export interface Event {
   shortTitle: string;
-  longTitle: string;
+  longTitle?: string;
   shortDescription: string;
   longDescription: string;
   visitorPrices: { price: number; description: string }[];
@@ -15,7 +15,7 @@ export interface Event {
     email: string;
   };
   category: string;
-  likedCount: number;
+  likes: [];
   creator: string;
   winners?: { name: string; vehicle: string; place: number }[];
   isDeleted: boolean;
