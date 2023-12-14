@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Event } from 'src/shared/interfaces/Event';
 import { EventsService } from 'src/shared/services/events.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class CalendarListComponent implements OnInit {
   @Input() selectedDate: string = '';
   @Input() titleColor: string = 'orange';
   @Input() events: any = [];
+  @Input() currentMonthEvents: Event[] = [];
 
   ngOnInit() {}
 }
