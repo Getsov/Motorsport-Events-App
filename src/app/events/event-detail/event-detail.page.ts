@@ -24,15 +24,28 @@ export class EventDetailPage implements OnInit {
 
   eventId: string = '';
 
-  event: any = {
+  event: Event = {
+    shortTitle: '',
+    shortDescription: '',
+    longDescription: '',
+    visitorPrices: [],
     dates: [],
+    imageUrl: '',
     contacts: {
       coordinates: {
         lat: 0,
         long: 0,
       },
+      region: '',
+      address: '',
+      phone: '',
+      email: '',
     },
+    category: '',
     likes: [],
+    creator: '',
+    isDeleted: false,
+    _id: '',
   };
 
   titleSeparatorColor: string = 'orange';
