@@ -64,10 +64,6 @@ export class EventDetailPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.setEvent();
-  }
-
-  setEvent() {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       if (!paramMap.has('eventId')) {
         this.navController.navigateBack('/tabs/events');
@@ -76,6 +72,10 @@ export class EventDetailPage implements OnInit {
       this.eventId = paramMap.get('eventId')!;
     });
 
+    this.setEvent();
+  }
+
+  setEvent() {
     this.eventService.getEvent(this.eventId).subscribe({
       next: (response) => {
         this.event = response;
