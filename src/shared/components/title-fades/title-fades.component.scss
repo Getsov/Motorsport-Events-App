@@ -1,12 +1,13 @@
 h2 {
-  padding-top: 7px;
   height: 32px;
-  font-weight: 700;
+  font-weight: 900;
   font-size: 18px;
   padding-left: 80px;
   line-height: 21.6px;
-  color: #0d0d0d;
+  color: rgba(13, 13, 13, 1);
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .fade {
@@ -45,13 +46,39 @@ div {
 }
 
 @media (min-width: 380px) {
-  .upcoming-events.orange-title .first-fade,
-  .upcoming-events.yellow-title .first-fade {
+  .first-fade {
     right: 93%;
   }
 
-  .upcoming-events.yellow-title .second-fade,
-  .upcoming-events.orange-title .second-fade {
+  .second-fade {
     right: 99%;
+  }
+}
+
+@media (min-width: 410px) {
+  .first-fade {
+    right: 94%;
+  }
+
+  .second-fade {
+    right: 100%;
+  }
+}
+
+@media (min-width: 460px) {
+  .first-fade {
+    right: 94.5%;
+  }
+}
+
+@media (min-width: 500px) {
+  .first-fade {
+    right: 95%;
+  }
+}
+
+@media (min-width: 550px) {
+  .first-fade {
+    right: 96%;
   }
 }

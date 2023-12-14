@@ -27,6 +27,7 @@
 
   label {
     font-weight: 600;
+    font-size: 14px;
   }
 
   .checked-toggle {
@@ -45,10 +46,10 @@ ion-select {
 
 ion-select::part(icon) {
   color: #ffffff;
-  content: url("../../../assets/icon/arrow-down.svg");
+  content: url("../../../assets/icon/arrow-up-down.svg");
   position: absolute;
-  right: 5%;
+  right: 1.6em;
   top: transform(translateY(-50%));
-  height: 24px;
-  width: 24px;
+  height: 20px;
+  width: 10px;
 }

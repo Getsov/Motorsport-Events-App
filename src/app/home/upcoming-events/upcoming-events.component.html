@@ -1,6 +1,15 @@
+<!-- TODO: what we will display then there are no dates? -->
+
 <app-title-fades [color]="titleColor" [title]="titleText" />
 
-<swiper-container [slidesPerView]="2.8" [spaceBetween]="16">
+<swiper-container
+  [slidesPerView]="1.7"
+  [spaceBetween]="16"
+  pagination="true"
+  pagination-dynamic-bullets="true"
+  (swiperslidechange)="swiperSlideChanged($event)"
+  [paginationCenteredSlides]="true"
+>
   <swiper-slide *ngFor="let event of upcomingEvents">
     <app-slide-card [event]="event" />
   </swiper-slide>

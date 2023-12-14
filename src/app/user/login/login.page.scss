@@ -1,0 +1,12 @@
+ion-input .ionicon {
+  fill: #ffffff;
+  // position: absolute;
+  // right: 5%;
+  // top: transform(translateY(-50%));
+  // height: 20px;
+  // width: 10px;
+}
+
+ion-input::part(icon) {
+  color: red; /* Change the color to your desired color */
+}
