@@ -140,29 +140,19 @@ select {
 
 /* Event page search */
 
-.searchbar-input-container.sc-ion-searchbar-ios {
+.searchbar-input-container.sc-ion-searchbar-md {
   position: relative;
-  right: 35px;
+  right: 14px;
   min-height: 0;
 }
 
-.searchbar-input.sc-ion-searchbar-ios {
-  height: 24px;
-  padding: 0 0 0 34px;
+.searchbar-input.sc-ion-searchbar-md {
+  height: 42px;
+  padding: 0 0 0 46px;
 }
-
-.searchbar-search-icon.sc-ion-searchbar-ios.ios.hydrated {
-  width: 20px;
-  height: 20px;
+.searchbar-clear-button.sc-ion-searchbar-md{
   position: absolute;
-  top: 3px;
-}
-.searchbar-clear-button.sc-ion-searchbar-ios{
-  position: absolute;
-  right: -43px;
-}
-.item.ios.item-lines-default.item-fill-none.item-has-interactive-control.in-list.ion-activatable.ion-focusable.hydrated{
-  width: 100%;
+  right: -19px;
 }
 ion-select:host{
   border-style: none !important;
