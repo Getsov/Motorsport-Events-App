@@ -26,7 +26,6 @@ export class CalendarPage implements OnInit {
     this.selectedDate = date;
     // Format the selectedYearMonth to a specific string required by the service.
     this.selectedYearMonth = date.slice(3).replace('.', '/');
-    console.log(this.selectedYearMonth);
   }
 
   ngOnInit() {

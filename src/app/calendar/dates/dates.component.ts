@@ -14,9 +14,7 @@ export class DatesComponent implements OnInit {
 
   @Input() highlightedDates: [] = [];
 
-  ngOnInit() {
-    console.log(this.highlightedDates);
-  }
+  ngOnInit() {}
 
   onDateChange(event: any) {
     const date = event.detail.value;

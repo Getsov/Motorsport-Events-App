@@ -1,8 +1,8 @@
 <section class="calendar-list" *ngIf="selectedDate">
-  <ng-container *ngIf="currentMonthEvents.length > 0; else noEvents">
+  <ng-container *ngIf="filteredDates.length > 0; else noEvents">
     <app-title-fades [title]="selectedDate" [color]="titleColor" />
 
-    <div class="events-list" *ngFor="let event of currentMonthEvents">
+    <div class="events-list" *ngFor="let event of filteredDates">
       <app-event [event]="event" />
     </div>
   </ng-container>
