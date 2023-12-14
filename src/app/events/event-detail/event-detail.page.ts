@@ -24,27 +24,15 @@ export class EventDetailPage implements OnInit {
 
   eventId: string = '';
 
-  event: Event = {
-    shortTitle: '',
-    longTitle: '',
-    imageUrl: '',
-    shortDescription: '',
-    longDescription: '',
+  event: any = {
     dates: [],
     contacts: {
-      region: '',
-      address: '',
-      phone: '',
-      email: '',
-      coordinates: { lat: 0, long: 0 },
+      coordinates: {
+        lat: 0,
+        long: 0,
+      },
     },
-    category: '',
-    creator: '',
-    _id: '',
-    isDeleted: false,
     likes: [],
-    visitorPrices: [],
-    participantPrices: [],
   };
 
   titleSeparatorColor: string = 'orange';
@@ -63,6 +51,10 @@ export class EventDetailPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.setEvent();
+  }
+
+  setEvent() {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       if (!paramMap.has('eventId')) {
         this.navController.navigateBack('/tabs/events');
