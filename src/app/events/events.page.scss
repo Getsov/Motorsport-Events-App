@@ -5,6 +5,7 @@
   padding: 8px;
   width: 91%;
   margin: 16px auto;
+  z-index: -1;
 }
 
 h3 {
@@ -26,6 +27,11 @@ h3 {
 }
 .image-wrapper {
   position: relative;
+}
+.image-wrapper img{
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .event-image {
@@ -67,13 +73,16 @@ h3 {
 }
 
 .event-like-btn {
-  position: absolute;
+  /* position: absolute;
   font-size: 30px;
   color: #f44336;
   top: 4px;
-  right: 4px;
+  right: 4px; */
+  z-index: 1000;
 }
-
+.event-like-btn div img{
+  min-width: 28px;
+}
 .event-info {
   position: relative;
 }
