@@ -14,7 +14,7 @@ export class EventsService {
     
     getEvents(query:string = ''): Observable<Event[]>{
       if(query){
-        return this.http.get<Event[]>(`${baseUrl}/events/category/${query}`);
+        return this.http.get<Event[]>(`${baseUrl}/events?${query}`);
       }
       return this.http.get<Event[]>(`${baseUrl}/events/${query}`);
     }
