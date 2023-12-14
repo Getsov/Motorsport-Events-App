@@ -1,6 +1,5 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { Event } from 'src/shared/interfaces/Event';
 import { EventsService } from 'src/shared/services/events.service';
 
 @Component({
@@ -16,7 +15,7 @@ export class CalendarPage implements OnInit {
 
   @Input() pageTitle: string = 'Календар';
   @Input() selectedDate: string = '';
-  @Input() selectedYearMonth: string = '';
+  selectedYearMonth: any = '';
   currentYearMonth: string = '';
   highlightedDates: [] = [];
   currentMonthEvents: any = [];
@@ -25,16 +24,23 @@ export class CalendarPage implements OnInit {
   handleSelectedDateChange(date: string) {
     this.selectedDate = date;
     // Format the selectedYearMonth to a specific string required by the service.
-    this.selectedYearMonth = date.slice(3).replace('.', '/');
+    this.selectedYearMonth = date.split('.').reverse().slice(0, 2).join('/');
+
+    if (this.selectedYearMonth !== this.currentYearMonth) {
+      // TODO change the highlited events and events object
+    }
   }
 
   ngOnInit() {
     const currentDate = new Date();
     this.currentYearMonth = this.datePipe.transform(currentDate, 'yyyy/MM')!;
+    this.loadEvents(this.currentYearMonth);
+  }
 
-    this.isLoading = true; // Set isLoading to true when the data retrieval process starts
+  private loadEvents(yearMonth: string) {
+    this.isLoading = true;
 
-    this.eventService.getMonthEvents(this.currentYearMonth).subscribe({
+    this.eventService.getMonthEvents(yearMonth).subscribe({
       next: (response) => {
         this.currentMonthEvents = response;
 
@@ -46,7 +52,7 @@ export class CalendarPage implements OnInit {
                 'yyyy-MM-dd'
               );
               return {
-                date: formattedDate || '', // Ensure a non-null value for 'date'
+                date: formattedDate || '',
                 textColor: '#0D0D0D',
                 backgroundColor: '#FF7418',
               };
@@ -54,11 +60,11 @@ export class CalendarPage implements OnInit {
           }
         );
 
-        this.isLoading = false; // Set isLoading to false after successful data retrieval
+        this.isLoading = false;
       },
       error: (error) => {
         console.log(error);
-        this.isLoading = false; // Set isLoading to false if an error occurs
+        this.isLoading = false;
       },
     });
   }
