@@ -11,6 +11,13 @@ ion-searchbar.custom {
   --clear-button-color: #fff;
   --placeholder-opacity: 1;
 }
+ion-searchbar.custom:hover{
+  border-color: #ff7418;
+  /* --color: #ff7418; */
+  --icon-color: #ff7418;
+  --placeholder-color: transparent;
+  --clear-button-color: #ff7418;
+}
 .select-section {
   max-width: 91%;
   margin: 16px auto;
@@ -35,6 +42,9 @@ ion-searchbar.custom {
   gap: 12px;
   border-bottom: 1px solid #fff;
 }
+.select:hover{
+  border-color: #ff7418;
+}
 ion-select::part(placeholder) {
   color: #fff;
   width: 70px;
@@ -42,13 +52,28 @@ ion-select::part(placeholder) {
   opacity: 1;
   font-size: 14px;
 }
+/* ion-select::part(placeholder):hover{
+  color:#ff7418;
+} */
 ion-select::part(container) {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
+ion-select::part(container):active{
+  --color:#ff7418;
+  --placeholder-color:#ff7418;
 
+}
 ion-select::part(icon) {
   color: #fff;
   opacity: 1;
+}
+
+/* ion-select::part(icon):hover{
+  color: #ff7418;
+} */
+
+ion-select::part(content){
+  background-color: #ff7418;
 }
