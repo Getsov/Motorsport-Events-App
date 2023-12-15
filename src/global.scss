@@ -140,23 +140,24 @@ select {
 
 /* Event page search */
 
-.searchbar-input-container.sc-ion-searchbar-ios {
+.searchbar-input-container.sc-ion-searchbar-md {
+  position: relative;
+  right: 14px;
+  min-height: 0;
+}
+
+.searchbar-input.sc-ion-searchbar-md {
+  height: 42px;
+  padding: 0 0 0 46px;
+}
+.searchbar-clear-button.sc-ion-searchbar-md{
   position: absolute;
-  display: flex;
-  align-items: center;
+  right: -19px;
+}
+ion-select:host{
+  border-style: none !important;
 }
 
-.searchbar-input.sc-ion-searchbar-ios {
-  display: block;
-  position: relative;
-  right: 30px;
-}
-
-.searchbar-search-icon.sc-ion-searchbar-ios.ios.hydrated {
-  position: relative;
-  left: -14px;
-  height: 20px;
-}
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
