@@ -8,6 +8,8 @@ import { EventCreatePageRoutingModule } from './event-create-routing.module';
 
 import { EventCreatePage } from './event-create.page';
 import { SharedModule } from 'src/shared/shared.module';
+import { ImagePickerComponent } from './image-picker/image-picker.component';
+import { SelectDatesComponent } from './select-dates/select-dates.component';
 
 @NgModule({
   imports: [
@@ -17,6 +19,6 @@ import { SharedModule } from 'src/shared/shared.module';
     EventCreatePageRoutingModule,
     SharedModule,
   ],
-  declarations: [EventCreatePage],
+  declarations: [EventCreatePage, ImagePickerComponent, SelectDatesComponent],
 })
 export class EventCreatePageModule {}

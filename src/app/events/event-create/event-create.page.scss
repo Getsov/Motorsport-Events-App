@@ -1,0 +1,29 @@
+.create-event-container {
+  .image-upload-wrapper {
+    margin: 1em 0 1.5em 0;
+  }
+  .description-inputs-wrapper {
+    .event-input {
+      ion-input {
+        --border-color: #fff;
+        --padding-start: 1em;
+        height: 56px;
+      }
+
+      ::ng-deep .counter {
+        color: #fff;
+      }
+    }
+  }
+
+  .event-date-wrapper {
+    margin-top: 42px;
+  }
+
+  .form-buttons-wrapper {
+    margin-top: 3em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+}

@@ -5,14 +5,98 @@
     [defaultHref]="defaultHref"
   ></app-header>
 
-  <div class="ion-margin-vertical">
-    <app-title-fades
-      [color]="titleSeparatorColor"
-      [title]="separatorPictureTitle"
-    />
-  </div>
+  <div class="create-event-container">
+    <form
+      #createEventForm="ngForm"
+      (submit)="onCreateEventSubmitClick(createEventForm)"
+    >
+      <!-- event image upload -->
+      <div class="ion-margin-top">
+        <app-title-fades
+          [color]="titleSeparatorColor"
+          [title]="separatorPictureTitle"
+        />
+        <div class="image-upload-wrapper ion-padding-horizontal">
+          <app-image-picker></app-image-picker>
+        </div>
+      </div>
 
-  <div class="image-upload-wrapper ion-padding-horizontal">
-    <app-image-picker></app-image-picker>
+      <!-- event description -->
+      <div class="description-inputs-wrapper">
+        <app-title-fades
+          [color]="descriptionSeparatorColor"
+          [title]="descriptionSeparatorTitle"
+          class="description-separator"
+        />
+
+        <div class="ion-padding-horizontal event-input">
+          <!-- short title input -->
+          <ion-input
+            label="Кратко заглавие*"
+            labelPlacement="floating"
+            [counter]="true"
+            maxlength="20"
+          ></ion-input>
+
+          <!-- long title input -->
+          <ion-input
+            label="Дълго заглавие"
+            labelPlacement="floating"
+            [counter]="true"
+            maxlength="80"
+          ></ion-input>
+
+          <!-- short description -->
+          <ion-input
+            label="Кратко описание*"
+            labelPlacement="floating"
+            [counter]="true"
+            maxlength="140"
+          ></ion-input>
+
+          <!-- long description -->
+          <ion-input
+            label="Дълго описание"
+            labelPlacement="floating"
+            [counter]="true"
+            maxlength="500"
+          ></ion-input>
+
+          <!-- event category waiting for Niki's components so i can reuse them here -->
+
+          <!-- event region waiting for Niki's components so i can reuse them here-->
+
+          <!-- address-->
+          <ion-input
+            label="Адрес на събитието*"
+            labelPlacement="floating"
+            [counter]="true"
+            maxlength="80"
+          ></ion-input>
+        </div>
+      </div>
+
+      <!-- event date -->
+      <div class="event-date-wrapper">
+        <app-title-fades
+          [color]="dateSeparatorColor"
+          [title]="dateSeparatorTitle"
+        />
+        <div class="ion-padding-horizontal event-input">
+          <!-- select dates -->
+          <app-select-dates></app-select-dates>
+        </div>
+      </div>
+
+      <!-- submit button -->
+      <div class="form-buttons-wrapper ion-padding-horizontal">
+        <div class="main-button-wrapper">
+          <button class="main-button">Създай събитие</button>
+        </div>
+        <div class="secondary-button-wrapper">
+          <button class="secondary-button">Откажи</button>
+        </div>
+      </div>
+    </form>
   </div>
 </ion-content>
