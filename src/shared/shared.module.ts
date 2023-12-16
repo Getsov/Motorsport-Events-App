@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ImagePickerComponent } from './components/image-picker/image-picker.component';
+import { ImagePickerComponent } from '../app/events/event-create/image-picker/image-picker.component';
 
 @NgModule({
   imports: [
