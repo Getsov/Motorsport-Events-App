@@ -1,0 +1,38 @@
+<div *ngFor="let date of dates; let i = index" class="date-input-wrapper">
+  <!-- Date Picker -->
+  <ion-input
+    type="date"
+    [(ngModel)]="date.date"
+    name="date"
+    required
+  ></ion-input>
+
+  <div class="event-hour-wrapper">
+    <!-- Start Time Picker -->
+    <ion-input
+      type="time"
+      [(ngModel)]="date.startTime"
+      name="startTime"
+      required
+    ></ion-input>
+
+    <!-- End Time Picker -->
+    <ion-input
+      type="time"
+      [(ngModel)]="date.endTime"
+      name="endTime"
+      required
+    ></ion-input>
+  </div>
+  <!-- Add new date and delete buttons -->
+  <div class="buttons-wrapper">
+    <div class="main-button-wrapper">
+      <button (click)="addDate()" class="main-button">Добави дата</button>
+    </div>
+
+    <!-- do we need to show the delete button when it is only 1 date picker? If yes -> *ngIf="dates.length > 1" -->
+    <div class="secondary-button-wrapper">
+      <button (click)="removeDate(i)" class="secondary-button">Изтрий</button>
+    </div>
+  </div>
+</div>
