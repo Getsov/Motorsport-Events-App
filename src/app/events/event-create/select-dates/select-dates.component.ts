@@ -10,7 +10,9 @@ export class SelectDatesComponent implements OnInit {
 
   ngOnInit() {}
 
-  dates = [{ date: '', startTime: '', endTime: '' }];
+  dates: { date: string; startTime: string; endTime: string }[] = [
+    { date: '', startTime: '', endTime: '' },
+  ];
 
   addDate() {
     this.dates.push({ date: '', startTime: '', endTime: '' });

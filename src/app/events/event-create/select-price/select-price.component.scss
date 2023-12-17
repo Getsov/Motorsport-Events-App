@@ -1,0 +1,42 @@
+.prices-wrapper {
+  margin-top: 0.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+
+  .price-heading {
+    color: #ffdc23;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .event-input {
+    ion-input {
+      --padding-start: 1em;
+      border-bottom: 1px solid #fff;
+    }
+    .prices-inputs-wrapper {
+      margin-bottom: 1.5em;
+      .price-input {
+        width: calc(100% - 50% - 1em);
+      }
+    }
+    .buttons-wrapper {
+      display: flex;
+      gap: 1em;
+      .main-button-wrapper {
+        background-color: #ffdc23;
+        .buttons-wrapper {
+          display: flex;
+          gap: 1em;
+        }
+      }
+
+      .secondary-button-wrapper {
+        border: 2px solid #ffdc23;
+        .secondary-button {
+          color: #ffdc23;
+        }
+      }
+    }
+  }
+}
