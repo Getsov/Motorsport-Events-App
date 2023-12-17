@@ -17,18 +17,8 @@ import { ImagePickerComponent } from '../app/events/event-create/image-picker/im
     IonicModule,
     RouterModule,
   ],
-  declarations: [
-    LikeIconComponent,
-    TitleFadesComponent,
-    HeaderComponent,
-    ImagePickerComponent,
-  ],
+  declarations: [LikeIconComponent, TitleFadesComponent, HeaderComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  exports: [
-    LikeIconComponent,
-    TitleFadesComponent,
-    HeaderComponent,
-    ImagePickerComponent,
-  ],
+  exports: [LikeIconComponent, TitleFadesComponent, HeaderComponent],
 })
 export class SharedModule {}
