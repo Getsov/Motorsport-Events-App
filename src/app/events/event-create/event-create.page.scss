@@ -13,11 +13,20 @@
       ::ng-deep .counter {
         color: #fff;
       }
+      ion-input.has-focus {
+        --border-color: #ff7418;
+        .label-text {
+          color: #ff7418;
+        }
+        .native-input {
+          caret-color: #fff;
+        }
+      }
     }
   }
 
   .event-date-wrapper {
-    margin-top: 42px;
+    margin: 42px 0 1.5em 0;
   }
 
   .form-buttons-wrapper {

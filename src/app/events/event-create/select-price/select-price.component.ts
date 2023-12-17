@@ -6,9 +6,6 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./select-price.component.scss'],
 })
 export class SelectPriceComponent implements OnInit {
-  // @Input() visitorPrices = [{ price: '', description: '' }];
-  // @Input() participantPrices = [{ price: '', description: '' }];
-
   @Input() visitorPrices!: { price: string; description: string }[];
   @Input() participantPrices!: { price: string; description: string }[];
 

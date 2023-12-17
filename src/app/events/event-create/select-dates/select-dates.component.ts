@@ -6,17 +6,13 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./select-dates.component.scss'],
 })
 export class SelectDatesComponent implements OnInit {
+  @Input() dates!: { date: string; startTime: string; endTime: string }[];
   constructor() {}
 
   ngOnInit() {}
 
-  dates: { date: string; startTime: string; endTime: string }[] = [
-    { date: '', startTime: '', endTime: '' },
-  ];
-
   addDate() {
     this.dates.push({ date: '', startTime: '', endTime: '' });
-    console.log(this.dates);
   }
 
   removeDate(index: number) {
