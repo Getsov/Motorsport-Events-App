@@ -24,6 +24,10 @@ export class EventCreatePage implements OnInit {
   dateSeparatorColor: string = 'orange';
   dateSeparatorTitle: string = 'Дата и час';
 
+  // prices separator settings
+  priceSeparatorColor: string = 'yellow';
+  priceSeparatorTitle: string = 'Цени';
+
   constructor() {}
 
   ngOnInit() {}
