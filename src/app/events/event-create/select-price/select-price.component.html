@@ -42,8 +42,43 @@
   <div>
     <p class="price-heading">За участници</p>
     <div class="participant-price-wrapper">
-      <div *ngFor="let participantPrice of participantPrices">
-        <!-- todo -->
+      <div *ngFor="let participantPrice of participantPrices; let i = index">
+        <div class="event-input">
+          <div class="prices-inputs-wrapper">
+            <ion-input
+              type="number"
+              fill="solid"
+              label="Цена (лв.)"
+              labelPlacement="floating"
+              class="price-input"
+            ></ion-input>
+            <ion-input
+              type="text"
+              fill="solid"
+              label="Описание на ценовото предложение"
+              labelPlacement="floating"
+              class="price-description-input"
+            ></ion-input>
+          </div>
+          <!-- Add new price and delete buttons -->
+          <div class="buttons-wrapper">
+            <div class="main-button-wrapper">
+              <button (click)="addParticipantPrice()" class="main-button">
+                Добави опция
+              </button>
+            </div>
+
+            <!-- do we need to show the delete button when it is only 1 date picker? If yes -> *ngIf="dates.length > 1" -->
+            <div class="secondary-button-wrapper">
+              <button
+                (click)="removeParticipantPrice(i)"
+                class="secondary-button"
+              >
+                Изтрий
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
