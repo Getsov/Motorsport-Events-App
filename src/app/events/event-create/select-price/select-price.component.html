@@ -11,6 +11,7 @@
               label="Цена (лв.)"
               labelPlacement="floating"
               class="price-input"
+              [(ngModel)]="visitorPrices[i].price"
             ></ion-input>
             <ion-input
               type="text"
@@ -18,21 +19,22 @@
               label="Описание на ценовото предложение"
               labelPlacement="floating"
               class="price-description-input"
+              [(ngModel)]="visitorPrices[i].description"
             ></ion-input>
           </div>
           <!-- Add new price and delete buttons -->
           <div class="buttons-wrapper">
             <div class="main-button-wrapper">
-              <button (click)="addVisitorPrice()" class="main-button">
+              <a (click)="addVisitorPrice()" class="main-button">
                 Добави опция
-              </button>
+              </a>
             </div>
 
             <!-- do we need to show the delete button when it is only 1 date picker? If yes -> *ngIf="dates.length > 1" -->
             <div class="secondary-button-wrapper">
-              <button (click)="removeVisitorPrice(i)" class="secondary-button">
+              <a (click)="removeVisitorPrice(i)" class="secondary-button">
                 Изтрий
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -51,6 +53,7 @@
               label="Цена (лв.)"
               labelPlacement="floating"
               class="price-input"
+              [(ngModel)]="participantPrices[i].price"
             ></ion-input>
             <ion-input
               type="text"
@@ -58,24 +61,22 @@
               label="Описание на ценовото предложение"
               labelPlacement="floating"
               class="price-description-input"
+              [(ngModel)]="participantPrices[i].description"
             ></ion-input>
           </div>
           <!-- Add new price and delete buttons -->
           <div class="buttons-wrapper">
             <div class="main-button-wrapper">
-              <button (click)="addParticipantPrice()" class="main-button">
+              <a (click)="addParticipantPrice()" class="main-button">
                 Добави опция
-              </button>
+              </a>
             </div>
 
             <!-- do we need to show the delete button when it is only 1 date picker? If yes -> *ngIf="dates.length > 1" -->
             <div class="secondary-button-wrapper">
-              <button
-                (click)="removeParticipantPrice(i)"
-                class="secondary-button"
-              >
+              <a (click)="removeParticipantPrice(i)" class="secondary-button">
                 Изтрий
-              </button>
+              </a>
             </div>
           </div>
         </div>

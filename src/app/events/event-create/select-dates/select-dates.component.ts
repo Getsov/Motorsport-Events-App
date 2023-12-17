@@ -16,6 +16,7 @@ export class SelectDatesComponent implements OnInit {
 
   addDate() {
     this.dates.push({ date: '', startTime: '', endTime: '' });
+    console.log(this.dates);
   }
 
   removeDate(index: number) {

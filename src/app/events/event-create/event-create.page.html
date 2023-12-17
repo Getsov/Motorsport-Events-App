@@ -94,13 +94,16 @@
           [color]="priceSeparatorColor"
           [title]="priceSeparatorTitle"
         />
-        <app-select-price></app-select-price>
+        <app-select-price
+          [visitorPrices]="visitorPrices"
+          [participantPrices]="participantPrices"
+        ></app-select-price>
       </div>
 
       <!-- submit button -->
       <div class="form-buttons-wrapper ion-padding-horizontal">
         <div class="main-button-wrapper">
-          <button class="main-button">Създай събитие</button>
+          <button class="main-button" type="submit">Създай събитие</button>
         </div>
         <div class="secondary-button-wrapper">
           <button class="secondary-button">Откажи</button>

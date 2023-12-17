@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-select-price',
@@ -6,15 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./select-price.component.scss'],
 })
 export class SelectPriceComponent implements OnInit {
-  visitorPrices = [{ price: 0, description: '' }];
-  participantPrices = [{ price: 0, description: '' }];
+  // @Input() visitorPrices = [{ price: '', description: '' }];
+  // @Input() participantPrices = [{ price: '', description: '' }];
+
+  @Input() visitorPrices!: { price: string; description: string }[];
+  @Input() participantPrices!: { price: string; description: string }[];
 
   constructor() {}
 
   ngOnInit() {}
 
   addVisitorPrice() {
-    this.visitorPrices.push({ price: 0, description: '' });
+    this.visitorPrices.push({ price: '', description: '' });
   }
 
   removeVisitorPrice(index: number) {
@@ -24,7 +27,7 @@ export class SelectPriceComponent implements OnInit {
   }
 
   addParticipantPrice() {
-    this.participantPrices.push({ price: 0, description: '' });
+    this.participantPrices.push({ price: '', description: '' });
   }
 
   removeParticipantPrice(index: number) {

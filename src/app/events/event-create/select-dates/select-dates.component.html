@@ -2,7 +2,7 @@
   <!-- Date Picker -->
   <ion-input
     type="date"
-    [(ngModel)]="date.date"
+    [(ngModel)]="dates[i].date"
     name="date"
     required
   ></ion-input>
@@ -11,7 +11,7 @@
     <!-- Start Time Picker -->
     <ion-input
       type="time"
-      [(ngModel)]="date.startTime"
+      [(ngModel)]="dates[i].startTime"
       name="startTime"
       required
     ></ion-input>
@@ -19,7 +19,7 @@
     <!-- End Time Picker -->
     <ion-input
       type="time"
-      [(ngModel)]="date.endTime"
+      [(ngModel)]="dates[i].endTime"
       name="endTime"
       required
     ></ion-input>
@@ -27,12 +27,12 @@
   <!-- Add new date and delete buttons -->
   <div class="buttons-wrapper">
     <div class="main-button-wrapper">
-      <button (click)="addDate()" class="main-button">Добави дата</button>
+      <a (click)="addDate()" class="main-button">Добави дата</a>
     </div>
 
     <!-- do we need to show the delete button when it is only 1 date picker? If yes -> *ngIf="dates.length > 1" -->
     <div class="secondary-button-wrapper">
-      <button (click)="removeDate(i)" class="secondary-button">Изтрий</button>
+      <a (click)="removeDate(i)" class="secondary-button">Изтрий</a>
     </div>
   </div>
 </div>
