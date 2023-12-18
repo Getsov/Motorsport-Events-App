@@ -8,7 +8,7 @@
     <app-search show-clear-button="focus" placeholder="Търсене"></app-search>
   </div>
   <app-title-fades [color]="titleColor" [title]="titleText" />
-  <div class="event-container" *ngFor="let event of eventsData">
+  <ng-container *ngFor="let event of eventsData">
     <app-event [event]="event" />
-  </div>
+  </ng-container>
 </ion-content>
