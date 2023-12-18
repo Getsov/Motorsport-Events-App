@@ -24,10 +24,15 @@ export class CalendarPage implements OnInit {
   handleSelectedDateChange(date: string) {
     this.selectedDate = date;
     // Format the selectedYearMonth to a specific string required by the service.
-    this.selectedYearMonth = date.split('.').reverse().slice(0, 2).join('/');
+    const newSelectedYearMonth = date
+      .split('.')
+      .reverse()
+      .slice(0, 2)
+      .join('/');
 
-    if (this.selectedYearMonth !== this.currentYearMonth) {
-      // TODO change the highlited events and events object
+    if (newSelectedYearMonth !== this.currentYearMonth) {
+      this.currentYearMonth = newSelectedYearMonth;
+      this.loadEvents(this.currentYearMonth);
     }
   }
 
