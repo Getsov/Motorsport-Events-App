@@ -10,10 +10,13 @@ const { baseUrl } = environment;
 })
 export class EventsService {
   constructor(private http: HttpClient) {}
-
-  getEvents() {
-    return this.http.get<Event>(`${baseUrl}/events`);
-  }
+    
+    getEvents(query:string = ''): Observable<Event[]>{
+      if(query){
+        return this.http.get<Event[]>(`${baseUrl}/events?${query}`);
+      }
+      return this.http.get<Event[]>(`${baseUrl}/events`);
+    }
 
   getEvent(id: string) {
     return this.http.get<Event>(`${baseUrl}/events/${id}`);

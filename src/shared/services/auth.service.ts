@@ -10,7 +10,9 @@ const { baseUrl } = environment;
   providedIn: 'root',
 })
 export class AuthService {
-  private userDataSubject = new BehaviorSubject<AuthResponseData | null>(null);
+  private userDataSubject = new BehaviorSubject<AuthResponseData | null>(
+    this.setInitialUserDataSubject()
+  );
   userData$ = this.userDataSubject.asObservable();
 
   constructor(private http: HttpClient) {}
@@ -90,5 +92,15 @@ export class AuthService {
   logout(): void {
     this.userDataSubject.next(null);
     localStorage.removeItem('authData');
+  }
+
+  setInitialUserDataSubject(): AuthResponseData | null {
+    const storedData = localStorage.getItem('authData');
+
+    if (storedData !== null) {
+      return JSON.parse(storedData);
+    }
+
+    return null;
   }
 }

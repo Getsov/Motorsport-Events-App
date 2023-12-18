@@ -12,8 +12,9 @@ import { SearchComponent } from './components/search/search.component';
 import { SelectComponent } from './components/select/select.component';
 import { EventComponent } from '../../shared/components/event/event.component';
 
+
 @NgModule({
-  declarations: [EventsPage, SearchComponent, SelectComponent],
+  declarations: [EventsPage, SearchComponent],
   imports: [
     CommonModule,
     ExploreContainerComponentModule,
