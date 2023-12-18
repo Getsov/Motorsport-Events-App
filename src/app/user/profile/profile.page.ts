@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import BulgarianRegions from 'src/shared/data/regions';
 import { User } from 'src/shared/interfaces/User';
 import { AuthService } from 'src/shared/services/auth.service';
@@ -10,12 +11,18 @@ import { AuthService } from 'src/shared/services/auth.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  user: any = {email: '', firstName: '', lastName: '', region: ''};
+  user: User | null = {
+    email: '', firstName: '', lastName: '', region: '',
+    role: '',
+    organizatorName: '',
+    phone: '',
+    isDeleted: false
+  };
   bulgarianRegions: string[] = Object.keys(BulgarianRegions).filter((v) =>
     isNaN(Number(v))
   );
-  editResponseError!: string;
-  region!: string;
+  editResponseError: string  = '';
+  region: string = '';
   password: string = '***********';
 
   onRegionChange(region: string) {
@@ -27,11 +34,11 @@ export class ProfilePage implements OnInit {
       return;
     }
 
-    const { email, password, firstName, lastName } = userEditForm.value;
+    const { email, password, firstName, lastName, organizatorName, phone} = userEditForm.value;
 
     const region = this.region;
   }
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     if(this.authService.getUser()){
@@ -40,9 +47,9 @@ export class ProfilePage implements OnInit {
       this.email = this.user["email"];
       this.firstName = this.user.firstName;
       this.lastName = this.user.lastName; */
+    }else{
+      this.router.navigate(['/tabs/auth']);
     }
-    
-    console.log(this.user);
     
   }
 }
