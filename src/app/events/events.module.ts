@@ -9,9 +9,6 @@ import { EventsPage } from './events.page';
 import { EventMarkerModalPageModule } from './event-detail/event-marker-modal/event-marker-modal.module';
 import { SharedModule } from '../../shared/shared.module';
 import { SearchComponent } from './components/search/search.component';
-import { SelectComponent } from './components/select/select.component';
-import { EventComponent } from '../../shared/components/event/event.component';
-
 
 @NgModule({
   declarations: [EventsPage, SearchComponent],

@@ -8,15 +8,9 @@ import { Event } from 'src/shared/interfaces/Event';
   templateUrl: './events.page.html',
   styleUrls: ['./events.page.scss'],
 })
-
-export class EventsPage implements OnInit{
-  //TODO: CHANGE TYPE OF EVENTS!!!
-
-  eventsData: any = [];
-  DATE_PIPE_DEFAULT_OPTIONS: InjectionToken<DatePipeConfig> | undefined;
-  eventsData:any = [];
-  query:any = [];
-
+export class EventsPage implements OnInit {
+  eventsData: Event[] = []; // Change the type to Event[]
+  query: any = [];
 
   @Input() titleColor: string = 'yellow';
   @Input() titleText: string = 'Списък със събития';
@@ -25,31 +19,24 @@ export class EventsPage implements OnInit{
   defaultHref: string = '/tabs/home';
   backButton: boolean = true;
 
-  constructor(private router: Router, private eventService: EventsService) {}
+  constructor(private eventService: EventsService) {}
 
   ngOnInit(): void {
-
-    this.eventService.getEvents().subscribe({
-      next: (events) => {
-
-    this.getEvents();
+    this.getEvents(); // Call getEvents in ngOnInit
   }
 
-  getFilteredEvents(event:any): any {
+  getFilteredEvents(event: any): any {
     this.eventsData = event;
   }
 
-  getEvents (query: string = "") {
+  getEvents(query: string = ''): void {
     this.eventService.getEvents(query).subscribe({
-      next: (events) =>{
-
+      next: (events: Event[]) => {
         this.eventsData = events;
       },
       error: (err) => {
-        console.log(err);
+        console.error(err);
       },
     });
-
   }
-
 }
