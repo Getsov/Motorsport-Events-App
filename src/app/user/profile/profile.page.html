@@ -4,7 +4,9 @@
     <div class="heading-title">
       <h1>Профил</h1>
       <p>
-        {{user?.role === "regular" ? 'на потребител' : "на организатор"}}
+        {{user?.role === "regular" ? 'на потребител' : 
+        user?.role === "organizer" ? 'на организатор' : 'на администратор'
+      }}
       </p>
     </div>
   </div>

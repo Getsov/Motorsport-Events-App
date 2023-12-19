@@ -41,15 +41,9 @@ export class ProfilePage implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    if(this.authService.getUser()){
-      this.user = this.authService.getUser();
-      /* this.selectedRegion = this.user.region;
-      this.email = this.user["email"];
-      this.firstName = this.user.firstName;
-      this.lastName = this.user.lastName; */
-    }else{
+    this.user = this.authService.getUser();
+    if(!this.user){
       this.router.navigate(['/tabs/auth']);
     }
-    
   }
 }
