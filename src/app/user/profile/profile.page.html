@@ -11,20 +11,20 @@
   <div class="container">
     <form #userEditForm="ngForm" (submit)="onUserEdit(userEditForm)">
       <div class="auth-wrapper">
-        //TODO: Change email overlay
+        <!-- //TODO: Change email overlay -->
         <div class="auth-input">
           <ion-input type="email" label="Имейл*" labelPlacement="floating" name="email" ngModel [ngModel]="user?.email"
             #email="ngModel" clearInput required
             pattern="^[a-zA-Z0-9\._+\-]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,}$"></ion-input>
         </div>
-        //TODO: Change password overlay
+        <!-- TODO: Change password overlay -->
         <div class="auth-input">
           <ion-input type="password" label="Парола*" labelPlacement="floating" name="password" ngModel
             #password="ngModel" [ngModel]="password" required minlength="6" maxlength="24" clearInput
             pattern="^\S+$"></ion-input>
         </div>
 
-        <ng-container *ngIf="user?.role == 'regilar'">
+        <ng-container *ngIf="user?.role == 'regular'">
           <div class="auth-input" >
             <ion-input type="text" label="Име" labelPlacement="floating" clearInput name="firstName" ngModel
             #firstName="ngModel" [ngModel]="user?.firstName" pattern="^[a-zA-Zа-яА-Я \-]+$"></ion-input>
@@ -92,11 +92,11 @@
       <div class="main-button-wrapper">
         <button class="main-button">Редактирай профила</button>
       </div>
-      //TODO: Editing function
+      <!-- //TODO: Editing function -->
       <div class="cancel-button-wrapper">
         <button class="cancel-button">Отмени промените</button>
       </div>
-      //TODO:  Cancel function
+      <!-- //TODO:  Cancel function -->
     </form>
   </div>
 
