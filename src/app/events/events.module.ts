@@ -20,6 +20,6 @@ import { SearchComponent } from './components/search/search.component';
     EventsPageRoutingModule,
     EventMarkerModalPageModule,
     SharedModule,
-  ]
+  ],
 })
 export class EventsPageModule {}
