@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { EventComponent } from './components/event/event.component';
 
 @NgModule({
   imports: [
@@ -16,8 +17,18 @@ import { RouterModule } from '@angular/router';
     IonicModule,
     RouterModule,
   ],
-  declarations: [LikeIconComponent, TitleFadesComponent, HeaderComponent],
+  declarations: [
+    LikeIconComponent,
+    TitleFadesComponent,
+    HeaderComponent,
+    EventComponent,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  exports: [LikeIconComponent, TitleFadesComponent, HeaderComponent],
+  exports: [
+    LikeIconComponent,
+    TitleFadesComponent,
+    HeaderComponent,
+    EventComponent,
+  ],
 })
 export class SharedModule {}
