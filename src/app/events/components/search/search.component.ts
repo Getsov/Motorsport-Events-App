@@ -16,12 +16,12 @@ export class SearchComponent implements OnInit {
   category: string = 'Категория';
   location: string = 'Регион';
 
-  regions: {} = Object.values(BulgarianRegions).filter((value) =>
+  regions: any = Object.keys(BulgarianRegions).filter((value) =>
     isNaN(Number(value))
   );
 
-  categories: any = Object.values(Categories).filter((value) =>
-    isNaN(Number(value))
+  categories: any = Object.keys(Categories).filter((value) =>
+  isNaN(Number(value))
   )
   constructor(private eventService: EventsService) {}
 
