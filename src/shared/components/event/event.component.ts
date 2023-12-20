@@ -7,7 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class EventComponent implements OnInit {
   @Input() event: any;
-  location = 'assets/icon/icon-location.svg';
+  location = 'assets/icon/mdi_location.svg';
+  date = 'assets/icon/date-icon.svg'
   constructor() {}
 
   ngOnInit() {}

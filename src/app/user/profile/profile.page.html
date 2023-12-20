@@ -54,7 +54,7 @@
         <ng-container *ngIf="user?.role == 'organizer'">
 
           <div class="auth-input">
-            <ion-input type="text" fill="solid" label="Име на организатор*" labelPlacement="floating" clearInput
+            <ion-input type="text" label="Име на организатор*" labelPlacement="floating" clearInput
               name="organizatorName" ngModel #organizatorName="ngModel" [ngModel]="user?.organizatorName" required pattern="^[^<>\/]+$"></ion-input>
           </div>
 
@@ -68,7 +68,7 @@
     </ng-container>
 
     <div class="auth-input">
-      <ion-input type="text" fill="solid" label="Телефон*" labelPlacement="floating" name="phone" clearInput required
+      <ion-input type="text" label="Телефон*" labelPlacement="floating" name="phone" clearInput required
         ngModel #phone="ngModel" [ngModel]="user?.phone" pattern="^[\d\+\-\(\) ]+$"></ion-input>
     </div>
 
