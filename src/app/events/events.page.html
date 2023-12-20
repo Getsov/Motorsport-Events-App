@@ -5,7 +5,7 @@
       [backButton]="backButton"
       [defaultHref]="defaultHref"
     ></app-header>
-    <app-search show-clear-button="focus" placeholder="Търсене"></app-search>
+    <app-search show-clear-button="focus" placeholder="Търсене"  (filteredEvents) = "getFilteredEvents($event)"></app-search>
   </div>
   <app-title-fades [color]="titleColor" [title]="titleText" />
   <ng-container *ngFor="let event of eventsData">

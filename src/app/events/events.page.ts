@@ -32,7 +32,7 @@ export class EventsPage implements OnInit {
   getEvents(query: string = ''): void {
     this.eventService.getEvents(query).subscribe({
       next: (events: Event[]) => {
-        this.eventsData = events;
+        this.eventsData = events; 
       },
       error: (err) => {
         console.error(err);
