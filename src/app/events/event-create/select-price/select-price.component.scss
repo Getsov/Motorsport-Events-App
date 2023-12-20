@@ -39,4 +39,9 @@
       }
     }
   }
+
+  // class for the add another price if it is the first price pick option
+  .button-wrapper-single {
+    width: calc(50% - 1em);
+  }
 }
