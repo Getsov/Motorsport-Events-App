@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { getHourFromWheelPicker } from 'src/shared/utils/date-utils';
 
 @Component({
   selector: 'app-select-dates',
@@ -7,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SelectDatesComponent implements OnInit {
   @Input() dates!: { date: string; startTime: string; endTime: string }[];
-  constructor() {}
+  constructor(private modalController: ModalController) {}
 
   ngOnInit() {}
 
@@ -19,5 +21,20 @@ export class SelectDatesComponent implements OnInit {
     if (this.dates.length > 1) {
       this.dates.splice(index, 1);
     }
+  }
+
+  async closeModal() {
+    await this.modalController.dismiss();
+  }
+
+  onDoneClick(i: number, hourType: string, value: any) {
+    if (hourType === 'startTime') {
+      this.dates[i].startTime = getHourFromWheelPicker(value);
+      console.log(value);
+      console.log(this.dates);
+    } else {
+      this.dates[i].endTime = getHourFromWheelPicker(value);
+    }
+    this.closeModal();
   }
 }
