@@ -51,7 +51,7 @@ export class EventCreatePage implements OnInit {
 
   ngOnInit() {}
 
-  onCreateEventSubmitClick(eventForm: NgForm) {
+  onCreateEventSubmit(eventForm: NgForm) {
     // TODO: handle form submit
   }
 

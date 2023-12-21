@@ -31,7 +31,8 @@
         }
       }
 
-      ion-select.region-select::part(icon) {
+      ion-select.region-select::part(icon),
+      ion-select.event-type-select::part(icon) {
         right: 1em;
       }
 

@@ -81,6 +81,7 @@
 
     // region and category select inputs
     ion-select.region-select,
+    ion-select.event-type-select,
     ion-select.date-hour-select {
       --placeholder-color: #ffffff;
       --placeholder-opacity: 1;
@@ -94,6 +95,7 @@
     }
 
     ion-select.region-select::part(icon),
+    ion-select.event-type-select::part(icon),
     ion-select.date-hour-select::part(icon) {
       color: #ffffff;
       content: url("../../../assets/icon/arrow-up-down.svg");
