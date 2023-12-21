@@ -1,0 +1,36 @@
+<div class="event-wrapper">
+<div class="event-container"  [routerLink]="event._id">
+  <div class="image-wrapper">
+    <img
+      alt="{{ event.shortTitle }}"
+      src="{{ event.imageUrl }}"
+      class="event-image"
+    />
+  </div>
+  <div class="event-info">
+    <h3 class="event-title">{{ event.shortTitle }}</h3>
+    <p class="event-location">
+      <ion-icon [src]="location" name="location" class="location-img"/>
+      {{ event.contacts.region }}
+    </p>
+    <p *ngIf="event.dates.length > 1" class="event-date">
+      <ion-icon [src]="date" name="date" class="date-img"/>
+      От {{ event.dates[0].startDate | date : "dd.MM.yyyy" }} г. до
+      {{ event.dates[event.dates.length - 1].startDate | date : "dd.MM.yyyy" }}
+      г.
+    </p>
+    <p *ngIf="event.dates.length === 1" class="event-date">
+      <ion-icon [src]="date" name="date" class="date-img"/>
+      {{ event.dates[0].startDate | date : "dd.MM.yyyy" }} г.
+    </p>
+    <p class="event-description">{{ event.shortDescription }}</p>
+    <button class="more-btn">
+      <p class="btn-text">Прочети повече</p>
+    </button>
+  </div>
+</div>
+
+<div class="like-icon-wrapper"><app-like-icon class="event-like"></app-like-icon>
+</div>
+
+</div>

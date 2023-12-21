@@ -9,10 +9,10 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () =>
       import('./auth/auth.module').then((m) => m.AuthPageModule),
-    canActivate: [GuestGuard],
+    canActivate: [GuestGuard]
   },
   {
-    path: 'profile',
+    path: '',
     loadChildren: () =>
       import('./profile/profile.module').then((m) => m.ProfilePageModule),
     canActivate: [AuthGuard],

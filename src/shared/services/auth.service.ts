@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { AuthResponseData } from '../interfaces/User';
+import { AuthResponseData, User } from '../interfaces/User';
 import { BehaviorSubject, tap } from 'rxjs';
 
 const { baseUrl } = environment;
@@ -76,6 +76,14 @@ export class AuthService {
       : null;
 
     return userData ? userData.accessToken : null;
+  }
+
+  getUser(): User | null {
+    const userData = localStorage.getItem('authData');
+    if(userData) {
+      return JSON.parse(userData);
+    }
+    return null;
   }
 
   // return if user is authenticated

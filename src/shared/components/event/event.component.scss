@@ -1,0 +1,135 @@
+.event-wrapper{
+  position: relative;
+  .event-container {
+    border-radius: 4px;
+    background: var(--surface-screen-screen-card-black-dark, #0d0d0d);
+    box-shadow: 0px 0px 8px 1px rgba(255, 220, 35, 0.3);
+    padding: 8px;
+    width: 91.1%;
+    margin: 16px auto;
+
+    .image-wrapper {
+      display: flex;
+      align-items: center;
+      margin: 0 auto;
+      min-height: 156px;
+      .event-image {
+        display: block;
+        margin: 0 auto;
+        border-radius: 4px;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+    }
+
+    .event-info {
+      position: relative;
+      .event-title {
+        margin: 8px 0 4px 0;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%;
+      }
+      .event-location {
+        color: #FFF;
+        font-family: Open Sans;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%;
+        display: inline-flex;
+        align-items: flex-start;
+        gap: 4px;
+        .location-img {
+          width: 18px;
+          height: 18px;
+          color: #FFF;
+        }
+      }
+      .event-date {
+        display: flex;
+        align-items: flex-start;
+        gap: 4px;
+        color: #FFF;
+        /* font-family: Open Sans; */
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%;
+        .date-img {
+          width: 18px;
+          height: 18px;
+          color: #FFF;
+        }
+      }
+      .event-description {
+        margin-bottom: 8px;
+        margin-top: 4px;
+        color: #c2bfbe;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 150%;
+      }
+      .more-btn {
+        display: flex;
+        width: 47%;
+        padding: 4px 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 4px;
+        background: #FFDC23;
+         .btn-text {
+          color: #0d0d0d;
+          text-align: center;
+          font-family: Open Sans;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 150%;
+        }
+      }
+    }
+
+  }
+  .like-icon-wrapper{
+    min-height: 42px;
+    min-width: 42px;
+    position: absolute;
+    top: 9px;
+    right: 28px;
+    .event-like{
+      .like-icon {
+        top: 8px;
+        right: 26px;
+      }
+    }
+  }
+}
+
+
+
+
+
+/* .event-like-btn {
+  position: absolute;
+  font-size: 30px;
+  color: #f44336;
+  top: 4px;
+  right: 4px;
+} */
+
+
+
+
+
+
+
+
+
+
+
+

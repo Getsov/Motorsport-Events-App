@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ImagePickerComponent } from '../app/events/event-create/image-picker/image-picker.component';
+import { EventComponent } from './components/event/event.component';
 
 @NgModule({
   imports: [
@@ -17,8 +17,18 @@ import { ImagePickerComponent } from '../app/events/event-create/image-picker/im
     IonicModule,
     RouterModule,
   ],
-  declarations: [LikeIconComponent, TitleFadesComponent, HeaderComponent],
+  declarations: [
+    LikeIconComponent,
+    TitleFadesComponent,
+    HeaderComponent,
+    EventComponent,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  exports: [LikeIconComponent, TitleFadesComponent, HeaderComponent],
+  exports: [
+    LikeIconComponent,
+    TitleFadesComponent,
+    HeaderComponent,
+    EventComponent,
+  ],
 })
 export class SharedModule {}
