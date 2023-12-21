@@ -10,10 +10,13 @@ const { baseUrl } = environment;
 })
 export class EventsService {
   constructor(private http: HttpClient) {}
-
-  getEvents() {
-    return this.http.get<Event>(`${baseUrl}/events`);
-  }
+    
+    getEvents(query:string = ''): Observable<Event[]>{
+      if(query){
+        return this.http.get<Event[]>(`${baseUrl}/events?${query}`);
+      }
+      return this.http.get<Event[]>(`${baseUrl}/events`);
+    }
 
   getEvent(id: string) {
     return this.http.get<Event>(`${baseUrl}/events/${id}`);
@@ -22,5 +25,9 @@ export class EventsService {
   getPaginationEvents(page: number, limit: number): Observable<any> {
     const url = `${baseUrl}/events?page=${page}&limit=${limit}`;
     return this.http.get(url);
+  }
+
+  getMonthEvents(yearMonth: string) {
+    return this.http.get<Event>(`${baseUrl}/events/month/${yearMonth}`);
   }
 }

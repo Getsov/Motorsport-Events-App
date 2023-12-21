@@ -5,15 +5,17 @@ import { IonicModule } from '@ionic/angular';
 import { ExploreContainerComponentModule } from '../../explore-container/explore-container.module';
 import { ProfilePageRoutingModule } from './profile-routing.module';
 import { ProfilePage } from './profile.page';
+import { SharedModule } from "../../../shared/shared.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ExploreContainerComponentModule,
-    FormsModule,
-    IonicModule,
-    ProfilePageRoutingModule,
-  ],
-  declarations: [ProfilePage],
+    declarations: [ProfilePage],
+    imports: [
+        CommonModule,
+        ExploreContainerComponentModule,
+        FormsModule,
+        IonicModule,
+        ProfilePageRoutingModule,
+        SharedModule
+    ]
 })
 export class ProfilePageModule {}

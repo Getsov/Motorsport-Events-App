@@ -1,10 +1,32 @@
-<div>
+<div mode="md">
   <app-title-fades [color]="titleColor" [title]="titleText" />
-  <ion-searchbar placeholder="Търси събитие" class="custom"></ion-searchbar>
+  <ion-searchbar placeholder="Търси събитие" class="custom" (ionChange)="searchChangeHandler($event)"></ion-searchbar>
   <!-- <input type="text" class="custom-search" placeholder="Търси събитие"> -->
-  <div class="select-section">
-    <app-select [placeholder]="Category" class="select-item"></app-select>
-    <app-select [placeholder]="Location" class="select-item"></app-select>
+  <div class="select-section" >
+    <ion-list class="select">
+        <ion-select
+          interface="popover"
+          placeholder="{{ category }}"
+          class="select-item"
+          [multiple]="true"
+          (ionChange)="categoryChangeHandler($event)">
+          <ion-select-option *ngFor="let item of categories; let i = index" [value]="i+1">{{ item }}</ion-select-option>
+        </ion-select>
+    </ion-list>
+
+    <ion-list class="select">
+        <ion-select
+          interface="popover"
+          placeholder="{{ location }}"
+          class="select-item"
+          [multiple]="true"
+          (ionChange)="locationChangeHandler($event)"
+        >
+          <ion-select-option *ngFor=" let item of regions; let i = index" [value]="i+1">{{ item }}</ion-select-option>
+        </ion-select>
+    </ion-list>
+    <!-- <app-select [placeholder]="Category" [data] = "categories" class="select-item" [handleChange] ="categoryChangeHandler"></app-select>
+    <app-select [placeholder]="Location" [data] = "regions" class="select-item" [handleChange] ="locationChangeHandler"></app-select> -->
   </div>
   <!-- TODO: Град Дата Категория -->
 </div>

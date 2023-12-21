@@ -5,6 +5,9 @@ import { IonicModule } from '@ionic/angular';
 import { CalendarPageRoutingModule } from './calendar-routing.module';
 import { CalendarPage } from './calendar.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
+import { SharedModule } from 'src/shared/shared.module';
+import { DatesComponent } from './dates/dates.component';
+import { CalendarListComponent } from './calendar-list/calendar-list.component';
 
 @NgModule({
   imports: [
@@ -13,7 +16,8 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
     FormsModule,
     IonicModule,
     CalendarPageRoutingModule,
+    SharedModule,
   ],
-  declarations: [CalendarPage],
+  declarations: [CalendarPage, DatesComponent, CalendarListComponent],
 })
 export class CalendarPageModule {}
