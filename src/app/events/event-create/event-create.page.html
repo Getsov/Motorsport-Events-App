@@ -61,13 +61,14 @@
               placeholder="Вид на събитието"
               class="event-type-select"
               slot="end"
+              #category
+              (ionChange)="onEventTypeChange($event.detail.value)"
             >
-              <!-- TODO: Change with the Category enum -->
-              <!-- <ion-select-option
-                value="{{region}}"
-                *ngFor="let region of bulgarianRegions"
-                >{{region}}</ion-select-option
-              > -->
+              <ion-select-option
+                value="{{category}}"
+                *ngFor="let category of eventCategories"
+                >{{category}}</ion-select-option
+              >
             </ion-select>
           </div>
 

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { SelectPriceComponent } from './select-price/select-price.component';
 import { SelectDatesComponent } from './select-dates/select-dates.component';
 import BulgarianRegions from 'src/shared/data/regions';
+import Categories from 'src/shared/data/categories';
 
 @Component({
   selector: 'app-event-create',
@@ -23,6 +24,12 @@ export class EventCreatePage implements OnInit {
   selectedRegion: string = '';
 
   bulgarianRegions: string[] = Object.keys(BulgarianRegions).filter((v) =>
+    isNaN(Number(v))
+  );
+
+  // event type select
+  selectedEventType: string = '';
+  eventCategories: string[] = Object.keys(Categories).filter((v) =>
     isNaN(Number(v))
   );
 
@@ -55,7 +62,11 @@ export class EventCreatePage implements OnInit {
     // TODO: handle form submit
   }
 
-  onRegionChange(region: string) {
+  onRegionChange(region: string): void {
     this.selectedRegion = region;
+  }
+
+  onEventTypeChange(category: string): void {
+    this.selectedEventType = category;
   }
 }
