@@ -8,7 +8,7 @@
   <div class="create-event-container">
     <form
       #createEventForm="ngForm"
-      (submit)="onCreateEventSubmitClick(createEventForm)"
+      (submit)="onCreateEventSubmit(createEventForm)"
     >
       <!-- event image upload -->
       <div class="ion-margin-top">
@@ -59,17 +59,16 @@
             <ion-select
               interface="popover"
               placeholder="Вид на събитието"
-              class="region-select"
+              class="event-type-select"
               slot="end"
               name="category"
-              #region
-              (ionChange)="onRegionChange($event.detail.value)"
             >
-              <ion-select-option
+              <!-- TODO: Change with the Category enum -->
+              <!-- <ion-select-option
                 value="{{region}}"
                 *ngFor="let region of bulgarianRegions"
                 >{{region}}</ion-select-option
-              >
+              > -->
             </ion-select>
           </div>
 
