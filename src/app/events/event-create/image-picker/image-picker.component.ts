@@ -20,8 +20,6 @@ export class ImagePickerComponent implements OnInit {
   ngOnInit() {}
 
   async onAttachPictureClick() {
-    console.log('dada');
-
     const image = await Camera.getPhoto({
       quality: 100,
       allowEditing: false,
@@ -36,6 +34,10 @@ export class ImagePickerComponent implements OnInit {
   }
 
   async savePicture(photo: Photo) {
-    console.log(photo);
+    this.selectedImage = photo.webPath!;
+  }
+
+  onDiscardSelectedImage(): void {
+    this.selectedImage = '';
   }
 }
