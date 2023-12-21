@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content mode="ios">
   <app-header
     [headerTitle]="headerTitle"
     [backButton]="backButton"
@@ -54,18 +54,43 @@
             maxlength="140"
           ></ion-input>
 
-          <!-- long description -->
-          <ion-input
-            label="Дълго описание"
-            labelPlacement="floating"
-            [counter]="true"
-            maxlength="500"
-          ></ion-input>
+          <!-- event category selector -->
+          <div class="category-select-wrapper">
+            <ion-select
+              interface="popover"
+              placeholder="Вид на събитието"
+              class="region-select"
+              slot="end"
+              name="category"
+              #region
+              (ionChange)="onRegionChange($event.detail.value)"
+            >
+              <ion-select-option
+                value="{{region}}"
+                *ngFor="let region of bulgarianRegions"
+                >{{region}}</ion-select-option
+              >
+            </ion-select>
+          </div>
 
-          <!-- event category waiting for Niki's components so i can reuse them here -->
-
-          <!-- event region waiting for Niki's components so i can reuse them here-->
-
+          <!-- event region selector-->
+          <div class="region-select-wrapper">
+            <ion-select
+              interface="popover"
+              placeholder="Регион"
+              class="region-select"
+              slot="end"
+              name="region"
+              #region
+              (ionChange)="onRegionChange($event.detail.value)"
+            >
+              <ion-select-option
+                value="{{region}}"
+                *ngFor="let region of bulgarianRegions"
+                >{{region}}</ion-select-option
+              >
+            </ion-select>
+          </div>
           <!-- address-->
           <ion-input
             label="Адрес на събитието*"
@@ -73,6 +98,15 @@
             [counter]="true"
             maxlength="80"
           ></ion-input>
+
+          <!-- long description -->
+          <ion-textarea
+            label="Дълго описание"
+            labelPlacement="floating"
+            [counter]="true"
+            maxlength="500"
+            rows="3"
+          ></ion-textarea>
         </div>
       </div>
 
@@ -87,7 +121,6 @@
           <app-select-dates [dates]="dates"></app-select-dates>
         </div>
       </div>
-
       <!-- event prices -->
       <div class="event-prices-wrapper">
         <app-title-fades

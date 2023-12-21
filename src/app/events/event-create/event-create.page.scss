@@ -4,16 +4,24 @@
   }
   .description-inputs-wrapper {
     .event-input {
-      ion-input {
+      ion-input,
+      ion-textarea {
         --border-color: #fff;
         --padding-start: 1em;
         height: 56px;
       }
 
       ::ng-deep .counter {
+        padding-right: 1em;
         color: #fff;
       }
-      ion-input.has-focus {
+
+      .category-select-wrapper {
+        margin-top: 1em;
+      }
+
+      ion-input.has-focus,
+      ion-textarea.has-focus {
         --border-color: #ff7418;
         .label-text {
           color: #ff7418;
@@ -21,6 +29,14 @@
         .native-input {
           caret-color: #fff;
         }
+      }
+
+      ion-select.region-select::part(icon) {
+        right: 1em;
+      }
+
+      ion-textarea {
+        height: auto;
       }
     }
   }

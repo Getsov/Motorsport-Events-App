@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SelectPriceComponent } from './select-price/select-price.component';
 import { SelectDatesComponent } from './select-dates/select-dates.component';
+import BulgarianRegions from 'src/shared/data/regions';
 
 @Component({
   selector: 'app-event-create',
@@ -17,6 +18,13 @@ export class EventCreatePage implements OnInit {
   // get date values
   @ViewChild(SelectDatesComponent) selectDatesComponent!: SelectDatesComponent;
   dates = [{ date: '', startTime: '', endTime: '' }];
+
+  // regions select
+  selectedRegion: string = '';
+
+  bulgarianRegions: string[] = Object.keys(BulgarianRegions).filter((v) =>
+    isNaN(Number(v))
+  );
 
   // header separator settings
   headerTitle: string = 'Създай събитие';
@@ -44,9 +52,10 @@ export class EventCreatePage implements OnInit {
   ngOnInit() {}
 
   onCreateEventSubmitClick(eventForm: NgForm) {
-    console.log(eventForm.value);
-    console.log(this.visitorPrices);
-    console.log(this.participantPrices);
-    console.log('dates', this.dates);
+    // TODO: handle form submit
+  }
+
+  onRegionChange(region: string) {
+    this.selectedRegion = region;
   }
 }
