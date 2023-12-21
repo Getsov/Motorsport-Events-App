@@ -53,5 +53,12 @@
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>To show your location</string>
 
+	<!-- upload pictures -->
+	<key>NSCameraUsageDescription</key>
+	<string>To capture images</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>To add images</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To store images</string>
 </dict>
 </plist>

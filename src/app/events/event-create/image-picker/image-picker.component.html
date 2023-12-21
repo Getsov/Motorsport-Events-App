@@ -1,0 +1,34 @@
+<div class="image-picker-wrapper">
+  <div
+    *ngIf="!selectedImage"
+    class="image-picker"
+    (click)="onAttachPictureClick()"
+  >
+    <img
+      src="../../../assets/icon/camera.png"
+      alt="image-picker-camera"
+      class="image-picker-icon"
+    />
+  </div>
+  <div *ngIf="selectedImage" class="image-picker">
+    <ion-img [src]="selectedImage"></ion-img>
+    <ion-icon
+      src="../../../../assets/icon/error-clear-input-icon.svg"
+      class="clear-image"
+      (click)="onDiscardSelectedImage()"
+    ></ion-icon>
+  </div>
+  <div class="image-picker-info">
+    <div>
+      <img
+        src="../../../assets/icon/info.png"
+        alt="image-picker-info-icon"
+        class="image-picker-info-icon"
+      />
+    </div>
+    <p>
+      Тук следва да качите подходяща снимка за Вашето събитие. Моля НЕ качвайте
+      плаката на събитието.
+    </p>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+.create-event-container {
+  .image-upload-wrapper {
+    margin: 1em 0 1.5em 0;
+  }
+  .description-inputs-wrapper {
+    .event-input {
+      ion-input,
+      ion-textarea {
+        --border-color: #fff;
+        --padding-start: 1em;
+        height: 56px;
+      }
+
+      ::ng-deep .counter {
+        padding-right: 1em;
+        color: #fff;
+      }
+
+      .category-select-wrapper {
+        margin-top: 1em;
+      }
+
+      ion-input.has-focus,
+      ion-textarea.has-focus {
+        --border-color: #ff7418;
+        .label-text {
+          color: #ff7418;
+        }
+        .native-input {
+          caret-color: #fff;
+        }
+      }
+
+      ion-select.region-select::part(icon),
+      ion-select.event-type-select::part(icon) {
+        right: 1em;
+      }
+
+      ion-textarea {
+        height: auto;
+      }
+    }
+  }
+
+  .event-date-wrapper {
+    margin: 42px 0 1.5em 0;
+  }
+
+  .form-buttons-wrapper {
+    margin-top: 3em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+}

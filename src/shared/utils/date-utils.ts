@@ -21,3 +21,18 @@ export function getDayOfWeek(dateString: string): string {
     return 'Invalid Date';
   }
 }
+
+export function getHourFromWheelPicker(date: string): string {
+  if (date.length === 5) {
+    return date;
+  }
+
+  const dateTime = new Date(date);
+
+  const hour = dateTime.getHours();
+  const minute = dateTime.getMinutes();
+
+  return `${hour.toString().padStart(2, '0')}:${minute
+    .toString()
+    .padStart(2, '0')}`;
+}

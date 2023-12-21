@@ -124,7 +124,6 @@ select {
   border-radius: 4px;
   padding: 8px 24px;
   text-align: center;
-  height: auto;
 }
 
 .main-button {
@@ -152,6 +151,25 @@ select {
   font-weight: 600;
   line-height: 1;
 }
+
+.secondary-button-wrapper {
+  width: 100%;
+  height: 44px;
+  text-align: center;
+  border: 2px solid #ff7418;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background-color: #0d0d0d;
+}
+
+.secondary-button {
+  all: unset;
+  text-decoration: none;
+  color: #ff7418;
+  font-weight: 600;
+  line-height: 1;
+}  
+
 // FORM: Universal auth form styles
 @import "app/user/auth/auth-form-styles.scss";
 

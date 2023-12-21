@@ -1,0 +1,55 @@
+.image-picker-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .image-picker {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: #c2bfbe;
+    border-radius: 4px;
+    overflow: hidden;
+
+    .image-picker-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    ion-img {
+      object-fit: contain;
+      height: 100%;
+      width: 100%;
+      background-color: var(--ion-background-color);
+    }
+
+    .clear-image {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      height: 12px;
+      width: 12px;
+    }
+  }
+
+  .image-picker-info {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    div {
+      height: 20px;
+      width: 27px;
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    p {
+      font-size: 10px;
+    }
+  }
+}

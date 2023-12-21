@@ -1,9 +1,12 @@
-.auth-wrapper {
+.auth-wrapper,
+.create-event-container {
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5em;
 
-  .auth-input {
+  .auth-input,
+  .region-select-wrapper,
+  .category-select-wrapper {
     position: relative;
     height: 54px;
 
@@ -76,12 +79,31 @@
       }
     }
 
-    .region-select {
-      background: transparent;
+    // region and category select inputs
+    ion-select.region-select,
+    ion-select.event-type-select,
+    ion-select.date-hour-select {
+      --placeholder-color: #ffffff;
+      --placeholder-opacity: 1;
       width: 100%;
+      justify-content: flex-end;
+      position: relative;
+      background: transparent;
       height: 56px;
       border-bottom: 1px solid white;
       padding-left: 1em;
+    }
+
+    ion-select.region-select::part(icon),
+    ion-select.event-type-select::part(icon),
+    ion-select.date-hour-select::part(icon) {
+      color: #ffffff;
+      content: url("../../../assets/icon/arrow-up-down.svg");
+      position: absolute;
+      right: 1.6em;
+      top: transform(translateY(-50%));
+      height: 20px;
+      width: 10px;
     }
 
     ::placeholder {

@@ -1,0 +1,121 @@
+<div *ngFor="let date of dates; let i = index">
+  <div class="date-input-wrapper">
+    <!-- Date Picker -->
+    <ion-input
+      placeholder="Избери дата"
+      [(ngModel)]="dates[i].date"
+      class="date-hour-select"
+      name="date"
+    >
+      <ion-icon name="chevron-up-outline" slot="end"></ion-icon>
+    </ion-input>
+  </div>
+
+  <div class="event-hour-wrapper">
+    <!-- Start Time Picker -->
+    <ion-input
+      placeholder="от 00:00 ч."
+      class="date-hour-select"
+      slot="end"
+      name="region"
+      [id]="'open-start-hour-' + i"
+      [value]="
+        dates[i].startTime
+          ? 'от ' + dates[i].startTime + ' ч.'
+          : dates[i].startTime
+      "
+    >
+      <ion-icon name="chevron-up-outline" slot="end"></ion-icon>
+    </ion-input>
+
+    <ion-modal [trigger]="'open-start-hour-' + i" class="hour-picker-modal">
+      <ng-template>
+        <ion-content>
+          <ion-datetime
+            presentation="time"
+            hourCycle="h23"
+            name="startTime"
+            value="{{ dates[i].startTime }}"
+            #startTime
+          ></ion-datetime>
+        </ion-content>
+
+        <ion-footer>
+          <ion-toolbar>
+            <div class="hour-picker-action-buttons">
+              <ion-buttons>
+                <ion-button slot="start" (click)="closeModal()"
+                  >Откажи</ion-button
+                >
+              </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button
+                  (click)="onDoneClick(i, 'startTime', startTime.value)"
+                  >Да</ion-button
+                >
+              </ion-buttons>
+            </div>
+          </ion-toolbar>
+        </ion-footer>
+      </ng-template>
+    </ion-modal>
+
+    <!-- End Time Picker -->
+    <ion-input
+      placeholder="до 00:00 ч."
+      class="date-hour-select"
+      slot="end"
+      name="region"
+      [id]="'open-end-hour-' + i"
+      [value]="
+        dates[i].endTime ? 'до ' + dates[i].endTime + ' ч.' : dates[i].endTime
+      "
+    >
+      <ion-icon name="chevron-up-outline" slot="end"></ion-icon>
+    </ion-input>
+
+    <ion-modal [trigger]="'open-end-hour-' + i" class="hour-picker-modal">
+      <ng-template>
+        <ion-content>
+          <ion-datetime
+            presentation="time"
+            hourCycle="h23"
+            name="endTime"
+            value="{{ dates[i].endTime }}"
+            #endTime
+          ></ion-datetime>
+        </ion-content>
+
+        <ion-footer>
+          <ion-toolbar>
+            <div class="hour-picker-action-buttons">
+              <ion-buttons>
+                <ion-button slot="start" (click)="closeModal()"
+                  >Откажи</ion-button
+                >
+              </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button (click)="onDoneClick(i, 'endTime', endTime.value)"
+                  >Да</ion-button
+                >
+              </ion-buttons>
+            </div>
+          </ion-toolbar>
+        </ion-footer>
+      </ng-template>
+    </ion-modal>
+  </div>
+
+  <!-- Add new date and delete buttons -->
+  <div
+    [ngClass]="{ 'buttons-wrapper': true, 'button-wrapper-single': i === 0 }"
+  >
+    <div class="main-button-wrapper">
+      <a (click)="addDate()" class="main-button">Добави дата</a>
+    </div>
+
+    <div class="secondary-button-wrapper" *ngIf="i !== 0">
+      <a (click)="removeDate(i)" class="secondary-button">Изтрий</a>
+    </div>
+  </div>
+</div>
