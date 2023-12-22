@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { getHourFromWheelPicker } from 'src/shared/utils/date-utils';
+import { CalendarDatePickerComponent } from '../calendar-date-picker/calendar-picker.component';
 
 @Component({
   selector: 'app-select-dates',
@@ -8,6 +9,9 @@ import { getHourFromWheelPicker } from 'src/shared/utils/date-utils';
   styleUrls: ['./select-dates.component.scss'],
 })
 export class SelectDatesComponent implements OnInit {
+  @ViewChild(CalendarDatePickerComponent)
+  calendarPickerComponent!: CalendarDatePickerComponent;
+
   @Input() dates!: { date: string; startTime: string; endTime: string }[];
   constructor(private modalController: ModalController) {}
 
@@ -27,11 +31,13 @@ export class SelectDatesComponent implements OnInit {
     await this.modalController.dismiss();
   }
 
-  onDoneClick(i: number, hourType: string, value: any) {
+  onDoneClick(i: number, hourType: string, value?: any) {
     if (hourType === 'startTime') {
       this.dates[i].startTime = getHourFromWheelPicker(value);
-    } else {
+    } else if (hourType === 'endTime') {
       this.dates[i].endTime = getHourFromWheelPicker(value);
+    } else {
+      this.dates[i].date = this.calendarPickerComponent.selectedDate;
     }
     this.closeModal();
   }

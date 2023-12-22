@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-calendar-picker',
@@ -6,7 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calendar-picker.component.scss'],
 })
 export class CalendarDatePickerComponent implements OnInit {
-  constructor() {}
+  todayDate: any;
+  @Input() selectedDate: any = '';
 
-  ngOnInit() {}
+  constructor(private datePipe: DatePipe) {}
+
+  ngOnInit() {
+    this.todayDate = this.datePipe.transform(
+      Date.now(),
+      'yyyy-MM-dd' || undefined
+    );
+  }
+
+  onDateChange(date: any): void {
+    this.selectedDate = this.datePipe.transform(
+      date,
+      'dd.MM.YYYY' || undefined
+    );
+  }
 }
