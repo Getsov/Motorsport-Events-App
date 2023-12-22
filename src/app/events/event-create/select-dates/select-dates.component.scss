@@ -28,8 +28,8 @@ ion-input.date-hour-select {
   }
 }
 
-// hour picker modal
-ion-modal.hour-picker-modal {
+// modal picker
+ion-modal.modal-picker {
   --background: #0b0b0b;
   --height: auto;
   --border-radius: 4px;
@@ -71,13 +71,19 @@ ion-modal.hour-picker-modal {
   }
 
   ::ng-deep .ion-page {
-    height: 250px;
+    height: 100%;
     width: 102%; // this was the only way to hide a strange scroll which appeared
   }
 }
 
-ion-modal.hour-picker-modal::part(content) {
+ion-modal.modal-picker::part(content) {
   height: 250px;
+  width: 90%;
+}
+
+// calendar modal fine tunning
+ion-modal.calendar-date-picker::part(content) {
+  height: 350px;
   width: 90%;
 }
 
