@@ -18,7 +18,7 @@ export class EventCreatePage implements OnInit {
 
   // get date values
   @ViewChild(SelectDatesComponent) selectDatesComponent!: SelectDatesComponent;
-  dates = [{ date: '', startTime: '', endTime: '' }];
+  dates = [{ date: '', startTime: '00:00', endTime: '00:00' }];
 
   // regions select
   selectedRegion: string = '';

@@ -14,7 +14,7 @@ export class SelectDatesComponent implements OnInit {
   ngOnInit() {}
 
   addDate() {
-    this.dates.push({ date: '', startTime: '', endTime: '' });
+    this.dates.push({ date: '', startTime: '00:00', endTime: '00:00' });
   }
 
   removeDate(index: number) {
@@ -30,8 +30,6 @@ export class SelectDatesComponent implements OnInit {
   onDoneClick(i: number, hourType: string, value: any) {
     if (hourType === 'startTime') {
       this.dates[i].startTime = getHourFromWheelPicker(value);
-      console.log(value);
-      console.log(this.dates);
     } else {
       this.dates[i].endTime = getHourFromWheelPicker(value);
     }
