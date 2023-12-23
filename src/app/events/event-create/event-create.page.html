@@ -57,12 +57,14 @@
           <!-- event category selector -->
           <div class="category-select-wrapper">
             <ion-select
-              interface="popover"
-              placeholder="Вид на събитието*"
               class="event-type-select"
+              placeholder="Вид на събитието*"
               slot="end"
+              okText="Ок"
+              cancelText="Откажи"
               #category
               (ionChange)="onEventTypeChange($event.detail.value)"
+              name="category"
             >
               <ion-select-option
                 value="{{category}}"
@@ -75,8 +77,9 @@
           <!-- event region selector-->
           <div class="region-select-wrapper">
             <ion-select
-              interface="popover"
               placeholder="Регион*"
+              okText="Ок"
+              cancelText="Откажи"
               class="region-select"
               slot="end"
               name="region"

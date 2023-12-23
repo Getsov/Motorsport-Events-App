@@ -53,3 +53,7 @@
     gap: 1em;
   }
 }
+
+::ng-deep .alert-title.sc-ion-alert-ios {
+  color: #ff7418;
+}

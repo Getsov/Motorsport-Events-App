@@ -130,3 +130,13 @@
     margin-top: 5px;
   }
 }
+
+//ion-select scrollbar (it was hidden by default)
+.alert-radio-group::-webkit-scrollbar {
+  width: 0.75em;
+  display: block !important;
+}
+
+.alert-radio-group::-webkit-scrollbar-thumb {
+  background-color: #a6a2a0;
+}
