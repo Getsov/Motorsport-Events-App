@@ -2,7 +2,7 @@ export interface Event {
   shortTitle: string;
   longTitle?: string;
   shortDescription: string;
-  longDescription: string;
+  longDescription?: string;
   visitorPrices: { price: number; description: string }[];
   participantPrices?: { price: number; description: string }[];
   dates: { date: string; startTime: string; endTime: string }[];
