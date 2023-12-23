@@ -23,6 +23,9 @@ export class EventCreatePage implements OnInit {
   // regions select
   selectedRegion: string = '';
 
+  // image Url from imagePicker
+  imageUrl: string = '';
+
   bulgarianRegions: string[] = Object.keys(BulgarianRegions).filter((v) =>
     isNaN(Number(v))
   );
@@ -59,7 +62,16 @@ export class EventCreatePage implements OnInit {
   ngOnInit() {}
 
   onCreateEventSubmit(eventForm: NgForm) {
-    // TODO: handle form submit
+    // TODO: validation
+
+    const formValue = {
+      ...eventForm.value,
+      visitorPrices: this.visitorPrices,
+      participantPrices: this.participantPrices,
+      dates: this.dates,
+      imageUrl: this.imageUrl,
+    };
+    console.log('form finished', formValue);
   }
 
   onRegionChange(region: string): void {
@@ -68,5 +80,9 @@ export class EventCreatePage implements OnInit {
 
   onEventTypeChange(category: string): void {
     this.selectedEventType = category;
+  }
+
+  onImageUpload(imageData: string) {
+    this.imageUrl = imageData;
   }
 }
