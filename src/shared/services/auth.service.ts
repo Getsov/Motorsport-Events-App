@@ -26,7 +26,7 @@ export class AuthService {
     region: string
   ) {
     return this.http
-      .post<AuthResponseData>(`${baseUrl}/user/registerUser`, {
+      .post<AuthResponseData>(`${baseUrl}/user/register`, {
         email,
         password,
         repass,
@@ -47,7 +47,7 @@ export class AuthService {
     role: string
   ) {
     return this.http
-      .post<AuthResponseData>(`${baseUrl}/user/registerUser`, {
+      .post<AuthResponseData>(`${baseUrl}/user/register`, {
         email,
         password,
         repass,
@@ -61,7 +61,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http
-      .post<AuthResponseData>(`${baseUrl}/user/loginUser`, {
+      .post<AuthResponseData>(`${baseUrl}/user/login`, {
         email,
         password,
       })
@@ -80,7 +80,7 @@ export class AuthService {
 
   getUser(): User | null {
     const userData = localStorage.getItem('authData');
-    if(userData) {
+    if (userData) {
       return JSON.parse(userData);
     }
     return null;
