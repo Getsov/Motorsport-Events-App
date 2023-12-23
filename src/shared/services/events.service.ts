@@ -3,20 +3,31 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Event } from 'src/shared/interfaces/Event';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 const { baseUrl } = environment;
 @Injectable({
   providedIn: 'root',
 })
 export class EventsService {
-  constructor(private http: HttpClient) {}
-    
-    getEvents(query:string = ''): Observable<Event[]>{
-      if(query){
-        return this.http.get<Event[]>(`${baseUrl}/events?${query}`);
-      }
-      return this.http.get<Event[]>(`${baseUrl}/events`);
+  constructor(private http: HttpClient, private authService: AuthService) {}
+
+  createEvent(eventData: any): Observable<Event> {
+    const accessToken = this.authService.getUserToken();
+    return this.http.post<Event>(`${baseUrl}/events/register`, eventData, {
+      headers: {
+        'X-Authorization': accessToken!,
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  getEvents(query: string = ''): Observable<Event[]> {
+    if (query) {
+      return this.http.get<Event[]>(`${baseUrl}/events?${query}`);
     }
+    return this.http.get<Event[]>(`${baseUrl}/events`);
+  }
 
   getEvent(id: string) {
     return this.http.get<Event>(`${baseUrl}/events/${id}`);
