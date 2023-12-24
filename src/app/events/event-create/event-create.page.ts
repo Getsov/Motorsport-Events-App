@@ -89,13 +89,11 @@ export class EventCreatePage implements OnInit {
 
     const formValue = {
       shortTitle: eventForm.value.shortTitle,
-      ...(eventForm.value.longTitle && {
-        longTitle: eventForm.value.longTitle,
-      }),
+      longTitle: eventForm.value.longTitle ? eventForm.value.longTitle : '',
       shortDescription: eventForm.value.shortDescription,
-      ...(eventForm.value.longDescription && {
-        longDescription: eventForm.value.longDescription,
-      }),
+      longDescription: eventForm.value.longDescription
+        ? eventForm.value.longDescription
+        : '',
       imageUrl: this.imageUrl,
       category: this.selectedEventType,
       contacts: {
