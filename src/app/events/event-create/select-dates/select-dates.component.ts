@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { getHourFromWheelPicker } from 'src/shared/utils/date-utils';
-import { CalendarDatePickerComponent } from '../calendar-date-picker/calendar-picker.component';
+import { CalendarDatePickerComponent } from '../calendar-picker/calendar-picker.component';
 
 @Component({
   selector: 'app-select-dates',

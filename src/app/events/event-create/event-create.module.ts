@@ -11,7 +11,7 @@ import { SharedModule } from 'src/shared/shared.module';
 import { ImagePickerComponent } from './image-picker/image-picker.component';
 import { SelectDatesComponent } from './select-dates/select-dates.component';
 import { SelectPriceComponent } from './select-price/select-price.component';
-import { CalendarDatePickerComponent } from './calendar-date-picker/calendar-picker.component';
+import { CalendarDatePickerComponent } from './calendar-picker/calendar-picker.component';
 
 @NgModule({
   imports: [
