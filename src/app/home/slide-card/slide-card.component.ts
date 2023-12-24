@@ -29,7 +29,7 @@ export class SlideCardComponent implements OnInit {
       email: '',
     },
     category: '',
-    creator: '',
+    creator: { email: '', role: '', isDeleted: false },
     isDeleted: false,
   };
 

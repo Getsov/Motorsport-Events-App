@@ -1,3 +1,5 @@
+import { User } from './User';
+
 export interface Event {
   shortTitle: string;
   longTitle?: string;
@@ -16,7 +18,7 @@ export interface Event {
   };
   category: string;
   likes: [];
-  creator: string;
+  creator: User;
   winners?: { name: string; vehicle: string; place: number }[];
   isDeleted: boolean;
   _id: string;
