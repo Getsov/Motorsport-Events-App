@@ -27,7 +27,8 @@ export class AuthGuard implements CanActivate {
       take(1),
       map((hasUserData) => {
         const isLogged = !!hasUserData;
-        if (!isLogged) {
+        const isRegularUser = hasUserData?.role === 'regular';
+        if (!isLogged || isRegularUser) {
           this.router.navigateByUrl('tabs/user/auth');
         }
         return isLogged;
