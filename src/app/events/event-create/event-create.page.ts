@@ -7,6 +7,8 @@ import Categories from 'src/shared/data/categories';
 import { AuthService } from 'src/shared/services/auth.service';
 import { Subscription } from 'rxjs';
 import { EventsService } from 'src/shared/services/events.service';
+import { transformDates } from 'src/shared/utils/date-utils';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-create',
@@ -65,7 +67,8 @@ export class EventCreatePage implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private eventService: EventsService
+    private eventService: EventsService,
+    private router: Router
   ) {}
 
   ngOnInit() {}
@@ -78,9 +81,11 @@ export class EventCreatePage implements OnInit {
     const user = this.authService.getUser();
 
     if (!user) {
-      this.errorMessage = 'User not authernticated';
+      this.errorMessage = 'User not authenticated';
       return;
     }
+
+    const formattedDates = transformDates(this.dates);
 
     const formValue = {
       shortTitle: eventForm.value.shortTitle,
@@ -102,7 +107,7 @@ export class EventCreatePage implements OnInit {
       },
       visitorPrices: this.visitorPrices,
       participantPrices: this.participantPrices,
-      dates: this.dates,
+      dates: formattedDates,
       creator: user._id,
       isDeleted: false,
       isApproved: false,
@@ -114,8 +119,10 @@ export class EventCreatePage implements OnInit {
         next: (createdEvent) => {
           // TODO: Toaster message
           console.log(createdEvent);
+          // redirect to all events X-seconds after success toaster appears
         },
         error: (err) => {
+          // TODO: display error message in toaster
           this.errorMessage = err.message;
           console.log(err);
         },
