@@ -74,7 +74,6 @@ export class EventDetailPage implements OnInit {
 
     this.setEvent();
   }
-
   setEvent() {
     this.eventService.getEvent(this.eventId).subscribe({
       next: (response) => {
