@@ -1,17 +1,36 @@
-<form #organizatorRegister="ngForm" (submit)="onOrganizatorRegisterSubmit(organizatorRegister)">
+<form
+  #organizatorRegister="ngForm"
+  (submit)="onOrganizatorRegisterSubmit(organizatorRegister)"
+>
   <div class="auth-wrapper">
-
     <!-- email -->
     <div class="auth-input">
-      <ion-input type="email" fill="solid" label="Имейл*" labelPlacement="floating" clearInput name="email" ngModel
-        #email="ngModel" clearInput required pattern="^[a-zA-Z0-9\._+\-]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,}$"></ion-input>
+      <ion-input
+        type="email"
+        fill="solid"
+        label="Имейл*"
+        labelPlacement="floating"
+        clearInput
+        name="email"
+        ngModel
+        #email="ngModel"
+        clearInput
+        required
+        pattern="^[a-zA-Z0-9\._+\-]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,}$"
+      ></ion-input>
     </div>
 
     <ng-container *ngIf="email.touched">
-      <p class="auth-validation-error-message" *ngIf="email.errors?.['required']">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="email.errors?.['required']"
+      >
         Полето е задължително за попълване!
       </p>
-      <p class="auth-validation-error-message" *ngIf="email.errors?.['pattern']">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="email.errors?.['pattern']"
+      >
         Моля въведете валиден имейл!
       </p>
 
@@ -23,75 +42,160 @@
 
     <!-- password -->
     <div class="auth-input">
-      <ion-input type="password" fill="solid" label="Парола*" labelPlacement="floating" clearInput name="password"
-        ngModel #password="ngModel" required minlength="6" maxlength="24" clearInput pattern="^\S+$"></ion-input>
+      <ion-input
+        type="password"
+        fill="solid"
+        label="Парола*"
+        labelPlacement="floating"
+        clearInput
+        name="password"
+        ngModel
+        #password="ngModel"
+        required
+        minlength="6"
+        maxlength="24"
+        clearInput
+        pattern="^\S+$"
+      ></ion-input>
     </div>
 
     <ng-container *ngIf="password.touched">
-      <p class="auth-validation-error-message" *ngIf="password.errors?.['required']">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="password.errors?.['required']"
+      >
         Полето е задължително за попълване!
       </p>
-      <p class="auth-validation-error-message" *ngIf="password.errors?.['minlength']">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="password.errors?.['minlength']"
+      >
         Паролата трябва да е с дължина поне 6 символа!
       </p>
-      <p class="auth-validation-error-message" *ngIf="password.errors?.['maxlength']">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="password.errors?.['maxlength']"
+      >
         Паролата трябва да е с максимална дължина 24 символа!
       </p>
-      <p class="auth-validation-error-message" *ngIf="password.value && password.value.includes(' ')">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="password.value && password.value.includes(' ')"
+      >
         Паролата не трябва да съдържа празни места!
       </p>
     </ng-container>
 
     <!-- repeat password -->
     <div class="auth-input">
-      <ion-input type="password" fill="solid" label="Повтори парола*" labelPlacement="floating" clearInput name="repass"
-        ngModel #repass="ngModel" required clearInput pattern="{{ password.value }}"></ion-input>
+      <ion-input
+        type="password"
+        fill="solid"
+        label="Повтори парола*"
+        labelPlacement="floating"
+        clearInput
+        name="repassword"
+        ngModel
+        #repassword="ngModel"
+        required
+        clearInput
+        pattern="{{ password.value }}"
+      ></ion-input>
     </div>
 
-    <ng-container *ngIf="repass.touched">
-      <p class="auth-validation-error-message" *ngIf="repass.errors?.['required']">
+    <ng-container *ngIf="repassword.touched">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="repassword.errors?.['required']"
+      >
         Полето е задължително за попълване!
       </p>
-      <p class="auth-validation-error-message" *ngIf="repass.errors?.['pattern']">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="repassword.errors?.['pattern']"
+      >
         Моля уверете се, че паролите съвпадат!
       </p>
     </ng-container>
 
     <!-- organizator name -->
     <div class="auth-input">
-      <ion-input type="text" fill="solid" label="Име на организатор*" labelPlacement="floating" clearInput
-        name="organizatorName" ngModel #organizatorName="ngModel" required pattern="^[^<>\/]+$"></ion-input>
+      <ion-input
+        type="text"
+        fill="solid"
+        label="Име на организатор*"
+        labelPlacement="floating"
+        clearInput
+        name="organizatorName"
+        ngModel
+        #organizatorName="ngModel"
+        required
+        pattern="^[^<>\/]+$"
+      ></ion-input>
     </div>
 
     <ng-container *ngIf="organizatorName.touched">
-      <p class="auth-validation-error-message" *ngIf="organizatorName.errors?.['required']">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="organizatorName.errors?.['required']"
+      >
         Полето е задължително за попълване!
       </p>
-      <p class="auth-validation-error-message" *ngIf="organizatorName.errors?.['pattern']">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="organizatorName.errors?.['pattern']"
+      >
         Използват се непозволени символи!
       </p>
     </ng-container>
 
     <!-- phone -->
     <div class="auth-input">
-      <ion-input type="text" fill="solid" label="Телефон*" labelPlacement="floating" name="phone" clearInput required
-        ngModel #phone="ngModel" pattern="^[\d\+\-\(\) ]+$"></ion-input>
+      <ion-input
+        type="text"
+        fill="solid"
+        label="Телефон*"
+        labelPlacement="floating"
+        name="phone"
+        clearInput
+        required
+        ngModel
+        #phone="ngModel"
+        pattern="^[\d\+\-\(\) ]+$"
+      ></ion-input>
     </div>
 
     <ng-container *ngIf="phone.touched">
-      <p class="auth-validation-error-message" *ngIf="phone.errors?.['required']">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="phone.errors?.['required']"
+      >
         Полето е задължително за попълване!
       </p>
-      <p class="auth-validation-error-message" *ngIf="phone.errors?.['pattern']">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="phone.errors?.['pattern']"
+      >
         Телефона трябва да съдържа само числа
       </p>
     </ng-container>
 
     <!-- region -->
     <div class="auth-input">
-      <ion-select interface="popover" placeholder="Населено място" class="region-select" slot="end" name="region"
-        #region (ionChange)="onRegionChange($event.detail.value)">
-        <ion-select-option value="{{region}}" *ngFor="let region of bulgarianRegions">{{region}}</ion-select-option>
+      <ion-select
+        interface="popover"
+        placeholder="Населено място"
+        class="region-select"
+        slot="end"
+        name="region"
+        #region
+        (ionChange)="onRegionChange($event.detail.value)"
+      >
+        <ion-select-option
+          value="{{region}}"
+          *ngFor="let region of bulgarianRegions"
+          >{{region}}</ion-select-option
+        >
       </ion-select>
     </div>
 
@@ -99,7 +203,6 @@
     <p class="auth-validation-error-message" *ngIf="authResponseError">
       {{authResponseError}}
     </p>
-
   </div>
 
   <div class="main-button-wrapper">
