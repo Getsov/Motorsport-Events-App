@@ -1,8 +1,10 @@
+import { User } from './User';
+
 export interface Event {
   shortTitle: string;
   longTitle?: string;
   shortDescription: string;
-  longDescription: string;
+  longDescription?: string;
   visitorPrices: { price: number; description: string }[];
   participantPrices?: { price: number; description: string }[];
   dates: { date: string; startTime: string; endTime: string }[];
@@ -16,7 +18,7 @@ export interface Event {
   };
   category: string;
   likes: [];
-  creator: string;
+  creator: User;
   winners?: { name: string; vehicle: string; place: number }[];
   isDeleted: boolean;
   _id: string;

@@ -43,7 +43,7 @@ export class EventDetailPage implements OnInit {
     },
     category: '',
     likes: [],
-    creator: '',
+    creator: { email: '', role: '', isDeleted: false },
     isDeleted: false,
     _id: '',
   };
@@ -74,7 +74,6 @@ export class EventDetailPage implements OnInit {
 
     this.setEvent();
   }
-
   setEvent() {
     this.eventService.getEvent(this.eventId).subscribe({
       next: (response) => {

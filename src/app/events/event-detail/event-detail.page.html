@@ -36,7 +36,7 @@
   <div class="ion-padding-horizontal">
     <div>
       <p class="info-title">Организатор на събитието:</p>
-      <p class="info-details">"{{event.creator}}"</p>
+      <p class="info-details">{{event.creator.organizatorName}}</p>
     </div>
 
     <div class="date-wrapper">
@@ -44,7 +44,7 @@
       <ion-grid class="ion-no-padding">
         <ion-row *ngFor="let date of event.dates">
           <ion-col class="ion-text-justify" size="medium" class="info-details"
-            >{{date.date}} г.</ion-col
+            >{{date.date | date:'dd.MM.yyyy'}} г.</ion-col
           >
           <ion-col size="auto" class="ion-text-center info-details">
             &nbsp; - &nbsp; от {{ date.startTime }}

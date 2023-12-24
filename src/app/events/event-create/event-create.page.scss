@@ -33,12 +33,17 @@
 
       ion-select.region-select::part(icon),
       ion-select.event-type-select::part(icon) {
+        bottom: 1em;
         right: 1em;
       }
 
       ion-textarea {
         height: auto;
       }
+    }
+
+    .contacts-input {
+      border-bottom: 1px solid #fff;
     }
   }
 
@@ -52,4 +57,8 @@
     flex-direction: column;
     gap: 1em;
   }
+}
+
+::ng-deep .alert-title.sc-ion-alert-ios {
+  color: #ff7418;
 }

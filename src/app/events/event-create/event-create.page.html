@@ -17,7 +17,9 @@
           [title]="separatorPictureTitle"
         />
         <div class="image-upload-wrapper ion-padding-horizontal">
-          <app-image-picker></app-image-picker>
+          <app-image-picker
+            (imagePicked)="onImageUpload($event)"
+          ></app-image-picker>
         </div>
       </div>
 
@@ -36,6 +38,8 @@
             labelPlacement="floating"
             [counter]="true"
             maxlength="20"
+            name="shortTitle"
+            ngModel
           ></ion-input>
 
           <!-- long title input -->
@@ -44,6 +48,8 @@
             labelPlacement="floating"
             [counter]="true"
             maxlength="80"
+            name="longTitle"
+            ngModel
           ></ion-input>
 
           <!-- short description -->
@@ -52,33 +58,39 @@
             labelPlacement="floating"
             [counter]="true"
             maxlength="140"
+            name="shortDescription"
+            ngModel
           ></ion-input>
 
           <!-- event category selector -->
           <div class="category-select-wrapper">
             <ion-select
-              interface="popover"
-              placeholder="Вид на събитието"
               class="event-type-select"
+              label="Вид на събитието*"
+              labelPlacement="floating"
               slot="end"
+              okText="Ок"
+              cancelText="Откажи"
+              #category
+              (ionChange)="onEventTypeChange($event.detail.value)"
             >
-              <!-- TODO: Change with the Category enum -->
-              <!-- <ion-select-option
-                value="{{region}}"
-                *ngFor="let region of bulgarianRegions"
-                >{{region}}</ion-select-option
-              > -->
+              <ion-select-option
+                value="{{category}}"
+                *ngFor="let category of eventCategories"
+                >{{category}}</ion-select-option
+              >
             </ion-select>
           </div>
 
           <!-- event region selector-->
           <div class="region-select-wrapper">
             <ion-select
-              interface="popover"
-              placeholder="Регион"
+              label="Регион*"
+              labelPlacement="floating"
+              okText="Ок"
+              cancelText="Откажи"
               class="region-select"
               slot="end"
-              name="region"
               #region
               (ionChange)="onRegionChange($event.detail.value)"
             >
@@ -95,6 +107,28 @@
             labelPlacement="floating"
             [counter]="true"
             maxlength="80"
+            name="address"
+            ngModel
+          ></ion-input>
+
+          <!-- email -->
+          <ion-input
+            label="Имейл*"
+            labelPlacement="floating"
+            [counter]="true"
+            class="contacts-input"
+            name="email"
+            ngModel
+          ></ion-input>
+
+          <!-- phone-->
+          <ion-input
+            label="Телефон*"
+            labelPlacement="floating"
+            [counter]="true"
+            name="phone"
+            class="contacts-input"
+            ngModel
           ></ion-input>
 
           <!-- long description -->
@@ -104,6 +138,8 @@
             [counter]="true"
             maxlength="500"
             rows="3"
+            name="longDescription"
+            ngModel
           ></ion-textarea>
         </div>
       </div>
@@ -137,7 +173,7 @@
           <button class="main-button" type="submit">Създай събитие</button>
         </div>
         <div class="secondary-button-wrapper">
-          <button class="secondary-button">Откажи</button>
+          <a class="secondary-button">Откажи</a>
         </div>
       </div>
     </form>
