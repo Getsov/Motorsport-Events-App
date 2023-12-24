@@ -36,3 +36,19 @@ export function getHourFromWheelPicker(date: string): string {
     .toString()
     .padStart(2, '0')}`;
 }
+
+export function transformDates(
+  dates: { date: string; startTime: string; endTime: string }[]
+) {
+  return dates.map((date) => ({
+    date: transformDateFormat(date.date),
+    startTime: date.startTime,
+    endTime: date.endTime,
+  }));
+}
+
+function transformDateFormat(inputDate: string): string {
+  const parts = inputDate.split('.');
+  const [day, month, year] = parts;
+  return `${year}.${month}.${day}`;
+}
