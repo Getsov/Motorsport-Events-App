@@ -44,7 +44,7 @@
       <ion-grid class="ion-no-padding">
         <ion-row *ngFor="let date of event.dates">
           <ion-col class="ion-text-justify" size="medium" class="info-details"
-            >{{date.date}} г.</ion-col
+            >{{date.date | date:'dd.MM.yyyy'}} г.</ion-col
           >
           <ion-col size="auto" class="ion-text-center info-details">
             &nbsp; - &nbsp; от {{ date.startTime }}
