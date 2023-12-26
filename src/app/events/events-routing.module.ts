@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { EventsPage } from './events.page';
 import { AuthGuard } from 'src/shared/guards/auth.guard';
+import { RegularUserGuard } from 'src/shared/guards/regular-user.guard';
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
       import('./event-create/event-create.module').then(
         (m) => m.EventCreatePageModule
       ),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, RegularUserGuard],
   },
   {
     path: ':eventId',

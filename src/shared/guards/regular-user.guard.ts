@@ -12,7 +12,7 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class RegularUserGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
@@ -26,11 +26,12 @@ export class AuthGuard implements CanActivate {
     return this.authService.userData$.pipe(
       take(1),
       map((hasUserData) => {
-        const isLogged = !!hasUserData;
-        if (!isLogged) {
+        const isRegularUser = hasUserData?.role === 'regular';
+        if (isRegularUser) {
           this.router.navigateByUrl('tabs/user/auth');
+          return isRegularUser;
         }
-        return isLogged;
+        return true;
       })
     );
   }
