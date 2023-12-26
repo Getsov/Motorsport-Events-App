@@ -31,12 +31,13 @@ export class UserRegisterPage implements OnInit, OnDestroy {
       return;
     }
 
-    const { email, password, repass, firstName, lastName } = registerForm.value;
+    const { email, password, repassword, firstName, lastName } =
+      registerForm.value;
 
     const region = this.selectedRegion;
 
     this.userRegisterSubscription$ = this.authService
-      .registerUser(email, password, repass, firstName, lastName, region)
+      .registerUser(email, password, repassword, firstName, lastName, region)
       .subscribe({
         next: () => {
           this.authResponseError = '';

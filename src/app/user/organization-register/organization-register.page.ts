@@ -30,7 +30,7 @@ export class OrganizationRegisterPage implements OnInit, OnDestroy {
       return;
     }
 
-    const { email, password, repass, organizatorName, phone } =
+    const { email, password, repassword, organizatorName, phone } =
       organizatorRegisterForm.value;
 
     const role = 'organizer';
@@ -40,7 +40,7 @@ export class OrganizationRegisterPage implements OnInit, OnDestroy {
       .registerOrganizator(
         email,
         password,
-        repass,
+        repassword,
         organizatorName,
         phone,
         region,

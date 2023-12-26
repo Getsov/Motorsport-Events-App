@@ -20,7 +20,7 @@ export class AuthService {
   registerUser(
     email: string,
     password: string,
-    repass: string,
+    repassword: string,
     firstName: string,
     lastName: string,
     region: string
@@ -29,7 +29,7 @@ export class AuthService {
       .post<AuthResponseData>(`${baseUrl}/user/register`, {
         email,
         password,
-        repass,
+        repassword,
         firstName,
         lastName,
         region,
@@ -40,7 +40,7 @@ export class AuthService {
   registerOrganizator(
     email: string,
     password: string,
-    repass: string,
+    repassword: string,
     organizatorName: string,
     phone: string,
     region: string,
@@ -50,7 +50,7 @@ export class AuthService {
       .post<AuthResponseData>(`${baseUrl}/user/register`, {
         email,
         password,
-        repass,
+        repassword,
         organizatorName,
         phone,
         region,
