@@ -10,10 +10,26 @@
       <ion-toolbar>
         <ion-searchbar
           placeholder="Търси адрес"
-          (ionChange)="onSearchChange($event.detail.value)"
+          (input)="onSearchChange($event.target)"
         ></ion-searchbar>
       </ion-toolbar>
       <ion-content class="ion-padding-horizontal">
+        <div class="search-suggestions" *ngIf="suggestions.length">
+          <ion-list>
+            <ion-item>
+              <ion-icon
+                src="../../../../assets/icon/mdi_location.svg"
+                slot="start"
+              ></ion-icon>
+              <ion-label>
+                title
+                <p>
+                  <ion-text>Description</ion-text>
+                </p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
         <div class="google-maps-wrapper">
           <capacitor-google-map #map></capacitor-google-map>
         </div>

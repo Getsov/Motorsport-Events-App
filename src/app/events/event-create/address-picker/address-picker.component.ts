@@ -13,6 +13,9 @@ import { environment } from 'src/environments/environment';
 export class AddressPickerComponent implements OnInit {
   @ViewChild('map') gmap!: ElementRef;
   map!: GoogleMap;
+
+  suggestions = [];
+
   initialCoordinates = { lat: 42.698334, long: 23.319941 }; // sofia coordinates for initial map marker
 
   constructor(private modalController: ModalController) {}
@@ -27,7 +30,9 @@ export class AddressPickerComponent implements OnInit {
   }
 
   onSearchChange(searchTerm: any) {
-    console.log(searchTerm);
+    const searchKeyword = searchTerm.value;
+
+    // pass searchKeyword
   }
 
   async createMap() {
