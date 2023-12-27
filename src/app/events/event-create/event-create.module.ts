@@ -12,6 +12,7 @@ import { ImagePickerComponent } from './image-picker/image-picker.component';
 import { SelectDatesComponent } from './select-dates/select-dates.component';
 import { SelectPriceComponent } from './select-price/select-price.component';
 import { CalendarDatePickerComponent } from './calendar-picker/calendar-picker.component';
+import { AddressPickerComponent } from './address-picker/address-picker.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { CalendarDatePickerComponent } from './calendar-picker/calendar-picker.c
     SelectDatesComponent,
     SelectPriceComponent,
     CalendarDatePickerComponent,
+    AddressPickerComponent,
   ],
 })
 export class EventCreatePageModule {}
