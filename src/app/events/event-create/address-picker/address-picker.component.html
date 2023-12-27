@@ -1,3 +1,23 @@
-<p>
-  address-picker works!
-</p>
+<div class="date-input-wrapper">
+  <ion-input
+    label="Избери адрес*"
+    labelPlacement="floating"
+    id="address-picker"
+    (click)="onOpenModal()"
+  ></ion-input>
+  <ion-modal [trigger]="'address-picker'">
+    <ng-template>
+      <ion-toolbar>
+        <ion-searchbar
+          placeholder="Търси адрес"
+          (ionChange)="onSearchChange($event.detail.value)"
+        ></ion-searchbar>
+      </ion-toolbar>
+      <ion-content class="ion-padding-horizontal">
+        <div class="google-maps-wrapper">
+          <capacitor-google-map #map></capacitor-google-map>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</div>

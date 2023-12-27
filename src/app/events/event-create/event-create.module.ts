@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -13,6 +13,7 @@ import { SelectDatesComponent } from './select-dates/select-dates.component';
 import { SelectPriceComponent } from './select-price/select-price.component';
 import { CalendarDatePickerComponent } from './calendar-picker/calendar-picker.component';
 import { AddressPickerComponent } from './address-picker/address-picker.component';
+import { EventMarkerModalPageModule } from '../event-detail/event-marker-modal/event-marker-modal.module';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { AddressPickerComponent } from './address-picker/address-picker.componen
     IonicModule,
     EventCreatePageRoutingModule,
     SharedModule,
+    EventMarkerModalPageModule,
   ],
   declarations: [
     EventCreatePage,
@@ -30,5 +32,6 @@ import { AddressPickerComponent } from './address-picker/address-picker.componen
     CalendarDatePickerComponent,
     AddressPickerComponent,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class EventCreatePageModule {}

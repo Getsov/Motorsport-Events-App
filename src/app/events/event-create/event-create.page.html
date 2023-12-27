@@ -102,14 +102,9 @@
             </ion-select>
           </div>
           <!-- address-->
-          <ion-input
-            label="Адрес на събитието*"
-            labelPlacement="floating"
-            [counter]="true"
-            maxlength="80"
-            name="address"
-            ngModel
-          ></ion-input>
+          <div class="event-address-wrapper">
+            <app-address-picker></app-address-picker>
+          </div>
 
           <!-- email -->
           <ion-input
