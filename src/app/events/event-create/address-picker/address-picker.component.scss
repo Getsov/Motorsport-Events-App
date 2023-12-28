@@ -12,9 +12,7 @@ ion-modal {
   --height: auto;
   --border-radius: 4px;
   --box-shadow: 0px 0px 8px 1px rgba(255, 116, 24, 0.3);
-  ion-toolbar {
-    --background: transparent;
-  }
+  ion-toolbar,
   ion-content {
     --background: transparent;
   }
