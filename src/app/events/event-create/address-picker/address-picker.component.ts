@@ -1,4 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
 import { ModalController } from '@ionic/angular';
 
@@ -12,6 +19,13 @@ import { environment } from 'src/environments/environment';
 })
 export class AddressPickerComponent implements OnInit {
   @ViewChild('map') gmap!: ElementRef;
+  @Output() confirmedAddress = new EventEmitter<{
+    title: string;
+    address: string;
+    lat: number;
+    lng: number;
+  }>();
+
   map!: GoogleMap;
 
   suggestions: any[] = [];
@@ -19,11 +33,13 @@ export class AddressPickerComponent implements OnInit {
   selectedAddress = {
     title: '',
     address: '',
-    lat: '',
-    lng: '',
+    lat: 0,
+    lng: 0,
   };
 
-  initialCoordinates = { lat: 42.698334, lng: 23.319941 }; // sofia coordinates for initial map location
+  addressConfirmed = false;
+
+  initialCoordinates = { lat: 42.698334, lng: 23.319941 }; // sofia coordinates for initial map location without marker
 
   constructor(private modalController: ModalController) {}
 
@@ -139,7 +155,8 @@ export class AddressPickerComponent implements OnInit {
   }
 
   onConfirmAddress() {
-    console.log(this.selectedAddress);
+    this.addressConfirmed = true;
+    this.confirmedAddress.emit(this.selectedAddress);
     this.closeModal();
   }
 }

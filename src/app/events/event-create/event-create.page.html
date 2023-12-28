@@ -103,7 +103,9 @@
           </div>
           <!-- address-->
           <div class="event-address-wrapper">
-            <app-address-picker></app-address-picker>
+            <app-address-picker
+              (confirmedAddress)="onConfirmedAddress($event)"
+            ></app-address-picker>
           </div>
 
           <!-- email -->

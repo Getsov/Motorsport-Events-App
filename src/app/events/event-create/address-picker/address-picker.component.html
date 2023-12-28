@@ -4,6 +4,7 @@
     labelPlacement="floating"
     id="address-picker"
     (click)="onOpenModal()"
+    [value]="addressConfirmed ? selectedAddress.title : ''"
   ></ion-input>
   <ion-modal [trigger]="'address-picker'" class="modal-picker address-modal">
     <ng-template>
