@@ -25,12 +25,28 @@ export class AddressPickerComponent implements OnInit {
   onOpenModal() {
     setTimeout(() => {
       // initialize google maps moment after modal is opened. Otherwise throws error "gmap is undefined"
-      this.createMap();
+      this.createMap(this.initialCoordinates.lat, this.initialCoordinates.long);
     }, 1);
   }
 
-  onAddressSelect(address: any) {
-    console.log(address);
+  async onAddressSelect(address: any) {
+    this.suggestions = [];
+
+    let coordinates: any = await this.geoCode(address.description);
+
+    const selectedAddress = {
+      title: address.structured_formatting.main_text,
+      address: address.structured_formatting.secondary_text,
+      lat: coordinates.lat,
+      lng: coordinates.lng,
+    };
+
+    this.createMap(
+      selectedAddress.lat,
+      selectedAddress.lng,
+      selectedAddress.title,
+      selectedAddress.address
+    );
   }
 
   async onSearchChange(searchTerm: any) {
@@ -52,7 +68,7 @@ export class AddressPickerComponent implements OnInit {
         },
         (predictions) => {
           this.suggestions = [];
-          predictions?.forEach(async (place) => this.suggestions.push(place));
+          predictions?.forEach((place) => this.suggestions.push(place));
         }
       );
     } catch (error) {
@@ -60,31 +76,32 @@ export class AddressPickerComponent implements OnInit {
     }
   }
 
-  async createMap() {
+  async createMap(lat: number, lng: number, title?: string, address?: string) {
     this.map = await GoogleMap.create({
       id: this.initialCoordinates.lat.toString(),
       apiKey: environment.mapsKey,
       element: this.gmap.nativeElement,
       config: {
         center: {
-          lat: Number(this.initialCoordinates.lat),
-          lng: Number(this.initialCoordinates.long),
+          lat: lat,
+          lng: lng,
         },
         zoom: 13,
       },
     });
-
-    await this.addMarker();
+    if (title && address) {
+      await this.addMarker(title, address, lat, lng);
+    }
   }
 
-  async addMarker() {
+  async addMarker(title: string, address: string, lat: number, lng: number) {
     const marker: Marker = {
       coordinate: {
-        lat: Number(this.initialCoordinates.lat),
-        lng: Number(this.initialCoordinates.long),
+        lat: lat,
+        lng: lng,
       },
-      title: 'test title',
-      snippet: `test address`,
+      title: title,
+      snippet: address,
     };
 
     await this.map.addMarker(marker);
