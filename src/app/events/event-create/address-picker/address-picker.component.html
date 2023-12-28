@@ -5,7 +5,7 @@
     id="address-picker"
     (click)="onOpenModal()"
   ></ion-input>
-  <ion-modal [trigger]="'address-picker'">
+  <ion-modal [trigger]="'address-picker'" class="modal-picker address-modal">
     <ng-template>
       <ion-toolbar>
         <ion-searchbar
@@ -39,6 +39,22 @@
           <capacitor-google-map #map></capacitor-google-map>
         </div>
       </ion-content>
+      <ion-footer>
+        <ion-toolbar>
+          <div class="hour-picker-action-buttons">
+            <ion-buttons>
+              <ion-button slot="start" (click)="closeModal()"
+                >Откажи</ion-button
+              >
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button (click)="onConfirmAddress()"
+                >Потвърди адрес</ion-button
+              >
+            </ion-buttons>
+          </div>
+        </ion-toolbar>
+      </ion-footer>
     </ng-template>
   </ion-modal>
 </div>

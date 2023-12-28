@@ -16,7 +16,14 @@ export class AddressPickerComponent implements OnInit {
 
   suggestions: any[] = [];
 
-  initialCoordinates = { lat: 42.698334, long: 23.319941 }; // sofia coordinates for initial map marker
+  selectedAddress = {
+    title: '',
+    address: '',
+    lat: '',
+    lng: '',
+  };
+
+  initialCoordinates = { lat: 42.698334, lng: 23.319941 }; // sofia coordinates for initial map location
 
   constructor(private modalController: ModalController) {}
 
@@ -25,7 +32,7 @@ export class AddressPickerComponent implements OnInit {
   onOpenModal() {
     setTimeout(() => {
       // initialize google maps moment after modal is opened. Otherwise throws error "gmap is undefined"
-      this.createMap(this.initialCoordinates.lat, this.initialCoordinates.long);
+      this.createMap(this.initialCoordinates);
     }, 1);
   }
 
@@ -34,19 +41,12 @@ export class AddressPickerComponent implements OnInit {
 
     let coordinates: any = await this.geoCode(address.description);
 
-    const selectedAddress = {
-      title: address.structured_formatting.main_text,
-      address: address.structured_formatting.secondary_text,
-      lat: coordinates.lat,
-      lng: coordinates.lng,
-    };
+    this.selectedAddress.title = address.structured_formatting.main_text;
+    this.selectedAddress.address = address.structured_formatting.secondary_text;
+    this.selectedAddress.lat = coordinates.lat;
+    this.selectedAddress.lng = coordinates.lng;
 
-    this.createMap(
-      selectedAddress.lat,
-      selectedAddress.lng,
-      selectedAddress.title,
-      selectedAddress.address
-    );
+    this.createMap(this.selectedAddress);
   }
 
   async onSearchChange(searchTerm: any) {
@@ -76,32 +76,32 @@ export class AddressPickerComponent implements OnInit {
     }
   }
 
-  async createMap(lat: number, lng: number, title?: string, address?: string) {
+  async createMap(selectedAddress: any) {
     this.map = await GoogleMap.create({
       id: this.initialCoordinates.lat.toString(),
       apiKey: environment.mapsKey,
       element: this.gmap.nativeElement,
       config: {
         center: {
-          lat: lat,
-          lng: lng,
+          lat: selectedAddress.lat,
+          lng: selectedAddress.lng,
         },
         zoom: 13,
       },
     });
-    if (title && address) {
-      await this.addMarker(title, address, lat, lng);
+    if (selectedAddress.title && selectedAddress.address) {
+      await this.addMarker(selectedAddress);
     }
   }
 
-  async addMarker(title: string, address: string, lat: number, lng: number) {
+  async addMarker(selectedAddress: any) {
     const marker: Marker = {
       coordinate: {
-        lat: lat,
-        lng: lng,
+        lat: selectedAddress.lat,
+        lng: selectedAddress.lng,
       },
-      title: title,
-      snippet: address,
+      title: selectedAddress.title,
+      snippet: selectedAddress.address,
     };
 
     await this.map.addMarker(marker);
@@ -120,7 +120,6 @@ export class AddressPickerComponent implements OnInit {
       modal.present();
     });
   }
-  // let coordinates: any = await this.geoCode(place.description);
 
   geoCode(address: string) {
     const latLng = { lat: 0, lng: 0 };
@@ -133,5 +132,14 @@ export class AddressPickerComponent implements OnInit {
         res(latLng);
       });
     });
+  }
+
+  async closeModal() {
+    await this.modalController.dismiss();
+  }
+
+  onConfirmAddress() {
+    console.log(this.selectedAddress);
+    this.closeModal();
   }
 }
