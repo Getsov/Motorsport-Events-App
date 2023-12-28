@@ -1,0 +1,61 @@
+<div class="date-input-wrapper">
+  <ion-input
+    label="Избери адрес*"
+    labelPlacement="floating"
+    id="address-picker"
+    (click)="onOpenModal()"
+    [value]="addressConfirmed ? selectedAddress.title : ''"
+  ></ion-input>
+  <ion-modal [trigger]="'address-picker'" class="modal-picker address-modal">
+    <ng-template>
+      <ion-toolbar>
+        <ion-searchbar
+          placeholder="Търси адрес"
+          (input)="onSearchChange($event.target)"
+        ></ion-searchbar>
+      </ion-toolbar>
+      <ion-content class="ion-padding-horizontal">
+        <div class="search-suggestions" *ngIf="suggestions.length">
+          <ion-list>
+            <ion-item
+              *ngFor="let address of suggestions"
+              (click)="onAddressSelect(address)"
+            >
+              <ion-icon
+                src="../../../../assets/icon/mdi_location.svg"
+                slot="start"
+              ></ion-icon>
+              <ion-label>
+                {{ address.structured_formatting.main_text }}
+                <p>
+                  <ion-text>{{
+                    address.structured_formatting.secondary_text
+                  }}</ion-text>
+                </p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+        <div class="google-maps-wrapper">
+          <capacitor-google-map #map></capacitor-google-map>
+        </div>
+      </ion-content>
+      <ion-footer>
+        <ion-toolbar>
+          <div class="hour-picker-action-buttons">
+            <ion-buttons>
+              <ion-button slot="start" (click)="closeModal()"
+                >Откажи</ion-button
+              >
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button (click)="onConfirmAddress()"
+                >Потвърди адрес</ion-button
+              >
+            </ion-buttons>
+          </div>
+        </ion-toolbar>
+      </ion-footer>
+    </ng-template>
+  </ion-modal>
+</div>

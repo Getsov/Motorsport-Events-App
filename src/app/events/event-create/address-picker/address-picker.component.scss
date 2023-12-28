@@ -1,0 +1,69 @@
+.date-input-wrapper {
+  ion-input {
+    width: 100%;
+    label {
+      color: #fff;
+    }
+  }
+}
+
+ion-modal {
+  --background: #0b0b0b;
+  --height: auto;
+  --border-radius: 4px;
+  --box-shadow: 0px 0px 8px 1px rgba(255, 116, 24, 0.3);
+  ion-toolbar,
+  ion-content {
+    --background: transparent;
+  }
+
+  .hour-picker-action-buttons {
+    display: flex;
+    justify-content: center;
+
+    ion-buttons {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      ion-button {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  ::ng-deep .ion-page {
+    height: 100%;
+    width: 101%; // this was the only way to hide a strange scroll which appeared
+  }
+}
+
+ion-modal.modal-picker::part(content) {
+  height: 250px;
+  width: 90%;
+}
+
+// calendar modal fine tunning
+ion-modal.address-modal::part(content) {
+  height: 750px;
+  width: 90%;
+}
+
+ion-searchbar {
+  margin-top: 1em;
+}
+
+// google maps
+.google-maps-wrapper {
+  display: inline-block;
+  height: 240px;
+  width: 100%;
+}
+
+capacitor-google-map {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0px 0px 8px 1px rgba(255, 220, 35, 0.3);
+  border-radius: 4px;
+}

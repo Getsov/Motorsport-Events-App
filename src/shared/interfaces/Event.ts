@@ -10,7 +10,7 @@ export interface Event {
   dates: { date: string; startTime: string; endTime: string }[];
   imageUrl: string;
   contacts: {
-    coordinates: { lat: number; long: number };
+    coordinates: { lat: number; lng: number };
     region: string;
     address: string;
     phone: string;

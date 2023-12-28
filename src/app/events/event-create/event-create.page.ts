@@ -31,6 +31,9 @@ export class EventCreatePage implements OnInit {
   // regions select
   selectedRegion: string = '';
 
+  // selected address value
+  selectedAddress: any;
+
   // image Url from imagePicker
   imageUrl: string = '';
 
@@ -97,9 +100,12 @@ export class EventCreatePage implements OnInit {
       imageUrl: this.imageUrl,
       category: this.selectedEventType,
       contacts: {
-        coordinates: { lat: 42.671227, long: 23.369354 }, // hard coded coordinates
+        coordinates: {
+          lat: this.selectedAddress.lat,
+          lng: this.selectedAddress.lng,
+        }, // hard coded coordinates
         region: this.selectedRegion,
-        address: eventForm.value.address,
+        address: this.selectedAddress.address,
         email: eventForm.value.email,
         phone: eventForm.value.phone,
       },
@@ -137,5 +143,9 @@ export class EventCreatePage implements OnInit {
 
   onImageUpload(imageData: string) {
     this.imageUrl = imageData;
+  }
+
+  onConfirmedAddress(confirmedAddress: any) {
+    this.selectedAddress = confirmedAddress;
   }
 }

@@ -21,7 +21,7 @@ export class SlideCardComponent implements OnInit {
     contacts: {
       coordinates: {
         lat: 0,
-        long: 0,
+        lng: 0,
       },
       region: '',
       address: '',
