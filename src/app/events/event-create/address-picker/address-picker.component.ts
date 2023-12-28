@@ -14,7 +14,7 @@ export class AddressPickerComponent implements OnInit {
   @ViewChild('map') gmap!: ElementRef;
   map!: GoogleMap;
 
-  suggestions = [];
+  suggestions: any[] = [];
 
   initialCoordinates = { lat: 42.698334, long: 23.319941 }; // sofia coordinates for initial map marker
 
@@ -29,10 +29,31 @@ export class AddressPickerComponent implements OnInit {
     }, 1);
   }
 
-  onSearchChange(searchTerm: any) {
+  async onSearchChange(searchTerm: any) {
     const searchKeyword = searchTerm.value;
 
     // pass searchKeyword
+    if (searchKeyword) await this.getPlaces(searchKeyword);
+  }
+
+  async getPlaces(searchTerm: string) {
+    try {
+      const autocomplete = new google.maps.places.AutocompleteService();
+      autocomplete.getPlacePredictions(
+        {
+          input: searchTerm,
+          componentRestrictions: {
+            country: 'BG',
+          },
+        },
+        (predictions) => {
+          this.suggestions = [];
+          predictions?.forEach((place) => this.suggestions.push(place));
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async createMap() {

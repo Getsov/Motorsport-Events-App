@@ -16,15 +16,15 @@
       <ion-content class="ion-padding-horizontal">
         <div class="search-suggestions" *ngIf="suggestions.length">
           <ion-list>
-            <ion-item>
+            <ion-item *ngFor="let address of suggestions">
               <ion-icon
                 src="../../../../assets/icon/mdi_location.svg"
                 slot="start"
               ></ion-icon>
               <ion-label>
-                title
+                {{ address.description }}
                 <p>
-                  <ion-text>Description</ion-text>
+                  <ion-text>{{ address.description }}</ion-text>
                 </p>
               </ion-label>
             </ion-item>
