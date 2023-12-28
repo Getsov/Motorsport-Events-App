@@ -29,6 +29,10 @@ export class AddressPickerComponent implements OnInit {
     }, 1);
   }
 
+  onAddressSelect(address: any) {
+    console.log(address);
+  }
+
   async onSearchChange(searchTerm: any) {
     const searchKeyword = searchTerm.value;
 
@@ -48,7 +52,7 @@ export class AddressPickerComponent implements OnInit {
         },
         (predictions) => {
           this.suggestions = [];
-          predictions?.forEach((place) => this.suggestions.push(place));
+          predictions?.forEach(async (place) => this.suggestions.push(place));
         }
       );
     } catch (error) {
@@ -97,6 +101,20 @@ export class AddressPickerComponent implements OnInit {
       });
 
       modal.present();
+    });
+  }
+  // let coordinates: any = await this.geoCode(place.description);
+
+  geoCode(address: string) {
+    const latLng = { lat: 0, lng: 0 };
+
+    return new Promise((res, rej) => {
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ address: address }, (result) => {
+        latLng.lat = result![0].geometry.location.lat();
+        latLng.lng = result![0].geometry.location.lng();
+        res(latLng);
+      });
     });
   }
 }
