@@ -30,9 +30,11 @@ export class EventCreatePage implements OnInit {
 
   // regions select
   selectedRegion: string = '';
+  selectedRegionErrorMessage = '';
 
   // selected address value
   selectedAddress: any;
+  selectedAddressErrorMessage = '';
 
   // image Url from imagePicker
   imageUrl: string = '';
@@ -70,6 +72,9 @@ export class EventCreatePage implements OnInit {
   priceSeparatorColor: string = 'yellow';
   priceSeparatorTitle: string = 'Цени';
 
+  // Index signature so we can access dynamically variables for the error messages
+  [key: string]: any;
+
   constructor(
     private authService: AuthService,
     private eventService: EventsService,
@@ -79,17 +84,22 @@ export class EventCreatePage implements OnInit {
   ngOnInit() {}
 
   onCreateEventSubmit(eventForm: NgForm) {
-    if (!this.imageUrl) {
-      this.imageErrorMessage = 'Снимката е задължителна';
-      return;
-    }
-
-    if (!this.selectedEventType) {
-      this.selectedEventTypeErrorMessage = 'Полето е задължително';
-      return;
-    }
-
-    if (eventForm.invalid) {
+    if (
+      !this.validateRequiredField(this.imageUrl, 'imageErrorMessage') ||
+      !this.validateRequiredField(
+        this.selectedEventType,
+        'selectedEventTypeErrorMessage'
+      ) ||
+      !this.validateRequiredField(
+        this.selectedRegion,
+        'selectedRegionErrorMessage'
+      ) ||
+      !this.validateRequiredField(
+        this.selectedAddress,
+        'selectedAddressErrorMessage'
+      ) ||
+      eventForm.invalid
+    ) {
       return;
     }
 
@@ -159,5 +169,16 @@ export class EventCreatePage implements OnInit {
 
   onConfirmedAddress(confirmedAddress: any) {
     this.selectedAddress = confirmedAddress;
+  }
+
+  // function to validate inputs which can not be validated from the template
+  validateRequiredField(value: any, errorMessageVariable: string): boolean {
+    if (!value) {
+      this[errorMessageVariable] = 'Полето е задължително';
+      return false;
+    }
+    this[errorMessageVariable] = '';
+
+    return true;
   }
 }
