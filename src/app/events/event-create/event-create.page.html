@@ -162,7 +162,26 @@
             class="contacts-input"
             name="email"
             ngModel
+            #email="ngModel"
+            required
+            pattern="^[a-zA-Z0-9\._+\-]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,}$"
           ></ion-input>
+
+          <!-- email error message -->
+          <ng-container *ngIf="email.touched">
+            <p
+              class="validation-error-message"
+              *ngIf="email.errors?.['required']"
+            >
+              Полето е задължително за попълване!
+            </p>
+            <p
+              class="validation-error-message"
+              *ngIf="email.errors?.['pattern']"
+            >
+              Моля въведете валиден имейл!
+            </p>
+          </ng-container>
 
           <!-- phone-->
           <ion-input
@@ -172,6 +191,7 @@
             name="phone"
             class="contacts-input"
             ngModel
+            required
           ></ion-input>
 
           <!-- long description -->
