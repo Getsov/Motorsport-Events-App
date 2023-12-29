@@ -47,6 +47,7 @@ export class EventCreatePage implements OnInit {
   eventCategories: string[] = Object.keys(Categories).filter((v) =>
     isNaN(Number(v))
   );
+  selectedEventTypeErrorMessage = '';
 
   // header separator settings
   headerTitle: string = 'Създай събитие';
@@ -80,6 +81,11 @@ export class EventCreatePage implements OnInit {
   onCreateEventSubmit(eventForm: NgForm) {
     if (!this.imageUrl) {
       this.imageErrorMessage = 'Снимката е задължителна';
+      return;
+    }
+
+    if (!this.selectedEventType) {
+      this.selectedEventTypeErrorMessage = 'Полето е задължително';
       return;
     }
 

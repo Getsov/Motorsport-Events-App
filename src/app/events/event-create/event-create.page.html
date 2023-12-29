@@ -102,6 +102,12 @@
               >
             </ion-select>
           </div>
+          <p
+            *ngIf="selectedEventTypeErrorMessage"
+            class="validation-error-message"
+          >
+            {{selectedEventTypeErrorMessage}}
+          </p>
 
           <!-- event region selector-->
           <div class="region-select-wrapper">
