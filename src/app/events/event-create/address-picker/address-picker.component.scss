@@ -15,6 +15,9 @@ ion-modal {
   ion-toolbar,
   ion-content {
     --background: transparent;
+    ion-item {
+      --background: #0b0b0b;
+    }
   }
 
   .hour-picker-action-buttons {
