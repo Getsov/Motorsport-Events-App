@@ -1,5 +1,5 @@
 <div *ngFor="let date of dates; let i = index">
-  <div class="date-input-wrapper">
+  <div class="picker-wrapper">
     <!-- Date Picker -->
     <ion-input
       placeholder="Избери дата"
@@ -21,7 +21,7 @@
         </ion-content>
         <ion-footer>
           <ion-toolbar>
-            <div class="hour-picker-action-buttons">
+            <div class="modal-picker-action-buttons">
               <ion-buttons>
                 <ion-button slot="start" (click)="closeModal()"
                   >Откажи</ion-button
@@ -68,7 +68,7 @@
 
         <ion-footer>
           <ion-toolbar>
-            <div class="hour-picker-action-buttons">
+            <div class="modal-picker-action-buttons">
               <ion-buttons>
                 <ion-button slot="start" (click)="closeModal()"
                   >Откажи</ion-button
@@ -114,7 +114,7 @@
 
         <ion-footer>
           <ion-toolbar>
-            <div class="hour-picker-action-buttons">
+            <div class="modal-picker-action-buttons">
               <ion-buttons>
                 <ion-button slot="start" (click)="closeModal()"
                   >Откажи</ion-button
