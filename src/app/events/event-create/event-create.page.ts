@@ -36,6 +36,7 @@ export class EventCreatePage implements OnInit {
 
   // image Url from imagePicker
   imageUrl: string = '';
+  imageErrorMessage = '';
 
   bulgarianRegions: string[] = Object.keys(BulgarianRegions).filter((v) =>
     isNaN(Number(v))
@@ -77,6 +78,11 @@ export class EventCreatePage implements OnInit {
   ngOnInit() {}
 
   onCreateEventSubmit(eventForm: NgForm) {
+    if (!this.imageUrl) {
+      this.imageErrorMessage = 'Снимката е задължителна';
+      return;
+    }
+
     if (eventForm.invalid) {
       return;
     }

@@ -20,6 +20,9 @@
           <app-image-picker
             (imagePicked)="onImageUpload($event)"
           ></app-image-picker>
+          <p *ngIf="imageErrorMessage" class="validation-error-message">
+            {{imageErrorMessage}}
+          </p>
         </div>
       </div>
 
@@ -40,7 +43,16 @@
             maxlength="20"
             name="shortTitle"
             ngModel
+            required
+            #shortTitle="ngModel"
           ></ion-input>
+
+          <p
+            *ngIf="shortTitle.touched && shortTitle.errors?.['required']"
+            class="validation-error-message"
+          >
+            Полето е задължително за попълване!
+          </p>
 
           <!-- long title input -->
           <ion-input
@@ -60,7 +72,16 @@
             maxlength="140"
             name="shortDescription"
             ngModel
+            #shortDescription="ngModel"
+            required
           ></ion-input>
+
+          <p
+            *ngIf="shortDescription.touched && shortDescription.errors?.['required']"
+            class="validation-error-message"
+          >
+            Полето е задължително за попълване!
+          </p>
 
           <!-- event category selector -->
           <div class="category-select-wrapper">

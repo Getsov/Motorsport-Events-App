@@ -59,6 +59,13 @@
   }
 }
 
+.validation-error-message {
+  color: #ff0000;
+  padding-left: 16px;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
 ::ng-deep .alert-title.sc-ion-alert-ios {
   color: #ff7418;
 }
