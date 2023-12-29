@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import {
   Camera,
   CameraResultType,
@@ -15,7 +17,7 @@ export class ImagePickerComponent implements OnInit {
   @Output() imagePicked = new EventEmitter<string>();
   selectedImage: string = '';
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {}
 
@@ -23,13 +25,13 @@ export class ImagePickerComponent implements OnInit {
     const image = await Camera.getPhoto({
       quality: 100,
       allowEditing: false,
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.Base64, 
       source: CameraSource.Photos,
     });
 
     if (image) {
-      this.imagePicked.emit(image.webPath!);
       this.savePicture(image);
+      this.uploadImage(image);
     }
   }
 
@@ -39,5 +41,22 @@ export class ImagePickerComponent implements OnInit {
 
   onDiscardSelectedImage(): void {
     this.selectedImage = '';
+    console.log(this.selectedImage);
+  }
+  
+  async uploadImage(photo: Photo) {
+    const formData = new FormData();
+    formData.append('image', photo.base64String!);
+
+    this.http.post('http://localhost:3030/events/register', formData).subscribe(
+      (response) => {
+        // Handle success if needed
+        console.log('Image uploaded successfully', response);
+      },
+      (error) => {
+        // Handle error if needed
+        console.error('Error uploading image', error);
+      }
+    );
   }
 }
