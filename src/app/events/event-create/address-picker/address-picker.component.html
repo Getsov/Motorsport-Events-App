@@ -12,6 +12,7 @@
         <ion-searchbar
           placeholder="Търси адрес"
           (input)="onSearchChange($event.target)"
+          [(ngModel)]="selectedAddress.title"
         ></ion-searchbar>
       </ion-toolbar>
       <ion-content class="ion-padding-horizontal">
