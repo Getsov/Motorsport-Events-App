@@ -38,7 +38,7 @@ export class ImagePickerComponent implements OnInit {
   }
 
   onDiscardSelectedImage(): void {
-    this.imagePicked.emit('');
+    this.imagePicked.emit();
     this.selectedImage = '';
   }
 }

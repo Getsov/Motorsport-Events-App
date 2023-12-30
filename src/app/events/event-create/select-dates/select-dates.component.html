@@ -4,7 +4,18 @@
     <ion-input
       placeholder="Избери дата"
       [(ngModel)]="dates[i].date"
-      class="date-hour-select"
+      [ngClass]="
+        datesError[0] && i === datesError[1]
+          ? 'custom-invalid-input date-hour-select'
+          : 'date-hour-select'
+      "
+      [ngClass]="
+        dates[i].date &&
+        dates[i].startTime !== '00:00' &&
+        dates[i].endTime !== '00:00'
+          ? 'custom-valid-input date-hour-select'
+          : 'date-hour-select'
+      "
       name="date"
       [id]="'open-calendar-' + i"
     >
@@ -41,7 +52,18 @@
     <!-- Start Time Picker -->
     <ion-input
       placeholder="от 00:00 ч."
-      class="date-hour-select"
+      [ngClass]="
+        datesError[0] && i === datesError[1]
+          ? 'custom-invalid-input date-hour-select'
+          : 'date-hour-select'
+      "
+      [ngClass]="
+        dates[i].date &&
+        dates[i].startTime !== '00:00' &&
+        dates[i].endTime !== '00:00'
+          ? 'custom-valid-input date-hour-select'
+          : 'date-hour-select'
+      "
       slot="end"
       name="region"
       [id]="'open-start-hour-' + i"
@@ -90,6 +112,18 @@
     <ion-input
       placeholder="до 00:00 ч."
       class="date-hour-select"
+      [ngClass]="
+        datesError[0] && i === datesError[1]
+          ? 'custom-invalid-input date-hour-select'
+          : 'date-hour-select'
+      "
+      [ngClass]="
+        dates[i].date &&
+        dates[i].startTime !== '00:00' &&
+        dates[i].endTime !== '00:00'
+          ? 'custom-valid-input date-hour-select'
+          : 'date-hour-select'
+      "
       slot="end"
       name="region"
       [id]="'open-end-hour-' + i"

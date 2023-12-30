@@ -22,6 +22,24 @@ ion-input.date-hour-select {
   }
 }
 
+ion-input.custom-valid-input {
+  border-bottom: 1px solid #008000;
+  --placeholder-color: #008000;
+  color: #008000;
+  ion-icon {
+    content: url("../../../../assets/icon/arrow-up-down-success.png");
+  }
+}
+
+ion-input.custom-invalid-input {
+  border-bottom: 1px solid red;
+  --placeholder-color: #ff0000;
+  color: #ff0000;
+  ion-icon {
+    content: url("../../../../assets/icon/arrow-up-down-error.png");
+  }
+}
+
 // modal picker
 ion-modal.modal-picker {
   ion-datetime {

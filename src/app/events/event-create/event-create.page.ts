@@ -29,6 +29,7 @@ export class EventCreatePage implements OnInit {
   // get date values
   @ViewChild(SelectDatesComponent) selectDatesComponent!: SelectDatesComponent;
   dates = [{ date: '', startTime: '00:00', endTime: '00:00' }];
+  datesError: any = false;
 
   // regions select
   selectedRegion: string = '';
@@ -94,6 +95,7 @@ export class EventCreatePage implements OnInit {
         this.selectedAddress,
         'addressErrorMessage'
       ) ||
+      !this.validateDatesField(this.dates, 'datesError') ||
       !this.validatePriceField(this.visitorPrices, 'visitorError') ||
       !this.validatePriceField(this.participantPrices, 'participantError') ||
       eventForm.invalid
@@ -186,6 +188,25 @@ export class EventCreatePage implements OnInit {
   ): boolean {
     for (let i = 0; i < priceArr.length; i++) {
       if (!priceArr[i].price || !priceArr[i].description) {
+        this[errorMessageVariable] = ['Некоректно попълнени полета', i];
+        return false;
+      }
+    }
+    this[errorMessageVariable] = false;
+    return true;
+  }
+
+  validateDatesField(
+    datesArr: { date: string; startTime: string; endTime: string }[],
+    errorMessageVariable: string
+  ): boolean {
+    for (let i = 0; i < datesArr.length; i++) {
+      if (
+        !datesArr[i].date ||
+        datesArr[i].startTime === '00:00' ||
+        datesArr[i].endTime === '00:00' ||
+        datesArr[i].startTime >= datesArr[i].endTime
+      ) {
         this[errorMessageVariable] = ['Некоректно попълнени полета', i];
         return false;
       }
