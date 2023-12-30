@@ -5,6 +5,8 @@
     id="address-picker"
     (click)="onOpenModal()"
     [value]="addressConfirmed ? selectedAddress.title : ''"
+    [ngClass]="addressInvalid ? 'custom-invalid-input' : ''"
+    [ngClass]="selectedAddress.title ? 'custom-valid-input' : ''"
   ></ion-input>
   <ion-modal [trigger]="'address-picker'" class="modal-picker address-modal">
     <ng-template>

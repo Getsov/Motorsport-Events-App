@@ -3,6 +3,23 @@ ion-input {
     color: #fff;
   }
 }
+// success state
+ion-input.custom-valid-input {
+  border-bottom: 1px solid #008000;
+
+  ::ng-deep .label-text {
+    color: #008000;
+  }
+}
+
+// error state
+ion-input.custom-invalid-input {
+  border-bottom: 1px solid red;
+
+  ::ng-deep .label-text {
+    color: #ff0000;
+  }
+}
 
 ion-modal {
   ion-item {
