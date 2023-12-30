@@ -22,7 +22,9 @@ export class EventCreatePage implements OnInit {
   // get price values
   @ViewChild(SelectPriceComponent) selectPricesComponent!: SelectPriceComponent;
   visitorPrices = [{ price: '', description: '' }];
+  visitorError: any = false;
   participantPrices = [{ price: '', description: '' }];
+  participantError: any = false;
 
   // get date values
   @ViewChild(SelectDatesComponent) selectDatesComponent!: SelectDatesComponent;
@@ -92,6 +94,8 @@ export class EventCreatePage implements OnInit {
         this.selectedAddress,
         'addressErrorMessage'
       ) ||
+      !this.validatePriceField(this.visitorPrices, 'visitorError') ||
+      !this.validatePriceField(this.participantPrices, 'participantError') ||
       eventForm.invalid
     ) {
       return;
@@ -119,7 +123,7 @@ export class EventCreatePage implements OnInit {
         coordinates: {
           lat: this.selectedAddress.lat,
           lng: this.selectedAddress.lng,
-        }, // hard coded coordinates
+        },
         region: this.selectedRegion,
         address: this.selectedAddress.address,
         email: eventForm.value.email,
@@ -173,6 +177,20 @@ export class EventCreatePage implements OnInit {
     }
     this[errorMessageVariable] = '';
 
+    return true;
+  }
+
+  validatePriceField(
+    priceArr: { price: string; description: string }[],
+    errorMessageVariable: string
+  ): boolean {
+    for (let i = 0; i < priceArr.length; i++) {
+      if (!priceArr[i].price || !priceArr[i].description) {
+        this[errorMessageVariable] = ['Некоректно попълнени полета', i];
+        return false;
+      }
+    }
+    this[errorMessageVariable] = false;
     return true;
   }
 }

@@ -7,7 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SelectPriceComponent implements OnInit {
   @Input() visitorPrices!: { price: string; description: string }[];
+  @Input() visitorError: any = false;
   @Input() participantPrices!: { price: string; description: string }[];
+  @Input() participantError: any = false;
 
   constructor() {}
 

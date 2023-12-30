@@ -10,7 +10,11 @@
               fill="solid"
               label="Цена (лв.)"
               labelPlacement="floating"
-              class="price-input"
+              [ngClass]="
+                visitorError[0] && i === visitorError[1]
+                  ? 'invalid-input price-input'
+                  : 'price-input'
+              "
               [(ngModel)]="visitorPrices[i].price"
               required
             ></ion-input>
@@ -19,7 +23,11 @@
               fill="solid"
               label="Описание на ценовото предложение"
               labelPlacement="floating"
-              class="price-description-input"
+              [ngClass]="
+                visitorError[0] && i === visitorError[1]
+                  ? 'invalid-input price-description-input'
+                  : 'price-description-input'
+              "
               [(ngModel)]="visitorPrices[i].description"
               required
             ></ion-input>
@@ -58,7 +66,11 @@
               fill="solid"
               label="Цена (лв.)"
               labelPlacement="floating"
-              class="price-input"
+              [ngClass]="
+                participantError[0] && i === participantError[1]
+                  ? 'invalid-input price-input'
+                  : 'price-input'
+              "
               [(ngModel)]="participantPrices[i].price"
               required
             ></ion-input>
@@ -67,7 +79,11 @@
               fill="solid"
               label="Описание на ценовото предложение"
               labelPlacement="floating"
-              class="price-description-input"
+              [ngClass]="
+                participantError[0] && i === participantError[1]
+                  ? 'invalid-input price-description-input'
+                  : 'price-description-input'
+              "
               [(ngModel)]="participantPrices[i].description"
               required
             ></ion-input>
