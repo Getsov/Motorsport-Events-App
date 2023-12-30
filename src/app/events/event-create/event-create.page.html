@@ -87,7 +87,8 @@
           <!-- event category selector -->
           <div class="category-select-wrapper">
             <ion-select
-              class="event-type-select"
+              [ngClass]="typeErrorMessage ? 'event-type-select custom-invalid-input' : 'event-type-select' "
+              [ngClass]="selectedEventType ? 'event-type-select custom-valid-input' : 'event-type-select' "
               label="Вид на събитието*"
               labelPlacement="floating"
               slot="end"
@@ -112,11 +113,12 @@
           <!-- event region selector-->
           <div class="region-select-wrapper">
             <ion-select
+              [ngClass]="regionErrorMessage ? 'region-select custom-invalid-input' : 'region-select' "
+              [ngClass]="selectedRegion ? 'region-select custom-valid-input' : 'region-select' "
               label="Регион*"
               labelPlacement="floating"
               okText="Ок"
               cancelText="Откажи"
-              class="region-select"
               slot="end"
               #region
               (ionChange)="onRegionChange($event.detail.value)"
@@ -137,6 +139,7 @@
           <div class="event-address-wrapper">
             <app-address-picker
               (confirmedAddress)="onConfirmedAddress($event)"
+              [addressInvalid]="!!addressErrorMessage"
             ></app-address-picker>
           </div>
 
@@ -150,7 +153,7 @@
             label="Имейл*"
             labelPlacement="floating"
             [counter]="true"
-            class="contacts-input"
+            class="contacts-input email"
             name="email"
             ngModel
             #email="ngModel"
@@ -180,7 +183,7 @@
             labelPlacement="floating"
             [counter]="true"
             name="phone"
-            class="contacts-input"
+            class="contacts-input phone"
             ngModel
             required
             #phone="ngModel"
@@ -223,7 +226,10 @@
         />
         <div class="ion-padding-horizontal event-input">
           <!-- select dates -->
-          <app-select-dates [dates]="dates"></app-select-dates>
+          <app-select-dates
+            [dates]="dates"
+            [datesError]="datesError"
+          ></app-select-dates>
         </div>
       </div>
       <!-- event prices -->
@@ -234,7 +240,9 @@
         />
         <app-select-price
           [visitorPrices]="visitorPrices"
+          [visitorError]="visitorError"
           [participantPrices]="participantPrices"
+          [participantError]="participantError"
         ></app-select-price>
       </div>
 

@@ -40,6 +40,57 @@
       ion-textarea {
         height: auto;
       }
+
+      // success state styles
+      ion-input.ng-valid.ng-touched,
+      ion-textarea.ng-valid.ng-touched {
+        --border-color: #008000;
+
+        ::ng-deep .label-text {
+          color: #008000;
+        }
+      }
+
+      ion-input.email.ng-valid.ng-touched,
+      ion-input.phone.ng-valid.ng-touched {
+        border-bottom: 1px solid #008000;
+      }
+
+      ion-select.custom-valid-input {
+        border-bottom: 1px solid #008000;
+      }
+
+      ion-select.custom-valid-input::part(icon) {
+        content: url("../../../assets/icon/arrow-up-down-success.png");
+      }
+      ion-select.custom-valid-input::part(label) {
+        color: #008000;
+      }
+
+      // error state styles
+      ion-input.ng-invalid.ng-touched {
+        --border-color: #ff0000;
+
+        ::ng-deep .label-text {
+          color: #ff0000;
+        }
+      }
+
+      ion-input.email.ng-invalid.ng-touched,
+      ion-input.phone.ng-invalid.ng-touched {
+        border-bottom: 1px solid red;
+      }
+
+      ion-select.custom-invalid-input {
+        border-bottom: 1px solid red;
+      }
+
+      ion-select.custom-invalid-input::part(icon) {
+        content: url("../../../assets/icon/arrow-up-down-error.png");
+      }
+      ion-select.custom-invalid-input::part(label) {
+        color: #ff0000;
+      }
     }
 
     .contacts-input {
