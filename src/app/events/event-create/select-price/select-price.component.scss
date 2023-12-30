@@ -15,7 +15,15 @@
       border-bottom: 1px solid #fff;
     }
 
-    ion-input.invalid-input {
+    ion-input.custom-valid-input {
+      border-bottom: 1px solid #008000;
+
+      ::ng-deep .label-text {
+        color: #008000;
+      }
+    }
+
+    ion-input.custom-invalid-input {
       border-bottom: 1px solid red;
 
       ::ng-deep .label-text {

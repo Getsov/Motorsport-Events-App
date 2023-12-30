@@ -12,7 +12,12 @@
               labelPlacement="floating"
               [ngClass]="
                 visitorError[0] && i === visitorError[1]
-                  ? 'invalid-input price-input'
+                  ? 'custom-invalid-input price-input'
+                  : 'price-input'
+              "
+              [ngClass]="
+                visitorPrices[i].price && visitorPrices[i].description
+                  ? 'custom-valid-input price-input'
                   : 'price-input'
               "
               [(ngModel)]="visitorPrices[i].price"
@@ -25,7 +30,12 @@
               labelPlacement="floating"
               [ngClass]="
                 visitorError[0] && i === visitorError[1]
-                  ? 'invalid-input price-description-input'
+                  ? 'custom-invalid-input price-description-input'
+                  : 'price-description-input'
+              "
+              [ngClass]="
+                visitorPrices[i].price && visitorPrices[i].description
+                  ? 'custom-valid-input price-description-input'
                   : 'price-description-input'
               "
               [(ngModel)]="visitorPrices[i].description"
@@ -68,7 +78,12 @@
               labelPlacement="floating"
               [ngClass]="
                 participantError[0] && i === participantError[1]
-                  ? 'invalid-input price-input'
+                  ? 'custom-invalid-input price-input'
+                  : 'price-input'
+              "
+              [ngClass]="
+                participantPrices[i].price && participantPrices[i].description
+                  ? 'custom-valid-input price-input'
                   : 'price-input'
               "
               [(ngModel)]="participantPrices[i].price"
@@ -81,8 +96,13 @@
               labelPlacement="floating"
               [ngClass]="
                 participantError[0] && i === participantError[1]
-                  ? 'invalid-input price-description-input'
+                  ? 'custom-invalid-input price-description-input'
                   : 'price-description-input'
+              "
+              [ngClass]="
+                participantPrices[i].price && participantPrices[i].description
+                  ? 'custom-valid-input price-description-input'
+                  : 'price-descritpion-input'
               "
               [(ngModel)]="participantPrices[i].description"
               required
