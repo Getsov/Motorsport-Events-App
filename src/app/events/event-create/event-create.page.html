@@ -105,11 +105,8 @@
           </div>
 
           <!-- category error message -->
-          <p
-            *ngIf="selectedEventTypeErrorMessage"
-            class="validation-error-message"
-          >
-            {{selectedEventTypeErrorMessage}}
+          <p *ngIf="typeErrorMessage" class="validation-error-message">
+            {{typeErrorMessage}}
           </p>
 
           <!-- event region selector-->
@@ -133,11 +130,8 @@
           </div>
 
           <!-- region error message -->
-          <p
-            *ngIf="selectedRegionErrorMessage"
-            class="validation-error-message"
-          >
-            {{selectedRegionErrorMessage}}
+          <p *ngIf="regionErrorMessage" class="validation-error-message">
+            {{regionErrorMessage}}
           </p>
           <!-- address-->
           <div class="event-address-wrapper">
@@ -147,11 +141,8 @@
           </div>
 
           <!-- address error message -->
-          <p
-            *ngIf="selectedAddressErrorMessage"
-            class="validation-error-message"
-          >
-            {{selectedAddressErrorMessage}}
+          <p *ngIf="addressErrorMessage" class="validation-error-message">
+            {{addressErrorMessage}}
           </p>
 
           <!-- email -->

@@ -30,11 +30,11 @@ export class EventCreatePage implements OnInit {
 
   // regions select
   selectedRegion: string = '';
-  selectedRegionErrorMessage = '';
+  regionErrorMessage = '';
 
   // selected address value
   selectedAddress: any;
-  selectedAddressErrorMessage = '';
+  addressErrorMessage = '';
 
   // image Url from imagePicker
   imageUrl: string = '';
@@ -49,7 +49,7 @@ export class EventCreatePage implements OnInit {
   eventCategories: string[] = Object.keys(Categories).filter((v) =>
     isNaN(Number(v))
   );
-  selectedEventTypeErrorMessage = '';
+  typeErrorMessage = '';
 
   // header separator settings
   headerTitle: string = 'Създай събитие';
@@ -86,17 +86,11 @@ export class EventCreatePage implements OnInit {
   onCreateEventSubmit(eventForm: NgForm) {
     if (
       !this.validateRequiredField(this.imageUrl, 'imageErrorMessage') ||
-      !this.validateRequiredField(
-        this.selectedEventType,
-        'selectedEventTypeErrorMessage'
-      ) ||
-      !this.validateRequiredField(
-        this.selectedRegion,
-        'selectedRegionErrorMessage'
-      ) ||
+      !this.validateRequiredField(this.selectedEventType, 'typeErrorMessage') ||
+      !this.validateRequiredField(this.selectedRegion, 'regionErrorMessage') ||
       !this.validateRequiredField(
         this.selectedAddress,
-        'selectedAddressErrorMessage'
+        'addressErrorMessage'
       ) ||
       eventForm.invalid
     ) {
