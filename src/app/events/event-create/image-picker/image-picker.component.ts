@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   Camera,
   CameraResultType,
@@ -13,6 +13,7 @@ import {
 })
 export class ImagePickerComponent implements OnInit {
   @Output() imagePicked = new EventEmitter<string>();
+  @Input() imageErrorMessage: string = '';
   selectedImage: string = '';
 
   constructor() {}
@@ -35,6 +36,7 @@ export class ImagePickerComponent implements OnInit {
 
   async savePicture(photo: Photo) {
     this.selectedImage = photo.webPath!;
+    this.imageErrorMessage = '';
   }
 
   onDiscardSelectedImage(): void {

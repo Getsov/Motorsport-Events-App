@@ -157,10 +157,12 @@ export class EventCreatePage implements OnInit {
 
   onRegionChange(region: string): void {
     this.selectedRegion = region;
+    this.regionErrorMessage = '';
   }
 
   onEventTypeChange(category: string): void {
     this.selectedEventType = category;
+    this.typeErrorMessage = '';
   }
 
   onImageUpload(imageData: string) {
@@ -169,6 +171,7 @@ export class EventCreatePage implements OnInit {
 
   onConfirmedAddress(confirmedAddress: any) {
     this.selectedAddress = confirmedAddress;
+    this.addressErrorMessage = '';
   }
 
   // function to validate inputs which can not be validated from the template

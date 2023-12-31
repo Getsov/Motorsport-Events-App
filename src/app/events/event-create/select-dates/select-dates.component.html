@@ -166,6 +166,20 @@
     </ion-modal>
   </div>
 
+  <!-- error message -->
+  <p
+    *ngIf="
+      datesError[0] &&
+      i === datesError[1] &&
+      (!dates[i].date ||
+        dates[i].startTime === '00:00' ||
+        dates[i].endTime === '00:00')
+    "
+    class="validation-error-message"
+  >
+    {{ datesError[0] }}
+  </p>
+
   <!-- Add new date and delete buttons -->
   <div
     [ngClass]="{ 'buttons-wrapper': true, 'button-wrapper-single': i === 0 }"

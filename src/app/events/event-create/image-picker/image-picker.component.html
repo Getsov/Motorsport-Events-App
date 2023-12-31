@@ -18,6 +18,9 @@
       (click)="onDiscardSelectedImage()"
     ></ion-icon>
   </div>
+  <p *ngIf="imageErrorMessage" class="validation-error-message">
+    {{ imageErrorMessage }}
+  </p>
   <!-- <div class="image-picker-info">
     <div>
       <img

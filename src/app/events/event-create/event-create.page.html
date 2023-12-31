@@ -19,10 +19,8 @@
         <div class="image-upload-wrapper ion-padding-horizontal">
           <app-image-picker
             (imagePicked)="onImageUpload($event)"
+            [imageErrorMessage]="imageErrorMessage"
           ></app-image-picker>
-          <p *ngIf="imageErrorMessage" class="validation-error-message">
-            {{imageErrorMessage}}
-          </p>
         </div>
       </div>
 

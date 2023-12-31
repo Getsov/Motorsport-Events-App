@@ -41,6 +41,18 @@
               [(ngModel)]="visitorPrices[i].description"
               required
             ></ion-input>
+
+            <!-- error message -->
+            <p
+              *ngIf="
+                visitorError[0] &&
+                i === visitorError[1] &&
+                (!visitorPrices[i].price || !visitorPrices[i].description)
+              "
+              class="validation-error-message"
+            >
+              {{ visitorError[0] }}
+            </p>
           </div>
           <!-- Add new price and delete buttons -->
           <div
@@ -107,6 +119,19 @@
               [(ngModel)]="participantPrices[i].description"
               required
             ></ion-input>
+
+            <!-- error message -->
+            <p
+              *ngIf="
+                participantError[0] &&
+                i === participantError[1] &&
+                (!participantPrices[i].price ||
+                  !participantPrices[i].description)
+              "
+              class="validation-error-message"
+            >
+              {{ participantError[0] }}
+            </p>
           </div>
           <!-- Add new price and delete buttons -->
           <div

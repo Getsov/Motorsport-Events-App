@@ -124,7 +124,8 @@
     }
   }
 
-  .auth-validation-error-message {
+  .auth-validation-error-message,
+  .validation-error-message {
     color: #ff0000;
     padding-left: 16px;
     font-size: 12px;
