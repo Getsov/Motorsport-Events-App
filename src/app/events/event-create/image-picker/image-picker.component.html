@@ -10,17 +10,16 @@
       class="image-picker-icon"
     />
   </div>
-  <div *ngIf="selectedImage" class="image-picker">
-    <ion-img [src]="selectedImage"></ion-img>
-    <ion-icon
-      src="../../../../assets/icon/error-clear-input-icon.svg"
-      class="clear-image"
-      (click)="onDiscardSelectedImage()"
-    ></ion-icon>
+  <div
+    *ngIf="selectedImage"
+    [ngClass]="selectedImage ? 'image-selected image-picker' : 'image-picker'"
+  >
+    <img [src]="selectedImage" />
+    <div class="main-button-wrapper" (click)="onDiscardSelectedImage()">
+      <p class="main-button">Изтрий снимката</p>
+    </div>
   </div>
-  <p *ngIf="imageErrorMessage" class="validation-error-message">
-    {{ imageErrorMessage }}
-  </p>
+
   <!-- <div class="image-picker-info">
     <div>
       <img
@@ -35,3 +34,6 @@
     </p>
   </div> -->
 </div>
+<p *ngIf="imageErrorMessage" class="validation-error-message">
+  {{ imageErrorMessage }}
+</p>
