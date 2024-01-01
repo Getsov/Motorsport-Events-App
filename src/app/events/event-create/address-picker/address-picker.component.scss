@@ -34,7 +34,22 @@ ion-modal.address-modal::part(content) {
 }
 
 ion-searchbar {
-  margin-top: 1em;
+  --background: transparent;
+  --border-radius: 0;
+  --placeholder-color: #fff;
+  --icon-color: #fff;
+  --placeholder-opacity: 1;
+  --clear-button-color: #fff;
+  border-bottom: 1px solid #fff;
+  margin: 1em 0;
+  ::ng-deep.searchbar-input {
+    margin-left: 0.5em;
+  }
+}
+
+ion-searchbar.searchbar-has-focus {
+  --icon-color: #ff7418;
+  border-bottom: 1px solid #ff7418;
 }
 
 // google maps
