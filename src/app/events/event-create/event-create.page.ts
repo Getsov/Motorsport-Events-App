@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 export class EventCreatePage implements OnInit {
   eventSubscription$!: Subscription;
   errorMessage: string = '';
+  successToaster: boolean = false;
 
   // get price values
   @ViewChild(SelectPriceComponent) selectPricesComponent!: SelectPriceComponent;
@@ -142,10 +143,9 @@ export class EventCreatePage implements OnInit {
     this.eventSubscription$ = this.eventService
       .createEvent(formValue)
       .subscribe({
-        next: (createdEvent) => {
-          // TODO: Toaster message
-          console.log(createdEvent);
-          // redirect to all events X-seconds after success toaster appears
+        next: () => {
+          this.successToaster = true;
+          setTimeout(() => this.router.navigateByUrl('/tabs/events'), 5000);
         },
         error: (err) => {
           // TODO: display error message in toaster

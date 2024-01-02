@@ -110,6 +110,12 @@
   }
 }
 
+// toaster message
+.success-toaster {
+  --background: #008000;
+  --border-radius: 4px;
+}
+
 ::ng-deep .alert-wrapper.ion-overlay-wrapper {
   background-color: #0b0b0b;
   box-shadow: 0px 0px 8px 1px rgba(255, 116, 24, 0.3);
