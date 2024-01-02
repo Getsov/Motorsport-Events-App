@@ -1,21 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SelectPriceComponent } from './select-price/select-price.component';
 import { SelectDatesComponent } from './select-dates/select-dates.component';
-import BulgarianRegions from 'src/shared/data/regions';
-import Categories from 'src/shared/data/categories';
 import { AuthService } from 'src/shared/services/auth.service';
 import { Subscription } from 'rxjs';
 import { EventsService } from 'src/shared/services/events.service';
 import { transformDates } from 'src/shared/utils/date-utils';
 import { Router } from '@angular/router';
 
+import BulgarianRegions from 'src/shared/data/regions';
+import Categories from 'src/shared/data/categories';
+
 @Component({
   selector: 'app-event-create',
   templateUrl: './event-create.page.html',
   styleUrls: ['./event-create.page.scss'],
 })
-export class EventCreatePage implements OnInit {
+export class EventCreatePage implements OnInit, OnDestroy {
   eventSubscription$!: Subscription;
   errorMessage: string = '';
   successToaster: boolean = false;
@@ -216,5 +217,9 @@ export class EventCreatePage implements OnInit {
     }
     this[errorMessageVariable] = false;
     return true;
+  }
+
+  ngOnDestroy(): void {
+    if (this.eventSubscription$) this.eventSubscription$.unsubscribe();
   }
 }
