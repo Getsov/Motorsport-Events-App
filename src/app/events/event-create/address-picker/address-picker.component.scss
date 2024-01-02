@@ -25,6 +25,15 @@ ion-modal {
   ion-item {
     --background: #0b0b0b;
   }
+
+  .search-suggestions {
+    ion-icon {
+      margin-right: 0;
+    }
+    ion-label {
+      padding-left: 0.5em;
+    }
+  }
 }
 
 // calendar modal fine tunning
@@ -54,6 +63,7 @@ ion-searchbar.searchbar-has-focus {
 
 // google maps
 .google-maps-wrapper {
+  margin-top: 0.75em;
   display: inline-block;
   height: 240px;
   width: 100%;

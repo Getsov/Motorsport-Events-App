@@ -17,8 +17,11 @@
           [(ngModel)]="selectedAddress.title"
         ></ion-searchbar>
       </ion-toolbar>
-      <ion-content class="ion-padding-horizontal">
-        <div class="search-suggestions" *ngIf="suggestions.length">
+      <ion-content>
+        <div
+          class="search-suggestions ion-padding-end"
+          *ngIf="suggestions.length"
+        >
           <ion-list>
             <ion-item
               *ngFor="let address of suggestions"
@@ -39,7 +42,7 @@
             </ion-item>
           </ion-list>
         </div>
-        <div class="google-maps-wrapper">
+        <div class="google-maps-wrapper ion-padding-horizontal">
           <capacitor-google-map #map></capacitor-google-map>
         </div>
       </ion-content>
