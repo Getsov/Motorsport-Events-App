@@ -8,7 +8,14 @@
     [ngClass]="addressInvalid ? 'custom-invalid-input' : ''"
     [ngClass]="selectedAddress.title ? 'custom-valid-input' : ''"
   ></ion-input>
-  <ion-modal [trigger]="'address-picker'" class="modal-picker address-modal">
+  <ion-modal
+    [trigger]="'address-picker'"
+    [ngClass]="
+      suggestions.length > 0
+        ? 'modal-picker address-modal-suggestions'
+        : 'modal-picker address-modal-no-suggestions'
+    "
+  >
     <ng-template>
       <ion-toolbar>
         <ion-searchbar

@@ -36,12 +36,6 @@ ion-modal {
   }
 }
 
-// calendar modal fine tunning
-ion-modal.address-modal::part(content) {
-  height: 750px;
-  width: 90%;
-}
-
 ion-searchbar {
   --background: transparent;
   --border-radius: 0;
@@ -50,7 +44,7 @@ ion-searchbar {
   --placeholder-opacity: 1;
   --clear-button-color: #fff;
   border-bottom: 1px solid #fff;
-  margin: 1em 0;
+  margin-top: 1em;
   ::ng-deep.searchbar-input {
     margin-left: 0.5em;
   }
@@ -59,6 +53,17 @@ ion-searchbar {
 ion-searchbar.searchbar-has-focus {
   --icon-color: #ff7418;
   border-bottom: 1px solid #ff7418;
+}
+
+// modal size when there are suggested addresses or not
+ion-modal.address-modal-no-suggestions::part(content) {
+  height: 384px;
+  width: 90%;
+}
+
+ion-modal.address-modal-suggestions::part(content) {
+  height: 704px;
+  width: 90%;
 }
 
 // google maps
