@@ -254,12 +254,22 @@
         </div>
       </div>
     </form>
+
+    <!-- success toaster -->
     <ion-toast
       [isOpen]="successToaster"
       message="Успешно създадено събитие! Събитието очаква одобрение от администратор."
       [duration]="5000"
       icon="checkmark-circle"
       class="success-toaster"
+    ></ion-toast>
+    <!-- error toaster -->
+    <ion-toast
+      [isOpen]="errorToaster"
+      [message]="errorMessage"
+      [duration]="5000"
+      icon="close-circle"
+      class="error-toaster"
     ></ion-toast>
   </div>
 </ion-content>

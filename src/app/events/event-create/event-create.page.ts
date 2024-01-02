@@ -19,6 +19,7 @@ export class EventCreatePage implements OnInit {
   eventSubscription$!: Subscription;
   errorMessage: string = '';
   successToaster: boolean = false;
+  errorToaster: boolean = false;
 
   // get price values
   @ViewChild(SelectPriceComponent) selectPricesComponent!: SelectPriceComponent;
@@ -148,9 +149,8 @@ export class EventCreatePage implements OnInit {
           setTimeout(() => this.router.navigateByUrl('/tabs/events'), 5000);
         },
         error: (err) => {
-          // TODO: display error message in toaster
           this.errorMessage = err.message;
-          console.log(err);
+          this.errorToaster = true;
         },
       });
   }
