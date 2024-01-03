@@ -78,7 +78,6 @@ export class EventDetailPage implements OnInit {
     this.eventService.getEvent(this.eventId).subscribe({
       next: (response) => {
         this.event = response;
-        console.log(this.event);
         this.createMap();
       },
       error: (error) => {

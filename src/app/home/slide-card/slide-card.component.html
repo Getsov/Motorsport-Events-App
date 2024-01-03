@@ -1,6 +1,9 @@
 <ion-card class="events-card">
   <div class="link-to-details" [routerLink]="['/tabs/events', event._id]">
-    <img src="{{ event.imageUrl }}" alt="{{ event.shortTitle }}" />
+    <img
+      [src]="'data:image;base64,' + event.imageUrl"
+      alt="{{ event.shortTitle }}"
+    />
 
     <p class="event-title">{{ event.shortTitle }}</p>
     <p class="event-dates">{{ startDate }} - {{ endDate }}</p>
