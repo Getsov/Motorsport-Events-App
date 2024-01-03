@@ -1,21 +1,34 @@
-<div class="date-input-wrapper">
+<div class="picker-wrapper">
   <ion-input
     label="Избери адрес*"
     labelPlacement="floating"
     id="address-picker"
     (click)="onOpenModal()"
     [value]="addressConfirmed ? selectedAddress.title : ''"
+    [ngClass]="addressInvalid ? 'custom-invalid-input' : ''"
+    [ngClass]="selectedAddress.title ? 'custom-valid-input' : ''"
   ></ion-input>
-  <ion-modal [trigger]="'address-picker'" class="modal-picker address-modal">
+  <ion-modal
+    [trigger]="'address-picker'"
+    [ngClass]="
+      suggestions.length > 0
+        ? 'modal-picker address-modal-suggestions'
+        : 'modal-picker address-modal-no-suggestions'
+    "
+  >
     <ng-template>
       <ion-toolbar>
         <ion-searchbar
           placeholder="Търси адрес"
           (input)="onSearchChange($event.target)"
+          [(ngModel)]="selectedAddress.title"
         ></ion-searchbar>
       </ion-toolbar>
-      <ion-content class="ion-padding-horizontal">
-        <div class="search-suggestions" *ngIf="suggestions.length">
+      <ion-content>
+        <div
+          class="search-suggestions ion-padding-end"
+          *ngIf="suggestions.length"
+        >
           <ion-list>
             <ion-item
               *ngFor="let address of suggestions"
@@ -36,13 +49,13 @@
             </ion-item>
           </ion-list>
         </div>
-        <div class="google-maps-wrapper">
+        <div class="google-maps-wrapper ion-padding-horizontal">
           <capacitor-google-map #map></capacitor-google-map>
         </div>
       </ion-content>
       <ion-footer>
         <ion-toolbar>
-          <div class="hour-picker-action-buttons">
+          <div class="modal-picker-action-buttons">
             <ion-buttons>
               <ion-button slot="start" (click)="closeModal()"
                 >Откажи</ion-button

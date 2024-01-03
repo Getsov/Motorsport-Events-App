@@ -15,7 +15,7 @@
     <div class="image-wrapper">
       <img
         alt="{{event.shortTitle}}"
-        src="{{event.imageUrl}}"
+        [src]="'data:image;base64,' + event.imageUrl"
         class="event-image"
       />
       <app-like-icon [likedCount]="event.likes.length"></app-like-icon>

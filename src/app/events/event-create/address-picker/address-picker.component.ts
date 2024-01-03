@@ -2,6 +2,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  Input,
   OnInit,
   Output,
   ViewChild,
@@ -18,6 +19,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./address-picker.component.scss'],
 })
 export class AddressPickerComponent implements OnInit {
+  @Input() addressInvalid: boolean = false;
   @ViewChild('map') gmap!: ElementRef;
   @Output() confirmedAddress = new EventEmitter<{
     title: string;

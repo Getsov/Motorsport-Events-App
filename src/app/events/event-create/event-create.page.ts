@@ -1,41 +1,49 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 import { SelectPriceComponent } from './select-price/select-price.component';
 import { SelectDatesComponent } from './select-dates/select-dates.component';
-import BulgarianRegions from 'src/shared/data/regions';
-import Categories from 'src/shared/data/categories';
 import { AuthService } from 'src/shared/services/auth.service';
-import { Subscription } from 'rxjs';
 import { EventsService } from 'src/shared/services/events.service';
 import { transformDates } from 'src/shared/utils/date-utils';
-import { Router } from '@angular/router';
+import BulgarianRegions from 'src/shared/data/regions';
+import Categories from 'src/shared/data/categories';
 
 @Component({
   selector: 'app-event-create',
   templateUrl: './event-create.page.html',
   styleUrls: ['./event-create.page.scss'],
 })
-export class EventCreatePage implements OnInit {
+export class EventCreatePage implements OnInit, OnDestroy {
   eventSubscription$!: Subscription;
-  errorMessage: string = '';
+  successToasterMessage: string = '';
+  errorToasterMessage: string = '';
 
   // get price values
   @ViewChild(SelectPriceComponent) selectPricesComponent!: SelectPriceComponent;
   visitorPrices = [{ price: '', description: '' }];
+  visitorError: any = false;
   participantPrices = [{ price: '', description: '' }];
+  participantError: any = false;
 
   // get date values
   @ViewChild(SelectDatesComponent) selectDatesComponent!: SelectDatesComponent;
   dates = [{ date: '', startTime: '00:00', endTime: '00:00' }];
+  datesError: any = false;
 
   // regions select
   selectedRegion: string = '';
+  regionErrorMessage = '';
 
   // selected address value
   selectedAddress: any;
+  addressErrorMessage = '';
 
   // image Url from imagePicker
   imageUrl: string = '';
+  imageErrorMessage = '';
 
   bulgarianRegions: string[] = Object.keys(BulgarianRegions).filter((v) =>
     isNaN(Number(v))
@@ -46,6 +54,7 @@ export class EventCreatePage implements OnInit {
   eventCategories: string[] = Object.keys(Categories).filter((v) =>
     isNaN(Number(v))
   );
+  typeErrorMessage = '';
 
   // header separator settings
   headerTitle: string = 'Създай събитие';
@@ -68,6 +77,9 @@ export class EventCreatePage implements OnInit {
   priceSeparatorColor: string = 'yellow';
   priceSeparatorTitle: string = 'Цени';
 
+  // Index signature so we can access dynamically variables for the error messages
+  [key: string]: any;
+
   constructor(
     private authService: AuthService,
     private eventService: EventsService,
@@ -77,14 +89,26 @@ export class EventCreatePage implements OnInit {
   ngOnInit() {}
 
   onCreateEventSubmit(eventForm: NgForm) {
-    if (eventForm.invalid) {
+    if (
+      !this.validateRequiredField(this.imageUrl, 'imageErrorMessage') ||
+      !this.validateRequiredField(this.selectedEventType, 'typeErrorMessage') ||
+      !this.validateRequiredField(this.selectedRegion, 'regionErrorMessage') ||
+      !this.validateRequiredField(
+        this.selectedAddress,
+        'addressErrorMessage'
+      ) ||
+      !this.validateDatesField(this.dates, 'datesError') ||
+      !this.validatePriceField(this.visitorPrices, 'visitorError') ||
+      !this.validatePriceField(this.participantPrices, 'participantError') ||
+      eventForm.invalid
+    ) {
       return;
     }
 
     const user = this.authService.getUser();
 
     if (!user) {
-      this.errorMessage = 'User not authenticated';
+      this.errorToasterMessage = 'Неоторизиран потребител';
       return;
     }
 
@@ -103,7 +127,7 @@ export class EventCreatePage implements OnInit {
         coordinates: {
           lat: this.selectedAddress.lat,
           lng: this.selectedAddress.lng,
-        }, // hard coded coordinates
+        },
         region: this.selectedRegion,
         address: this.selectedAddress.address,
         email: eventForm.value.email,
@@ -120,25 +144,25 @@ export class EventCreatePage implements OnInit {
     this.eventSubscription$ = this.eventService
       .createEvent(formValue)
       .subscribe({
-        next: (createdEvent) => {
-          // TODO: Toaster message
-          console.log(createdEvent);
-          // redirect to all events X-seconds after success toaster appears
+        next: () => {
+          this.successToasterMessage =
+            'Успешно създадено събитие! Събитието очаква одобрение от администратор.';
+          setTimeout(() => this.router.navigateByUrl('/tabs/events'), 5000);
         },
         error: (err) => {
-          // TODO: display error message in toaster
-          this.errorMessage = err.message;
-          console.log(err);
+          this.errorToasterMessage = err.message;
         },
       });
   }
 
   onRegionChange(region: string): void {
     this.selectedRegion = region;
+    this.regionErrorMessage = '';
   }
 
   onEventTypeChange(category: string): void {
     this.selectedEventType = category;
+    this.typeErrorMessage = '';
   }
 
   onImageUpload(imageData: string) {
@@ -147,5 +171,54 @@ export class EventCreatePage implements OnInit {
 
   onConfirmedAddress(confirmedAddress: any) {
     this.selectedAddress = confirmedAddress;
+    this.addressErrorMessage = '';
+  }
+
+  // function to validate inputs which can not be validated from the template
+  validateRequiredField(value: any, errorMessageVariable: string): boolean {
+    if (!value) {
+      this[errorMessageVariable] = 'Полето е задължително';
+      return false;
+    }
+    this[errorMessageVariable] = '';
+
+    return true;
+  }
+
+  validatePriceField(
+    priceArr: { price: string; description: string }[],
+    errorMessageVariable: string
+  ): boolean {
+    for (let i = 0; i < priceArr.length; i++) {
+      if (!priceArr[i].price || !priceArr[i].description) {
+        this[errorMessageVariable] = ['Некоректно попълнени полета', i];
+        return false;
+      }
+    }
+    this[errorMessageVariable] = false;
+    return true;
+  }
+
+  validateDatesField(
+    datesArr: { date: string; startTime: string; endTime: string }[],
+    errorMessageVariable: string
+  ): boolean {
+    for (let i = 0; i < datesArr.length; i++) {
+      if (
+        !datesArr[i].date ||
+        datesArr[i].startTime === '00:00' ||
+        datesArr[i].endTime === '00:00' ||
+        datesArr[i].startTime >= datesArr[i].endTime
+      ) {
+        this[errorMessageVariable] = ['Некоректно попълнени полета', i];
+        return false;
+      }
+    }
+    this[errorMessageVariable] = false;
+    return true;
+  }
+
+  ngOnDestroy(): void {
+    if (this.eventSubscription$) this.eventSubscription$.unsubscribe();
   }
 }

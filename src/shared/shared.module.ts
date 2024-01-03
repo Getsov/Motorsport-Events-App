@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EventComponent } from './components/event/event.component';
+import { ToasterComponent } from './components/toaster/toaster.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { EventComponent } from './components/event/event.component';
     TitleFadesComponent,
     HeaderComponent,
     EventComponent,
+    ToasterComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
@@ -29,6 +31,7 @@ import { EventComponent } from './components/event/event.component';
     TitleFadesComponent,
     HeaderComponent,
     EventComponent,
+    ToasterComponent,
   ],
 })
 export class SharedModule {}
