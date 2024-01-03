@@ -171,10 +171,10 @@ select {
 }
 
 // FORM: Universal auth form styles
-@import "app/user/auth/auth-form-styles.scss";
+@import "shared/styles/auth-form-styles.scss";
 
 // Create event modal styles
-@import "app/events//event-create/modal-styles.scss";
+@import "shared/styles/modal-styles.scss";
 
 /* Event page search */
 
