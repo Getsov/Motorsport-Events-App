@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 import { SelectPriceComponent } from './select-price/select-price.component';
 import { SelectDatesComponent } from './select-dates/select-dates.component';
 import { AuthService } from 'src/shared/services/auth.service';
-import { Subscription } from 'rxjs';
 import { EventsService } from 'src/shared/services/events.service';
 import { transformDates } from 'src/shared/utils/date-utils';
-import { Router } from '@angular/router';
-
 import BulgarianRegions from 'src/shared/data/regions';
 import Categories from 'src/shared/data/categories';
 
@@ -18,9 +18,8 @@ import Categories from 'src/shared/data/categories';
 })
 export class EventCreatePage implements OnInit, OnDestroy {
   eventSubscription$!: Subscription;
-  errorMessage: string = '';
-  successToaster: boolean = false;
-  errorToaster: boolean = false;
+  successToasterMessage: string = '';
+  errorToasterMessage: string = '';
 
   // get price values
   @ViewChild(SelectPriceComponent) selectPricesComponent!: SelectPriceComponent;
@@ -109,7 +108,7 @@ export class EventCreatePage implements OnInit, OnDestroy {
     const user = this.authService.getUser();
 
     if (!user) {
-      this.errorMessage = 'User not authenticated';
+      this.errorToasterMessage = 'Неоторизиран потребител';
       return;
     }
 
@@ -146,12 +145,12 @@ export class EventCreatePage implements OnInit, OnDestroy {
       .createEvent(formValue)
       .subscribe({
         next: () => {
-          this.successToaster = true;
+          this.successToasterMessage =
+            'Успешно създадено събитие! Събитието очаква одобрение от администратор.';
           setTimeout(() => this.router.navigateByUrl('/tabs/events'), 5000);
         },
         error: (err) => {
-          this.errorMessage = err.message;
-          this.errorToaster = true;
+          this.errorToasterMessage = err.message;
         },
       });
   }
