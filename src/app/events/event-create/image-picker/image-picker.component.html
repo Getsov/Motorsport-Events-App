@@ -14,7 +14,7 @@
     *ngIf="selectedImage"
     [ngClass]="selectedImage ? 'image-selected image-picker' : 'image-picker'"
   >
-    <img [src]="selectedImage" />
+    <img [src]="'data:image;base64,' + selectedImage" />
     <div class="main-button-wrapper" (click)="onDiscardSelectedImage()">
       <p class="main-button">Изтрий снимката</p>
     </div>

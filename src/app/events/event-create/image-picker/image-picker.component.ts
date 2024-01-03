@@ -24,18 +24,18 @@ export class ImagePickerComponent implements OnInit {
     const image = await Camera.getPhoto({
       quality: 100,
       allowEditing: false,
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.Base64,
       source: CameraSource.Photos,
     });
 
     if (image) {
-      this.imagePicked.emit(image.webPath!);
+      this.imagePicked.emit(image.base64String!);
       this.savePicture(image);
     }
   }
 
   async savePicture(photo: Photo) {
-    this.selectedImage = photo.webPath!;
+    this.selectedImage = photo.base64String!;
     this.imageErrorMessage = '';
   }
 
