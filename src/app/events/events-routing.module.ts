@@ -29,10 +29,11 @@ const routes: Routes = [
   {
     path: 'edit/:eventId',
     loadChildren: () =>
-      import('./event-edit/event-edit.module').then(
-        (m) => m.EventEditPageModule
+      import('./event-create/event-create.module').then(
+        (m) => m.EventCreatePageModule
       ),
-    canActivate: [EventCreatorGuard],
+    canActivate: [AuthGuard, RegularUserGuard],
+    // TODO: set guard to check if the user is the creator of the event
   },
 ];
 

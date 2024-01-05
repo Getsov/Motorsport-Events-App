@@ -20,6 +20,7 @@
           <app-image-picker
             (imagePicked)="onImageUpload($event)"
             [imageErrorMessage]="imageErrorMessage"
+            [selectedImage]="imageUrl ? imageUrl : ''"
           ></app-image-picker>
         </div>
       </div>
@@ -40,7 +41,7 @@
             [counter]="true"
             maxlength="20"
             name="shortTitle"
-            ngModel
+            [ngModel]="eventData ? eventData.shortTitle : ''"
             required
             #shortTitle="ngModel"
           ></ion-input>

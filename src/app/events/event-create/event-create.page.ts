@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { SelectPriceComponent } from './select-price/select-price.component';
@@ -10,6 +10,7 @@ import { EventsService } from 'src/shared/services/events.service';
 import { transformDates } from 'src/shared/utils/date-utils';
 import BulgarianRegions from 'src/shared/data/regions';
 import Categories from 'src/shared/data/categories';
+import { Event } from 'src/shared/interfaces/Event';
 
 @Component({
   selector: 'app-event-create',
@@ -18,6 +19,10 @@ import Categories from 'src/shared/data/categories';
 })
 export class EventCreatePage implements OnInit, OnDestroy {
   eventSubscription$!: Subscription;
+  getEventSubsription$!: Subscription;
+  eventData!: Event;
+  eventId: string | null = '';
+
   successToasterMessage: string = '';
   errorToasterMessage: string = '';
 
@@ -83,10 +88,31 @@ export class EventCreatePage implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private eventService: EventsService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.eventId = this.route.snapshot.paramMap.get('eventId');
+
+    // if it has an id means it is an edit page and then load the event data
+    if (this.eventId) {
+      this.getEventSubsription$ = this.eventService
+        .getEvent(this.eventId)
+        .subscribe({
+          next: (eventResponse) => {
+            this.eventData = eventResponse;
+            console.log(this.eventData);
+            this.populateEventDataInForm();
+          },
+          error: (err) => (this.errorToasterMessage = err.message),
+        });
+    }
+  }
+
+  populateEventDataInForm(): void {
+    this.imageUrl = this.eventData.imageUrl;
+  }
 
   onCreateEventSubmit(eventForm: NgForm) {
     if (
@@ -220,5 +246,6 @@ export class EventCreatePage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.eventSubscription$) this.eventSubscription$.unsubscribe();
+    if (this.getEventSubsription$) this.getEventSubsription$.unsubscribe();
   }
 }
