@@ -61,7 +61,7 @@
             [counter]="true"
             maxlength="80"
             name="longTitle"
-            ngModel
+            [ngModel]="eventData ? eventData.longTitle : ''"
           ></ion-input>
 
           <!-- short description -->
@@ -71,7 +71,7 @@
             [counter]="true"
             maxlength="140"
             name="shortDescription"
-            ngModel
+            [ngModel]="eventData ? eventData.shortDescription : ''"
             #shortDescription="ngModel"
             required
           ></ion-input>
@@ -93,12 +93,13 @@
               slot="end"
               okText="Ок"
               cancelText="Откажи"
-              #category
+              name="category"
+              [ngModel]="eventData ? selectedEventType : ''"
               (ionChange)="onEventTypeChange($event.detail.value)"
             >
               <ion-select-option
-                value="{{category}}"
                 *ngFor="let category of eventCategories"
+                [value]="category"
                 >{{category}}</ion-select-option
               >
             </ion-select>
@@ -119,7 +120,8 @@
               okText="Ок"
               cancelText="Откажи"
               slot="end"
-              #region
+              name="region"
+              [ngModel]="eventData ? selectedRegion : ''"
               (ionChange)="onRegionChange($event.detail.value)"
             >
               <ion-select-option

@@ -102,6 +102,7 @@ export class EventCreatePage implements OnInit, OnDestroy {
         .subscribe({
           next: (eventResponse) => {
             this.eventData = eventResponse;
+            // todo do it without populate event form
             console.log(this.eventData);
             this.populateEventDataInForm();
           },
@@ -112,9 +113,12 @@ export class EventCreatePage implements OnInit, OnDestroy {
 
   populateEventDataInForm(): void {
     this.imageUrl = this.eventData.imageUrl;
+    this.selectedEventType = this.eventData.category;
+    this.selectedRegion = this.eventData.contacts.region;
   }
 
   onCreateEventSubmit(eventForm: NgForm) {
+    console.log(eventForm.value);
     if (
       !this.validateRequiredField(this.imageUrl, 'imageErrorMessage') ||
       !this.validateRequiredField(this.selectedEventType, 'typeErrorMessage') ||
@@ -148,13 +152,13 @@ export class EventCreatePage implements OnInit, OnDestroy {
         ? eventForm.value.longDescription
         : '',
       imageUrl: this.imageUrl,
-      category: this.selectedEventType,
+      category: eventForm.value.category,
       contacts: {
         coordinates: {
           lat: this.selectedAddress.lat,
           lng: this.selectedAddress.lng,
         },
-        region: this.selectedRegion,
+        region: eventForm.value.region,
         address: this.selectedAddress.address,
         email: eventForm.value.email,
         phone: eventForm.value.phone,
