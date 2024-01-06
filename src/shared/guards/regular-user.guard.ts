@@ -28,7 +28,7 @@ export class RegularUserGuard implements CanActivate {
       map((hasUserData) => {
         const isRegularUser = hasUserData?.role === 'regular';
         if (isRegularUser) {
-          this.router.navigateByUrl('tabs/user/auth');
+          this.router.navigateByUrl('tabs/home');
           return isRegularUser;
         }
         return true;

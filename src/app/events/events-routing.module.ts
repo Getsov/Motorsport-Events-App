@@ -32,8 +32,7 @@ const routes: Routes = [
       import('./event-create/event-create.module').then(
         (m) => m.EventCreatePageModule
       ),
-    canActivate: [AuthGuard, RegularUserGuard],
-    // TODO: set guard to check if the user is the creator of the event
+    canActivate: [AuthGuard, EventCreatorGuard],
   },
 ];
 
