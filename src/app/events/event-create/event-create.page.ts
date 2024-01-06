@@ -105,8 +105,6 @@ export class EventCreatePage implements OnInit, OnDestroy {
         .subscribe({
           next: (eventResponse) => {
             this.eventData = eventResponse;
-            // todo do it without populate event form
-            console.log(this.eventData);
             this.populateEventDataInForm();
           },
           error: (err) => (this.errorToasterMessage = err.message),
@@ -139,7 +137,6 @@ export class EventCreatePage implements OnInit, OnDestroy {
   }
 
   onCreateEventSubmit(eventForm: NgForm) {
-    console.log(eventForm.value);
     if (
       !this.validateRequiredField(this.imageUrl, 'imageErrorMessage') ||
       !this.validateRequiredField(this.selectedEventType, 'typeErrorMessage') ||
@@ -165,7 +162,7 @@ export class EventCreatePage implements OnInit, OnDestroy {
 
     const formattedDates = transformDates(this.dates);
 
-    const formValue: Event = {
+    const formValue: any = {
       shortTitle: eventForm.value.shortTitle,
       longTitle: eventForm.value.longTitle ? eventForm.value.longTitle : '',
       shortDescription: eventForm.value.shortDescription,

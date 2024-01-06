@@ -23,10 +23,10 @@
       ion-input.has-focus,
       ion-textarea.has-focus {
         --border-color: #ff7418;
-        .label-text {
+        ::ng-deep .label-text {
           color: #ff7418;
         }
-        .native-input {
+        ::ng-deep .native-input {
           caret-color: #fff;
         }
       }
@@ -46,6 +46,15 @@
       ion-textarea.ng-valid.ng-touched {
         --border-color: #008000;
 
+        ::ng-deep .label-text {
+          color: #008000;
+        }
+      }
+
+      ion-input.custom-valid-input,
+      ion-textarea.custom-valid-input {
+        --border-color: #008000;
+        border-bottom-color: #008000;
         ::ng-deep .label-text {
           color: #008000;
         }

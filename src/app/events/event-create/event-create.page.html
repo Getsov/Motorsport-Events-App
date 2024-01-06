@@ -41,6 +41,7 @@
             [counter]="true"
             maxlength="20"
             name="shortTitle"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
             [ngModel]="eventData ? eventData.shortTitle : ''"
             required
             #shortTitle="ngModel"
@@ -62,12 +63,14 @@
             maxlength="80"
             name="longTitle"
             [ngModel]="eventData ? eventData.longTitle : ''"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
           ></ion-input>
 
           <!-- short description -->
           <ion-input
             label="Кратко описание*"
             labelPlacement="floating"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
             [counter]="true"
             maxlength="140"
             name="shortDescription"
@@ -158,6 +161,7 @@
             label="Имейл*"
             labelPlacement="floating"
             [counter]="true"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
             class="contacts-input email"
             name="email"
             ngModel
@@ -187,6 +191,7 @@
           <ion-input
             label="Телефон*"
             labelPlacement="floating"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
             [counter]="true"
             name="phone"
             class="contacts-input phone"
@@ -216,6 +221,7 @@
           <ion-textarea
             label="Дълго описание"
             labelPlacement="floating"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
             [counter]="true"
             maxlength="500"
             rows="3"
