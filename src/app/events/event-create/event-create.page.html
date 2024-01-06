@@ -141,6 +141,10 @@
             <app-address-picker
               (confirmedAddress)="onConfirmedAddress($event)"
               [addressInvalid]="!!addressErrorMessage"
+              [selectedAddress]="selectedAddress ? selectedAddress : {title: '',
+              address: '',
+              lat: 0,
+              lng: 0}"
             ></app-address-picker>
           </div>
 

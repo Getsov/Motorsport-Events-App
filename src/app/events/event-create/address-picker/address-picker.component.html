@@ -4,7 +4,9 @@
     labelPlacement="floating"
     id="address-picker"
     (click)="onOpenModal()"
-    [value]="addressConfirmed ? selectedAddress.title : ''"
+    [value]="
+      addressConfirmed || selectedAddress.title ? selectedAddress.title : ''
+    "
     [ngClass]="addressInvalid ? 'custom-invalid-input' : ''"
     [ngClass]="selectedAddress.title ? 'custom-valid-input' : ''"
   ></ion-input>

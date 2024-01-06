@@ -115,10 +115,20 @@ export class EventCreatePage implements OnInit, OnDestroy {
     this.imageUrl = this.eventData.imageUrl;
     this.selectedEventType = this.eventData.category;
     this.selectedRegion = this.eventData.contacts.region;
+
+    // split location to title and address
+    const [title, address] = this.eventData.contacts.address.split(', ');
+    this.selectedAddress = {
+      title,
+      address,
+      lat: Number(this.eventData.contacts.coordinates.lat),
+      lng: Number(this.eventData.contacts.coordinates.lng),
+    };
   }
 
   onCreateEventSubmit(eventForm: NgForm) {
     console.log(eventForm.value);
+    console.log(this.selectedAddress);
     if (
       !this.validateRequiredField(this.imageUrl, 'imageErrorMessage') ||
       !this.validateRequiredField(this.selectedEventType, 'typeErrorMessage') ||
@@ -159,7 +169,7 @@ export class EventCreatePage implements OnInit, OnDestroy {
           lng: this.selectedAddress.lng,
         },
         region: eventForm.value.region,
-        address: this.selectedAddress.address,
+        address: `${this.selectedAddress.title}, ${this.selectedAddress.address}`,
         email: eventForm.value.email,
         phone: eventForm.value.phone,
       },

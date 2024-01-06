@@ -32,7 +32,7 @@ export class AddressPickerComponent implements OnInit {
 
   suggestions: any[] = [];
 
-  selectedAddress = {
+  @Input() selectedAddress = {
     title: '',
     address: '',
     lat: 0,
@@ -50,7 +50,11 @@ export class AddressPickerComponent implements OnInit {
   onOpenModal() {
     setTimeout(() => {
       // initialize google maps moment after modal is opened. Otherwise throws error "gmap is undefined"
-      this.createMap(this.initialCoordinates);
+      this.createMap(
+        this.selectedAddress.title
+          ? this.selectedAddress
+          : this.initialCoordinates
+      );
     }, 1);
   }
 
