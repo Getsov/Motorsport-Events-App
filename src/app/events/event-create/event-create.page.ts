@@ -7,10 +7,14 @@ import { SelectPriceComponent } from './select-price/select-price.component';
 import { SelectDatesComponent } from './select-dates/select-dates.component';
 import { AuthService } from 'src/shared/services/auth.service';
 import { EventsService } from 'src/shared/services/events.service';
-import { transformDates } from 'src/shared/utils/date-utils';
+import {
+  transformDates,
+  transformDateFromBackend,
+} from 'src/shared/utils/date-utils';
 import BulgarianRegions from 'src/shared/data/regions';
 import Categories from 'src/shared/data/categories';
 import { Event } from 'src/shared/interfaces/Event';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-event-create',
@@ -89,7 +93,8 @@ export class EventCreatePage implements OnInit, OnDestroy {
     private authService: AuthService,
     private eventService: EventsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit() {
@@ -124,6 +129,14 @@ export class EventCreatePage implements OnInit, OnDestroy {
       lat: Number(this.eventData.contacts.coordinates.lat),
       lng: Number(this.eventData.contacts.coordinates.lng),
     };
+    // private formatDate(date: string): string {
+    //   return this.datePipe.transform(date, 'dd.MM.yy') || '';
+    // }
+    // transform date
+    // const formattedDates = transformDates(this.eventData.dates, 'dd,mm,yyyy');
+    this.dates = transformDateFromBackend(this.eventData.dates);
+
+    console.log(this.eventData);
   }
 
   onCreateEventSubmit(eventForm: NgForm) {
