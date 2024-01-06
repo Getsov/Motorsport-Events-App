@@ -14,7 +14,6 @@ import {
 import BulgarianRegions from 'src/shared/data/regions';
 import Categories from 'src/shared/data/categories';
 import { Event } from 'src/shared/interfaces/Event';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-event-create',
@@ -32,9 +31,9 @@ export class EventCreatePage implements OnInit, OnDestroy {
 
   // get price values
   @ViewChild(SelectPriceComponent) selectPricesComponent!: SelectPriceComponent;
-  visitorPrices = [{ price: '', description: '' }];
+  visitorPrices = [{ price: 0, description: '' }];
   visitorError: any = false;
-  participantPrices = [{ price: '', description: '' }];
+  participantPrices = [{ price: 0, description: '' }];
   participantError: any = false;
 
   // get date values
@@ -93,8 +92,7 @@ export class EventCreatePage implements OnInit, OnDestroy {
     private authService: AuthService,
     private eventService: EventsService,
     private router: Router,
-    private route: ActivatedRoute,
-    private datePipe: DatePipe
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -129,14 +127,15 @@ export class EventCreatePage implements OnInit, OnDestroy {
       lat: Number(this.eventData.contacts.coordinates.lat),
       lng: Number(this.eventData.contacts.coordinates.lng),
     };
-    // private formatDate(date: string): string {
-    //   return this.datePipe.transform(date, 'dd.MM.yy') || '';
-    // }
-    // transform date
-    // const formattedDates = transformDates(this.eventData.dates, 'dd,mm,yyyy');
-    this.dates = transformDateFromBackend(this.eventData.dates);
 
-    console.log(this.eventData);
+    // transform date from backend
+    this.dates = transformDateFromBackend(this.eventData.dates);
+    if (this.eventData.visitorPrices) {
+      this.visitorPrices = this.eventData.visitorPrices;
+    }
+    if (this.eventData.participantPrices) {
+      this.participantPrices = this.eventData.participantPrices;
+    }
   }
 
   onCreateEventSubmit(eventForm: NgForm) {
@@ -239,7 +238,7 @@ export class EventCreatePage implements OnInit, OnDestroy {
   }
 
   validatePriceField(
-    priceArr: { price: string; description: string }[],
+    priceArr: { price: string | number; description: string }[],
     errorMessageVariable: string
   ): boolean {
     for (let i = 0; i < priceArr.length; i++) {

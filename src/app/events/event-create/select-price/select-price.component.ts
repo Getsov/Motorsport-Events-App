@@ -6,9 +6,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./select-price.component.scss'],
 })
 export class SelectPriceComponent implements OnInit {
-  @Input() visitorPrices!: { price: string; description: string }[];
+  @Input() visitorPrices!: { price: string | number; description: string }[];
   @Input() visitorError: any = false;
-  @Input() participantPrices!: { price: string; description: string }[];
+  @Input() participantPrices!: {
+    price: string | number;
+    description: string;
+  }[];
   @Input() participantError: any = false;
 
   constructor() {}
@@ -16,7 +19,7 @@ export class SelectPriceComponent implements OnInit {
   ngOnInit() {}
 
   addVisitorPrice() {
-    this.visitorPrices.push({ price: '', description: '' });
+    this.visitorPrices.push({ price: 0, description: '' });
   }
 
   removeVisitorPrice(index: number) {
@@ -26,7 +29,7 @@ export class SelectPriceComponent implements OnInit {
   }
 
   addParticipantPrice() {
-    this.participantPrices.push({ price: '', description: '' });
+    this.participantPrices.push({ price: 0, description: '' });
   }
 
   removeParticipantPrice(index: number) {

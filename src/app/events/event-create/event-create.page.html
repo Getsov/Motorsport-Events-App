@@ -257,7 +257,9 @@
       <!-- submit button -->
       <div class="form-buttons-wrapper ion-padding-horizontal">
         <div class="main-button-wrapper">
-          <button class="main-button" type="submit">Създай събитие</button>
+          <button class="main-button" type="submit">
+            {{eventId ? 'Редактирай събитие' : 'Създай събитие'}}
+          </button>
         </div>
         <div class="secondary-button-wrapper">
           <a class="secondary-button">Откажи</a>
