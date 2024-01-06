@@ -140,7 +140,6 @@ export class EventCreatePage implements OnInit, OnDestroy {
 
   onCreateEventSubmit(eventForm: NgForm) {
     console.log(eventForm.value);
-    console.log(this.selectedAddress);
     if (
       !this.validateRequiredField(this.imageUrl, 'imageErrorMessage') ||
       !this.validateRequiredField(this.selectedEventType, 'typeErrorMessage') ||
@@ -166,7 +165,7 @@ export class EventCreatePage implements OnInit, OnDestroy {
 
     const formattedDates = transformDates(this.dates);
 
-    const formValue = {
+    const formValue: Event = {
       shortTitle: eventForm.value.shortTitle,
       longTitle: eventForm.value.longTitle ? eventForm.value.longTitle : '',
       shortDescription: eventForm.value.shortDescription,
@@ -188,23 +187,39 @@ export class EventCreatePage implements OnInit, OnDestroy {
       visitorPrices: this.visitorPrices,
       participantPrices: this.participantPrices,
       dates: formattedDates,
-      creator: user._id,
-      isDeleted: false,
-      isApproved: false,
     };
 
-    this.eventSubscription$ = this.eventService
-      .createEvent(formValue)
-      .subscribe({
-        next: () => {
-          this.successToasterMessage =
-            'Успешно създадено събитие! Събитието очаква одобрение от администратор.';
-          setTimeout(() => this.router.navigateByUrl('/tabs/events'), 5000);
-        },
-        error: (err) => {
-          this.errorToasterMessage = err.message;
-        },
-      });
+    if (this.eventId) {
+      this.eventSubscription$ = this.eventService
+        .editEvent(formValue, this.eventId)
+        .subscribe({
+          next: () => {
+            this.successToasterMessage =
+              'Успешно редактирано събитие! Събитието очаква одобрение от администратор.';
+            setTimeout(
+              () => this.router.navigateByUrl(`/tabs/events/${this.eventId}`),
+              5000
+            );
+          },
+          error: (err) => {
+            this.errorToasterMessage = err.message;
+          },
+        });
+    } else {
+      formValue.creator = user._id;
+      this.eventSubscription$ = this.eventService
+        .createEvent(formValue)
+        .subscribe({
+          next: () => {
+            this.successToasterMessage =
+              'Успешно създадено събитие! Събитието очаква одобрение от администратор.';
+            setTimeout(() => this.router.navigateByUrl('/tabs/events'), 5000);
+          },
+          error: (err) => {
+            this.errorToasterMessage = err.message;
+          },
+        });
+    }
   }
 
   onRegionChange(region: string): void {
