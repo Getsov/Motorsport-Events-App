@@ -65,7 +65,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
   typeErrorMessage = '';
 
   // header separator settings
-  headerTitle: string = 'Създай събитие';
+  headerTitle: string = this.eventId ? 'Редактирай събитие' : 'Създай събитие';
   defaultHref: string = '/tabs/events';
   backButton: boolean = true;
 
@@ -280,6 +280,10 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     }
     this[errorMessageVariable] = false;
     return true;
+  }
+
+  discardEventForm(): void {
+    this.router.navigateByUrl('/tabs/events');
   }
 
   ngOnDestroy(): void {
