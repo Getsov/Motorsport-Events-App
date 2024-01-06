@@ -1,31 +1,39 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { SelectPriceComponent } from './select-price/select-price.component';
 import { SelectDatesComponent } from './select-dates/select-dates.component';
 import { AuthService } from 'src/shared/services/auth.service';
 import { EventsService } from 'src/shared/services/events.service';
-import { transformDates } from 'src/shared/utils/date-utils';
+import {
+  transformDates,
+  transformDateFromBackend,
+} from 'src/shared/utils/date-utils';
 import BulgarianRegions from 'src/shared/data/regions';
 import Categories from 'src/shared/data/categories';
+import { Event } from 'src/shared/interfaces/Event';
 
 @Component({
   selector: 'app-event-create',
-  templateUrl: './event-create.page.html',
-  styleUrls: ['./event-create.page.scss'],
+  templateUrl: './event-create-edit.page.html',
+  styleUrls: ['./event-create-edit.page.scss'],
 })
-export class EventCreatePage implements OnInit, OnDestroy {
+export class EventCreateEditPage implements OnInit, OnDestroy {
   eventSubscription$!: Subscription;
+  getEventSubsription$!: Subscription;
+  eventData!: Event;
+  eventId: string | null = '';
+
   successToasterMessage: string = '';
   errorToasterMessage: string = '';
 
   // get price values
   @ViewChild(SelectPriceComponent) selectPricesComponent!: SelectPriceComponent;
-  visitorPrices = [{ price: '', description: '' }];
+  visitorPrices = [{ price: 0, description: '' }];
   visitorError: any = false;
-  participantPrices = [{ price: '', description: '' }];
+  participantPrices = [{ price: 0, description: '' }];
   participantError: any = false;
 
   // get date values
@@ -83,10 +91,51 @@ export class EventCreatePage implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private eventService: EventsService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.eventId = this.route.snapshot.paramMap.get('eventId');
+
+    // if it has an id means it is an edit page and then load the event data
+    if (this.eventId) {
+      this.getEventSubsription$ = this.eventService
+        .getEvent(this.eventId)
+        .subscribe({
+          next: (eventResponse) => {
+            this.eventData = eventResponse;
+            this.populateEventDataInForm();
+          },
+          error: (err) => (this.errorToasterMessage = err.message),
+        });
+    }
+  }
+
+  populateEventDataInForm(): void {
+    this.headerTitle = 'Редактирай събитие';
+    this.imageUrl = this.eventData.imageUrl;
+    this.selectedEventType = this.eventData.category;
+    this.selectedRegion = this.eventData.contacts.region;
+
+    // split location to title and address
+    const [title, address] = this.eventData.contacts.address.split(', ');
+    this.selectedAddress = {
+      title,
+      address,
+      lat: Number(this.eventData.contacts.coordinates.lat),
+      lng: Number(this.eventData.contacts.coordinates.lng),
+    };
+
+    // transform date from backend
+    this.dates = transformDateFromBackend(this.eventData.dates);
+    if (this.eventData.visitorPrices) {
+      this.visitorPrices = this.eventData.visitorPrices;
+    }
+    if (this.eventData.participantPrices) {
+      this.participantPrices = this.eventData.participantPrices;
+    }
+  }
 
   onCreateEventSubmit(eventForm: NgForm) {
     if (
@@ -114,7 +163,7 @@ export class EventCreatePage implements OnInit, OnDestroy {
 
     const formattedDates = transformDates(this.dates);
 
-    const formValue = {
+    const formValue: any = {
       shortTitle: eventForm.value.shortTitle,
       longTitle: eventForm.value.longTitle ? eventForm.value.longTitle : '',
       shortDescription: eventForm.value.shortDescription,
@@ -122,37 +171,53 @@ export class EventCreatePage implements OnInit, OnDestroy {
         ? eventForm.value.longDescription
         : '',
       imageUrl: this.imageUrl,
-      category: this.selectedEventType,
+      category: eventForm.value.category,
       contacts: {
         coordinates: {
           lat: this.selectedAddress.lat,
           lng: this.selectedAddress.lng,
         },
-        region: this.selectedRegion,
-        address: this.selectedAddress.address,
+        region: eventForm.value.region,
+        address: `${this.selectedAddress.title}, ${this.selectedAddress.address}`,
         email: eventForm.value.email,
         phone: eventForm.value.phone,
       },
       visitorPrices: this.visitorPrices,
       participantPrices: this.participantPrices,
       dates: formattedDates,
-      creator: user._id,
-      isDeleted: false,
-      isApproved: false,
     };
 
-    this.eventSubscription$ = this.eventService
-      .createEvent(formValue)
-      .subscribe({
-        next: () => {
-          this.successToasterMessage =
-            'Успешно създадено събитие! Събитието очаква одобрение от администратор.';
-          setTimeout(() => this.router.navigateByUrl('/tabs/events'), 5000);
-        },
-        error: (err) => {
-          this.errorToasterMessage = err.message;
-        },
-      });
+    if (this.eventId) {
+      this.eventSubscription$ = this.eventService
+        .editEvent(formValue, this.eventId)
+        .subscribe({
+          next: () => {
+            this.successToasterMessage =
+              'Успешно редактирано събитие! Събитието очаква одобрение от администратор.';
+            setTimeout(
+              () => this.router.navigateByUrl(`/tabs/events/${this.eventId}`),
+              5000
+            );
+          },
+          error: (err) => {
+            this.errorToasterMessage = err.message;
+          },
+        });
+    } else {
+      formValue.creator = user._id;
+      this.eventSubscription$ = this.eventService
+        .createEvent(formValue)
+        .subscribe({
+          next: () => {
+            this.successToasterMessage =
+              'Успешно създадено събитие! Събитието очаква одобрение от администратор.';
+            setTimeout(() => this.router.navigateByUrl('/tabs/events'), 5000);
+          },
+          error: (err) => {
+            this.errorToasterMessage = err.message;
+          },
+        });
+    }
   }
 
   onRegionChange(region: string): void {
@@ -186,7 +251,7 @@ export class EventCreatePage implements OnInit, OnDestroy {
   }
 
   validatePriceField(
-    priceArr: { price: string; description: string }[],
+    priceArr: { price: string | number; description: string }[],
     errorMessageVariable: string
   ): boolean {
     for (let i = 0; i < priceArr.length; i++) {
@@ -218,7 +283,12 @@ export class EventCreatePage implements OnInit, OnDestroy {
     return true;
   }
 
+  discardEventForm(): void {
+    this.router.navigateByUrl('/tabs/events');
+  }
+
   ngOnDestroy(): void {
     if (this.eventSubscription$) this.eventSubscription$.unsubscribe();
+    if (this.getEventSubsription$) this.getEventSubsription$.unsubscribe();
   }
 }

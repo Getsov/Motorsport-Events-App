@@ -12,7 +12,7 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class RegularUserGuard implements CanActivate {
+export class EventCreatorGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
@@ -23,13 +23,15 @@ export class RegularUserGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+    const eventId = route.paramMap.get('eventId');
+
     return this.authService.userData$.pipe(
       take(1),
-      map((hasUserData) => {
-        const isRegularUser = hasUserData?.role === 'regular';
-        if (isRegularUser) {
-          this.router.navigateByUrl('tabs/home');
-          return isRegularUser;
+      map((userData) => {
+        const isCreator = userData?.createdEvents.includes(eventId!);
+        if (!isCreator) {
+          this.router.navigateByUrl('tabs/events');
+          return false;
         }
         return true;
       })

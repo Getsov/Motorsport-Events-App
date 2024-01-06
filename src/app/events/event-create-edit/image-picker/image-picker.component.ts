@@ -14,7 +14,7 @@ import {
 export class ImagePickerComponent implements OnInit {
   @Output() imagePicked = new EventEmitter<string>();
   @Input() imageErrorMessage: string = '';
-  selectedImage: string = '';
+  @Input() selectedImage: string = '';
 
   constructor() {}
 

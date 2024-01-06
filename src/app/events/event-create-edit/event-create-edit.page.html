@@ -20,6 +20,7 @@
           <app-image-picker
             (imagePicked)="onImageUpload($event)"
             [imageErrorMessage]="imageErrorMessage"
+            [selectedImage]="imageUrl ? imageUrl : ''"
           ></app-image-picker>
         </div>
       </div>
@@ -40,7 +41,8 @@
             [counter]="true"
             maxlength="20"
             name="shortTitle"
-            ngModel
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
+            [ngModel]="eventData ? eventData.shortTitle : ''"
             required
             #shortTitle="ngModel"
           ></ion-input>
@@ -60,17 +62,19 @@
             [counter]="true"
             maxlength="80"
             name="longTitle"
-            ngModel
+            [ngModel]="eventData ? eventData.longTitle : ''"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
           ></ion-input>
 
           <!-- short description -->
           <ion-input
             label="Кратко описание*"
             labelPlacement="floating"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
             [counter]="true"
             maxlength="140"
             name="shortDescription"
-            ngModel
+            [ngModel]="eventData ? eventData.shortDescription : ''"
             #shortDescription="ngModel"
             required
           ></ion-input>
@@ -92,12 +96,13 @@
               slot="end"
               okText="Ок"
               cancelText="Откажи"
-              #category
+              name="category"
+              [ngModel]="eventData ? selectedEventType : ''"
               (ionChange)="onEventTypeChange($event.detail.value)"
             >
               <ion-select-option
-                value="{{category}}"
                 *ngFor="let category of eventCategories"
+                [value]="category"
                 >{{category}}</ion-select-option
               >
             </ion-select>
@@ -118,7 +123,8 @@
               okText="Ок"
               cancelText="Откажи"
               slot="end"
-              #region
+              name="region"
+              [ngModel]="eventData ? selectedRegion : ''"
               (ionChange)="onRegionChange($event.detail.value)"
             >
               <ion-select-option
@@ -138,6 +144,10 @@
             <app-address-picker
               (confirmedAddress)="onConfirmedAddress($event)"
               [addressInvalid]="!!addressErrorMessage"
+              [selectedAddress]="selectedAddress ? selectedAddress : {title: '',
+              address: '',
+              lat: 0,
+              lng: 0}"
             ></app-address-picker>
           </div>
 
@@ -151,12 +161,14 @@
             label="Имейл*"
             labelPlacement="floating"
             [counter]="true"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
             class="contacts-input email"
             name="email"
             ngModel
             #email="ngModel"
             required
             pattern="^[a-zA-Z0-9\._+\-]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,}$"
+            [ngModel]="eventData ? eventData.contacts.email : ''"
           ></ion-input>
 
           <!-- email error message -->
@@ -179,6 +191,7 @@
           <ion-input
             label="Телефон*"
             labelPlacement="floating"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
             [counter]="true"
             name="phone"
             class="contacts-input phone"
@@ -186,6 +199,7 @@
             required
             #phone="ngModel"
             pattern="^[\d\+\-\(\) ]+$"
+            [ngModel]="eventData ? eventData.contacts.phone : ''"
           ></ion-input>
 
           <ng-container *ngIf="phone.touched">
@@ -207,11 +221,13 @@
           <ion-textarea
             label="Дълго описание"
             labelPlacement="floating"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
             [counter]="true"
             maxlength="500"
             rows="3"
             name="longDescription"
             ngModel
+            [ngModel]="eventData ? eventData.longDescription : ''"
           ></ion-textarea>
         </div>
       </div>
@@ -247,9 +263,11 @@
       <!-- submit button -->
       <div class="form-buttons-wrapper ion-padding-horizontal">
         <div class="main-button-wrapper">
-          <button class="main-button" type="submit">Създай събитие</button>
+          <button class="main-button" type="submit">
+            {{eventId ? 'Редактирай събитие' : 'Създай събитие'}}
+          </button>
         </div>
-        <div class="secondary-button-wrapper">
+        <div class="secondary-button-wrapper" (click)="discardEventForm()">
           <a class="secondary-button">Откажи</a>
         </div>
       </div>

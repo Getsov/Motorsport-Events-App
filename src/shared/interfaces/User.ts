@@ -23,4 +23,5 @@ export interface AuthResponseData {
   phone: string;
   isDeleted: boolean;
   accessToken: string;
+  createdEvents: string[];
 }

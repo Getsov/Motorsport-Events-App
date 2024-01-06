@@ -18,3 +18,11 @@ swiper-slide {
 .swiper-wrapper {
   gap: 32px;
 }
+
+.main-button-wrapper {
+  margin-bottom: 1.5em;
+  height: 56px;
+  span {
+    line-height: 2.5;
+  }
+}
