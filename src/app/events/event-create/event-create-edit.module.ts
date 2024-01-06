@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EventCreatePageRoutingModule } from './event-create-routing.module';
+import { EventCreatePageRoutingModule } from './event-create-edit-routing.module';
 
-import { EventCreatePage } from './event-create.page';
+import { EventCreateEditPage } from './event-create-edit.page';
 import { SharedModule } from 'src/shared/shared.module';
 import { ImagePickerComponent } from './image-picker/image-picker.component';
 import { SelectDatesComponent } from './select-dates/select-dates.component';
@@ -25,7 +25,7 @@ import { EventMarkerModalPageModule } from '../event-detail/event-marker-modal/e
     EventMarkerModalPageModule,
   ],
   declarations: [
-    EventCreatePage,
+    EventCreateEditPage,
     ImagePickerComponent,
     SelectDatesComponent,
     SelectPriceComponent,
@@ -34,4 +34,4 @@ import { EventMarkerModalPageModule } from '../event-detail/event-marker-modal/e
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class EventCreatePageModule {}
+export class EventCreateEditPageModule {}

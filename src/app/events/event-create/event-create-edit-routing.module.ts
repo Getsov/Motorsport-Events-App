@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { EventCreatePage } from './event-create.page';
+import { EventCreateEditPage } from './event-create-edit.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: EventCreatePage
-  }
+    component: EventCreateEditPage,
+  },
 ];
 
 @NgModule({

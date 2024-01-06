@@ -17,10 +17,10 @@ import { Event } from 'src/shared/interfaces/Event';
 
 @Component({
   selector: 'app-event-create',
-  templateUrl: './event-create.page.html',
-  styleUrls: ['./event-create.page.scss'],
+  templateUrl: './event-create-edit.page.html',
+  styleUrls: ['./event-create-edit.page.scss'],
 })
-export class EventCreatePage implements OnInit, OnDestroy {
+export class EventCreateEditPage implements OnInit, OnDestroy {
   eventSubscription$!: Subscription;
   getEventSubsription$!: Subscription;
   eventData!: Event;

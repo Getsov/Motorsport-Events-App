@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { EventCreatePage } from './event-create.page';
+import { EventCreateEditPage } from './event-create-edit.page';
 
 describe('EventCreatePage', () => {
-  let component: EventCreatePage;
-  let fixture: ComponentFixture<EventCreatePage>;
+  let component: EventCreateEditPage;
+  let fixture: ComponentFixture<EventCreateEditPage>;
 
   beforeEach(async(() => {
-    fixture = TestBed.createComponent(EventCreatePage);
+    fixture = TestBed.createComponent(EventCreateEditPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
