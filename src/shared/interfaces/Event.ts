@@ -17,9 +17,9 @@ export interface Event {
     email: string;
   };
   category: string;
-  likes: [];
-  creator: User;
+  likes?: [];
+  creator?: User | string;
   winners?: { name: string; vehicle: string; place: number }[];
-  isDeleted: boolean;
-  _id: string;
+  isDeleted?: boolean;
+  _id?: string;
 }
