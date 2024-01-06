@@ -164,6 +164,7 @@
             #email="ngModel"
             required
             pattern="^[a-zA-Z0-9\._+\-]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,}$"
+            [ngModel]="eventData ? eventData.contacts.email : ''"
           ></ion-input>
 
           <!-- email error message -->
@@ -193,6 +194,7 @@
             required
             #phone="ngModel"
             pattern="^[\d\+\-\(\) ]+$"
+            [ngModel]="eventData ? eventData.contacts.phone : ''"
           ></ion-input>
 
           <ng-container *ngIf="phone.touched">
@@ -219,6 +221,7 @@
             rows="3"
             name="longDescription"
             ngModel
+            [ngModel]="eventData ? eventData.longDescription : ''"
           ></ion-textarea>
         </div>
       </div>
