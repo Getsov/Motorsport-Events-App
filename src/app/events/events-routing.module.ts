@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: 'create',
     loadChildren: () =>
-      import('./event-create/event-create-edit.module').then(
+      import('./event-create-edit/event-create-edit.module').then(
         (m) => m.EventCreateEditPageModule
       ),
     canActivate: [AuthGuard, RegularUserGuard],
@@ -29,7 +29,7 @@ const routes: Routes = [
   {
     path: 'edit/:eventId',
     loadChildren: () =>
-      import('./event-create/event-create-edit.module').then(
+      import('./event-create-edit/event-create-edit.module').then(
         (m) => m.EventCreateEditPageModule
       ),
     canActivate: [AuthGuard, EventCreatorGuard],
