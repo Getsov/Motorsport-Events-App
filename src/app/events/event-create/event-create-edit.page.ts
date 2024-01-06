@@ -65,7 +65,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
   typeErrorMessage = '';
 
   // header separator settings
-  headerTitle: string = this.eventId ? 'Редактирай събитие' : 'Създай събитие';
+  headerTitle: string = 'Създай събитие';
   defaultHref: string = '/tabs/events';
   backButton: boolean = true;
 
@@ -113,6 +113,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
   }
 
   populateEventDataInForm(): void {
+    this.headerTitle = 'Редактирай събитие';
     this.imageUrl = this.eventData.imageUrl;
     this.selectedEventType = this.eventData.category;
     this.selectedRegion = this.eventData.contacts.region;
