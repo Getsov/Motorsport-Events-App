@@ -28,8 +28,8 @@
       <p class="btn-text">Прочети повече</p>
     </button>
     
-    <div *ngIf="user?._id == event.creator" class="organizer-btn">
-      <button class="del btn" (click)="deleteEvent(event)"> <!-- Delete have issue with backend -->
+    <div *ngIf="user?._id == event?.creator" class="organizer-btn">
+      <button class="del btn" (click)="OnDelete(event)"> <!-- Delete have issue with backend -->
         <p class="del-btn-text">Изтрий</p>
       </button>
       <button class="edit btn"> <!-- TODO Link to edit -->
