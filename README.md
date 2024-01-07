@@ -1,6 +1,6 @@
 # Motorsport-Events-App
 
-Ionic with Angular app for SoftUni Intern & Team Lead Academy. It has to serve as a hub for motorsport events in Bulgaria
+Ionic with Angular app for SoftUni Intern & Team Lead Academy. All-in-one hybrid mobile app that brings all motorsports events in Bulgaria in one place.
 
 ## Getting Started
 
@@ -28,3 +28,14 @@ Ionic with Angular app for SoftUni Intern & Team Lead Academy. It has to serve a
    ```bash
    ionic serve
    ```
+
+### Technologies used
+
+- **Ionic with Angular**: The hybrid mobile app is developed using the Ionic with Angular.
+- **Angular 17.0.0**: We used Angular 17.0.0 to create web application for our admin panel.
+- **RESTful API**: Our [RESTful API server'](https://github.com/Getsov/Motorsport-Events-Server) is developed using Node.js, Express.js and MongoDB to handle backend operations.
+- **Figma**: We are using Figma for User Interface Design
+
+### Key features
+
+All-in-one hybrid mobile app that brings all motorsports events in Bulgaria in one place. The main features are a calendar of all events, searching and filtering events, full information about the events, Google map of the location. Each user can register a regular or organizator account which upon approval from admin can create events.
