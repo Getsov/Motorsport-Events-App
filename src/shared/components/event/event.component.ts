@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/shared/interfaces/User';
+import { AuthService } from 'src/shared/services/auth.service';
 
 @Component({
   selector: 'app-event',
@@ -7,9 +9,27 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class EventComponent implements OnInit {
   @Input() event: any;
-  location = 'assets/icon/mdi_location.svg';
-  date = 'assets/icon/date-icon.svg'
-  constructor() {}
+  @Input() eventId!: (event: {}) => void;
 
-  ngOnInit() {}
+  location = 'assets/icon/mdi_location.svg';
+  date = 'assets/icon/date-icon.svg';
+
+  user: User | null = {
+    email: '',
+    firstName: '',
+    lastName: '',
+    region: '',
+    role: '',
+    organizatorName: '',
+    phone: '',
+    isDeleted: false,
+  };
+
+  constructor(private authService: AuthService) {}
+  deleteEvent(event: {}): void {
+    this.eventId(event);
+  }
+  ngOnInit() {
+    this.user = this.authService.getUser();
+  }
 }
