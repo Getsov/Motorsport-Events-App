@@ -15,9 +15,9 @@ export class SearchComponent implements OnInit {
 
   category: string = 'Категория';
   location: string = 'Регион';
-  searchQuery: any = '';
-  categoryQuery: any = '';
-  locationQuery: any = ''
+  searchQuery: [] = [];
+  categoryQuery: [] = [];
+  locationQuery: [] = [];
   regions: any = Object.keys(BulgarianRegions).filter((value) =>
     isNaN(Number(value))
   );
@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit {
   searchEvents():void {
     let query = '';
 
-    if(this.searchQuery){
+    if(this.searchQuery.length > 0){
       query += `search=${this.searchQuery}&`;
     }
 
