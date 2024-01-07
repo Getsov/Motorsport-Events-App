@@ -3,7 +3,7 @@
   <div class="image-wrapper"[routerLink]="event._id">
     <img
       alt="{{ event.shortTitle }}"
-      src="{{ event.imageUrl }}"
+      [src]="'data:image;base64,' + event.imageUrl"
       class="event-image"
     />
   </div>
