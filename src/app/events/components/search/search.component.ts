@@ -19,13 +19,14 @@ export class SearchComponent implements OnInit {
   categoryQuery: [] = [];
   locationQuery: [] = [];
   regions: any = Object.keys(BulgarianRegions).filter((value) =>
-    isNaN(Number(value))
+  isNaN(Number(value))
   );
-
+  
   categories: any = Object.keys(Categories).filter((value) =>
   isNaN(Number(value))
   )
   constructor(private eventService: EventsService) {}
+  ngOnInit() {}
 
   searchEvents():void {
     let query = '';
@@ -73,5 +74,4 @@ export class SearchComponent implements OnInit {
     })
   }
 
-  ngOnInit() {}
 }
