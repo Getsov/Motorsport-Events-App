@@ -1,16 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Event } from 'src/shared/interfaces/Event';
 import { User } from 'src/shared/interfaces/User';
 import { AuthService } from 'src/shared/services/auth.service';
+import { EventsService } from 'src/shared/services/events.service';
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.scss'],
 })
-export class EventComponent implements OnInit {
-  @Input() event: any;
-  @Input() eventId!: (event: {}) => void;
-
+export class EventComponent implements OnInit, OnDestroy {
+  private deleteSubscription: Subscription = new Subscription();
+  @Input() event!: Event;
+  @Output() filteredEvents = new EventEmitter<any>();
   location = 'assets/icon/mdi_location.svg';
   date = 'assets/icon/date-icon.svg';
 
@@ -25,11 +28,37 @@ export class EventComponent implements OnInit {
     isDeleted: false,
   };
 
-  constructor(private authService: AuthService) {}
-  deleteEvent(event: {}): void {
-    this.eventId(event);
-  }
+  constructor(private authService: AuthService, private eventService: EventsService) {}
+
   ngOnInit() {
     this.user = this.authService.getUser();
+  }
+
+  OnDelete(event: Event): void {
+    event.isDeleted = true;
+    this.deleteSubscription = this.eventService.deleteEvent(event, event._id).subscribe({
+      next: () => {
+        this.getEvents();
+      },
+      error(err) {
+        console.log(err);
+      },
+    })
+  }
+
+  getEvents () {
+    this.eventService.getEvents().subscribe({
+      next: (events) =>{
+        this.filteredEvents.emit(events);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+  ngOnDestroy(): void {
+    if(this.deleteSubscription){
+      this.deleteSubscription.unsubscribe();
+    }
   }
 }
