@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   Camera,
   CameraResultType,
@@ -13,7 +13,8 @@ import {
 })
 export class ImagePickerComponent implements OnInit {
   @Output() imagePicked = new EventEmitter<string>();
-  selectedImage: string = '';
+  @Input() imageErrorMessage: string = '';
+  @Input() selectedImage: string = '';
 
   constructor() {}
 
@@ -23,21 +24,23 @@ export class ImagePickerComponent implements OnInit {
     const image = await Camera.getPhoto({
       quality: 100,
       allowEditing: false,
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.Base64,
       source: CameraSource.Photos,
     });
 
     if (image) {
-      this.imagePicked.emit(image.webPath!);
+      this.imagePicked.emit(image.base64String!);
       this.savePicture(image);
     }
   }
 
   async savePicture(photo: Photo) {
-    this.selectedImage = photo.webPath!;
+    this.selectedImage = photo.base64String!;
+    this.imageErrorMessage = '';
   }
 
   onDiscardSelectedImage(): void {
+    this.imagePicked.emit();
     this.selectedImage = '';
   }
 }

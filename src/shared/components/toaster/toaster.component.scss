@@ -1,0 +1,12 @@
+.success-toaster,
+.error-toaster {
+  --border-radius: 4px;
+}
+
+.success-toaster {
+  --background: #008000;
+}
+
+.error-toaster {
+  --background: #ff0000;
+}

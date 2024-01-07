@@ -5,11 +5,21 @@
       [backButton]="backButton"
       [defaultHref]="defaultHref"
     ></app-header>
-    <app-search show-clear-button="focus" placeholder="Търсене"  (filteredEvents) = "getFilteredEvents($event)"></app-search>
+    <app-search
+      show-clear-button="focus"
+      placeholder="Търсене"
+      (filteredEvents)="getFilteredEvents($event)"
+    ></app-search>
+    <div class="ion-padding-horizontal">
+      <div class="main-button-wrapper">
+        <span [routerLink]="['/tabs/events/create']" class="main-button"
+          >Създай събитие</span
+        >
+      </div>
+    </div>
   </div>
   <app-title-fades [color]="titleColor" [title]="titleText" />
   <ng-container *ngFor="let event of eventsData">
     <app-event [event]="event" (filteredEvents) = "getFilteredEvents($event)"/>
   </ng-container>
-
 </ion-content>

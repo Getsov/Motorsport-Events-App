@@ -22,6 +22,16 @@ export class EventsService {
     });
   }
 
+  editEvent(eventData: any, eventId: string) {
+    const accessToken = this.authService.getUserToken();
+    return this.http.put<Event>(`${baseUrl}/events/${eventId}`, eventData, {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Authorization': accessToken!,
+      },
+    });
+  }
+
   getEvents(query: string = ''): Observable<Event[]> {
     if (query) {
       return this.http.get<Event[]>(`${baseUrl}/events?${query}`);

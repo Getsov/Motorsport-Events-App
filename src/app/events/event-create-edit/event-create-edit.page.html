@@ -1,0 +1,288 @@
+<ion-content mode="ios">
+  <app-header
+    [headerTitle]="headerTitle"
+    [backButton]="backButton"
+    [defaultHref]="defaultHref"
+  ></app-header>
+
+  <div class="create-event-container">
+    <form
+      #createEventForm="ngForm"
+      (submit)="onCreateEventSubmit(createEventForm)"
+    >
+      <!-- event image upload -->
+      <div class="ion-margin-top">
+        <app-title-fades
+          [color]="titleSeparatorColor"
+          [title]="separatorPictureTitle"
+        />
+        <div class="image-upload-wrapper ion-padding-horizontal">
+          <app-image-picker
+            (imagePicked)="onImageUpload($event)"
+            [imageErrorMessage]="imageErrorMessage"
+            [selectedImage]="imageUrl ? imageUrl : ''"
+          ></app-image-picker>
+        </div>
+      </div>
+
+      <!-- event description -->
+      <div class="description-inputs-wrapper">
+        <app-title-fades
+          [color]="descriptionSeparatorColor"
+          [title]="descriptionSeparatorTitle"
+          class="description-separator"
+        />
+
+        <div class="ion-padding-horizontal event-input">
+          <!-- short title input -->
+          <ion-input
+            label="Кратко заглавие*"
+            labelPlacement="floating"
+            [counter]="true"
+            maxlength="20"
+            name="shortTitle"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
+            [ngModel]="eventData ? eventData.shortTitle : ''"
+            required
+            #shortTitle="ngModel"
+          ></ion-input>
+
+          <!-- short title error message -->
+          <p
+            *ngIf="shortTitle.touched && shortTitle.errors?.['required']"
+            class="validation-error-message"
+          >
+            Полето е задължително за попълване!
+          </p>
+
+          <!-- long title input -->
+          <ion-input
+            label="Дълго заглавие"
+            labelPlacement="floating"
+            [counter]="true"
+            maxlength="80"
+            name="longTitle"
+            [ngModel]="eventData ? eventData.longTitle : ''"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
+          ></ion-input>
+
+          <!-- short description -->
+          <ion-input
+            label="Кратко описание*"
+            labelPlacement="floating"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
+            [counter]="true"
+            maxlength="140"
+            name="shortDescription"
+            [ngModel]="eventData ? eventData.shortDescription : ''"
+            #shortDescription="ngModel"
+            required
+          ></ion-input>
+          <!-- short description error message -->
+          <p
+            *ngIf="shortDescription.touched && shortDescription.errors?.['required']"
+            class="validation-error-message"
+          >
+            Полето е задължително за попълване!
+          </p>
+
+          <!-- event category selector -->
+          <div class="category-select-wrapper">
+            <ion-select
+              [ngClass]="typeErrorMessage ? 'event-type-select custom-invalid-input' : 'event-type-select' "
+              [ngClass]="selectedEventType ? 'event-type-select custom-valid-input' : 'event-type-select' "
+              label="Вид на събитието*"
+              labelPlacement="floating"
+              slot="end"
+              okText="Ок"
+              cancelText="Откажи"
+              name="category"
+              [ngModel]="eventData ? selectedEventType : ''"
+              (ionChange)="onEventTypeChange($event.detail.value)"
+            >
+              <ion-select-option
+                *ngFor="let category of eventCategories"
+                [value]="category"
+                >{{category}}</ion-select-option
+              >
+            </ion-select>
+          </div>
+
+          <!-- category error message -->
+          <p *ngIf="typeErrorMessage" class="validation-error-message">
+            {{typeErrorMessage}}
+          </p>
+
+          <!-- event region selector-->
+          <div class="region-select-wrapper">
+            <ion-select
+              [ngClass]="regionErrorMessage ? 'region-select custom-invalid-input' : 'region-select' "
+              [ngClass]="selectedRegion ? 'region-select custom-valid-input' : 'region-select' "
+              label="Регион*"
+              labelPlacement="floating"
+              okText="Ок"
+              cancelText="Откажи"
+              slot="end"
+              name="region"
+              [ngModel]="eventData ? selectedRegion : ''"
+              (ionChange)="onRegionChange($event.detail.value)"
+            >
+              <ion-select-option
+                value="{{region}}"
+                *ngFor="let region of bulgarianRegions"
+                >{{region}}</ion-select-option
+              >
+            </ion-select>
+          </div>
+
+          <!-- region error message -->
+          <p *ngIf="regionErrorMessage" class="validation-error-message">
+            {{regionErrorMessage}}
+          </p>
+          <!-- address-->
+          <div class="event-address-wrapper">
+            <app-address-picker
+              (confirmedAddress)="onConfirmedAddress($event)"
+              [addressInvalid]="!!addressErrorMessage"
+              [selectedAddress]="selectedAddress ? selectedAddress : {title: '',
+              address: '',
+              lat: 0,
+              lng: 0}"
+            ></app-address-picker>
+          </div>
+
+          <!-- address error message -->
+          <p *ngIf="addressErrorMessage" class="validation-error-message">
+            {{addressErrorMessage}}
+          </p>
+
+          <!-- email -->
+          <ion-input
+            label="Имейл*"
+            labelPlacement="floating"
+            [counter]="true"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
+            class="contacts-input email"
+            name="email"
+            ngModel
+            #email="ngModel"
+            required
+            pattern="^[a-zA-Z0-9\._+\-]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,}$"
+            [ngModel]="eventData ? eventData.contacts.email : ''"
+          ></ion-input>
+
+          <!-- email error message -->
+          <ng-container *ngIf="email.touched">
+            <p
+              class="validation-error-message"
+              *ngIf="email.errors?.['required']"
+            >
+              Полето е задължително за попълване!
+            </p>
+            <p
+              class="validation-error-message"
+              *ngIf="email.errors?.['pattern']"
+            >
+              Моля въведете валиден имейл!
+            </p>
+          </ng-container>
+
+          <!-- phone-->
+          <ion-input
+            label="Телефон*"
+            labelPlacement="floating"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
+            [counter]="true"
+            name="phone"
+            class="contacts-input phone"
+            ngModel
+            required
+            #phone="ngModel"
+            pattern="^[\d\+\-\(\) ]+$"
+            [ngModel]="eventData ? eventData.contacts.phone : ''"
+          ></ion-input>
+
+          <ng-container *ngIf="phone.touched">
+            <p
+              class="validation-error-message"
+              *ngIf="phone.errors?.['required']"
+            >
+              Полето е задължително за попълване!
+            </p>
+            <p
+              class="validation-error-message"
+              *ngIf="phone.errors?.['pattern']"
+            >
+              Телефона трябва да съдържа само числа
+            </p>
+          </ng-container>
+
+          <!-- long description -->
+          <ion-textarea
+            label="Дълго описание"
+            labelPlacement="floating"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
+            [counter]="true"
+            maxlength="500"
+            rows="3"
+            name="longDescription"
+            ngModel
+            [ngModel]="eventData ? eventData.longDescription : ''"
+          ></ion-textarea>
+        </div>
+      </div>
+
+      <!-- event date -->
+      <div class="event-date-wrapper">
+        <app-title-fades
+          [color]="dateSeparatorColor"
+          [title]="dateSeparatorTitle"
+        />
+        <div class="ion-padding-horizontal event-input">
+          <!-- select dates -->
+          <app-select-dates
+            [dates]="dates"
+            [datesError]="datesError"
+          ></app-select-dates>
+        </div>
+      </div>
+      <!-- event prices -->
+      <div class="event-prices-wrapper">
+        <app-title-fades
+          [color]="priceSeparatorColor"
+          [title]="priceSeparatorTitle"
+        />
+        <app-select-price
+          [visitorPrices]="visitorPrices"
+          [visitorError]="visitorError"
+          [participantPrices]="participantPrices"
+          [participantError]="participantError"
+        ></app-select-price>
+      </div>
+
+      <!-- submit button -->
+      <div class="form-buttons-wrapper ion-padding-horizontal">
+        <div class="main-button-wrapper">
+          <button class="main-button" type="submit">
+            {{eventId ? 'Редактирай събитие' : 'Създай събитие'}}
+          </button>
+        </div>
+        <div class="secondary-button-wrapper" (click)="discardEventForm()">
+          <a class="secondary-button">Откажи</a>
+        </div>
+      </div>
+    </form>
+
+    <!-- success toaster -->
+    <app-toaster
+      [toasterMessage]="successToasterMessage"
+      [toasterType]="'success'"
+    ></app-toaster>
+
+    <!-- error toaster -->
+    <app-toaster
+      [toasterMessage]="errorToasterMessage"
+      [toasterType]="'error'"
+    ></app-toaster>
+  </div>
+</ion-content>

@@ -1,3 +1,5 @@
+import { DatePipe } from '@angular/common';
+
 export function getDayOfWeek(dateString: string): string {
   const daysOfWeek = [
     'Неделя',
@@ -51,4 +53,18 @@ function transformDateFormat(inputDate: string): string {
   const parts = inputDate.split('.');
   const [day, month, year] = parts;
   return `${year}.${month}.${day}`;
+}
+
+export function transformDateFromBackend(
+  dates: { date: string; startTime: string; endTime: string }[]
+) {
+  const datePipe = new DatePipe('en-US');
+  return dates.map((currentDate) => {
+    const transformedDate = datePipe.transform(currentDate.date, 'dd.MM.yyyy')!;
+    return {
+      date: transformedDate,
+      startTime: currentDate.startTime,
+      endTime: currentDate.endTime,
+    };
+  });
 }

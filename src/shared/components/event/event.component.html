@@ -1,7 +1,11 @@
 <div class="event-wrapper">
-  <div class="event-container">
-    <div class="image-wrapper" [routerLink]="event._id">
-      <img alt="{{ event.shortTitle }}" [src]="'data:image;base64,' + event.imageUrl" class="event-image" />
+  <div class="event-container" [routerLink]="event._id">
+    <div class="image-wrapper">
+      <img
+        alt="{{ event.shortTitle }}"
+        [src]="'data:image;base64,' + event.imageUrl"
+        class="event-image"
+      />
     </div>
     <div class="event-info">
       <h3 class="event-title">{{ event.shortTitle }}</h3>
@@ -11,31 +15,24 @@
       </p>
       <p *ngIf="event.dates.length > 1" class="event-date">
         <ion-icon [src]="date" name="date" class="date-img" />
-        От {{ event.dates[0].date | date : "dd.MM.yyyy" }} г. до
-        {{ event.dates[event.dates.length - 1].date | date : "dd.MM.yyyy" }}
+        От {{ event.dates[0].startDate | date : "dd.MM.yyyy" }} г. до
+        {{
+          event.dates[event.dates.length - 1].startDate | date : "dd.MM.yyyy"
+        }}
         г.
       </p>
       <p *ngIf="event.dates.length === 1" class="event-date">
         <ion-icon [src]="date" name="date" class="date-img" />
-        {{ event.dates[0].date | date : "dd.MM.yyyy" }} г.
+        {{ event.dates[0].startDate | date : "dd.MM.yyyy" }} г.
       </p>
       <p class="event-description">{{ event.shortDescription }}</p>
-      <button class="more-btn" [routerLink]="event._id">
+      <button class="more-btn">
         <p class="btn-text">Прочети повече</p>
       </button>
-
-      <div *ngIf="user?._id == event?.creator" class="organizer-btn">
-        <button class="del btn" (click)="OnDelete(event)"> <!-- Delete have issue with backend -->
-          <p class="del-btn-text">Изтрий</p>
-        </button>
-        <button class="edit btn"> <!-- TODO Link to edit -->
-          <p class="edit-btn-text">Редактирай</p>
-        </button>
-      </div>
     </div>
   </div>
 
-  <div class="like-icon-wrapper"><app-like-icon class="event-like"></app-like-icon>
+  <div class="like-icon-wrapper">
+    <app-like-icon class="event-like"></app-like-icon>
   </div>
-
 </div>

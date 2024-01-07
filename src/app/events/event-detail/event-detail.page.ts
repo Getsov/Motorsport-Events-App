@@ -34,7 +34,7 @@ export class EventDetailPage implements OnInit {
     contacts: {
       coordinates: {
         lat: 0,
-        long: 0,
+        lng: 0,
       },
       region: '',
       address: '',
@@ -98,7 +98,7 @@ export class EventDetailPage implements OnInit {
       config: {
         center: {
           lat: Number(this.event.contacts.coordinates.lat),
-          lng: Number(this.event.contacts.coordinates.long),
+          lng: Number(this.event.contacts.coordinates.lng),
         },
         zoom: 13,
       },
@@ -111,7 +111,7 @@ export class EventDetailPage implements OnInit {
     const marker: Marker = {
       coordinate: {
         lat: Number(this.event.contacts.coordinates.lat),
-        lng: Number(this.event.contacts.coordinates.long),
+        lng: Number(this.event.contacts.coordinates.lng),
       },
       title: this.event.shortTitle,
       snippet: `${this.event.contacts.region}, ${this.event.contacts.address}`,

@@ -9,7 +9,7 @@ ion-input.date-hour-select {
   --padding-start: 1em;
   --placeholder-color: white;
   --placeholder-opacity: 1;
-  width: calc(100% - 50%);
+  width: calc(50% - 1em);
   border-bottom: 1px solid #fff;
   height: 3.5em;
   ion-icon {
@@ -22,46 +22,36 @@ ion-input.date-hour-select {
   }
 }
 
-.date-input-wrapper {
-  ion-input {
-    width: 100%;
+ion-input.custom-valid-input {
+  border-bottom: 1px solid #008000;
+  --placeholder-color: #008000;
+  color: #008000;
+  ion-icon {
+    content: url("../../../../assets/icon/arrow-up-down-success.png");
+  }
+}
+
+ion-input.custom-invalid-input {
+  border-bottom: 1px solid red;
+  --placeholder-color: #ff0000;
+  color: #ff0000;
+  ion-icon {
+    content: url("../../../../assets/icon/arrow-up-down-error.png");
   }
 }
 
 // modal picker
 ion-modal.modal-picker {
-  --background: #0b0b0b;
-  --height: auto;
-  --border-radius: 4px;
-  --box-shadow: 0px 0px 8px 1px rgba(255, 116, 24, 0.3);
-  ion-content {
+  ion-datetime {
+    margin: 0 auto;
     --background: transparent;
-    ion-datetime {
-      margin: 0 auto;
-      --background: transparent;
-      --wheel-fade-background-rgb: transparent;
-    }
+    --wheel-fade-background-rgb: transparent;
   }
 
   ion-footer {
-    // border-top: 1px solid #fff;
     ion-toolbar {
       --background: #0b0b0b;
       padding: 0;
-    }
-    .hour-picker-action-buttons {
-      display: flex;
-      justify-content: center;
-
-      ion-buttons {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        ion-button {
-          margin: 0 auto;
-        }
-      }
     }
   }
 
@@ -69,16 +59,6 @@ ion-modal.modal-picker {
     display: flex;
     justify-content: center;
   }
-
-  ::ng-deep .ion-page {
-    height: 100%;
-    width: 102%; // this was the only way to hide a strange scroll which appeared
-  }
-}
-
-ion-modal.modal-picker::part(content) {
-  height: 250px;
-  width: 90%;
 }
 
 // calendar modal fine tunning
@@ -94,7 +74,6 @@ ion-modal.calendar-date-picker::part(content) {
 }
 
 // class for the add another date if it is the first date pick option
-
 .button-wrapper-single {
   width: calc(50% - 1em);
 }

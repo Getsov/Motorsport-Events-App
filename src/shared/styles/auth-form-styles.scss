@@ -6,7 +6,8 @@
 
   .auth-input,
   .region-select-wrapper,
-  .category-select-wrapper {
+  .category-select-wrapper,
+  .event-address-wrapper {
     position: relative;
     height: 54px;
 
@@ -28,7 +29,7 @@
         margin: auto 1em 1px auto;
         z-index: 1;
         ion-icon {
-          content: url("../../../assets/icon/clear-input-icon.svg");
+          content: url("../../assets/icon/clear-input-icon.svg");
           height: 11.7px;
           width: 11.7px;
         }
@@ -57,7 +58,7 @@
         margin: auto 1em 1px auto;
         z-index: 1;
         ion-icon {
-          content: url("../../../assets/icon/error-clear-input-icon.svg");
+          content: url("../../assets/icon/error-clear-input-icon.svg");
         }
       }
     }
@@ -74,7 +75,7 @@
         margin: auto 1em 1px auto;
         z-index: 1;
         ion-icon {
-          content: url("../../../assets/icon/success-input-icon.svg");
+          content: url("../../assets/icon/success-input-icon.svg");
         }
       }
     }
@@ -98,7 +99,7 @@
     ion-select.event-type-select::part(icon),
     ion-select.date-hour-select::part(icon) {
       color: #ffffff;
-      content: url("../../../assets/icon/arrow-up-down.svg");
+      content: url("../../assets/icon/arrow-up-down.svg");
       position: absolute;
       right: 1.6em;
       top: transform(translateY(-50%));
@@ -123,7 +124,8 @@
     }
   }
 
-  .auth-validation-error-message {
+  .auth-validation-error-message,
+  .validation-error-message {
     color: #ff0000;
     padding-left: 16px;
     font-size: 12px;

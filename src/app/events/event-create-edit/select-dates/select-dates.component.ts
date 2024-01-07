@@ -13,6 +13,8 @@ export class SelectDatesComponent implements OnInit {
   calendarPickerComponent!: CalendarDatePickerComponent;
 
   @Input() dates!: { date: string; startTime: string; endTime: string }[];
+  @Input() datesError: any = false;
+
   constructor(private modalController: ModalController) {}
 
   ngOnInit() {}

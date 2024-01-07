@@ -10,7 +10,16 @@
               fill="solid"
               label="Цена (лв.)"
               labelPlacement="floating"
-              class="price-input"
+              [ngClass]="
+                visitorError[0] && i === visitorError[1]
+                  ? 'custom-invalid-input price-input'
+                  : 'price-input'
+              "
+              [ngClass]="
+                visitorPrices[i].price && visitorPrices[i].description
+                  ? 'custom-valid-input price-input'
+                  : 'price-input'
+              "
               [(ngModel)]="visitorPrices[i].price"
               required
             ></ion-input>
@@ -19,10 +28,31 @@
               fill="solid"
               label="Описание на ценовото предложение"
               labelPlacement="floating"
-              class="price-description-input"
+              [ngClass]="
+                visitorError[0] && i === visitorError[1]
+                  ? 'custom-invalid-input price-description-input'
+                  : 'price-description-input'
+              "
+              [ngClass]="
+                visitorPrices[i].price && visitorPrices[i].description
+                  ? 'custom-valid-input price-description-input'
+                  : 'price-description-input'
+              "
               [(ngModel)]="visitorPrices[i].description"
               required
             ></ion-input>
+
+            <!-- error message -->
+            <p
+              *ngIf="
+                visitorError[0] &&
+                i === visitorError[1] &&
+                (!visitorPrices[i].price || !visitorPrices[i].description)
+              "
+              class="validation-error-message"
+            >
+              {{ visitorError[0] }}
+            </p>
           </div>
           <!-- Add new price and delete buttons -->
           <div
@@ -58,7 +88,16 @@
               fill="solid"
               label="Цена (лв.)"
               labelPlacement="floating"
-              class="price-input"
+              [ngClass]="
+                participantError[0] && i === participantError[1]
+                  ? 'custom-invalid-input price-input'
+                  : 'price-input'
+              "
+              [ngClass]="
+                participantPrices[i].price && participantPrices[i].description
+                  ? 'custom-valid-input price-input'
+                  : 'price-input'
+              "
               [(ngModel)]="participantPrices[i].price"
               required
             ></ion-input>
@@ -67,10 +106,32 @@
               fill="solid"
               label="Описание на ценовото предложение"
               labelPlacement="floating"
-              class="price-description-input"
+              [ngClass]="
+                participantError[0] && i === participantError[1]
+                  ? 'custom-invalid-input price-description-input'
+                  : 'price-description-input'
+              "
+              [ngClass]="
+                participantPrices[i].price && participantPrices[i].description
+                  ? 'custom-valid-input price-description-input'
+                  : 'price-descritpion-input'
+              "
               [(ngModel)]="participantPrices[i].description"
               required
             ></ion-input>
+
+            <!-- error message -->
+            <p
+              *ngIf="
+                participantError[0] &&
+                i === participantError[1] &&
+                (!participantPrices[i].price ||
+                  !participantPrices[i].description)
+              "
+              class="validation-error-message"
+            >
+              {{ participantError[0] }}
+            </p>
           </div>
           <!-- Add new price and delete buttons -->
           <div
