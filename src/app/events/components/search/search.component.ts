@@ -15,7 +15,9 @@ export class SearchComponent implements OnInit {
 
   category: string = 'Категория';
   location: string = 'Регион';
-
+  searchQuery: any = '';
+  categoryQuery: any = '';
+  locationQuery: any = ''
   regions: any = Object.keys(BulgarianRegions).filter((value) =>
     isNaN(Number(value))
   );
@@ -25,18 +27,38 @@ export class SearchComponent implements OnInit {
   )
   constructor(private eventService: EventsService) {}
 
-  locationChangeHandler(event: any): void {
-    const query = `region=${event.detail.value}`
-    this.getEvents(query);
-  }
+  searchEvents():void {
+    let query = '';
 
-  categoryChangeHandler(event: any): void {
-    const query = `category=${event.detail.value}`
-    this.getEvents(query);
-  }
+    if(this.searchQuery){
+      query += `search=${this.searchQuery}&`;
+    }
 
-  searchChangeHandler(event: any): void {
-    const query = `search=${event.detail.value}`;
+    if(this.categoryQuery.length > 0){
+      
+      if(this.categoryQuery.length > 1){
+        this.categoryQuery.forEach((el: string) => {
+          query += `category=${el}&`;
+        });
+      }else{
+        query += `category=${this.categoryQuery}&`;
+      }
+    }
+
+    if(this.locationQuery.length > 0){
+      if(this.locationQuery.length > 1){
+        this.locationQuery.forEach((el: string) => {
+          query += `location=${el}&`;
+        });
+      }else{
+        query += `region=${this.locationQuery}&`;
+      }
+    }
+
+    query = query.slice(0, -1);
+    if(this.searchQuery.length == 0 && this.categoryQuery.length == 0 && this.locationQuery.length == 0){
+      query = '';
+    }
     this.getEvents(query);
   }
 
