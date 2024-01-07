@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventsService } from '../../shared/services/events.service';
 import { Event } from 'src/shared/interfaces/Event';
@@ -9,7 +9,7 @@ import { Event } from 'src/shared/interfaces/Event';
   styleUrls: ['./events.page.scss'],
 })
 export class EventsPage implements OnInit {
-  eventsData: Event[] = []; // Change the type to Event[]
+  eventsData: Event[] = [];
   query: any = [];
 
   @Input() titleColor: string = 'yellow';
@@ -44,19 +44,6 @@ export class EventsPage implements OnInit {
       },
       error: (err) => {
         console.error(err);
-      },
-    });
-  }
-
-  deleteEvents(event: any): void {
-    event.isDeleted = true;
-    this.eventService.deleteEvent(event, event._id).subscribe({
-      next: (event) => {
-        console.log(event);
-        this.getEvents();
-      },
-      error: (err) => {
-        console.log(err);
       },
     });
   }
