@@ -29,7 +29,7 @@
       <button class="more-btn" [routerLink]="event._id">
         <p class="btn-text">Прочети повече</p>
       </button>
-      <div *ngIf="user?._id == event?.creator" class="organizer-btn">
+      <div *ngIf="(user?._id == event?.creator) || (user?.role == 'admin')" class="organizer-btn">
         <button class="del btn" (click)="deleteEvent(event)">
           <p class="del-btn-text">Изтрий</p>
         </button>
