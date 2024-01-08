@@ -34,8 +34,13 @@ export class EventComponent implements OnInit, OnDestroy {
     this.user = this.authService.getUser();
   }
 
-  OnDelete(event: Event): void {
-    event.isDeleted = true;
+
+
+  deleteEvent(event: Event): void {
+    const confirmation = confirm('Are you sure you want to delete this event?');
+    
+    if(confirmation){
+      event.isDeleted = true;
     this.deleteSubscription = this.eventService.deleteEvent(event, event._id).subscribe({
       next: () => {
         this.getEvents();
@@ -44,6 +49,8 @@ export class EventComponent implements OnInit, OnDestroy {
         console.log(err);
       },
     })
+    }
+    
   }
 
   getEvents () {
