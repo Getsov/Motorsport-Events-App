@@ -1,0 +1,17 @@
+.my-event-line {
+    width: 135.723px;
+    height: 24px;
+    transform: rotate(-45deg);
+    background-color: #FFDC23;
+    display: flex;
+    align-items: center;
+  
+    .my-event-text {
+      color: #0D0D0D;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 120%;
+      margin: 0 auto;
+    }
+  }
