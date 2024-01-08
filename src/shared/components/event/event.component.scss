@@ -8,6 +8,8 @@
     padding: 8px;
     width: 91.1%;
     margin: 16px auto;
+    position: relative;
+    overflow: hidden;
 
     .image-wrapper {
       display: flex;
@@ -158,7 +160,11 @@
     }
   }
 }
-
+.my-event-line {
+  position: absolute;
+  left: -30.056px;
+  top: 23.658px;
+}
 
 
 

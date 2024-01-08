@@ -1,12 +1,14 @@
 <div class="event-wrapper">
   <div class="event-container" >
-    <div class="image-wrapper"[routerLink]="event._id">
-      <img
-        alt="{{ event.shortTitle }}"
-        [src]="'data:image;base64,' + event.imageUrl"
-        class="event-image"
-      />
-    </div>
+      <app-event-line *ngIf="user?._id == event?.creator" class="my-event-line"></app-event-line>
+      <div class="image-wrapper"[routerLink]="event._id">
+        <img
+          alt="{{ event.shortTitle }}"
+          [src]="'data:image;base64,' + event.imageUrl"
+          class="event-image"
+        />
+        
+      </div>
     <div class="event-info">
       <h3 class="event-title">{{ event.shortTitle }}</h3>
       <p class="event-location">
