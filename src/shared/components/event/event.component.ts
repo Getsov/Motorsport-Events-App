@@ -12,6 +12,7 @@ import { EventsService } from 'src/shared/services/events.service';
 })
 export class EventComponent implements OnInit, OnDestroy {
   private deleteSubscription: Subscription = new Subscription();
+  private eventsSubscription: Subscription = new Subscription();
   @Input() event!: Event;
   @Output() filteredEvents = new EventEmitter<any>();
   location = 'assets/icon/mdi_location.svg';
@@ -54,7 +55,7 @@ export class EventComponent implements OnInit, OnDestroy {
   }
 
   getEvents () {
-    this.eventService.getEvents().subscribe({
+    this.eventsSubscription = this.eventService.getEvents().subscribe({
       next: (events) =>{
         this.filteredEvents.emit(events);
       },
@@ -66,6 +67,9 @@ export class EventComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if(this.deleteSubscription){
       this.deleteSubscription.unsubscribe();
+    }
+    if(this.eventsSubscription){
+      this.eventsSubscription.unsubscribe();
     }
   }
 }
