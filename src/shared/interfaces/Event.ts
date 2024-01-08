@@ -16,7 +16,7 @@ export interface Event {
     phone: string;
     email: string;
   };
-  category: string;
+  category: string[];
   likes: [];
   creator: User;
   winners?: { name: string; vehicle: string; place: number }[];
