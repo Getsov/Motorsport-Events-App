@@ -49,7 +49,7 @@ export class SearchComponent implements OnInit {
     if(this.locationQuery.length > 0){
       if(this.locationQuery.length > 1){
         this.locationQuery.forEach((el: string) => {
-          query += `location=${el}&`;
+          query += `region=${el}&`;
         });
       }else{
         query += `region=${this.locationQuery}&`;
