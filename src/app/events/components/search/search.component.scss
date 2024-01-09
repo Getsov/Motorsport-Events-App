@@ -85,10 +85,14 @@ ion-select::part(content) {
 ::ng-deep #select-label {
   max-width: 100%;
 }
-
+::ng-deep .sc-ion-alert-ios-h{
+  --max-width: 100%;
+}
 ::ng-deep .alert-wrapper {
   border: 1px solid #A6A2A0 !important;
   border-radius: 4px !important;
+  width: 91.7% !important;
+  
   .alert-head {
     display: flex;
     align-items: center;
@@ -114,7 +118,9 @@ ion-select::part(content) {
     background-color: #33312F;
   }
 
-
+  .alert-checkbox-group{
+    min-height: 322px !important;
+  }
   .alert-checkbox-group::-webkit-scrollbar-thumb {
     background-color: #a6a2a0;
   }
