@@ -25,7 +25,6 @@
     "@capacitor/app": "5.0.6",
     "@capacitor/camera": "^5.0.7",
     "@capacitor/core": "5.5.1",
-    "@capacitor/dialog": "^5.0.6",
     "@capacitor/filesystem": "^5.1.4",
     "@capacitor/geolocation": "^5.0.6",
     "@capacitor/google-maps": "^5.3.3",
