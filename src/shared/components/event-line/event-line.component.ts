@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-event-line',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./event-line.component.scss'],
 })
 export class EventLineComponent  implements OnInit {
-
+  @Input() inputString!: string;
   constructor() { }
 
   ngOnInit() {}

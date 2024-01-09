@@ -1,6 +1,6 @@
 <div class="event-wrapper">
   <div class="event-container" >
-      <app-event-line *ngIf="user?._id == event?.creator" class="my-event-line"></app-event-line>
+      <app-event-line *ngIf="user?._id == event?.creator" class="my-event-line" [inputString]="myEventLineText"></app-event-line>
       <div class="image-wrapper"[routerLink]="event._id">
         <img
           alt="{{ event.shortTitle }}"

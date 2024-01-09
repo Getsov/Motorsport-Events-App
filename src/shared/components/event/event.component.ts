@@ -17,7 +17,7 @@ export class EventComponent implements OnInit, OnDestroy {
   @Output() filteredEvents = new EventEmitter<any>();
   location = 'assets/icon/mdi_location.svg';
   date = 'assets/icon/date-icon.svg';
-
+  myEventLineText = 'Мое събитие'
   user: User | null = {
     email: '',
     firstName: '',
