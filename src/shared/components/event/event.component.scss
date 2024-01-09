@@ -1,5 +1,6 @@
-.event-wrapper{
+.event-wrapper {
   position: relative;
+
   .event-container {
     border-radius: 4px;
     background: var(--surface-screen-screen-card-black-dark, #0d0d0d);
@@ -7,12 +8,15 @@
     padding: 8px;
     width: 91.1%;
     margin: 16px auto;
+    position: relative;
+    overflow: hidden;
 
     .image-wrapper {
       display: flex;
       align-items: center;
       margin: 0 auto;
       min-height: 156px;
+
       .event-image {
         display: block;
         margin: 0 auto;
@@ -25,6 +29,7 @@
 
     .event-info {
       position: relative;
+
       .event-title {
         margin: 8px 0 4px 0;
         font-size: 16px;
@@ -32,6 +37,7 @@
         font-weight: 600;
         line-height: 150%;
       }
+
       .event-location {
         color: #FFF;
         font-family: Open Sans;
@@ -42,12 +48,14 @@
         display: inline-flex;
         align-items: flex-start;
         gap: 4px;
+
         .location-img {
           width: 18px;
           height: 18px;
           color: #FFF;
         }
       }
+
       .event-date {
         display: flex;
         align-items: flex-start;
@@ -58,12 +66,14 @@
         font-style: normal;
         font-weight: 600;
         line-height: 150%;
+
         .date-img {
           width: 18px;
           height: 18px;
           color: #FFF;
         }
       }
+
       .event-description {
         margin-bottom: 8px;
         margin-top: 4px;
@@ -73,16 +83,19 @@
         font-weight: 400;
         line-height: 150%;
       }
+
       .more-btn {
         display: flex;
-        width: 47%;
-        padding: 4px 16px;
+        width: 100%;
+        height: 44px;
+        padding: 0 8px;
         justify-content: center;
         align-items: center;
         gap: 10px;
         border-radius: 4px;
         background: #FFDC23;
-         .btn-text {
+
+        .btn-text {
           color: #0d0d0d;
           text-align: center;
           font-family: Open Sans;
@@ -92,16 +105,54 @@
           line-height: 150%;
         }
       }
+
+      .organizer-btn {
+        margin-top: 16px;
+        display: flex;
+        width: 100%;
+        height: 44px;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+
+        .btn {
+          display: flex;
+          padding: 0px 8px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          flex: 1 0 0;
+          align-self: stretch;
+          border-radius: 4px;
+          background: none;
+        }
+
+        .del {
+          border: 2px solid #FF0000;
+          color: #FF0000;
+          font-weight: 600;
+          font-size: 14px;
+        }
+
+        .edit {
+          border: 2px solid #FFDC23;
+          color: #FFDC23;
+          font-weight: 600;
+          font-size: 14px;
+        }
+      }
     }
 
   }
-  .like-icon-wrapper{
+
+  .like-icon-wrapper {
     min-height: 42px;
     min-width: 42px;
     position: absolute;
     top: 9px;
     right: 28px;
-    .event-like{
+
+    .event-like {
       .like-icon {
         top: 8px;
         right: 26px;
@@ -109,20 +160,11 @@
     }
   }
 }
-
-
-
-
-
-/* .event-like-btn {
+.my-event-line {
   position: absolute;
-  font-size: 30px;
-  color: #f44336;
-  top: 4px;
-  right: 4px;
-} */
-
-
+  left: -30.056px;
+  top: 23.658px;
+}
 
 
 

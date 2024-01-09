@@ -9,6 +9,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EventComponent } from './components/event/event.component';
 import { ToasterComponent } from './components/toaster/toaster.component';
+import { EventLineComponent } from './components/event-line/event-line.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { ToasterComponent } from './components/toaster/toaster.component';
     HeaderComponent,
     EventComponent,
     ToasterComponent,
+    EventLineComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
@@ -32,6 +34,7 @@ import { ToasterComponent } from './components/toaster/toaster.component';
     HeaderComponent,
     EventComponent,
     ToasterComponent,
+    EventLineComponent
   ],
 })
 export class SharedModule {}

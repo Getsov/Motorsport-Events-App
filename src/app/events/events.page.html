@@ -20,6 +20,6 @@
   </div>
   <app-title-fades [color]="titleColor" [title]="titleText" />
   <ng-container *ngFor="let event of eventsData">
-    <app-event [event]="event" />
+    <app-event [event]="event" (filteredEvents) = "getFilteredEvents($event)"/>
   </ng-container>
 </ion-content>

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { EventsService } from '../../shared/services/events.service';
 import { Event } from 'src/shared/interfaces/Event';
 
@@ -9,7 +9,7 @@ import { Event } from 'src/shared/interfaces/Event';
   styleUrls: ['./events.page.scss'],
 })
 export class EventsPage implements OnInit {
-  eventsData: Event[] = []; // Change the type to Event[]
+  eventsData: Event[] = [];
   query: any = [];
 
   @Input() titleColor: string = 'yellow';
@@ -19,7 +19,10 @@ export class EventsPage implements OnInit {
   defaultHref: string = '/tabs/home';
   backButton: boolean = true;
 
-  constructor(private eventService: EventsService) {}
+  constructor(
+    private eventService: EventsService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.getEvents(); // Call getEvents in ngOnInit
@@ -29,7 +32,12 @@ export class EventsPage implements OnInit {
     this.eventsData = event;
   }
 
-  getEvents(query: string = ''): void {
+  getEvents(): void {
+    const sortBy = this.activatedRoute.snapshot.queryParams['sortBy'] || '';
+    let query = '';
+    if (sortBy) {
+      query = `category=${sortBy}`;
+    }
     this.eventService.getEvents(query).subscribe({
       next: (events: Event[]) => {
         this.eventsData = events;
