@@ -90,7 +90,7 @@
           <div class="category-select-wrapper">
             <ion-select
               [ngClass]="typeErrorMessage ? 'event-type-select custom-invalid-input' : 'event-type-select' "
-              [ngClass]="selectedEventType ? 'event-type-select custom-valid-input' : 'event-type-select' "
+              [ngClass]="selectedEventType.length > 0 ? 'event-type-select custom-valid-input' : 'event-type-select' "
               label="Вид на събитието*"
               labelPlacement="floating"
               slot="end"
