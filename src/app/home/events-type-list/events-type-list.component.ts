@@ -15,7 +15,9 @@ export class EventsTypeListComponent implements OnInit {
   // If data is passed they will change its value.
   @Input() titleColor = 'yellow';
   @Input() titleText = 'Категории';
-  categories: any = Object.entries(Categories);
+  categories: any = Object.entries(Categories).filter(
+    (entry) => typeof entry[1] === 'string'
+  );
 
   constructor() {}
 
