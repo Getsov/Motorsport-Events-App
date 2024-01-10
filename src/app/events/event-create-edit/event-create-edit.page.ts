@@ -58,7 +58,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
   );
 
   // event type select
-  selectedEventType: string = '';
+  selectedEventType: string[] = [];
   eventCategories: string[] = Object.keys(Categories).filter((v) =>
     isNaN(Number(v))
   );
@@ -154,7 +154,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       return;
     }
 
-    const user = this.authService.getUser();
+    const user = this.authService.getUserFromLocalStorage();
 
     if (!user) {
       this.errorToasterMessage = 'Неоторизиран потребител';
@@ -209,9 +209,12 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
         .createEvent(formValue)
         .subscribe({
           next: () => {
+            // update user info in subject and localstorage. Previously newly created event was not added to createdEvents in FE.
+            this.authService.updateUserAuthData(formValue.creator);
+
             this.successToasterMessage =
               'Успешно създадено събитие! Събитието очаква одобрение от администратор.';
-            setTimeout(() => this.router.navigateByUrl('/tabs/events'), 5000);
+            setTimeout(() => this.router.navigateByUrl('/tabs/events'), 2000);
           },
           error: (err) => {
             this.errorToasterMessage = err.message;
@@ -225,7 +228,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     this.regionErrorMessage = '';
   }
 
-  onEventTypeChange(category: string): void {
+  onEventTypeChange(category: string[]): void {
     this.selectedEventType = category;
     this.typeErrorMessage = '';
   }

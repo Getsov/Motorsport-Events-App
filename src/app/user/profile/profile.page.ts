@@ -12,16 +12,19 @@ import { AuthService } from 'src/shared/services/auth.service';
 })
 export class ProfilePage implements OnInit {
   user: User | null = {
-    email: '', firstName: '', lastName: '', region: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+    region: '',
     role: '',
     organizatorName: '',
     phone: '',
-    isDeleted: false
+    isDeleted: false,
   };
   bulgarianRegions: string[] = Object.keys(BulgarianRegions).filter((v) =>
     isNaN(Number(v))
   );
-  editResponseError: string  = '';
+  editResponseError: string = '';
   region: string = '';
   password: string = '***********';
 
@@ -30,19 +33,20 @@ export class ProfilePage implements OnInit {
   }
 
   onUserEdit(userEditForm: NgForm) {
-    if(userEditForm.invalid){
+    if (userEditForm.invalid) {
       return;
     }
 
-    const { email, password, firstName, lastName, organizatorName, phone} = userEditForm.value;
+    const { email, password, firstName, lastName, organizatorName, phone } =
+      userEditForm.value;
 
     const region = this.region;
   }
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.user = this.authService.getUser();
-    if(!this.user){
+    this.user = this.authService.getUserFromLocalStorage();
+    if (!this.user) {
       this.router.navigate(['/tabs/auth']);
     }
   }
