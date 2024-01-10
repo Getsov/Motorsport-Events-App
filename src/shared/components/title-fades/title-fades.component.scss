@@ -82,3 +82,26 @@ div {
     right: 96%;
   }
 }
+
+@media (min-width: 650px) {
+  .first-fade {
+    right: 97;
+  }
+}
+@media (min-width: 850px) {
+  .first-fade {
+    right: 97.5%;
+  }
+}
+
+@media (min-width: 1300px) {
+  .first-fade {
+    right: 98%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .first-fade {
+    right: 98.5%;
+  }
+}

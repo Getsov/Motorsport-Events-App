@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
 import Categories from 'src/shared/data/categories';
 import { Category } from 'src/shared/interfaces/Category';
 
