@@ -115,7 +115,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
   populateEventDataInForm(): void {
     this.headerTitle = 'Редактирай събитие';
     this.imageUrl = this.eventData.imageUrl;
-    this.selectedEventType = this.eventData.category;
+    this.selectedEventType = this.eventData.categories;
     this.selectedRegion = this.eventData.contacts.region;
 
     // split location to title and address
