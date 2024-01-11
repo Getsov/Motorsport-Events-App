@@ -78,7 +78,27 @@ export class AuthService {
     return userData ? userData.accessToken : null;
   }
 
-  getUser(): User | null {
+  // update user auth data
+  updateUserAuthData(userId: string): void {
+    const accessToken = this.getUserToken();
+    this.http
+      .get<AuthResponseData>(`${baseUrl}/user/getUserById/${userId}`, {
+        headers: {
+          'X-Authorization': accessToken!,
+        },
+      })
+      .subscribe({
+        next: (userData) => {
+          this.setUserData(userData);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+  }
+
+  // get user from localstorage
+  getUserFromLocalStorage(): User | null {
     const userData = localStorage.getItem('authData');
     if (userData) {
       return JSON.parse(userData);

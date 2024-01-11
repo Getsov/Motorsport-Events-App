@@ -22,7 +22,9 @@
     </div>
 
     <div class="category-city-wrapper">
-      <span class="badge">{{event.category}}</span>
+      <ng-container *ngFor="let category of event.categories">
+        <span class="badge">{{category}}</span>
+      </ng-container>
       <span class="badge">{{event.contacts.region}}</span>
     </div>
 
