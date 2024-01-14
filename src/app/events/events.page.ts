@@ -1,7 +1,9 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { EventsService } from '../../shared/services/events.service';
 import { Event } from 'src/shared/interfaces/Event';
+import { Subscription } from 'rxjs';
+import { User } from 'src/shared/interfaces/User';
+import { AuthService } from 'src/shared/services/auth.service';
 
 @Component({
   selector: 'app-events',
@@ -11,6 +13,7 @@ import { Event } from 'src/shared/interfaces/Event';
 export class EventsPage implements OnInit {
   eventsData: Event[] = [];
   query: any = [];
+  private eventsSubscription: Subscription = new Subscription();
 
   @Input() titleColor: string = 'yellow';
   @Input() titleText: string = 'Списък със събития';
@@ -18,14 +21,24 @@ export class EventsPage implements OnInit {
   headerTitle: string = 'Събития';
   defaultHref: string = '/tabs/home';
   backButton: boolean = true;
+  addIcon = 'assets/icon/carbon_add-filled.svg';
 
-  constructor(
-    private eventService: EventsService,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  user: User | null = {
+    email: '',
+    firstName: '',
+    lastName: '',
+    region: '',
+    role: '',
+    organizatorName: '',
+    phone: '',
+    isDeleted: false,
+  };
+
+  constructor(private eventService: EventsService,private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.getEvents(); // Call getEvents in ngOnInit
+    this.getEvents();
+    this.user = this.authService.getUserFromLocalStorage();
   }
 
   getFilteredEvents(event: any): any {
@@ -33,12 +46,8 @@ export class EventsPage implements OnInit {
   }
 
   getEvents(): void {
-    const sortBy = this.activatedRoute.snapshot.queryParams['sortBy'] || '';
-    let query = '';
-    if (sortBy) {
-      query = `category=${sortBy}`;
-    }
-    this.eventService.getEvents(query).subscribe({
+    
+    this.eventsSubscription = this.eventService.getEvents().subscribe({
       next: (events: Event[]) => {
         this.eventsData = events;
       },
@@ -46,5 +55,10 @@ export class EventsPage implements OnInit {
         console.error(err);
       },
     });
+  }
+  ionViewDidLeave(): void {
+    if(this.eventsSubscription){
+      this.eventsSubscription.unsubscribe();
+    }
   }
 }
