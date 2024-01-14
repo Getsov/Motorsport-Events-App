@@ -19,6 +19,11 @@ ion-searchbar.custom:hover {
   --clear-button-color: #ff7418;
 }
 
+ion-searchbar.custom.ng-valid.ng-touched.searchbar-has-value{
+  border-color: #00CC00;
+  --icon-color: #00CC00;
+  --clear-button-color: #00CC00;
+}
 /* select style */
 .select-section {
   max-width: 91%;
@@ -29,7 +34,7 @@ ion-searchbar.custom:hover {
   gap: 16px
 }
 
-.select {
+ion-select {
   flex: 1 0 47%;
   background: transparent;
   display: flex;
@@ -39,52 +44,42 @@ ion-searchbar.custom:hover {
   gap: 12px;
   padding-left: 1em;
   border-bottom: 1px solid #fff;
-
-  .select-label-placement-floating {
-    width: 98%;
-  }
-
-  ion-select.select-item::part(icon) {
-    bottom: 1em;
-    right: 0.8em;
-  }
 }
 
-.select:hover {
+ion-select.select-item::part(icon):hover{
+  color: #ff7418;
+  
+}
+ion-select.select-item::part(icon) {
+  bottom: 1em;
+  color: #ffffff;
+  content: url("../../../../assets/icon/arrow-up-down.svg");
+  position: absolute;
+  right: 0.8em;
+  height: 20px;
+  width: 10px;
+}
+ion-select:hover {
   border-color: #ff7418;
+}
+
+ion-select.has-value{
+  border-color: #00CC00;
+  --icon-color: #00CC00;;
+  --highlight-color-valid: #00CC00;;
 }
 
 ion-select::part(placeholder) {
   color: #fff;
-  /* width: 70px; */
   margin-right: 2.2em;
   opacity: 1;
   font-size: 14px;
 }
 
-ion-select::part(container):active {
-  --color: #ff7418;
-  --placeholder-color: #ff7418;
-
+.select-section ion-select.select-item #select-label{
+  width: 100% !important;
 }
 
-ion-select::part(icon) {
-  color: #ffffff;
-  content: url("../../../../assets/icon/arrow-up-down.svg");
-  position: absolute;
-  right: 1em;
-  top: transform(translateY(-50%));
-  height: 20px;
-  width: 10px;
-}
-
-ion-select::part(content) {
-  background-color: #ff7418;
-}
-
-::ng-deep #select-label {
-  max-width: 100%;
-}
 ::ng-deep .sc-ion-alert-ios-h{
   --max-width: 100%;
 }
@@ -120,9 +115,14 @@ ion-select::part(content) {
 
   .alert-checkbox-group{
     min-height: 322px !important;
+    border-top: 1px solid #A6A2A0;
   }
   .alert-checkbox-group::-webkit-scrollbar-thumb {
     background-color: #a6a2a0;
+  }
+
+  .alert-checkbox-group::-webkit-scrollbar-thumb:active {
+    background-color: #ff7418;
   }
 
   .alert-checkbox-icon {
@@ -145,11 +145,21 @@ ion-select::part(content) {
   }
 
   .alert-button-group {
+    border-top: 1px solid #A6A2A0 !important;
     .alert-button {
+      background-color: #0D0D0D;
       padding: 0;
     }
-
+    .alert-button:active{
+      background-color: rgb(255, 117, 26) !important;
+      color:#000;
+      
+    }
+    .alert-button-role-cancel{
+      border-right: 1px solid #A6A2A0 !important;
+    }
     .alert-button>span {
+      background: none !important;
       padding: 0;
       border-bottom: 0px !important;
       border-right: 0px !important;
