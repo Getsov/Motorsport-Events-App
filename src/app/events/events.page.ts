@@ -32,6 +32,7 @@ export class EventsPage implements OnInit {
     organizatorName: '',
     phone: '',
     isDeleted: false,
+    isApproved: true,
   };
 
   constructor(private eventService: EventsService,private authService: AuthService) {}

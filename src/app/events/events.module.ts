@@ -21,5 +21,6 @@ import { SearchComponent } from './components/search/search.component';
     EventMarkerModalPageModule,
     SharedModule,
   ],
+  exports:[SearchComponent]
 })
 export class EventsPageModule {}
