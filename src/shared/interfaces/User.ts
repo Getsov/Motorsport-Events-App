@@ -10,6 +10,7 @@ export interface User {
   createdEvents?: { createdEventsId: string }[];
   isDeleted: boolean;
   likedEvents?: { likedEventId: string }[];
+  isApproved: boolean;
   _id?: string;
 }
 
@@ -22,6 +23,7 @@ export interface AuthResponseData {
   region: string;
   phone: string;
   isDeleted: boolean;
+  isApproved: boolean;
   accessToken: string;
   createdEvents: string[];
 }

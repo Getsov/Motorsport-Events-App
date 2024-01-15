@@ -20,6 +20,7 @@ export interface Event {
   likes: [];
   creator: User;
   winners?: { name: string; vehicle: string; place: number }[];
+  isApproved: boolean;
   isDeleted: boolean;
   _id: string;
 }

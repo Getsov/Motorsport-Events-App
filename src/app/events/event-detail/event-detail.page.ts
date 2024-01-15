@@ -43,7 +43,8 @@ export class EventDetailPage implements OnInit {
     },
     categories: [],
     likes: [],
-    creator: { email: '', role: '', isDeleted: false },
+    creator: { email: '', role: '', isDeleted: false, isApproved: false },
+    isApproved: false,
     isDeleted: false,
     _id: '',
   };
