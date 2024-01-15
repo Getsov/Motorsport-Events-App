@@ -11,6 +11,7 @@ import { AuthService } from 'src/shared/services/auth.service';
   styleUrls: ['./events.page.scss'],
 })
 export class EventsPage implements OnInit {
+  parrent: string = 'events';
   eventsData: Event[] = [];
   query: any = [];
   private eventsSubscription: Subscription = new Subscription();

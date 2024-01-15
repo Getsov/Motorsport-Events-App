@@ -11,6 +11,7 @@ import { AuthService } from 'src/shared/services/auth.service';
   styleUrls: ['./notifications.page.scss'],
 })
 export class NotificationsPage implements OnInit {
+  parrent: string = 'favourites';
   favouritesData: Event[] = [];
   query: any = [];
   private favouritesSubscription: Subscription = new Subscription();

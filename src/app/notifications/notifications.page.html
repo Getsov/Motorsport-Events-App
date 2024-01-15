@@ -6,6 +6,7 @@
       [defaultHref]="defaultHref"
     ></app-header>
     <app-search
+      [parrent] = "parrent"
       show-clear-button="focus"
       placeholder="Търсене"
       (filteredEvents)="getFilteredEvents($event)"

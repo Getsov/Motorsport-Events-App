@@ -11,6 +11,7 @@ import { EventsService } from 'src/shared/services/events.service';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
+  @Input() parrent: string = '';
   @Input() titleColor: string = 'orange';
   @Input() titleText: string = 'Филтриране на събития';
   @Output() filteredEvents = new EventEmitter<any>();
