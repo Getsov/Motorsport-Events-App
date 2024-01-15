@@ -28,6 +28,8 @@ export class UpcomingEventsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.Subscriptions$.push(this.loadEvents());
+
+    // check if user is admin or organizer to show create event button
     this.Subscriptions$.push(
       this.authService.userData$.subscribe({
         next: (userData) => {
