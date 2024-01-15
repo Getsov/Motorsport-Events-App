@@ -1,14 +1,23 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Notifications</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Notifications</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <app-explore-container name="Notifications"></app-explore-container>
+  <div class="page-title">
+    <app-header
+      [headerTitle]="headerTitle"
+      [backButton]="backButton"
+      [defaultHref]="defaultHref"
+    ></app-header>
+    <app-search
+      show-clear-button="focus"
+      placeholder="Търсене"
+      (filteredEvents)="getFilteredEvents($event)"
+    ></app-search>
+  </div>
+  <app-title-fades [color]="titleColor" [title]="titleText" />
+  <div class="ion-padding-horizontal" *ngIf="(user?.role == 'admin') || (user?.role == 'organizer')">
+  </div>
+  <ng-container *ngFor="let event of favouritesData">
+    <app-event [event]="event" (filteredEvents) = "getFilteredEvents($event)"/>
+  </ng-container>
+  <div *ngIf="favouritesData.length == 0">
+    <p class="no-events">Няма налични събития!</p>
+  </div>
 </ion-content>
