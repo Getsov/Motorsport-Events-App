@@ -27,6 +27,7 @@ export class EventComponent implements OnInit {
     organizatorName: '',
     phone: '',
     isDeleted: false,
+    isApproved:true
   };
 
   constructor(private authService: AuthService, private eventService: EventsService) {}
