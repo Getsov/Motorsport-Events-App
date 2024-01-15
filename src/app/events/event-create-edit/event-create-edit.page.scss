@@ -44,36 +44,36 @@
       // success state styles
       ion-input.ng-valid.ng-touched,
       ion-textarea.ng-valid.ng-touched {
-        --border-color: #008000;
+        --border-color: #00cc00;
 
         ::ng-deep .label-text {
-          color: #008000;
+          color: #00cc00;
         }
       }
 
       ion-input.custom-valid-input,
       ion-textarea.custom-valid-input {
-        --border-color: #008000;
-        border-bottom-color: #008000;
+        --border-color: #00cc00;
+        border-bottom-color: #00cc00;
         ::ng-deep .label-text {
-          color: #008000;
+          color: #00cc00;
         }
       }
 
       ion-input.email.ng-valid.ng-touched,
       ion-input.phone.ng-valid.ng-touched {
-        border-bottom: 1px solid #008000;
+        border-bottom: 1px solid #00cc00;
       }
 
       ion-select.custom-valid-input {
-        border-bottom: 1px solid #008000;
+        border-bottom: 1px solid #00cc00;
       }
 
       ion-select.custom-valid-input::part(icon) {
         content: url("../../../assets/icon/arrow-up-down-success.png");
       }
       ion-select.custom-valid-input::part(label) {
-        color: #008000;
+        color: #00cc00;
       }
 
       // error state styles

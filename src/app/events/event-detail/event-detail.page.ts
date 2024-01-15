@@ -1,4 +1,11 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
 import { ModalController, NavController } from '@ionic/angular';
@@ -8,13 +15,15 @@ import { Event } from 'src/shared/interfaces/Event';
 import { getDayOfWeek } from 'src/shared/utils/date-utils';
 import { EventMarkerModalPage } from './event-marker-modal/event-marker-modal.page';
 import { EventsService } from 'src/shared/services/events.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.page.html',
   styleUrls: ['./event-detail.page.scss'],
 })
-export class EventDetailPage implements OnInit {
+export class EventDetailPage implements OnInit, OnDestroy {
+  Subscriptions$: Subscription[] = [];
   @ViewChild('map') mapRef!: ElementRef;
   map!: GoogleMap;
 
@@ -43,7 +52,8 @@ export class EventDetailPage implements OnInit {
     },
     categories: [],
     likes: [],
-    creator: { email: '', role: '', isDeleted: false },
+    creator: { email: '', role: '', isDeleted: false, isApproved: false },
+    isApproved: false,
     isDeleted: false,
     _id: '',
   };
@@ -64,18 +74,20 @@ export class EventDetailPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe((paramMap) => {
-      if (!paramMap.has('eventId')) {
-        this.navController.navigateBack('/tabs/events');
-        return;
-      }
-      this.eventId = paramMap.get('eventId')!;
-    });
+    this.Subscriptions$.push(
+      this.activatedRoute.paramMap.subscribe((paramMap) => {
+        if (!paramMap.has('eventId')) {
+          this.navController.navigateBack('/tabs/events');
+          return;
+        }
+        this.eventId = paramMap.get('eventId')!;
+      })
+    );
 
-    this.setEvent();
+    this.Subscriptions$.push(this.setEvent());
   }
-  setEvent() {
-    this.eventService.getEvent(this.eventId).subscribe({
+  setEvent(): Subscription {
+    return this.eventService.getEvent(this.eventId).subscribe({
       next: (response) => {
         this.event = response;
         this.createMap();
@@ -132,5 +144,11 @@ export class EventDetailPage implements OnInit {
 
       modal.present();
     });
+  }
+
+  ngOnDestroy(): void {
+    for (const subscription of this.Subscriptions$) {
+      subscription.unsubscribe();
+    }
   }
 }

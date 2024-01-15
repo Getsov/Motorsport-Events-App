@@ -40,7 +40,7 @@ export class ImagePickerComponent implements OnInit {
   }
 
   onDiscardSelectedImage(): void {
-    this.imagePicked.emit();
-    this.selectedImage = '';
+    this.imagePicked.emit('');
+    this.imageErrorMessage = 'Полето е задължително';
   }
 }

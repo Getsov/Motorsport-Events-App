@@ -20,22 +20,8 @@
         <h1>{{ headerTitle }}</h1>
       </div>
 
-      <div class="notifinations-icon">
-        <ion-icon
-          name="notifications"
-          [ngClass]="{
-            'with-notifications': notifications >= 1,
-         }"
-        />
-        <div
-          class="notifications"
-          [ngClass]="{
-            'medium': notifications < 100,
-        }"
-          *ngIf="notifications > 0"
-        >
-          {{ notifications }}
-        </div>
+      <div class="spacer">
+        <div></div>
       </div>
     </div>
   </ion-toolbar>

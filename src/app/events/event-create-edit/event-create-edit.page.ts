@@ -171,7 +171,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
         ? eventForm.value.longDescription
         : '',
       imageUrl: this.imageUrl,
-      category: eventForm.value.category,
+      categories: eventForm.value.category,
       contacts: {
         coordinates: {
           lat: this.selectedAddress.lat,
@@ -196,7 +196,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
               'Успешно редактирано събитие! Събитието очаква одобрение от администратор.';
             setTimeout(
               () => this.router.navigateByUrl(`/tabs/events/${this.eventId}`),
-              5000
+              2000
             );
           },
           error: (err) => {
@@ -249,7 +249,6 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       return false;
     }
     this[errorMessageVariable] = '';
-
     return true;
   }
 

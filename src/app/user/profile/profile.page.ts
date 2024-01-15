@@ -20,6 +20,7 @@ export class ProfilePage implements OnInit {
     organizatorName: '',
     phone: '',
     isDeleted: false,
+    isApproved: false,
   };
   bulgarianRegions: string[] = Object.keys(BulgarianRegions).filter((v) =>
     isNaN(Number(v))
