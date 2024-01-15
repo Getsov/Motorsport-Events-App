@@ -61,4 +61,16 @@ export class EventsService {
   getMonthEvents(yearMonth: string) {
     return this.http.get<Event>(`${baseUrl}/events/month/${yearMonth}`);
   }
+
+  getMyFavourites(): Observable<Event[]>{
+    const accessToken = this.authService.getUserToken();
+    return this.http.get<Event[]>(`${baseUrl}/user/getMyFavourites`,{
+      
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Authorization': accessToken!,
+        }
+    }
+    );
+  }
 }
