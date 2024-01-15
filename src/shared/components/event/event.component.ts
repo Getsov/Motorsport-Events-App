@@ -10,7 +10,7 @@ import { EventsService } from 'src/shared/services/events.service';
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.scss'],
 })
-export class EventComponent implements OnInit, OnDestroy {
+export class EventComponent implements OnInit {
   private deleteSubscription: Subscription = new Subscription();
   private eventsSubscription: Subscription = new Subscription();
   @Input() event!: Event;
@@ -32,7 +32,7 @@ export class EventComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private eventService: EventsService) {}
 
   ngOnInit() {
-    this.user = this.authService.getUser();
+    this.user = this.authService.getUserFromLocalStorage();
   }
 
 
@@ -64,7 +64,7 @@ export class EventComponent implements OnInit, OnDestroy {
       }
     })
   }
-  ngOnDestroy(): void {
+  ionViewDidLeave(): void {
     if(this.deleteSubscription){
       this.deleteSubscription.unsubscribe();
     }
