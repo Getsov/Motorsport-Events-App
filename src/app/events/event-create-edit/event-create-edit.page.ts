@@ -249,7 +249,6 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       return false;
     }
     this[errorMessageVariable] = '';
-
     return true;
   }
 

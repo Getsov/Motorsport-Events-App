@@ -10,6 +10,7 @@
       class="image-picker-icon"
     />
   </div>
+
   <div
     *ngIf="selectedImage"
     [ngClass]="selectedImage ? 'image-selected image-picker' : 'image-picker'"
@@ -19,20 +20,6 @@
       <p class="main-button">Изтрий снимката</p>
     </div>
   </div>
-
-  <!-- <div class="image-picker-info">
-    <div>
-      <img
-        src="../../../assets/icon/info.png"
-        alt="image-picker-info-icon"
-        class="image-picker-info-icon"
-      />
-    </div>
-    <p>
-      Тук следва да качите подходяща снимка за Вашето събитие. Моля НЕ качвайте
-      плаката на събитието.
-    </p>
-  </div> -->
 </div>
 <p *ngIf="imageErrorMessage" class="validation-error-message">
   {{ imageErrorMessage }}
