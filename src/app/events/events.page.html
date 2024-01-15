@@ -10,16 +10,20 @@
       placeholder="Търсене"
       (filteredEvents)="getFilteredEvents($event)"
     ></app-search>
-    <div class="ion-padding-horizontal">
-      <div class="main-button-wrapper">
-        <span [routerLink]="['/tabs/events/create']" class="main-button"
-          >Създай събитие</span
-        >
-      </div>
-    </div>
   </div>
   <app-title-fades [color]="titleColor" [title]="titleText" />
+  <div class="ion-padding-horizontal" *ngIf="(user?.role == 'admin') || (user?.role == 'organizer')">
+    <div class="main-button-wrapper">
+      <ion-icon [src]="addIcon" name="addIcon" class="add-icon" />
+      <span [routerLink]="['/tabs/events/create']" class="main-button"
+        >Създай събитие</span
+      >
+    </div>
+  </div>
   <ng-container *ngFor="let event of eventsData">
-    <app-event [event]="event" />
+    <app-event [event]="event" (filteredEvents) = "getFilteredEvents($event)"/>
   </ng-container>
+  <div *ngIf="eventsData.length == 0">
+    <p class="no-events">Няма налични събития!</p>
+  </div>
 </ion-content>

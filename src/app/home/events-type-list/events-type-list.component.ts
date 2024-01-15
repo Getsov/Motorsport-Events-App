@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import Categories from 'src/shared/data/categories';
 import { Category } from 'src/shared/interfaces/Category';
 
 @Component({
@@ -14,9 +14,14 @@ export class EventsTypeListComponent implements OnInit {
   // If data is passed they will change its value.
   @Input() titleColor = 'yellow';
   @Input() titleText = 'Категории';
+  categories: any = Object.entries(Categories).filter(
+    (entry) => typeof entry[1] === 'string'
+  );
 
   constructor() {}
 
   // TODO: redirect to eventsList and pass the selected filter(type of the event)
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.categories);
+  }
 }

@@ -1,6 +1,6 @@
 .categories-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto);
   justify-content: center;
   align-items: center;
   gap: 16px;
@@ -11,7 +11,8 @@
 
 .category-card {
   text-align: center;
-  min-height: 160px;
+  height: 160px;
+  width: 156px;
   width: auto;
   background: transparent;
   box-shadow: 0 0 10.5px -5px #ffdc23;
@@ -25,13 +26,14 @@
 
 .category-image {
   width: 100%;
-  height: auto;
+  height: 127px;
   border-radius: 4px;
+  object-fit: contain;
 }
 
 .category-title {
   letter-spacing: 0%;
-  margin: 4px 0;
+  padding: 4px 0;
   width: 100%;
   min-height: 21px;
   text-align: center;
