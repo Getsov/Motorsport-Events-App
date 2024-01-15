@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Event } from 'src/shared/interfaces/Event';
+import { AuthService } from 'src/shared/services/auth.service';
 import { EventsService } from 'src/shared/services/events.service';
 
 @Component({
@@ -7,7 +9,8 @@ import { EventsService } from 'src/shared/services/events.service';
   templateUrl: './upcoming-events.component.html',
   styleUrls: ['./upcoming-events.component.scss'],
 })
-export class UpcomingEventsComponent implements OnInit {
+export class UpcomingEventsComponent implements OnInit, OnDestroy {
+  Subscriptions$: Subscription[] = [];
   @Input() upcomingEvents: Event[] = [];
   @Input() loadEventsCount: number = 5;
 
@@ -16,15 +19,28 @@ export class UpcomingEventsComponent implements OnInit {
 
   pageToLoad: number = 1;
   isAllEventsLoaded: boolean = false;
+  isAdminOrOrganization: boolean = false;
 
-  constructor(private eventService: EventsService) {}
+  constructor(
+    private eventService: EventsService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    this.loadEvents();
+    this.Subscriptions$.push(this.loadEvents());
+    this.Subscriptions$.push(
+      this.authService.userData$.subscribe({
+        next: (userData) => {
+          this.isAdminOrOrganization =
+            userData?.role === 'organizer' || userData?.role === 'admin';
+        },
+        error: (err) => console.log(err.error.error),
+      })
+    );
   }
 
   private loadEvents() {
-    this.eventService
+    return this.eventService
       .getPaginationEvents(this.pageToLoad, this.loadEventsCount)
       .subscribe({
         next: (response) => {
@@ -44,23 +60,31 @@ export class UpcomingEventsComponent implements OnInit {
       !this.isAllEventsLoaded &&
       this.upcomingEvents.length - activeIndex == 3
     ) {
-      this.eventService
-        .getPaginationEvents(this.pageToLoad, this.loadEventsCount)
-        .subscribe({
-          next: (response) => {
-            if (response.nextPage) {
-              console.log(response.nextPage);
+      this.Subscriptions$.push(
+        this.eventService
+          .getPaginationEvents(this.pageToLoad, this.loadEventsCount)
+          .subscribe({
+            next: (response) => {
+              if (response.nextPage) {
+                console.log(response.nextPage);
 
-              this.upcomingEvents.push(...response.results);
-              this.pageToLoad++;
-              console.log(this.upcomingEvents);
-            } else {
-              // Set the flag if no more events are available
-              this.isAllEventsLoaded = true;
-            }
-          },
-          error: (error) => console.log(error),
-        });
+                this.upcomingEvents.push(...response.results);
+                this.pageToLoad++;
+                console.log(this.upcomingEvents);
+              } else {
+                // Set the flag if no more events are available
+                this.isAllEventsLoaded = true;
+              }
+            },
+            error: (error) => console.log(error),
+          })
+      );
+    }
+  }
+
+  ngOnDestroy(): void {
+    for (const subscription$ of this.Subscriptions$) {
+      subscription$.unsubscribe();
     }
   }
 }

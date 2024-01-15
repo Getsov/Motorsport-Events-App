@@ -14,7 +14,7 @@
     <app-slide-card [event]="event" />
   </swiper-slide>
 </swiper-container>
-<div class="ion-padding-horizontal">
+<div class="ion-padding-horizontal" *ngIf="isAdminOrOrganization">
   <div class="main-button-wrapper">
     <span [routerLink]="['/tabs/events/create']" class="main-button"
       >Създай събитие</span
