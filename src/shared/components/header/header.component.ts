@@ -11,8 +11,5 @@ export class HeaderComponent implements OnInit {
   @Input() defaultHref: string = '';
 
   constructor() {}
-  notifications: number = 23;
-  // TODO: fetch notifications
-  // TODO: set limit to 99 after the fetch.
   ngOnInit() {}
 }
