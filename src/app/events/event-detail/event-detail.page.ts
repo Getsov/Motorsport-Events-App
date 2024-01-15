@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
 import { ModalController, NavController } from '@ionic/angular';
 
@@ -15,7 +15,9 @@ import { Event } from 'src/shared/interfaces/Event';
 import { getDayOfWeek } from 'src/shared/utils/date-utils';
 import { EventMarkerModalPage } from './event-marker-modal/event-marker-modal.page';
 import { EventsService } from 'src/shared/services/events.service';
-import { Subscription } from 'rxjs';
+import { Subscription, map, take, tap } from 'rxjs';
+import { User } from 'src/shared/interfaces/User';
+import { AuthService } from 'src/shared/services/auth.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -58,6 +60,8 @@ export class EventDetailPage implements OnInit, OnDestroy {
     _id: '',
   };
 
+  isCreatorOrAdmin: boolean | undefined = false;
+
   titleSeparatorColor: string = 'orange';
 
   infoSeparatorText: string = 'Информация за събитието';
@@ -70,22 +74,20 @@ export class EventDetailPage implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private navController: NavController,
     private modalController: ModalController,
-    private eventService: EventsService
+    private eventService: EventsService,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    this.Subscriptions$.push(
-      this.activatedRoute.paramMap.subscribe((paramMap) => {
-        if (!paramMap.has('eventId')) {
-          this.navController.navigateBack('/tabs/events');
-          return;
-        }
-        this.eventId = paramMap.get('eventId')!;
-      })
-    );
+    this.Subscriptions$.push(this.getEventId());
 
     this.Subscriptions$.push(this.setEvent());
+
+    this.Subscriptions$.push(this.creatorAdminChecker());
   }
+
+  // load event details
   setEvent(): Subscription {
     return this.eventService.getEvent(this.eventId).subscribe({
       next: (response) => {
@@ -98,10 +100,40 @@ export class EventDetailPage implements OnInit, OnDestroy {
     });
   }
 
+  // check if user is the creator or admin so he can edit/delete
+  creatorAdminChecker(): Subscription {
+    return this.authService.userData$.subscribe({
+      next: (userData) =>
+        (this.isCreatorOrAdmin = userData?.createdEvents.includes(
+          this.eventId
+        )),
+    });
+  }
+
+  // get event id
+  getEventId(): Subscription {
+    return this.activatedRoute.paramMap.subscribe((paramMap) => {
+      if (!paramMap.has('eventId')) {
+        this.navController.navigateBack('/tabs/events');
+        return;
+      }
+      this.eventId = paramMap.get('eventId')!;
+    });
+  }
+
   addEventToFavourites() {
     // TODO: add event to favourites via service
   }
 
+  onEditEvent() {
+    this.router.navigate(['/tabs/events/edit', this.eventId]);
+  }
+
+  onDeleteEvent() {
+    console.log('dada');
+  }
+
+  // initiate google map
   async createMap() {
     this.map = await GoogleMap.create({
       id: this.event._id,

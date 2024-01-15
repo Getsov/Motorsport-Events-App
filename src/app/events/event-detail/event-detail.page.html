@@ -118,5 +118,15 @@
     <div class="main-button-wrapper" (click)="addEventToFavourites()">
       <button class="main-button">Добави в любими</button>
     </div>
+    <div class="manage-buttons-wrapper" *ngIf="isCreatorOrAdmin">
+      <div class="secondary-button-wrapper">
+        <button class="secondary-button" (click)="onEditEvent()">
+          Редактирай
+        </button>
+      </div>
+      <div class="delete-button-wrapper" (click)="onDeleteEvent()">
+        <button class="delete-button">Изтрий</button>
+      </div>
+    </div>
   </div>
 </ion-content>

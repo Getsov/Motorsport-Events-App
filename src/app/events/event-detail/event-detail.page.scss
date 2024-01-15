@@ -117,6 +117,15 @@
     text-decoration: none;
   }
 
+  // edit or delete buttons
+
+  .manage-buttons-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+  }
+
   // google maps
   .google-maps-wrapper {
     display: inline-block;
