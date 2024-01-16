@@ -32,7 +32,7 @@ export class EventsPage implements OnInit {
     organizatorName: '',
     phone: '',
     isDeleted: false,
-    isApproved: true,
+    isApproved: false,
   };
 
   constructor(private eventService: EventsService,private authService: AuthService) {}
@@ -40,6 +40,8 @@ export class EventsPage implements OnInit {
   ngOnInit(): void {
     this.getEvents();
     this.user = this.authService.getUserFromLocalStorage();
+    console.log(this.user);
+    
   }
 
   getFilteredEvents(event: any): any {
