@@ -1,0 +1,16 @@
+<ion-content>
+  <p>Сигурни ли сте, че искате да изтриете събитието?</p>
+
+  <ion-footer>
+    <ion-toolbar>
+      <div class="modal-picker-action-buttons">
+        <ion-buttons>
+          <ion-button slot="start" (click)="closeModal()">Откажи</ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button (click)="onDoneClick()">Да</ion-button>
+        </ion-buttons>
+      </div>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>
