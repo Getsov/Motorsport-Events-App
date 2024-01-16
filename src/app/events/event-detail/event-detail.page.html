@@ -124,7 +124,11 @@
           Редактирай
         </button>
       </div>
-      <div class="delete-button-wrapper" (click)="onDeleteEvent()">
+      <div
+        class="delete-button-wrapper"
+        (click)="presentDeleteModal()"
+        [id]="event._id"
+      >
         <button class="delete-button">Изтрий</button>
       </div>
     </div>

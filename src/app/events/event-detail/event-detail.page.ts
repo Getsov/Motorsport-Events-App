@@ -1,7 +1,6 @@
 import {
   Component,
   ElementRef,
-  Input,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -15,9 +14,9 @@ import { Event } from 'src/shared/interfaces/Event';
 import { getDayOfWeek } from 'src/shared/utils/date-utils';
 import { EventMarkerModalPage } from './event-marker-modal/event-marker-modal.page';
 import { EventsService } from 'src/shared/services/events.service';
-import { Subscription, map, take, tap } from 'rxjs';
-import { User } from 'src/shared/interfaces/User';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/shared/services/auth.service';
+import { ConfirmModalComponent } from 'src/shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-event-detail',
@@ -129,8 +128,15 @@ export class EventDetailPage implements OnInit, OnDestroy {
     this.router.navigate(['/tabs/events/edit', this.eventId]);
   }
 
-  onDeleteEvent() {
-    console.log('dada');
+  // open delete modal and pass the id for deleting
+  async presentDeleteModal() {
+    const modal = await this.modalController.create({
+      component: ConfirmModalComponent,
+      componentProps: { eventId: this.event._id },
+      cssClass: 'confirm-modal',
+    });
+
+    await modal.present();
   }
 
   // initiate google map

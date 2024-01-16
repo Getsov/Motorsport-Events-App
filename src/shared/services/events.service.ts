@@ -43,14 +43,19 @@ export class EventsService {
     return this.http.get<Event>(`${baseUrl}/events/${id}`);
   }
 
-  deleteEvent(eventData: {}, id: string):Observable<Event> {
+  // pass a isDeleted object with isDeleted: boolean property
+  deleteEvent(isDeleted: {}, id: string): Observable<Event> {
     const accessToken = this.authService.getUserToken();
-    return this.http.put<Event>(`${baseUrl}/events/${id}`, eventData, {
-      headers: {
-        'X-Authorization': accessToken!,
-        'Content-Type': 'application/json'
+    return this.http.put<Event>(
+      `${baseUrl}/events/deleteRestoreEvent/${id}`,
+      isDeleted,
+      {
+        headers: {
+          'X-Authorization': accessToken!,
+          'Content-Type': 'application/json',
+        },
       }
-    })
+    );
   }
 
   getPaginationEvents(page: number, limit: number): Observable<any> {
