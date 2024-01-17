@@ -18,7 +18,10 @@
         [src]="'data:image;base64,' + event.imageUrl"
         class="event-image"
       />
-      <app-like-icon [likedCount]="event.likes.length"></app-like-icon>
+      <app-like-icon
+        [likes]="event.likes"
+        [eventId]="event._id"
+      ></app-like-icon>
     </div>
 
     <div class="category-city-wrapper">

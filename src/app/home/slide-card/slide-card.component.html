@@ -9,5 +9,5 @@
     <p class="event-dates">{{ startDate }} - {{ endDate }}</p>
   </div>
 
-  <app-like-icon [eventId]="event._id" [likedCount]="event.likes.length" />
+  <app-like-icon [eventId]="event._id" [likes]="event.likes" />
 </ion-card>

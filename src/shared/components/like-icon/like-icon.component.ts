@@ -2,6 +2,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/shared/services/auth.service';
 import { EventsService } from 'src/shared/services/events.service';
 
 @Component({
@@ -10,24 +11,35 @@ import { EventsService } from 'src/shared/services/events.service';
   styleUrls: ['./like-icon.component.scss'],
 })
 export class LikeIconComponent implements OnInit, OnDestroy {
-  likeSubscription$?: Subscription;
+  subscriptions$: Subscription[] = [];
 
   @Input() eventId: string = '';
-
   @Input() likes: string[] = [];
-  @Input() userId?: string = '';
+  userId: string = '';
 
-  constructor(private eventService: EventsService, private router: Router) {}
+  constructor(
+    private eventService: EventsService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   likeIconSrc: string = '../../../assets/icon/like-icons/not-liked-small.svg';
   isLiked: boolean = false;
   fontSize: string = '10px';
 
   ngOnInit() {
-    // Check if is liked and set the boolean.
-    if (this.userId) {
-      this.isLiked = this.likes.includes(this.userId);
-    }
+    // Get user id and check if he has liked
+    this.subscriptions$.push(
+      this.authService.userData$.subscribe({
+        next: (userData) => {
+          if (userData?._id) {
+            this.userId = userData?._id;
+            this.isLiked = this.likes.includes(this.userId);
+          }
+        },
+        error: (err) => console.log(err.error),
+      })
+    );
 
     // configurate icon
     if (this.likes.length < 10) {
@@ -62,9 +74,8 @@ export class LikeIconComponent implements OnInit, OnDestroy {
     }
 
     // like or unlike event
-    this.likeSubscription$ = this.eventService
-      .likeUnlikeEvent(this.eventId)
-      .subscribe({
+    this.subscriptions$.push(
+      this.eventService.likeUnlikeEvent(this.eventId).subscribe({
         next: (response: string) => {
           this.isLiked = !this.isLiked;
           if (response === 'Event UnLiked!') {
@@ -74,7 +85,8 @@ export class LikeIconComponent implements OnInit, OnDestroy {
           }
           this.likeIconSwitcher();
         },
-      });
+      })
+    );
   }
 
   // change like icon based on likes count and if liked
@@ -107,8 +119,8 @@ export class LikeIconComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.likeSubscription$) {
-      this.likeSubscription$.unsubscribe();
+    for (const subscription of this.subscriptions$) {
+      subscription.unsubscribe();
     }
   }
 }
