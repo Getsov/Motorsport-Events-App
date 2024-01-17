@@ -129,10 +129,10 @@ export class EventDetailPage implements OnInit, OnDestroy {
   }
 
   // open delete modal and pass the id for deleting
-  async presentDeleteModal() {
+  async presentDeleteModal(modalType: string) {
     const modal = await this.modalController.create({
       component: ConfirmModalComponent,
-      componentProps: { eventId: this.event._id },
+      componentProps: { eventId: this.event._id, modalType },
       cssClass: 'confirm-modal',
     });
 

@@ -13,10 +13,16 @@ import { EventsService } from 'src/shared/services/events.service';
 export class ConfirmModalComponent implements OnInit, OnDestroy {
   deleteSubscription$?: Subscription;
   @Input() eventId: string = '';
+  @Input() modalType: string = '';
 
-  showToaster: boolean = false;
   toasterMessage: string = '';
   toasterType: string = '';
+
+  deleteModalMessage: string =
+    'Сигурни ли сте, че искате да изтриете събитието?';
+  editMessage: string = 'Сигурни ли сте, че искате да редактирате събитието?';
+  discardMessage: string =
+    'Сигурни ли сте, че искате да откажете направените промени?';
 
   constructor(
     private modalController: ModalController,
@@ -24,22 +30,36 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
     private router: Router
   ) {}
 
-  ngOnInit() {
-    this.showToaster = false;
-  }
+  ngOnInit() {}
 
   async closeModal() {
     await this.modalController.dismiss();
   }
 
-  onDoneClick() {
-    this.deleteSubscription$ = this.eventService
+  async onDoneClick() {
+    // modal actions - delete, edit or discard event changes
+    switch (this.modalType) {
+      case 'delete':
+        this.deleteSubscription$ = this.deleteEvent();
+        break;
+      // TODO: handle create/edit case
+      case 'dismiss':
+        this.router.navigateByUrl('/tabs/events');
+        await this.modalController.dismiss();
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  deleteEvent(): Subscription {
+    return this.eventService
       .deleteEvent({ isDeleted: true }, this.eventId)
       .subscribe({
         next: () => {
           this.toasterMessage = 'Успешно изтрито събитие';
           this.toasterType = 'success';
-          this.showToaster = true;
 
           this.router.navigateByUrl('/tabs/events');
           this.modalController.dismiss();
@@ -47,7 +67,6 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
         error: (err) => {
           this.toasterType = 'error';
           this.toasterMessage = err.error.error;
-          this.showToaster = true;
         },
       });
   }

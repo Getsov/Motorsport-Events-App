@@ -1,5 +1,13 @@
 <ion-content>
-  <p>Сигурни ли сте, че искате да изтриете събитието?</p>
+  <p>
+    {{
+      modalType === "delete"
+        ? deleteModalMessage
+        : modalType === "edit"
+        ? editMessage
+        : discardMessage
+    }}
+  </p>
 
   <ion-footer>
     <div class="modal-picker-action-buttons">
@@ -10,7 +18,6 @@
         <ion-button class="modal-confirm-button">Да</ion-button>
       </ion-buttons>
       <app-toaster
-        *ngIf="showToaster"
         [toasterMessage]="toasterMessage"
         [toasterType]="toasterType"
       ></app-toaster>
