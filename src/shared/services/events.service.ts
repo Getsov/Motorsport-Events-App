@@ -58,6 +58,17 @@ export class EventsService {
     );
   }
 
+  likeUnlikeEvent(eventId: string): Observable<string> {
+    const accessToken = this.authService.getUserToken();
+
+    return this.http.post<string>(`${baseUrl}/events/like/${eventId}`, null, {
+      headers: {
+        'X-Authorization': accessToken!,
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
   getPaginationEvents(page: number, limit: number): Observable<any> {
     const url = `${baseUrl}/events?page=${page}&limit=${limit}`;
     return this.http.get(url);

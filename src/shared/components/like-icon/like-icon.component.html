@@ -1,5 +1,5 @@
 <div
-  (click)="likeEvent()"
+  (click)="likeUnlikeEvent()"
   class="like-icon"
   [ngClass]="{
     'like-icon-liked': isLiked,
@@ -16,6 +16,6 @@
       'like-count-large': fontSize === '14px'
     }"
   >
-    {{ likedCount }}
+    {{ likes.length }}
   </p>
 </div>
