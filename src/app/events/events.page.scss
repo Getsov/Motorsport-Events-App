@@ -6,16 +6,18 @@
     align-items: center;
     gap: 8px;
     background-color: #FFDC23;
-    .add-icon{
+
+    .add-icon {
         width: 24px;
         height: 24px;
     }
+
     span {
         line-height: 2.5;
     }
 }
 
-.no-events{
+.no-events {
     text-align: center;
     margin: 1em auto;
     color: #FFF;

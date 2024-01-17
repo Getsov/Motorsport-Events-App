@@ -11,7 +11,7 @@ import { AuthService } from 'src/shared/services/auth.service';
   styleUrls: ['./events.page.scss'],
 })
 export class EventsPage implements OnInit {
-  parrent: string = 'events';
+  parent: string = 'events';
   eventsData: Event[] = [];
   query: any = [];
   private eventsSubscription: Subscription = new Subscription();
@@ -36,13 +36,15 @@ export class EventsPage implements OnInit {
     isApproved: false,
   };
 
-  constructor(private eventService: EventsService,private authService: AuthService) {}
+  constructor(
+    private eventService: EventsService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.getEvents();
     this.user = this.authService.getUserFromLocalStorage();
     console.log(this.user);
-    
   }
 
   getFilteredEvents(event: any): any {
@@ -50,7 +52,6 @@ export class EventsPage implements OnInit {
   }
 
   getEvents(): void {
-    
     this.eventsSubscription = this.eventService.getEvents().subscribe({
       next: (events: Event[]) => {
         this.eventsData = events;
@@ -61,7 +62,7 @@ export class EventsPage implements OnInit {
     });
   }
   ionViewDidLeave(): void {
-    if(this.eventsSubscription){
+    if (this.eventsSubscription) {
       this.eventsSubscription.unsubscribe();
     }
   }
