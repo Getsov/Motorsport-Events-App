@@ -32,10 +32,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'notifications',
+        path: 'favourites',
         loadChildren: () =>
-          import('../notifications/notifications.module').then(
-            (m) => m.NotificationsPageModule
+          import('../favourites/favourites.module').then(
+            (m) => m.FavouritesPageModule
           ),
       },
       {

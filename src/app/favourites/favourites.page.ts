@@ -6,12 +6,12 @@ import { User } from 'src/shared/interfaces/User';
 import { AuthService } from 'src/shared/services/auth.service';
 
 @Component({
-  selector: 'app-notifications',
-  templateUrl: './notifications.page.html',
-  styleUrls: ['./notifications.page.scss'],
+  selector: 'app-favourites',
+  templateUrl: './favourites.page.html',
+  styleUrls: ['./favourites.page.scss'],
 })
-export class NotificationsPage implements OnInit {
-  parrent: string = 'favourites';
+export class FavouritesPage implements OnInit {
+  parent: string = 'favourites';
   favouritesData: Event[] = [];
   query: any = [];
   private favouritesSubscription: Subscription = new Subscription();
@@ -33,14 +33,17 @@ export class NotificationsPage implements OnInit {
     organizatorName: '',
     phone: '',
     isDeleted: false,
-    isApproved: true
+    isApproved: true,
   };
 
-  constructor(private eventService: EventsService,private authService: AuthService) {}
+  constructor(
+    private eventService: EventsService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.user = this.authService.getUserFromLocalStorage();
-    this.getEvents(); 
+    this.getEvents();
   }
 
   getFilteredEvents(event: any): any {
@@ -48,17 +51,19 @@ export class NotificationsPage implements OnInit {
   }
 
   getEvents(): void {
-    this.favouritesSubscription = this.eventService.getMyFavourites().subscribe({
-      next: (events: Event[]) => {
-        this.favouritesData = events;
-      },
-      error: (err) => {
-        console.error(err);
-      },
-    });
+    this.favouritesSubscription = this.eventService
+      .getMyFavourites()
+      .subscribe({
+        next: (events: Event[]) => {
+          this.favouritesData = events;
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
   }
   ionViewDidLeave(): void {
-    if(this.favouritesSubscription){
+    if (this.favouritesSubscription) {
       this.favouritesSubscription.unsubscribe();
     }
   }
