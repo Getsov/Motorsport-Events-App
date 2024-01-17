@@ -8,10 +8,9 @@ import { EventsPageRoutingModule } from './events-routing.module';
 import { EventsPage } from './events.page';
 import { EventMarkerModalPageModule } from './event-detail/event-marker-modal/event-marker-modal.module';
 import { SharedModule } from '../../shared/shared.module';
-import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
-  declarations: [EventsPage, SearchComponent],
+  declarations: [EventsPage],
   imports: [
     CommonModule,
     ExploreContainerComponentModule,
@@ -21,6 +20,5 @@ import { SearchComponent } from './components/search/search.component';
     EventMarkerModalPageModule,
     SharedModule,
   ],
-  exports:[SearchComponent]
 })
 export class EventsPageModule {}

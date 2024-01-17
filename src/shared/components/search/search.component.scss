@@ -53,7 +53,7 @@ ion-select.select-item::part(icon):hover{
 ion-select.select-item::part(icon) {
   bottom: 1em;
   color: #ffffff;
-  content: url("../../../../assets/icon/arrow-up-down.svg");
+  content: url("../../../assets/icon/arrow-up-down.svg");
   position: absolute;
   right: 0.8em;
   height: 20px;
@@ -74,10 +74,6 @@ ion-select::part(placeholder) {
   margin-right: 2.2em;
   opacity: 1;
   font-size: 14px;
-}
-
-.select-section ion-select.select-item #select-label{
-  width: 100% !important;
 }
 
 ::ng-deep .sc-ion-alert-ios-h{
