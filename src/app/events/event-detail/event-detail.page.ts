@@ -33,6 +33,8 @@ export class EventDetailPage implements OnInit, OnDestroy {
   backButton: boolean = true;
 
   eventId: string = '';
+  userId: string = '';
+  hasLiked: boolean = false;
 
   event: Event = {
     shortTitle: '',
@@ -91,6 +93,7 @@ export class EventDetailPage implements OnInit, OnDestroy {
     return this.eventService.getEvent(this.eventId).subscribe({
       next: (response) => {
         this.event = response;
+        this.hasLiked = this.event.likes.includes(this.userId);
         this.createMap();
       },
       error: (error) => {
@@ -102,10 +105,13 @@ export class EventDetailPage implements OnInit, OnDestroy {
   // check if user is the creator or admin so he can edit/delete
   creatorAdminChecker(): Subscription {
     return this.authService.userData$.subscribe({
-      next: (userData) =>
-        (this.isCreatorOrAdmin = userData?.createdEvents.includes(
-          this.eventId
-        )),
+      next: (userData) => {
+        this.isCreatorOrAdmin = userData?.createdEvents.includes(this.eventId);
+
+        if (userData?._id) {
+          this.userId = userData?._id;
+        }
+      },
     });
   }
 
@@ -120,8 +126,20 @@ export class EventDetailPage implements OnInit, OnDestroy {
     });
   }
 
-  addEventToFavourites() {
-    // TODO: add event to favourites via service
+  addRemoveFromFavorites() {
+    this.Subscriptions$.push(
+      this.eventService.likeUnlikeEvent(this.eventId).subscribe({
+        next: (response: string) => {
+          if (!this.hasLiked) {
+            this.event.likes.push(this.userId);
+          } else {
+            const likeIndex = this.event.likes.indexOf(this.userId);
+            this.event.likes.splice(likeIndex, 1);
+          }
+          this.hasLiked = !this.hasLiked;
+        },
+      })
+    );
   }
 
   onEditEvent() {

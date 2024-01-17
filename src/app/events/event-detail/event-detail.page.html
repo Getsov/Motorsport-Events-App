@@ -19,8 +19,10 @@
         class="event-image"
       />
       <app-like-icon
+        *ngIf="event._id"
         [likes]="event.likes"
         [eventId]="event._id"
+        [isLiked]="hasLiked"
       ></app-like-icon>
     </div>
 
@@ -118,8 +120,10 @@
       </div>
     </div>
 
-    <div class="main-button-wrapper" (click)="addEventToFavourites()">
-      <button class="main-button">Добави в любими</button>
+    <div class="main-button-wrapper" (click)="addRemoveFromFavorites()">
+      <button class="main-button">
+        {{hasLiked ? 'Премахни от любими ' : 'Добави в любими'}}
+      </button>
     </div>
     <div class="manage-buttons-wrapper" *ngIf="isCreatorOrAdmin">
       <div class="secondary-button-wrapper">

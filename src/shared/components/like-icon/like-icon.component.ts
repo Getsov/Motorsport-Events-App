@@ -15,6 +15,8 @@ export class LikeIconComponent implements OnInit, OnDestroy {
 
   @Input() eventId: string = '';
   @Input() likes: string[] = [];
+  @Input() isLiked: boolean = false;
+
   userId: string = '';
 
   constructor(
@@ -24,7 +26,6 @@ export class LikeIconComponent implements OnInit, OnDestroy {
   ) {}
 
   likeIconSrc: string = '../../../assets/icon/like-icons/not-liked-small.svg';
-  isLiked: boolean = false;
   fontSize: string = '10px';
 
   ngOnInit() {
