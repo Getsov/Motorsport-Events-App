@@ -60,23 +60,25 @@ export class LikeIconComponent implements OnInit, OnDestroy {
       this.router.navigateByUrl('tabs/user/auth');
       return;
     }
-    this.isLiked = !this.isLiked;
 
+    // like or unlike event
     this.likeSubscription$ = this.eventService
       .likeUnlikeEvent(this.eventId)
       .subscribe({
         next: (response: string) => {
+          this.isLiked = !this.isLiked;
           if (response === 'Event UnLiked!') {
             this.likes.length--;
-            this.isLiked = true;
           } else {
             this.likes.length++;
-            this.isLiked = false;
           }
-          this.isLiked = !this.isLiked;
+          this.likeIconSwitcher();
         },
       });
+  }
 
+  // change like icon based on likes count and if liked
+  likeIconSwitcher() {
     if (this.likes.length < 10) {
       this.isLiked
         ? (this.likeIconSrc = '../../../assets/icon/like-icons/small-liked.svg')
@@ -102,8 +104,6 @@ export class LikeIconComponent implements OnInit, OnDestroy {
         : (this.likeIconSrc =
             '../../../assets/icon/like-icons/not-liked-large.svg');
     }
-
-    // Send a request to like the event using the eventId
   }
 
   ngOnDestroy(): void {
