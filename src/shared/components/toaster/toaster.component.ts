@@ -12,4 +12,8 @@ export class ToasterComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  setOpen() {
+    this.toasterMessage = '';
+  }
 }
