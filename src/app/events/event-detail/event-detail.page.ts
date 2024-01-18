@@ -33,6 +33,7 @@ export class EventDetailPage implements OnInit, OnDestroy {
   backButton: boolean = true;
 
   eventId: string = '';
+  eventLikes: string[] = [];
   userId: string = '';
   hasLiked: boolean = false;
 
@@ -80,11 +81,19 @@ export class EventDetailPage implements OnInit, OnDestroy {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter() {
     this.Subscriptions$.push(this.getEventId());
 
     this.Subscriptions$.push(this.setEvent());
 
+    this.eventService.event$.subscribe({
+      next: (event) => {
+        event ? (this.eventLikes = event.likes) : (this.eventLikes = []);
+        this.hasLiked = this.event.likes.includes(this.userId);
+      },
+    });
     this.Subscriptions$.push(this.creatorAdminChecker());
   }
 
@@ -128,15 +137,13 @@ export class EventDetailPage implements OnInit, OnDestroy {
 
   addRemoveFromFavorites() {
     this.Subscriptions$.push(
-      this.eventService.likeUnlikeEvent(this.eventId).subscribe({
+      this.eventService.likeUnlikeEvent(this.eventId, this.userId).subscribe({
         next: (response: string) => {
-          if (!this.hasLiked) {
-            this.event.likes.push(this.userId);
+          if (response === 'Event UnLiked!') {
+            this.hasLiked = false;
           } else {
-            const likeIndex = this.event.likes.indexOf(this.userId);
-            this.event.likes.splice(likeIndex, 1);
+            this.hasLiked = true;
           }
-          this.hasLiked = !this.hasLiked;
         },
       })
     );

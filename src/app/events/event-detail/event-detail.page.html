@@ -20,9 +20,10 @@
       />
       <app-like-icon
         *ngIf="event._id"
-        [likes]="event.likes"
+        [likes]="eventLikes"
         [eventId]="event._id"
         [isLiked]="hasLiked"
+        [userId]="userId"
       ></app-like-icon>
     </div>
 

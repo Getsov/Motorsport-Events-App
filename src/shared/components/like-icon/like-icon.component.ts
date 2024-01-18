@@ -16,8 +16,7 @@ export class LikeIconComponent implements OnInit, OnDestroy {
   @Input() eventId: string = '';
   @Input() likes: string[] = [];
   @Input() isLiked: boolean = false;
-
-  userId: string = '';
+  @Input() userId: string = '';
 
   constructor(
     private eventService: EventsService,
@@ -30,17 +29,22 @@ export class LikeIconComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Get user id and check if he has liked
-    this.subscriptions$.push(
-      this.authService.userData$.subscribe({
-        next: (userData) => {
-          if (userData?._id) {
-            this.userId = userData?._id;
-            this.isLiked = this.likes.includes(this.userId);
-          }
-        },
-        error: (err) => console.log(err.error),
-      })
+    this.authService.userData$.subscribe(
+      (userData) => (this.userId = userData ? userData?._id : '')
     );
+
+    this.eventService.event$.subscribe({
+      next: (eventData) => {
+        if (eventData?.likes) {
+          this.likes = eventData.likes;
+          this.isLiked = this.likes.includes(this.userId);
+          this.likeIconSwitcher();
+        } else {
+          this.userId = '';
+        }
+      },
+      error: (err) => console.log(err.error),
+    });
 
     // configurate icon
     if (this.likes.length < 10) {
@@ -69,6 +73,7 @@ export class LikeIconComponent implements OnInit, OnDestroy {
   }
 
   likeUnlikeEvent() {
+    // console.log(this.userId);
     if (!this.userId) {
       this.router.navigateByUrl('tabs/user/auth');
       return;
@@ -76,14 +81,8 @@ export class LikeIconComponent implements OnInit, OnDestroy {
 
     // like or unlike event
     this.subscriptions$.push(
-      this.eventService.likeUnlikeEvent(this.eventId).subscribe({
+      this.eventService.likeUnlikeEvent(this.eventId, this.userId).subscribe({
         next: (response: string) => {
-          this.isLiked = !this.isLiked;
-          if (response === 'Event UnLiked!') {
-            this.likes.length--;
-          } else {
-            this.likes.length++;
-          }
           this.likeIconSwitcher();
         },
       })
