@@ -114,6 +114,12 @@ export class EventsService {
     return this.http.get<Event>(`${baseUrl}/events/month/${yearMonth}`);
   }
 
+  resetPassword(email: string): Observable<string> {
+    return this.http.post<string>(`${baseUrl}/user/resetPassword`, {
+      to: email,
+    });
+  }
+
   // set events array
   setEventsInSubject(event: Event): void {
     this.eventSubject.next(event);
