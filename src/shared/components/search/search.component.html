@@ -12,6 +12,6 @@
 
   <ion-select [(ngModel)]="locationQuery" labelPlacement="floating" okText="Ок" cancelText="Откажи" slot="end"
     label="{{ location }}" class="select-item" [multiple]="true" (ionChange)="searchEvents()">
-    <ion-select-option  *ngFor=" let item of regions; let i = index" [value]="i+1" >{{ item }}</ion-select-option>
+    <ion-select-option *ngFor=" let item of regions; let i = index" [value]="i+1">{{ item }}</ion-select-option>
   </ion-select>
 </div>

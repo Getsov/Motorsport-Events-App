@@ -11,6 +11,7 @@ import { EventComponent } from './components/event/event.component';
 import { ToasterComponent } from './components/toaster/toaster.component';
 import { EventLineComponent } from './components/event-line/event-line.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
     ToasterComponent,
     EventLineComponent,
     ConfirmModalComponent,
+    SearchComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
@@ -37,6 +39,7 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
     EventComponent,
     ToasterComponent,
     EventLineComponent,
+    SearchComponent
   ],
 })
 export class SharedModule {}
