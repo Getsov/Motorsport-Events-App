@@ -14,7 +14,7 @@ import {
 import BulgarianRegions from 'src/shared/data/regions';
 import Categories from 'src/shared/data/categories';
 import { Event } from 'src/shared/interfaces/Event';
-import { ModalController } from '@ionic/angular';
+import { IonContent, ModalController } from '@ionic/angular';
 import { ConfirmModalComponent } from 'src/shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
@@ -42,6 +42,8 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
   @ViewChild(SelectDatesComponent) selectDatesComponent!: SelectDatesComponent;
   dates = [{ date: '', startTime: '00:00', endTime: '00:00' }];
   datesError: any = false;
+
+  @ViewChild(IonContent) content?: IonContent;
 
   // regions select
   selectedRegion: string = '';
@@ -157,6 +159,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       !this.validatePriceField(this.participantPrices, 'participantError') ||
       eventForm.invalid
     ) {
+      this.content?.scrollToTop(500);
       return;
     }
 
