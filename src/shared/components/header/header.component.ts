@@ -29,9 +29,12 @@ export class HeaderComponent implements OnInit {
 
   onLogout(): void {
     this.authService.logout();
+
     this.toasterType = 'success';
     this.toasterMessage = 'Успешно излизане от профила';
 
-    this.router.navigateByUrl('/');
+    setTimeout(() => {
+      this.router.navigateByUrl('/');
+    }, 1000);
   }
 }
