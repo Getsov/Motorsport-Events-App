@@ -118,4 +118,23 @@ export class EventsService {
   setEventsInSubject(event: Event): void {
     this.eventSubject.next(event);
   }
+  
+  getMyFavourites(query: string = ''): Observable<Event[]>{
+    const accessToken = this.authService.getUserToken();
+    if(query){
+      return this.http.get<Event[]>(`${baseUrl}/user/getMyFavourites/?${query}`,{
+      
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Authorization': accessToken!,
+        }
+    });
+    }
+    return this.http.get<Event[]>(`${baseUrl}/user/getMyFavourites`,{
+      
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Authorization': accessToken!,
+      }
+  });
 }

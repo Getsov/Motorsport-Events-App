@@ -21,6 +21,8 @@ export class UpcomingEventsComponent implements OnInit, OnDestroy {
   isAllEventsLoaded: boolean = false;
   isAdminOrOrganization: boolean = false;
 
+  addIcon = 'assets/icon/carbon_add-filled.svg';
+
   constructor(
     private eventService: EventsService,
     private authService: AuthService

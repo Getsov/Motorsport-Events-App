@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthResponseData, User } from '../interfaces/User';
 import { BehaviorSubject, tap } from 'rxjs';
+import { Event } from '../interfaces/Event';
 
 const { baseUrl } = environment;
 

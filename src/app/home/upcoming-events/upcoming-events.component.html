@@ -16,6 +16,7 @@
 </swiper-container>
 <div class="ion-padding-horizontal" *ngIf="isAdminOrOrganization">
   <div class="main-button-wrapper">
+    <ion-icon [src]="addIcon" name="addIcon" class="add-icon" />
     <span [routerLink]="['/tabs/events/create']" class="main-button"
       >Създай събитие</span
     >

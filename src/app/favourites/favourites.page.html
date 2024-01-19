@@ -6,15 +6,11 @@
   </div>
   <app-title-fades [color]="titleColor" [title]="titleText" />
   <div class="ion-padding-horizontal" *ngIf="(user?.role == 'admin') || (user?.role == 'organizer')">
-    <div class="main-button-wrapper">
-      <ion-icon [src]="addIcon" name="addIcon" class="add-icon" />
-      <span [routerLink]="['/tabs/events/create']" class="main-button">Създай събитие</span>
-    </div>
   </div>
-  <ng-container *ngFor="let event of eventsData">
+  <ng-container *ngFor="let event of favouritesData">
     <app-event [event]="event" (filteredEvents)="getFilteredEvents($event)" />
   </ng-container>
-  <div *ngIf="eventsData.length == 0">
-    <p class="no-events">Няма налични събития!</p>
+  <div *ngIf="favouritesData.length == 0">
+    <p class="no-events">В момента нямате любими събития.<br>Започнете да добавяте Вашите любими още днес!</p>
   </div>
 </ion-content>

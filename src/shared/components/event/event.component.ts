@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+
 import { Subscription } from 'rxjs';
 import { Event } from 'src/shared/interfaces/Event';
 import { User } from 'src/shared/interfaces/User';
@@ -34,7 +35,7 @@ export class EventComponent implements OnInit {
     organizatorName: '',
     phone: '',
     isDeleted: false,
-    isApproved: true,
+    isApproved: false
   };
 
   constructor(

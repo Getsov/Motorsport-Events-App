@@ -6,20 +6,20 @@ import { User } from 'src/shared/interfaces/User';
 import { AuthService } from 'src/shared/services/auth.service';
 
 @Component({
-  selector: 'app-events',
-  templateUrl: './events.page.html',
-  styleUrls: ['./events.page.scss'],
+  selector: 'app-favourites',
+  templateUrl: './favourites.page.html',
+  styleUrls: ['./favourites.page.scss'],
 })
-export class EventsPage implements OnInit {
-  parent: string = 'events';
-  eventsData: Event[] = [];
+export class FavouritesPage implements OnInit {
+  parent: string = 'favourites';
+  favouritesData: Event[] = [];
   query: any = [];
-  private eventsSubscription: Subscription = new Subscription();
+  private favouritesSubscription: Subscription = new Subscription();
 
   @Input() titleColor: string = 'yellow';
   @Input() titleText: string = 'Списък със събития';
 
-  headerTitle: string = 'Събития';
+  headerTitle: string = 'Любими';
   defaultHref: string = '/tabs/home';
   backButton: boolean = true;
   addIcon = 'assets/icon/carbon_add-filled.svg';
@@ -33,7 +33,7 @@ export class EventsPage implements OnInit {
     organizatorName: '',
     phone: '',
     isDeleted: false,
-    isApproved: false,
+    isApproved: true,
   };
 
   constructor(
@@ -42,34 +42,29 @@ export class EventsPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getEvents();
     this.user = this.authService.getUserFromLocalStorage();
-    console.log(this.user);
-  }
-
-  // this works when edited/deleted event goes back to all events - the changes are applied
-  // - onInit does not go inside after edit/delete - TODO: decide if oninit is needed here
-  ionViewWillEnter() {
     this.getEvents();
   }
 
   getFilteredEvents(event: any): any {
-    this.eventsData = event;
+    this.favouritesData = event;
   }
 
   getEvents(): void {
-    this.eventsSubscription = this.eventService.getEvents().subscribe({
-      next: (events: Event[]) => {
-        this.eventsData = events;
-      },
-      error: (err) => {
-        console.error(err);
-      },
-    });
+    this.favouritesSubscription = this.eventService
+      .getMyFavourites()
+      .subscribe({
+        next: (events: Event[]) => {
+          this.favouritesData = events;
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
   }
   ionViewDidLeave(): void {
-    if (this.eventsSubscription) {
-      this.eventsSubscription.unsubscribe();
+    if (this.favouritesSubscription) {
+      this.favouritesSubscription.unsubscribe();
     }
   }
 }
