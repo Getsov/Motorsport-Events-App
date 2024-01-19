@@ -17,7 +17,7 @@ export interface Event {
     email: string;
   };
   categories: string[];
-  likes: [];
+  likes: string[];
   creator: User;
   winners?: { name: string; vehicle: string; place: number }[];
   isApproved: boolean;

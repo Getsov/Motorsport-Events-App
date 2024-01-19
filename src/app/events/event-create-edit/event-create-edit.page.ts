@@ -14,6 +14,8 @@ import {
 import BulgarianRegions from 'src/shared/data/regions';
 import Categories from 'src/shared/data/categories';
 import { Event } from 'src/shared/interfaces/Event';
+import { IonContent, ModalController } from '@ionic/angular';
+import { ConfirmModalComponent } from 'src/shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-event-create',
@@ -26,8 +28,8 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
   eventData!: Event;
   eventId: string | null = '';
 
-  successToasterMessage: string = '';
-  errorToasterMessage: string = '';
+  toasterMessage: string = '';
+  toasterType: string = '';
 
   // get price values
   @ViewChild(SelectPriceComponent) selectPricesComponent!: SelectPriceComponent;
@@ -40,6 +42,8 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
   @ViewChild(SelectDatesComponent) selectDatesComponent!: SelectDatesComponent;
   dates = [{ date: '', startTime: '00:00', endTime: '00:00' }];
   datesError: any = false;
+
+  @ViewChild(IonContent) content?: IonContent;
 
   // regions select
   selectedRegion: string = '';
@@ -92,7 +96,8 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     private authService: AuthService,
     private eventService: EventsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -107,7 +112,10 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
             this.eventData = eventResponse;
             this.populateEventDataInForm();
           },
-          error: (err) => (this.errorToasterMessage = err.message),
+          error: (err) => {
+            this.toasterMessage = err.message;
+            this.toasterType = 'error';
+          },
         });
     }
   }
@@ -151,13 +159,15 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       !this.validatePriceField(this.participantPrices, 'participantError') ||
       eventForm.invalid
     ) {
+      this.content?.scrollToTop(500);
       return;
     }
 
     const user = this.authService.getUserFromLocalStorage();
 
     if (!user) {
-      this.errorToasterMessage = 'Неоторизиран потребител';
+      this.toasterMessage = 'Неоторизиран потребител';
+      this.toasterType = 'error';
       return;
     }
 
@@ -186,21 +196,23 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       participantPrices: this.participantPrices,
       dates: formattedDates,
     };
-
+    // TODO: Confirm modal for event edit/create
     if (this.eventId) {
       this.eventSubscription$ = this.eventService
         .editEvent(formValue, this.eventId)
         .subscribe({
           next: () => {
-            this.successToasterMessage =
+            this.toasterMessage =
               'Успешно редактирано събитие! Събитието очаква одобрение от администратор.';
+            this.toasterType = 'success';
             setTimeout(
               () => this.router.navigateByUrl(`/tabs/events/${this.eventId}`),
               2000
             );
           },
           error: (err) => {
-            this.errorToasterMessage = err.message;
+            this.toasterMessage = err.message;
+            this.toasterType = 'error';
           },
         });
     } else {
@@ -212,15 +224,27 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
             // update user info in subject and localstorage. Previously newly created event was not added to createdEvents in FE.
             this.authService.updateUserAuthData(formValue.creator);
 
-            this.successToasterMessage =
+            this.toasterMessage =
               'Успешно създадено събитие! Събитието очаква одобрение от администратор.';
+            this.toasterType = 'success';
             setTimeout(() => this.router.navigateByUrl('/tabs/events'), 2000);
           },
           error: (err) => {
-            this.errorToasterMessage = err.message;
+            this.toasterMessage = err.message;
+            this.toasterType = 'error';
           },
         });
     }
+  }
+
+  async presentModal(modalType: string) {
+    const modal = await this.modalController.create({
+      component: ConfirmModalComponent,
+      componentProps: { eventId: this.eventId, modalType },
+      cssClass: 'confirm-modal',
+    });
+
+    await modal.present();
   }
 
   onRegionChange(region: string): void {
@@ -283,10 +307,6 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     }
     this[errorMessageVariable] = false;
     return true;
-  }
-
-  discardEventForm(): void {
-    this.router.navigateByUrl('/tabs/events');
   }
 
   ngOnDestroy(): void {

@@ -1,12 +1,11 @@
 import {
   Component,
   ElementRef,
-  Input,
   OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
 import { ModalController, NavController } from '@ionic/angular';
 
@@ -16,6 +15,8 @@ import { getDayOfWeek } from 'src/shared/utils/date-utils';
 import { EventMarkerModalPage } from './event-marker-modal/event-marker-modal.page';
 import { EventsService } from 'src/shared/services/events.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/shared/services/auth.service';
+import { ConfirmModalComponent } from 'src/shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-event-detail',
@@ -32,6 +33,9 @@ export class EventDetailPage implements OnInit, OnDestroy {
   backButton: boolean = true;
 
   eventId: string = '';
+  eventLikes: string[] = [];
+  userId: string = '';
+  hasLiked: boolean = false;
 
   event: Event = {
     shortTitle: '',
@@ -58,6 +62,8 @@ export class EventDetailPage implements OnInit, OnDestroy {
     _id: '',
   };
 
+  isCreatorOrAdmin: boolean | undefined = false;
+
   titleSeparatorColor: string = 'orange';
 
   infoSeparatorText: string = 'Информация за събитието';
@@ -70,26 +76,33 @@ export class EventDetailPage implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private navController: NavController,
     private modalController: ModalController,
-    private eventService: EventsService
+    private eventService: EventsService,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
-  ngOnInit() {
-    this.Subscriptions$.push(
-      this.activatedRoute.paramMap.subscribe((paramMap) => {
-        if (!paramMap.has('eventId')) {
-          this.navController.navigateBack('/tabs/events');
-          return;
-        }
-        this.eventId = paramMap.get('eventId')!;
-      })
-    );
+  ngOnInit() {}
+
+  ionViewWillEnter() {
+    this.Subscriptions$.push(this.getEventId());
 
     this.Subscriptions$.push(this.setEvent());
+
+    this.eventService.event$.subscribe({
+      next: (event) => {
+        event ? (this.eventLikes = event.likes) : (this.eventLikes = []);
+        this.hasLiked = this.event.likes.includes(this.userId);
+      },
+    });
+    this.Subscriptions$.push(this.creatorAdminChecker());
   }
+
+  // load event details
   setEvent(): Subscription {
     return this.eventService.getEvent(this.eventId).subscribe({
       next: (response) => {
         this.event = response;
+        this.hasLiked = this.event.likes.includes(this.userId);
         this.createMap();
       },
       error: (error) => {
@@ -98,10 +111,60 @@ export class EventDetailPage implements OnInit, OnDestroy {
     });
   }
 
-  addEventToFavourites() {
-    // TODO: add event to favourites via service
+  // check if user is the creator or admin so he can edit/delete
+  creatorAdminChecker(): Subscription {
+    return this.authService.userData$.subscribe({
+      next: (userData) => {
+        this.isCreatorOrAdmin = userData?.createdEvents.includes(this.eventId);
+
+        if (userData?._id) {
+          this.userId = userData?._id;
+        }
+      },
+    });
   }
 
+  // get event id
+  getEventId(): Subscription {
+    return this.activatedRoute.paramMap.subscribe((paramMap) => {
+      if (!paramMap.has('eventId')) {
+        this.navController.navigateBack('/tabs/events');
+        return;
+      }
+      this.eventId = paramMap.get('eventId')!;
+    });
+  }
+
+  addRemoveFromFavorites() {
+    this.Subscriptions$.push(
+      this.eventService.likeUnlikeEvent(this.eventId, this.userId).subscribe({
+        next: (response: string) => {
+          if (response === 'Event UnLiked!') {
+            this.hasLiked = false;
+          } else {
+            this.hasLiked = true;
+          }
+        },
+      })
+    );
+  }
+
+  onEditEvent() {
+    this.router.navigate(['/tabs/events/edit', this.eventId]);
+  }
+
+  // open delete modal and pass the id for deleting
+  async presentDeleteModal(modalType: string) {
+    const modal = await this.modalController.create({
+      component: ConfirmModalComponent,
+      componentProps: { eventId: this.event._id, modalType },
+      cssClass: 'confirm-modal',
+    });
+
+    await modal.present();
+  }
+
+  // initiate google map
   async createMap() {
     this.map = await GoogleMap.create({
       id: this.event._id,

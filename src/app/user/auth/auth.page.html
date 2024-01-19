@@ -1,6 +1,7 @@
 <ion-content [fullscreen]="true" mode="ios">
   <ion-header
-    [ngClass]="{'header-menu': true, 'login-background-image': authSegment === 'login', 'register-background-image': authSegment === 'register'}">
+    [ngClass]="{'header-menu': true, 'login-background-image': authSegment === 'login', 'register-background-image': authSegment === 'register'}"
+  >
     <app-header [backButton]="backButton"></app-header>
     <div class="login-header-image"></div>
   </ion-header>
@@ -9,12 +10,17 @@
     <div class="heading-title">
       <h1>{{authSegment === 'login' ? 'Вход' : 'Регистрация'}}</h1>
       <p>
-        {{authSegment === 'login' ? 'Влезте във Вашия акаунт' : 'Регистрирайте нов акаунт'}}
+        {{authSegment === 'login' ? 'Влезте във Вашия акаунт' : 'Регистрирайте
+        нов акаунт'}}
       </p>
     </div>
 
     <div class="segment">
-      <ion-segment value="login" [(ngModel)]="authSegment" (ionChange)="segmentChanged($event)">
+      <ion-segment
+        value="login"
+        [(ngModel)]="authSegment"
+        (ionChange)="segmentChanged($event)"
+      >
         <ion-segment-button value="login">
           <ion-label>Вход</ion-label>
         </ion-segment-button>
@@ -35,7 +41,11 @@
       <div class="auth-redirect-link">
         <p>
           <!-- TODO: Redirect to forgotten password page -->
-          <span><a (click)="toggleAuthSegmentChange('register')">Забравена парола</a></span>
+          <span
+            ><a (click)="toggleAuthSegmentChange('register')"
+              >Забравена парола</a
+            ></span
+          >
         </p>
       </div>
     </div>
@@ -51,8 +61,15 @@
       <div class="register-tos-agreement">
         <p>
           С регистрацията се съгласявате на
-          <span><a routerLink="/tabs/home/general-terms">Общите условия</a></span> и
-          <span><a routerLink="/tabs/home/privacy-policy">Правилата за поверителност</a></span>
+          <span
+            ><a routerLink="/tabs/home/general-terms">Общите условия</a></span
+          >
+          и
+          <span
+            ><a routerLink="/tabs/home/privacy-policy"
+              >Правилата за поверителност</a
+            ></span
+          >
         </p>
       </div>
     </ng-template>

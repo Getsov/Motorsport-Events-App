@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { EventComponent } from './components/event/event.component';
 import { ToasterComponent } from './components/toaster/toaster.component';
 import { EventLineComponent } from './components/event-line/event-line.component';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { SearchComponent } from './components/search/search.component';
     EventComponent,
     ToasterComponent,
     EventLineComponent,
+    ConfirmModalComponent,
     SearchComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -18,7 +18,14 @@
         [src]="'data:image;base64,' + event.imageUrl"
         class="event-image"
       />
-      <app-like-icon [likedCount]="event.likes.length"></app-like-icon>
+      <app-like-icon
+        *ngIf="event._id"
+        [likes]="eventLikes"
+        [eventId]="event._id"
+        [isLiked]="hasLiked"
+        [userId]="userId"
+        source="details"
+      ></app-like-icon>
     </div>
 
     <div class="category-city-wrapper">
@@ -115,8 +122,24 @@
       </div>
     </div>
 
-    <div class="main-button-wrapper" (click)="addEventToFavourites()">
-      <button class="main-button">Добави в любими</button>
+    <div class="main-button-wrapper" (click)="addRemoveFromFavorites()">
+      <button class="main-button">
+        {{hasLiked ? 'Премахни от любими ' : 'Добави в любими'}}
+      </button>
+    </div>
+    <div class="manage-buttons-wrapper" *ngIf="isCreatorOrAdmin">
+      <div class="secondary-button-wrapper">
+        <button class="secondary-button" (click)="onEditEvent()">
+          Редактирай
+        </button>
+      </div>
+      <div
+        class="delete-button-wrapper"
+        (click)="presentDeleteModal('delete')"
+        [id]="event._id"
+      >
+        <button class="delete-button">Изтрий</button>
+      </div>
     </div>
   </div>
 </ion-content>

@@ -1,0 +1,26 @@
+<ion-content>
+  <p>
+    {{
+      modalType === "delete"
+        ? deleteModalMessage
+        : modalType === "edit"
+        ? editMessage
+        : discardMessage
+    }}
+  </p>
+
+  <ion-footer>
+    <div class="modal-picker-action-buttons">
+      <ion-buttons (click)="closeModal()">
+        <ion-button slot="start">Откажи</ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end" (click)="onDoneClick()">
+        <ion-button class="modal-confirm-button">Да</ion-button>
+      </ion-buttons>
+      <app-toaster
+        [toasterMessage]="toasterMessage"
+        [toasterType]="toasterType"
+      ></app-toaster>
+    </div>
+  </ion-footer>
+</ion-content>

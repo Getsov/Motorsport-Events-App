@@ -261,29 +261,32 @@
         ></app-select-price>
       </div>
 
-      <!-- submit button -->
+      <!-- submit buttons -->
       <div class="form-buttons-wrapper ion-padding-horizontal">
         <div class="main-button-wrapper">
           <button class="main-button" type="submit">
             {{eventId ? 'Редактирай събитие' : 'Създай събитие'}}
           </button>
         </div>
-        <div class="secondary-button-wrapper" (click)="discardEventForm()">
-          <a class="secondary-button">Откажи</a>
+        <div
+          *ngIf="eventId"
+          class="delete-button-wrapper"
+          (click)="presentModal('delete')"
+        >
+          <a class="delete-button">Изтрий събитието</a>
+        </div>
+        <div class="secondary-button-wrapper" (click)="presentModal('dismiss')">
+          <a class="secondary-button"
+            >{{ eventId ? 'Откажи промените' : 'Откажи'}}</a
+          >
         </div>
       </div>
     </form>
 
     <!-- success toaster -->
     <app-toaster
-      [toasterMessage]="successToasterMessage"
-      [toasterType]="'success'"
-    ></app-toaster>
-
-    <!-- error toaster -->
-    <app-toaster
-      [toasterMessage]="errorToasterMessage"
-      [toasterType]="'error'"
+      [toasterMessage]="toasterMessage"
+      [toasterType]="toasterType"
     ></app-toaster>
   </div>
 </ion-content>
