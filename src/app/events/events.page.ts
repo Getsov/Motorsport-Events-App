@@ -32,13 +32,23 @@ export class EventsPage implements OnInit {
     organizatorName: '',
     phone: '',
     isDeleted: false,
+    isApproved: false,
   };
 
-  constructor(private eventService: EventsService,private authService: AuthService) {}
+  constructor(
+    private eventService: EventsService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.getEvents();
     this.user = this.authService.getUserFromLocalStorage();
+  }
+
+  // this works when edited/deleted event goes back to all events - the changes are applied
+  // - onInit does not go inside after edit/delete - TODO: decide if oninit is needed here
+  ionViewWillEnter() {
+    this.getEvents();
   }
 
   getFilteredEvents(event: any): any {
@@ -46,7 +56,6 @@ export class EventsPage implements OnInit {
   }
 
   getEvents(): void {
-    
     this.eventsSubscription = this.eventService.getEvents().subscribe({
       next: (events: Event[]) => {
         this.eventsData = events;
@@ -57,7 +66,7 @@ export class EventsPage implements OnInit {
     });
   }
   ionViewDidLeave(): void {
-    if(this.eventsSubscription){
+    if (this.eventsSubscription) {
       this.eventsSubscription.unsubscribe();
     }
   }

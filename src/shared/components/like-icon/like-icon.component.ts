@@ -17,6 +17,7 @@ export class LikeIconComponent implements OnInit, OnDestroy {
   @Input() likes: string[] = [];
   @Input() isLiked: boolean = false;
   @Input() userId: string = '';
+  @Input() source: string = '';
 
   constructor(
     private eventService: EventsService,
@@ -33,18 +34,24 @@ export class LikeIconComponent implements OnInit, OnDestroy {
       (userData) => (this.userId = userData ? userData?._id : '')
     );
 
-    this.eventService.event$.subscribe({
-      next: (eventData) => {
-        if (eventData?.likes) {
-          this.likes = eventData.likes;
-          this.isLiked = this.likes.includes(this.userId);
-          this.likeIconSwitcher();
-        } else {
-          this.userId = '';
-        }
-      },
-      error: (err) => console.log(err.error),
-    });
+    // if it has source this means it comes from the event details component
+    if (this.source) {
+      this.eventService.event$.subscribe({
+        next: (eventData) => {
+          if (eventData?.likes) {
+            this.likes = eventData.likes;
+            this.isLiked = this.likes.includes(this.userId);
+            this.likeIconSwitcher();
+          } else {
+            this.userId = '';
+          }
+        },
+        error: (err) => console.log(err.error),
+      });
+    } else {
+      this.isLiked = this.likes.includes(this.userId);
+      this.likeIconSwitcher();
+    }
 
     // configurate icon
     if (this.likes.length < 10) {
@@ -73,7 +80,6 @@ export class LikeIconComponent implements OnInit, OnDestroy {
   }
 
   likeUnlikeEvent() {
-    // console.log(this.userId);
     if (!this.userId) {
       this.router.navigateByUrl('tabs/user/auth');
       return;
@@ -83,6 +89,16 @@ export class LikeIconComponent implements OnInit, OnDestroy {
     this.subscriptions$.push(
       this.eventService.likeUnlikeEvent(this.eventId, this.userId).subscribe({
         next: (response: string) => {
+          if (!this.source) {
+            if (response === 'Event UnLiked!') {
+              this.isLiked = false;
+              const indexToRemove = this.likes.indexOf(this.userId);
+              this.likes.splice(indexToRemove, 1);
+            } else {
+              this.isLiked = true;
+              this.likes.push(this.userId);
+            }
+          }
           this.likeIconSwitcher();
         },
       })

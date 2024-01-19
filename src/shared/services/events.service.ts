@@ -13,6 +13,9 @@ export class EventsService {
   private eventSubject = new BehaviorSubject<Event | null>(null);
   event$ = this.eventSubject.asObservable();
 
+  private paginatedEventsSubject = new BehaviorSubject<any>([]);
+  paginatedEventsSubscription$ = this.paginatedEventsSubject.asObservable();
+
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   createEvent(eventData: any): Observable<Event> {
@@ -100,7 +103,11 @@ export class EventsService {
 
   getPaginationEvents(page: number, limit: number): Observable<any> {
     const url = `${baseUrl}/events?page=${page}&limit=${limit}`;
-    return this.http.get(url);
+    return this.http.get(url).pipe(
+      tap((paginatedEvents) => {
+        this.paginatedEventsSubject.next(paginatedEvents);
+      })
+    );
   }
 
   getMonthEvents(yearMonth: string) {
