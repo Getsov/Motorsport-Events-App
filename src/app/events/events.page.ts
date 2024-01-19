@@ -32,7 +32,7 @@ export class EventsPage implements OnInit {
     organizatorName: '',
     phone: '',
     isDeleted: false,
-    isApproved: false,
+    isApproved: true,
   };
 
   constructor(
