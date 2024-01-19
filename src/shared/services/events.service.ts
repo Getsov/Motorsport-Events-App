@@ -114,27 +114,35 @@ export class EventsService {
     return this.http.get<Event>(`${baseUrl}/events/month/${yearMonth}`);
   }
 
+  resetPassword(email: string): Observable<string> {
+    return this.http.post<string>(`${baseUrl}/user/resetPassword`, {
+      to: email,
+    });
+  }
+
   // set events array
   setEventsInSubject(event: Event): void {
     this.eventSubject.next(event);
   }
-  
-  getMyFavourites(query: string = ''): Observable<Event[]>{
+
+  getMyFavourites(query: string = ''): Observable<Event[]> {
     const accessToken = this.authService.getUserToken();
-    if(query){
-      return this.http.get<Event[]>(`${baseUrl}/user/getMyFavourites/?${query}`,{
-      
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Authorization': accessToken!,
+    if (query) {
+      return this.http.get<Event[]>(
+        `${baseUrl}/user/getMyFavourites/?${query}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Authorization': accessToken!,
+          },
         }
-    });
+      );
     }
-    return this.http.get<Event[]>(`${baseUrl}/user/getMyFavourites`,{
-      
+    return this.http.get<Event[]>(`${baseUrl}/user/getMyFavourites`, {
       headers: {
         'Content-Type': 'application/json',
         'X-Authorization': accessToken!,
-      }
-  });
+      },
+    });
+  }
 }

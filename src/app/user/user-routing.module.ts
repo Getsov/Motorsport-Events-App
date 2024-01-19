@@ -9,7 +9,15 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () =>
       import('./auth/auth.module').then((m) => m.AuthPageModule),
-    canActivate: [GuestGuard]
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () =>
+      import('./reset-password/reset-password.module').then(
+        (m) => m.ResetPasswordPageModule
+      ),
+    // TODO: guard to check if the user is logged and if yes to redirect to home
   },
   {
     path: '',
