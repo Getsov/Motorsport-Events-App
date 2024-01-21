@@ -132,4 +132,39 @@ export class AuthService {
 
     return null;
   }
+
+  // Edit profile
+
+  editUserPassword(
+    newPasswords: {
+      oldPassword: string;
+      newPassword: string;
+      newRepassword: string;
+    },
+    userId: string
+  ) {
+    const accessToken = this.getUserToken();
+
+    return this.http.put(
+      `${baseUrl}/user/editUserPassword/${userId}`,
+      newPasswords,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Authorization': accessToken!,
+        },
+      }
+    );
+  }
+
+  editEmail(email: { email: string }, userId: string) {
+    const accessToken = this.getUserToken();
+
+    return this.http.put(`${baseUrl}/user/editUserEmail/${userId}`, email, {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Authorization': accessToken!,
+      },
+    });
+  }
 }
