@@ -46,6 +46,10 @@ export class FavouritesPage implements OnInit {
     this.getEvents();
   }
 
+  ionViewWillEnter(): void {
+    this.getEvents();
+  }
+
   getFilteredEvents(event: any): any {
     this.favouritesData = event;
   }
