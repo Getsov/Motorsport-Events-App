@@ -47,17 +47,15 @@ export class AuthService {
     region: string,
     role: string
   ) {
-    return this.http
-      .post<AuthResponseData>(`${baseUrl}/user/register`, {
-        email,
-        password,
-        repassword,
-        organizatorName,
-        phone,
-        region,
-        role,
-      })
-      .pipe(tap((userData) => this.setUserData(userData)));
+    return this.http.post<AuthResponseData>(`${baseUrl}/user/register`, {
+      email,
+      password,
+      repassword,
+      organizatorName,
+      phone,
+      region,
+      role,
+    });
   }
 
   login(email: string, password: string) {
