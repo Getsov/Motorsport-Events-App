@@ -21,6 +21,9 @@ export class OrganizationRegisterPage implements OnInit, OnDestroy {
   authResponseError: string = '';
   selectedRegion: string = '';
 
+  toasterMessage: string = '';
+  toasterType: string = '';
+
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
@@ -49,7 +52,13 @@ export class OrganizationRegisterPage implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           this.authResponseError = '';
-          this.router.navigateByUrl('/');
+
+          this.toasterMessage =
+            'Успешно подадохте заявка за регистрация на организаторски акаунт! Очаквайте да получите потвърждение на имейла си.';
+          this.toasterType = 'success';
+
+          setTimeout(() => this.router.navigateByUrl('/'), 1000);
+
           organizatorRegisterForm.reset();
         },
         error: (error) => {
