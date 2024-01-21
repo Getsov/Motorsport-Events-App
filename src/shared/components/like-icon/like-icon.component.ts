@@ -19,6 +19,9 @@ export class LikeIconComponent implements OnInit, OnDestroy {
   @Input() userId: string = '';
   @Input() source: string = '';
 
+  toasterMessage: string = '';
+  toasterType: string = '';
+
   constructor(
     private eventService: EventsService,
     private router: Router,
@@ -94,9 +97,15 @@ export class LikeIconComponent implements OnInit, OnDestroy {
               this.isLiked = false;
               const indexToRemove = this.likes.indexOf(this.userId);
               this.likes.splice(indexToRemove, 1);
+
+              this.toasterMessage = 'Успешно премахнахте събитието от любими!';
+              this.toasterType = 'success';
             } else {
               this.isLiked = true;
               this.likes.push(this.userId);
+
+              this.toasterMessage = 'Успешно добавихте събитието в любими!';
+              this.toasterType = 'success';
             }
           }
           this.likeIconSwitcher();
