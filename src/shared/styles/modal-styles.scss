@@ -43,7 +43,8 @@ ion-modal.confirm-modal::part(content) {
 }
 
 // edit password modal
-.edit-password-modal {
+.edit-password-modal,
+.edit-email-modal {
   --height: auto;
 
   ion-content {
@@ -59,17 +60,31 @@ ion-modal.confirm-modal::part(content) {
 
     form {
       flex: 1;
-      height: 60%;
+      height: 70%;
       padding: 0 0.5em;
       margin-bottom: 2em;
     }
   }
 }
 
-ion-modal.edit-password-modal::part(content) {
-  height: 320px;
+ion-modal.edit-password-modal::part(content),
+ion-modal.edit-email-modal::part(content) {
+  height: 430px;
   width: 90%;
   --background: #0d0d0d;
+}
+
+// edit email modal
+.edit-email-modal {
+  ion-content {
+    form {
+      height: 45%;
+    }
+  }
+}
+
+ion-modal.edit-email-modal::part(content) {
+  height: 230px;
 }
 
 .ion-page {
