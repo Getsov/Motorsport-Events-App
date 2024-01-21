@@ -44,7 +44,6 @@ export class EventsPage implements OnInit {
   ngOnInit(): void {
     this.getEvents();
     this.user = this.authService.getUserFromLocalStorage();
-    console.log(this.user);
   }
 
   // this works when edited/deleted event goes back to all events - the changes are applied
