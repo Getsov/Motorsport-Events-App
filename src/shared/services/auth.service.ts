@@ -167,4 +167,15 @@ export class AuthService {
       },
     });
   }
+
+  editUserInfo(userInfo: any, userId: string) {
+    const accessToken = this.getUserToken();
+
+    return this.http.put(`${baseUrl}/user/editUserInfo/${userId}`, userInfo, {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Authorization': accessToken!,
+      },
+    });
+  }
 }

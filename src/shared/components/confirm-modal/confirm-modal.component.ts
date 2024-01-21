@@ -48,6 +48,10 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
         await this.modalController.dismiss();
         break;
 
+      case 'editProfile':
+        await this.modalController.dismiss(true);
+        break;
+
       default:
         break;
     }

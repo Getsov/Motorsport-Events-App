@@ -7,9 +7,14 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 import { ProfilePage } from './profile.page';
 import { SharedModule } from '../../../shared/shared.module';
 import { EditPasswordModalComponent } from './edit-password-modal/edit-password-modal.component';
+import { EditEmailModalComponent } from './edit-email-modal/edit-email-modal.component';
 
 @NgModule({
-  declarations: [ProfilePage, EditPasswordModalComponent],
+  declarations: [
+    ProfilePage,
+    EditPasswordModalComponent,
+    EditEmailModalComponent,
+  ],
   imports: [
     CommonModule,
     ExploreContainerComponentModule,
