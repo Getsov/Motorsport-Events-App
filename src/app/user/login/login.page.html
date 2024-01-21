@@ -77,4 +77,9 @@
   <div class="main-button-wrapper">
     <button class="main-button" [disabled]="loginForm.invalid">Вход</button>
   </div>
+
+  <app-toaster
+    [toasterMessage]="toasterMessage"
+    [toasterType]="toasterType"
+  ></app-toaster>
 </form>
