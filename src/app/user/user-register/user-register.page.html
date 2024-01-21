@@ -198,6 +198,12 @@
       <button class="main-button">Регистрация</button>
     </div>
   </form>
+
+  <!-- toaster message -->
+  <app-toaster
+    [toasterMessage]="toasterMessage"
+    [toasterType]="toasterType"
+  ></app-toaster>
 </ng-container>
 <ng-container *ngIf="!userChecked">
   <app-organization-register></app-organization-register>
