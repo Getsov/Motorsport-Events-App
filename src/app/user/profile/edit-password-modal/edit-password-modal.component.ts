@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/shared/services/auth.service';
-import { EventsService } from 'src/shared/services/events.service';
 
 @Component({
   selector: 'app-edit-password-modal',

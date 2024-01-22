@@ -2,7 +2,6 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { Event } from 'src/shared/interfaces/Event';
 import { EventsService } from 'src/shared/services/events.service';
 
 @Component({
