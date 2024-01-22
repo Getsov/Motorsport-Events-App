@@ -35,7 +35,10 @@ export class EventDetailPage implements OnInit, OnDestroy {
   eventId: string = '';
   eventLikes: string[] = [];
   userId: string = '';
+
   hasLiked: boolean = false;
+  toasterMessage: string = '';
+  toasterType: string = '';
 
   event: Event = {
     shortTitle: '',
@@ -141,8 +144,14 @@ export class EventDetailPage implements OnInit, OnDestroy {
         next: (response: string) => {
           if (response === 'Event UnLiked!') {
             this.hasLiked = false;
+
+            this.toasterMessage = 'Успешно премахнахте събитието от любими!';
+            this.toasterType = 'success';
           } else {
             this.hasLiked = true;
+
+            this.toasterMessage = 'Успешно добавихте събитието в любими!';
+            this.toasterType = 'success';
           }
         },
       })
