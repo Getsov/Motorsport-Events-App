@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/shared/services/auth.service';
+import { EventsService } from 'src/shared/services/events.service';
 
 @Component({
   selector: 'app-edit-password-modal',
@@ -8,7 +12,19 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./edit-password-modal.component.scss'],
 })
 export class EditPasswordModalComponent implements OnInit {
-  constructor(private modalController: ModalController) {}
+  editSubscription$?: Subscription;
+  errorMessage: string = '';
+
+  @Input() userId: string = '';
+
+  toasterMessage: string = '';
+  toasterType: string = '';
+
+  constructor(
+    private modalController: ModalController,
+    private authService: AuthService,
+    private router: Router
+  ) {}
   ngOnInit() {}
 
   async onConfirmNewPassword(formData: NgForm) {
@@ -16,8 +32,26 @@ export class EditPasswordModalComponent implements OnInit {
       return;
     }
 
-    const newPassword = formData.value.password;
-    await this.modalController.dismiss(newPassword);
+    const newPasswords = formData.value;
+
+    this.editSubscription$ = this.authService
+      .editUserPassword(newPasswords, this.userId)
+      .subscribe({
+        next: async () => {
+          this.authService.logout();
+
+          this.toasterMessage =
+            'Успешно редактирана парола! Моля влезте отново с профила си с новите данни.';
+          this.toasterType = 'success';
+
+          setTimeout(() => this.router.navigateByUrl('/'), 1000);
+
+          await this.modalController.dismiss();
+        },
+        error: (error) => {
+          this.errorMessage = error.error.error;
+        },
+      });
   }
 
   async closeModal(e: Event) {

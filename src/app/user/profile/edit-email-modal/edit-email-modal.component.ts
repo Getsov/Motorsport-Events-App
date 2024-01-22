@@ -39,7 +39,6 @@ export class EditEmailModalComponent implements OnInit {
       .editEmail(newEmail, this.userId)
       .subscribe({
         next: async (response) => {
-          console.log(response);
           this.authService.logout();
 
           this.toasterMessage =
