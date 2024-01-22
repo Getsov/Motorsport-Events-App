@@ -264,8 +264,11 @@
       <!-- submit buttons -->
       <div class="form-buttons-wrapper ion-padding-horizontal">
         <div class="main-button-wrapper">
-          <button class="main-button" type="submit">
-            {{eventId ? 'Редактирай събитие' : 'Създай събитие'}}
+          <button class="main-button" type="submit" *ngIf="eventId">
+            Редактирай събитие
+          </button>
+          <button class="main-button" type="submit" *ngIf="!eventId">
+            Създай събитие
           </button>
         </div>
         <div

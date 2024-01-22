@@ -16,6 +16,7 @@ import Categories from 'src/shared/data/categories';
 import { Event } from 'src/shared/interfaces/Event';
 import { IonContent, ModalController } from '@ionic/angular';
 import { ConfirmModalComponent } from 'src/shared/components/confirm-modal/confirm-modal.component';
+import { IonModal } from '@ionic/angular/common';
 
 @Component({
   selector: 'app-event-create',
@@ -67,6 +68,9 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     isNaN(Number(v))
   );
   typeErrorMessage = '';
+
+  // confirm modal
+  modal: any;
 
   // header separator settings
   headerTitle: string = 'Създай събитие';
@@ -145,7 +149,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     }
   }
 
-  onCreateEventSubmit(eventForm: NgForm) {
+  async onCreateEventSubmit(eventForm: NgForm) {
     if (
       !this.validateRequiredField(this.imageUrl, 'imageErrorMessage') ||
       !this.validateRequiredField(this.selectedEventType, 'typeErrorMessage') ||
@@ -198,23 +202,16 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     };
     // TODO: Confirm modal for event edit/create
     if (this.eventId) {
-      this.eventSubscription$ = this.eventService
-        .editEvent(formValue, this.eventId)
-        .subscribe({
-          next: () => {
-            this.toasterMessage =
-              'Успешно редактирано събитие! Събитието очаква одобрение от администратор.';
-            this.toasterType = 'success';
-            setTimeout(
-              () => this.router.navigateByUrl(`/tabs/events/${this.eventId}`),
-              2000
-            );
-          },
-          error: (err) => {
-            this.toasterMessage = err.message;
-            this.toasterType = 'error';
-          },
-        });
+      await this.presentModal('editProfile');
+
+      this.modal
+        .onDidDismiss()
+        .then((hasConfirmed: any) => {
+          if (hasConfirmed.data && this.eventId) {
+            this.eventSubscription$ = this.editEvent(formValue);
+          }
+        })
+        .catch(console.log);
     } else {
       formValue.creator = user._id;
       this.eventSubscription$ = this.eventService
@@ -238,13 +235,13 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
   }
 
   async presentModal(modalType: string) {
-    const modal = await this.modalController.create({
+    this.modal = await this.modalController.create({
       component: ConfirmModalComponent,
       componentProps: { eventId: this.eventId, modalType },
       cssClass: 'confirm-modal',
     });
 
-    await modal.present();
+    await this.modal.present();
   }
 
   onRegionChange(region: string): void {
@@ -307,6 +304,22 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     }
     this[errorMessageVariable] = false;
     return true;
+  }
+
+  // edit event handler
+  editEvent(formValue: any) {
+    return this.eventService.editEvent(formValue, this.eventId!).subscribe({
+      next: () => {
+        this.toasterMessage =
+          'Успешно редактирано събитие! Събитието очаква одобрение от администратор.';
+        this.toasterType = 'success';
+        setTimeout(() => this.router.navigateByUrl(`/tabs/events`), 2000);
+      },
+      error: (err) => {
+        this.toasterMessage = err.message;
+        this.toasterType = 'error';
+      },
+    });
   }
 
   ngOnDestroy(): void {
