@@ -200,9 +200,10 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       participantPrices: this.participantPrices,
       dates: formattedDates,
     };
-    // TODO: Confirm modal for event edit/create
+
+    // Confirm modal for event edit/create
     if (this.eventId) {
-      await this.presentModal('editProfile');
+      await this.presentModal('edit');
 
       this.modal
         .onDidDismiss()
@@ -214,23 +215,17 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
         .catch(console.log);
     } else {
       formValue.creator = user._id;
-      this.eventSubscription$ = this.eventService
-        .createEvent(formValue)
-        .subscribe({
-          next: () => {
-            // update user info in subject and localstorage. Previously newly created event was not added to createdEvents in FE.
-            this.authService.updateUserAuthData(formValue.creator);
 
-            this.toasterMessage =
-              'Успешно създадено събитие! Събитието очаква одобрение от администратор.';
-            this.toasterType = 'success';
-            setTimeout(() => this.router.navigateByUrl('/tabs/events'), 2000);
-          },
-          error: (err) => {
-            this.toasterMessage = err.message;
-            this.toasterType = 'error';
-          },
-        });
+      await this.presentModal('create');
+
+      this.modal
+        .onDidDismiss()
+        .then((hasConfirmed: any) => {
+          if (hasConfirmed.data) {
+            this.eventSubscription$ = this.createEvent(formValue);
+          }
+        })
+        .catch(console.log);
     }
   }
 
@@ -304,6 +299,25 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     }
     this[errorMessageVariable] = false;
     return true;
+  }
+
+  // creat event handler
+  createEvent(formValue: any) {
+    return this.eventService.createEvent(formValue).subscribe({
+      next: () => {
+        // update user info in subject and localstorage. Previously newly created event was not added to createdEvents in FE.
+        this.authService.updateUserAuthData(formValue.creator);
+
+        this.toasterMessage =
+          'Успешно създадено събитие! Събитието очаква одобрение от администратор.';
+        this.toasterType = 'success';
+        setTimeout(() => this.router.navigateByUrl('/tabs/events'), 2000);
+      },
+      error: (err) => {
+        this.toasterMessage = err.message;
+        this.toasterType = 'error';
+      },
+    });
   }
 
   // edit event handler

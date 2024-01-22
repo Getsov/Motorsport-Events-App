@@ -23,6 +23,8 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
   discardMessage: string =
     'Сигурни ли сте, че искате да откажете направените промени?';
 
+  createMessage: string = 'Сигурни ли сте, че искате да създадете събитието?';
+
   constructor(
     private modalController: ModalController,
     private eventService: EventsService,
@@ -41,13 +43,13 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
       case 'delete':
         this.deleteSubscription$ = this.deleteEvent();
         break;
-      // TODO: handle create/edit case
       case 'dismiss':
         this.router.navigateByUrl('/tabs/events');
         await this.modalController.dismiss();
         break;
 
-      case 'editProfile':
+      case 'edit':
+      case 'create':
         await this.modalController.dismiss(true);
         break;
 
