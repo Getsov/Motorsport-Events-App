@@ -117,6 +117,7 @@ select {
 
 // Add global styling for the main button
 .main-button-wrapper,
+.main-button-wrapper-disabled,
 .cancel-button-wrapper,
 .secondary-button-wrapper,
 .delete-button-wrapper {
@@ -128,6 +129,7 @@ select {
 }
 
 .main-button,
+.main-button-disabled,
 .cancel-button,
 .secondary-button,
 .delete-button {
@@ -137,12 +139,24 @@ select {
   line-height: 1;
 }
 
+// Main button
+
 .main-button-wrapper {
   background-color: #ff7418;
 }
 
 .main-button {
   color: #0d0d0d;
+}
+
+// main button disabled
+
+.main-button-wrapper-disabled {
+  background-color: #c2bfbe;
+}
+
+.main-button-disabled {
+  color: #43403e;
 }
 
 .cancel-button-wrapper {
@@ -194,7 +208,6 @@ select {
   position: absolute;
   right: -19px;
 }
-
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
