@@ -11,7 +11,7 @@ import { AuthService } from 'src/shared/services/auth.service';
   styleUrls: ['./edit-password-modal.component.scss'],
 })
 export class EditPasswordModalComponent implements OnInit {
-  editSubscription$?: Subscription;
+  editPassword$?: Subscription;
   errorMessage: string = '';
 
   @Input() userId: string = '';
@@ -33,7 +33,7 @@ export class EditPasswordModalComponent implements OnInit {
 
     const newPasswords = formData.value;
 
-    this.editSubscription$ = this.authService
+    this.editPassword$ = this.authService
       .editUserPassword(newPasswords, this.userId)
       .subscribe({
         next: async () => {
