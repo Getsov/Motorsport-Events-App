@@ -194,8 +194,15 @@
       </p>
     </div>
 
-    <div class="main-button-wrapper">
-      <button class="main-button">Регистрация</button>
+    <div
+      [ngClass]="userRegisterForm.invalid ? 'main-button-wrapper-disabled' : 'main-button-wrapper' "
+    >
+      <button
+        [ngClass]="userRegisterForm.invalid ? 'main-button-disabled' : 'main-button' "
+        [disabled]="userRegisterForm.invalid"
+      >
+        Регистрация
+      </button>
     </div>
   </form>
 
