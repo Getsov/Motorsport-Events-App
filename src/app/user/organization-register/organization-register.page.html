@@ -205,8 +205,15 @@
     </p>
   </div>
 
-  <div class="main-button-wrapper">
-    <button class="main-button">Регистрация</button>
+  <div
+    [ngClass]="organizatorRegister.invalid ? 'main-button-wrapper-disabled' : 'main-button-wrapper' "
+  >
+    <button
+      [ngClass]="organizatorRegister.invalid ? 'main-button-disabled' : 'main-button' "
+      [disabled]="organizatorRegister.invalid"
+    >
+      Регистрация
+    </button>
   </div>
 
   <!-- toaster message -->
