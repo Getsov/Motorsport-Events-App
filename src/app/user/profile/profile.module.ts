@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ExploreContainerComponentModule } from '../../explore-container/explore-container.module';
 import { ProfilePageRoutingModule } from './profile-routing.module';
 import { ProfilePage } from './profile.page';
 import { SharedModule } from '../../../shared/shared.module';
@@ -17,7 +16,6 @@ import { EditEmailModalComponent } from './edit-email-modal/edit-email-modal.com
   ],
   imports: [
     CommonModule,
-    ExploreContainerComponentModule,
     FormsModule,
     IonicModule,
     ProfilePageRoutingModule,

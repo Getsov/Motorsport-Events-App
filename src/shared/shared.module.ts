@@ -2,7 +2,6 @@ import { LikeIconComponent } from './components/like-icon/like-icon.component';
 import { TitleFadesComponent } from './components/title-fades/title-fades.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CommonModule } from '@angular/common';
-import { ExploreContainerComponentModule } from 'src/app/explore-container/explore-container.module';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
@@ -14,13 +13,7 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
 import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ExploreContainerComponentModule,
-    FormsModule,
-    IonicModule,
-    RouterModule,
-  ],
+  imports: [CommonModule, FormsModule, IonicModule, RouterModule],
   declarations: [
     LikeIconComponent,
     TitleFadesComponent,
@@ -29,7 +22,7 @@ import { SearchComponent } from './components/search/search.component';
     ToasterComponent,
     EventLineComponent,
     ConfirmModalComponent,
-    SearchComponent
+    SearchComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
@@ -39,7 +32,7 @@ import { SearchComponent } from './components/search/search.component';
     EventComponent,
     ToasterComponent,
     EventLineComponent,
-    SearchComponent
+    SearchComponent,
   ],
 })
 export class SharedModule {}
