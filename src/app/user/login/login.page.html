@@ -74,8 +74,15 @@
     </p>
   </div>
 
-  <div class="main-button-wrapper">
-    <button class="main-button" [disabled]="loginForm.invalid">Вход</button>
+  <div
+    [ngClass]="loginForm.invalid ? 'main-button-wrapper-disabled' : 'main-button-wrapper' "
+  >
+    <button
+      [ngClass]="loginForm.invalid ? 'main-button-disabled' : 'main-button' "
+      [disabled]="loginForm.invalid"
+    >
+      Вход
+    </button>
   </div>
 
   <!-- toaster message -->
