@@ -263,9 +263,24 @@
 
       <!-- submit buttons -->
       <div class="form-buttons-wrapper ion-padding-horizontal">
-        <div class="main-button-wrapper">
-          <button class="main-button" type="submit">
-            {{eventId ? 'Редактирай събитие' : 'Създай събитие'}}
+        <div
+          [ngClass]="createEventForm.invalid ? 'main-button-wrapper-disabled' : 'main-button-wrapper' "
+        >
+          <button
+            [ngClass]="createEventForm.invalid ? 'main-button-disabled' : 'main-button' "
+            type="submit"
+            *ngIf="eventId"
+            [disabled]="createEventForm.invalid"
+          >
+            Редактирай събитие
+          </button>
+          <button
+            [ngClass]="createEventForm.invalid ? 'main-button-disabled' : 'main-button' "
+            type="submit"
+            *ngIf="!eventId"
+            [disabled]="createEventForm.invalid"
+          >
+            Създай събитие
           </button>
         </div>
         <div

@@ -10,38 +10,30 @@
     </div>
   </div>
   <div class="container">
-    <form #userEditForm="ngForm" (submit)="onUserEdit(userEditForm)">
+    <form #userEditForm="ngForm" (submit)="presentConfirmModal(userEditForm)">
       <div class="auth-wrapper">
-        <!-- //TODO: Change email overlay -->
+        <!-- email modal -->
         <div class="auth-input">
           <ion-input
             type="email"
             label="Имейл*"
             labelPlacement="floating"
-            name="email"
-            ngModel
-            [ngModel]="user?.email"
-            #email="ngModel"
+            [value]="user?.email"
             clearInput
             required
-            pattern="^[a-zA-Z0-9\._+\-]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,}$"
+            (click)="presentEmailModal()"
           ></ion-input>
         </div>
-        <!-- TODO: Change password overlay -->
+
+        <!-- password modal -->
         <div class="auth-input">
           <ion-input
             type="password"
             label="Парола*"
             labelPlacement="floating"
-            name="password"
-            ngModel
-            #password="ngModel"
-            [ngModel]="password"
-            required
-            minlength="6"
-            maxlength="24"
+            [value]="userPassword"
             clearInput
-            pattern="^\S+$"
+            (click)="presentPasswordModal()"
           ></ion-input>
         </div>
 
@@ -156,14 +148,15 @@
 
         <div class="auth-input">
           <ion-select
-            interface="popover"
-            placeholder="Населено място"
+            labelPlacement="floating"
+            label="Населено място"
             class="region-select"
             slot="end"
             name="region"
-            #region
-            (ionChange)="onRegionChange($event.detail.value)"
+            #region="ngModel"
             [ngModel]="user?.region"
+            okText="Ок"
+            cancelText="Откажи"
           >
             <ion-select-option
               value="{{region}}"
@@ -174,14 +167,21 @@
         </div>
       </div>
 
+      <p class="auth-validation-error-message" *ngIf="errorMessage">
+        {{errorMessage}}
+      </p>
+
       <div class="main-button-wrapper">
         <button class="main-button">Редактирай профила</button>
       </div>
-      <!-- //TODO: Editing function -->
       <div class="cancel-button-wrapper">
-        <button class="cancel-button">Отмени промените</button>
+        <a class="cancel-button" routerLink="/tabs/home">Отмени промените</a>
       </div>
-      <!-- //TODO:  Cancel function -->
     </form>
+    <!-- success toaster -->
+    <app-toaster
+      [toasterMessage]="toasterMessage"
+      [toasterType]="toasterType"
+    ></app-toaster>
   </div>
 </ion-content>

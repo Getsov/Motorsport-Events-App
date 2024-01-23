@@ -19,6 +19,9 @@ export class UserRegisterPage implements OnInit, OnDestroy {
   authResponseError: string = '';
   selectedRegion: string = '';
 
+  toasterMessage: string = '';
+  toasterType: string = '';
+
   bulgarianRegions: string[] = Object.keys(BulgarianRegions).filter((v) =>
     isNaN(Number(v))
   );
@@ -41,7 +44,12 @@ export class UserRegisterPage implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           this.authResponseError = '';
-          this.router.navigateByUrl('/');
+
+          this.toasterMessage = 'Успешно регистрирахте потребителски акаунт!';
+          this.toasterType = 'success';
+
+          setTimeout(() => this.router.navigateByUrl('/'), 1000);
+
           registerForm.reset();
         },
         error: (error) => {

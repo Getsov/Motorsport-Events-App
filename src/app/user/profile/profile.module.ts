@@ -5,17 +5,23 @@ import { IonicModule } from '@ionic/angular';
 import { ExploreContainerComponentModule } from '../../explore-container/explore-container.module';
 import { ProfilePageRoutingModule } from './profile-routing.module';
 import { ProfilePage } from './profile.page';
-import { SharedModule } from "../../../shared/shared.module";
+import { SharedModule } from '../../../shared/shared.module';
+import { EditPasswordModalComponent } from './edit-password-modal/edit-password-modal.component';
+import { EditEmailModalComponent } from './edit-email-modal/edit-email-modal.component';
 
 @NgModule({
-    declarations: [ProfilePage],
-    imports: [
-        CommonModule,
-        ExploreContainerComponentModule,
-        FormsModule,
-        IonicModule,
-        ProfilePageRoutingModule,
-        SharedModule
-    ]
+  declarations: [
+    ProfilePage,
+    EditPasswordModalComponent,
+    EditEmailModalComponent,
+  ],
+  imports: [
+    CommonModule,
+    ExploreContainerComponentModule,
+    FormsModule,
+    IonicModule,
+    ProfilePageRoutingModule,
+    SharedModule,
+  ],
 })
 export class ProfilePageModule {}
