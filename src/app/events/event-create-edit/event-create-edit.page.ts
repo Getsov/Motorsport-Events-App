@@ -172,6 +172,8 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     ) {
       setTimeout(() => {
         this.scrollToErrorInput();
+        this.toasterMessage = 'Моля, попълнете коректно всички полета!';
+        this.toasterType = 'error';
       }, 100);
 
       return;
