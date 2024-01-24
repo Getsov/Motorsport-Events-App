@@ -2,7 +2,7 @@
   <div class="picker-wrapper">
     <!-- Date Picker -->
     <ion-input
-      placeholder="Избери дата"
+      placeholder="Избери дата*"
       [(ngModel)]="dates[i].date"
       [ngClass]="
         datesError[0] && i === datesError[1]
@@ -68,9 +68,9 @@
       name="region"
       [id]="'open-start-hour-' + i"
       [value]="
-        dates[i].startTime
-          ? 'от ' + dates[i].startTime + ' ч.'
-          : dates[i].startTime
+        dates[i].startTime === '00:00'
+          ? 'от ' + dates[i].startTime + ' ч.*'
+          : 'от ' + dates[i].startTime + ' ч.'
       "
     >
       <ion-icon name="chevron-up-outline" slot="end"></ion-icon>
@@ -128,7 +128,9 @@
       name="region"
       [id]="'open-end-hour-' + i"
       [value]="
-        dates[i].endTime ? 'до ' + dates[i].endTime + ' ч.' : dates[i].endTime
+        dates[i].endTime === '00:00'
+          ? 'до ' + dates[i].endTime + ' ч.*'
+          : 'до ' + dates[i].endTime + ' ч.'
       "
     >
       <ion-icon name="chevron-up-outline" slot="end"></ion-icon>
