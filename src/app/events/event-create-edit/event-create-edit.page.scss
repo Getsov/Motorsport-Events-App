@@ -51,6 +51,10 @@
         ::ng-deep .label-text {
           color: #00cc00;
         }
+
+        ::ng-deep .counter {
+          color: #00cc00;
+        }
       }
 
       ion-input.custom-valid-input,
@@ -83,6 +87,10 @@
         --border-color: #ff0000;
 
         ::ng-deep .label-text {
+          color: #ff0000;
+        }
+
+        ::ng-deep .counter {
           color: #ff0000;
         }
       }
