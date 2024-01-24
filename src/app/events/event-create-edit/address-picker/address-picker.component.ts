@@ -161,7 +161,14 @@ export class AddressPickerComponent implements OnInit {
   }
 
   onConfirmAddress() {
-    this.addressConfirmed = true;
+    if (!this.selectedAddress.title || !this.selectedAddress.address) {
+      this.selectedAddress = { title: '', address: '', lat: 0, lng: 0 };
+      this.addressInvalid = true;
+      this.addressConfirmed = false;
+    } else {
+      this.addressInvalid = false;
+      this.addressConfirmed = true;
+    }
     this.confirmedAddress.emit(this.selectedAddress);
     this.closeModal();
   }

@@ -172,7 +172,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     ) {
       setTimeout(() => {
         this.scrollToErrorInput();
-        this.toasterMessage = 'Моля, попълнете коректно всички полета!';
+        this.toasterMessage = 'Моля, попълнете коректно полето!';
         this.toasterType = 'error';
       }, 100);
 
@@ -266,8 +266,13 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
   }
 
   onConfirmedAddress(confirmedAddress: any) {
-    this.selectedAddress = confirmedAddress;
-    this.addressErrorMessage = '';
+    if (confirmedAddress.title && confirmedAddress.address) {
+      this.selectedAddress = confirmedAddress;
+      this.addressErrorMessage = '';
+    } else {
+      this.selectedAddress = null;
+      this.addressErrorMessage = 'Полето е задължително';
+    }
   }
 
   // function to validate inputs which can not be validated from the template
