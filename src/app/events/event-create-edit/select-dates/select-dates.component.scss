@@ -17,7 +17,7 @@ ion-input.date-hour-select {
     content: url("../../../../assets/icon/arrow-up-down.svg");
     height: 20px;
     width: 10px;
-    top: 25%;
+    top: 30%;
     right: 1em;
   }
 }
@@ -76,4 +76,22 @@ ion-modal.calendar-date-picker::part(content) {
 // class for the add another date if it is the first date pick option
 .button-wrapper-single {
   width: calc(50% - 1em);
+}
+
+@media (max-width: 380px) {
+  .button-wrapper-single {
+    width: calc(50%);
+  }
+
+  ion-input.date-hour-select {
+    ion-icon {
+      right: 0.5em;
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .button-wrapper-single {
+    width: calc(60%);
+  }
 }
