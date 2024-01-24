@@ -44,11 +44,8 @@ export class EventsPage implements OnInit {
   ngOnInit(): void {
     this.getEvents();
     this.user = this.authService.getUserFromLocalStorage();
-    console.log(this.user);
   }
 
-  // this works when edited/deleted event goes back to all events - the changes are applied
-  // - onInit does not go inside after edit/delete - TODO: decide if oninit is needed here
   ionViewWillEnter() {
     this.getEvents();
   }
