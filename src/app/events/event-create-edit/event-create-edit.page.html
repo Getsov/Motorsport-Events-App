@@ -86,6 +86,20 @@
             Полето е задължително за попълване!
           </p>
 
+          <!-- long description -->
+          <ion-textarea
+            label="Дълго описание"
+            labelPlacement="floating"
+            [ngClass]="eventId ? 'custom-valid-input' : ''"
+            [counter]="true"
+            maxlength="2000"
+            [autoGrow]="true"
+            rows="3"
+            name="longDescription"
+            ngModel
+            [ngModel]="eventData ? eventData.longDescription : ''"
+          ></ion-textarea>
+
           <!-- event category selector -->
           <div class="category-select-wrapper">
             <ion-select
@@ -217,19 +231,6 @@
               Телефона трябва да съдържа само числа
             </p>
           </ng-container>
-
-          <!-- long description -->
-          <ion-textarea
-            label="Дълго описание"
-            labelPlacement="floating"
-            [ngClass]="eventId ? 'custom-valid-input' : ''"
-            [counter]="true"
-            maxlength="500"
-            rows="3"
-            name="longDescription"
-            ngModel
-            [ngModel]="eventData ? eventData.longDescription : ''"
-          ></ion-textarea>
         </div>
       </div>
 

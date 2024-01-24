@@ -92,6 +92,7 @@ export class LikeIconComponent implements OnInit, OnDestroy {
     this.subscriptions$.push(
       this.eventService.likeUnlikeEvent(this.eventId, this.userId).subscribe({
         next: (response: string) => {
+          //  if it does have a source this means the like comes from event detail page
           if (!this.source) {
             if (response === 'Event UnLiked!') {
               this.isLiked = false;
@@ -104,6 +105,14 @@ export class LikeIconComponent implements OnInit, OnDestroy {
               this.isLiked = true;
               this.likes.push(this.userId);
 
+              this.toasterMessage = 'Успешно добавихте събитието в любими!';
+              this.toasterType = 'success';
+            }
+          } else {
+            if (response === 'Event UnLiked!') {
+              this.toasterMessage = 'Успешно премахнахте събитието от любими!';
+              this.toasterType = 'success';
+            } else {
               this.toasterMessage = 'Успешно добавихте събитието в любими!';
               this.toasterType = 'success';
             }

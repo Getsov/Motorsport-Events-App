@@ -1,17 +1,10 @@
-ion-select {
-  --placeholder-color: #ffffff;
-  --placeholder-opacity: 1;
-  width: 100%;
-  justify-content: flex-end;
+@import url("../../../shared/styles/select-inputs-styles.scss");
+
+.ion-select-wrapper {
   position: relative;
 }
 
 ion-select::part(icon) {
-  color: #ffffff;
-  content: url("../../../assets/icon/arrow-up-down.svg");
   position: absolute;
-  right: 1.6em;
-  top: transform(translateY(-50%));
-  height: 20px;
-  width: 10px;
+  top: calc(50% - 10px);
 }

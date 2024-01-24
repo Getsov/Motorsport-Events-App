@@ -10,7 +10,7 @@ import { AuthService } from 'src/shared/services/auth.service';
   templateUrl: './favourites.page.html',
   styleUrls: ['./favourites.page.scss'],
 })
-export class FavouritesPage implements OnInit {
+export class FavouritesPage {
   parent: string = 'favourites';
   favouritesData: Event[] = [];
   query: any = [];
@@ -41,7 +41,7 @@ export class FavouritesPage implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit(): void {
+  ionViewWillEnter(): void {
     this.user = this.authService.getUserFromLocalStorage();
     this.getEvents();
   }

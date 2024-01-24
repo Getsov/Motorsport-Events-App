@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { AuthGuard } from 'src/shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
           import('../favourites/favourites.module').then(
             (m) => m.FavouritesPageModule
           ),
+        canActivate: [AuthGuard],
       },
       {
         path: '',

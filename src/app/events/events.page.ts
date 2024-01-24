@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EventsService } from '../../shared/services/events.service';
 import { Event } from 'src/shared/interfaces/Event';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { AuthService } from 'src/shared/services/auth.service';
   templateUrl: './events.page.html',
   styleUrls: ['./events.page.scss'],
 })
-export class EventsPage implements OnInit {
+export class EventsPage {
   parent: string = 'events';
   eventsData: Event[] = [];
   query: any = [];
@@ -41,15 +41,8 @@ export class EventsPage implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit(): void {
-    this.getEvents();
-    this.user = this.authService.getUserFromLocalStorage();
-    console.log(this.user);
-  }
-
-  // this works when edited/deleted event goes back to all events - the changes are applied
-  // - onInit does not go inside after edit/delete - TODO: decide if oninit is needed here
   ionViewWillEnter() {
+    this.user = this.authService.getUserFromLocalStorage();
     this.getEvents();
   }
 

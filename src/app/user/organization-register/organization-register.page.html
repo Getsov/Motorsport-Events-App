@@ -181,11 +181,13 @@
     </ng-container>
 
     <!-- region -->
-    <div class="auth-input">
+    <div class="auth-input region-select-wrapper">
       <ion-select
-        interface="popover"
-        placeholder="Населено място"
+        labelPlacement="floating"
+        label="Населено място"
         class="region-select"
+        okText="Ок"
+        cancelText="Откажи"
         slot="end"
         name="region"
         #region
