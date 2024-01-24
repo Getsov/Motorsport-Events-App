@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -101,7 +107,8 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     private eventService: EventsService,
     private router: Router,
     private route: ActivatedRoute,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -163,7 +170,10 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       !this.validatePriceField(this.participantPrices, 'participantError') ||
       eventForm.invalid
     ) {
-      this.content?.scrollToTop(500);
+      setTimeout(() => {
+        this.scrollToErrorInput();
+      }, 100);
+
       return;
     }
 
@@ -289,7 +299,6 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     for (let i = 0; i < datesArr.length; i++) {
       if (
         !datesArr[i].date ||
-        datesArr[i].startTime === '00:00' ||
         datesArr[i].endTime === '00:00' ||
         datesArr[i].startTime >= datesArr[i].endTime
       ) {
@@ -334,6 +343,16 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
         this.toasterType = 'error';
       },
     });
+  }
+
+  // find the first validation error message and scroll to it
+  scrollToErrorInput(): void {
+    const errorInputs = document.querySelectorAll('.validation-error-message');
+    if (errorInputs.length > 0) {
+      const firstErrorInput = errorInputs[0] as HTMLElement;
+      const yOffset = -80;
+      this.content?.scrollToPoint(0, firstErrorInput.offsetTop + yOffset, 500);
+    }
   }
 
   ngOnDestroy(): void {
