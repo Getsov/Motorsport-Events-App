@@ -84,9 +84,9 @@ export class AddressPickerComponent implements OnInit {
       autocomplete.getPlacePredictions(
         {
           input: searchTerm,
-          componentRestrictions: {
-            country: 'BG',
-          },
+          // componentRestrictions: {
+          //   country: 'BG',
+          // },
         },
         (predictions) => {
           this.suggestions = [];
