@@ -86,12 +86,14 @@
         <div class="event-input">
           <div class="prices-inputs-wrapper">
             <ion-input
-              type="number"
+              type="text"
               fill="solid"
               label="Цена (лв.)"
               labelPlacement="floating"
               [ngClass]="
-                participantError[0] && i === participantError[1]
+                participantError[0] &&
+                i === participantError[1] &&
+                (participantPrices[i].price || participantPrices[i].description)
                   ? 'custom-invalid-input price-input'
                   : 'price-input'
               "
@@ -109,7 +111,9 @@
               label="Описание на ценовото предложение"
               labelPlacement="floating"
               [ngClass]="
-                participantError[0] && i === participantError[1]
+                participantError[0] &&
+                i === participantError[1] &&
+                (participantPrices[i].price || participantPrices[i].description)
                   ? 'custom-invalid-input price-description-input'
                   : 'price-description-input'
               "

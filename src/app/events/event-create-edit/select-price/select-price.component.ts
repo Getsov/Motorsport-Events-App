@@ -19,7 +19,7 @@ export class SelectPriceComponent implements OnInit {
   ngOnInit() {}
 
   addVisitorPrice() {
-    this.visitorPrices.push({ price: 0, description: '' });
+    this.visitorPrices.push({ price: '', description: '' });
   }
 
   removeVisitorPrice(index: number) {
@@ -29,7 +29,7 @@ export class SelectPriceComponent implements OnInit {
   }
 
   addParticipantPrice() {
-    this.participantPrices.push({ price: 0, description: '' });
+    this.participantPrices.push({ price: '', description: '' });
   }
 
   removeParticipantPrice(index: number) {

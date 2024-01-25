@@ -45,6 +45,7 @@ export class EventDetailPage implements OnInit, OnDestroy {
     shortDescription: '',
     longDescription: '',
     visitorPrices: [],
+    participantPrices: [],
     dates: [],
     imageUrl: '',
     contacts: {
@@ -105,6 +106,9 @@ export class EventDetailPage implements OnInit, OnDestroy {
     return this.eventService.getEvent(this.eventId).subscribe({
       next: (response) => {
         this.event = response;
+        this.event.participantPrices = this.event.participantPrices?.filter(
+          (price) => price.description && price.price
+        );
         this.hasLiked = this.event.likes.includes(this.userId);
         this.createMap();
       },

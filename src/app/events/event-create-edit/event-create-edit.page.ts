@@ -40,9 +40,9 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
 
   // get price values
   @ViewChild(SelectPriceComponent) selectPricesComponent!: SelectPriceComponent;
-  visitorPrices = [{ price: 0, description: '' }];
+  visitorPrices: any = [{ price: '', description: '' }];
   visitorError: any = false;
-  participantPrices = [{ price: 0, description: '' }];
+  participantPrices: any = [{ price: '', description: '' }];
   participantError: any = false;
 
   // get date values
@@ -169,7 +169,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       ) ||
       !this.validateDatesField(this.dates, 'datesError') ||
       !this.validatePriceField(this.visitorPrices, 'visitorError') ||
-      !this.validatePriceField(this.participantPrices, 'participantError') ||
+      !this.validateParticipants(this.participantPrices, 'participantError') ||
       eventForm.invalid
     ) {
       this.resetToasters();
@@ -297,6 +297,23 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       if (!this.isPriceValid(priceArr[i].price) || !priceArr[i].description) {
         this[errorMessageVariable] = ['Некоректно попълнени полета', i];
         return false;
+      }
+    }
+
+    this[errorMessageVariable] = false;
+    return true;
+  }
+
+  validateParticipants(
+    priceArr: { price: string | number; description: string }[],
+    errorMessageVariable: string
+  ) {
+    for (let i = 0; i < priceArr.length; i++) {
+      if (priceArr[i].price || priceArr[i].description) {
+        if (!this.isPriceValid(priceArr[i].price) || !priceArr[i].description) {
+          this[errorMessageVariable] = ['Некоректно попълнени полета', i];
+          return false;
+        }
       }
     }
     this[errorMessageVariable] = false;

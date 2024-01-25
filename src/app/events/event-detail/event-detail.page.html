@@ -81,17 +81,21 @@
       </div>
     </div>
 
-    <div *ngIf="event.participantPrices">
+    <div *ngIf="event.participantPrices!.length > 0 ">
       <p class="info-title">Цени за участници:</p>
       <div class="prices-container">
         <div
           class="price-wrapper"
           *ngFor="let participantPrice of event.participantPrices"
         >
-          <div class="price-holder price-participants">
-            {{participantPrice.price}} лв.
-          </div>
-          <span class="info-details">{{participantPrice.description}}</span>
+          <ng-container
+            *ngIf="participantPrice.price && participantPrice.description"
+          >
+            <div class="price-holder price-participants">
+              {{participantPrice.price}} лв.
+            </div>
+            <span class="info-details">{{participantPrice.description}}</span>
+          </ng-container>
         </div>
       </div>
     </div>
