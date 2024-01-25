@@ -57,7 +57,12 @@ export class OrganizationRegisterPage implements OnInit, OnDestroy {
             'Успешно подадохте заявка за регистрация на организаторски акаунт! Очаквайте да получите потвърждение на имейла си.';
           this.toasterType = 'success';
 
-          setTimeout(() => this.router.navigateByUrl('/'), 1000);
+          setTimeout(() => {
+            this.router.navigateByUrl('/');
+
+            this.toasterMessage = '';
+            this.toasterType = '';
+          }, 1000);
 
           organizatorRegisterForm.reset();
         },

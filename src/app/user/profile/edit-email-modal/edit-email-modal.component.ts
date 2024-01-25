@@ -47,7 +47,12 @@ export class EditEmailModalComponent implements OnInit {
 
           await this.modalController.dismiss();
 
-          setTimeout(() => this.router.navigateByUrl('/'), 2000);
+          setTimeout(() => {
+            this.router.navigateByUrl('/');
+
+            this.toasterMessage = '';
+            this.toasterType = '';
+          }, 2000);
         },
         error: (error) => {
           this.errorMessage = error.error.error;

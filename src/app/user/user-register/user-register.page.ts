@@ -48,7 +48,12 @@ export class UserRegisterPage implements OnInit, OnDestroy {
           this.toasterMessage = 'Успешно регистрирахте потребителски акаунт!';
           this.toasterType = 'success';
 
-          setTimeout(() => this.router.navigateByUrl('/'), 1000);
+          setTimeout(() => {
+            this.router.navigateByUrl('/');
+
+            this.toasterMessage = '';
+            this.toasterType = '';
+          }, 1000);
 
           registerForm.reset();
         },

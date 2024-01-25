@@ -124,8 +124,10 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
             this.populateEventDataInForm();
           },
           error: (err) => {
-            this.toasterMessage = err.message;
+            this.toasterMessage = err.error.error;
             this.toasterType = 'error';
+
+            this.resetToasters();
           },
         });
     }
@@ -170,6 +172,8 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       !this.validatePriceField(this.participantPrices, 'participantError') ||
       eventForm.invalid
     ) {
+      this.resetToasters();
+
       setTimeout(() => {
         this.scrollToErrorInput();
         this.toasterMessage = 'Моля, попълнете коректно полето!';
@@ -327,11 +331,17 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
         this.toasterMessage =
           'Успешно създадено събитие! Събитието очаква одобрение от администратор.';
         this.toasterType = 'success';
-        setTimeout(() => this.router.navigateByUrl('/tabs/events'), 2000);
+        setTimeout(() => {
+          this.router.navigateByUrl('/tabs/events');
+
+          this.resetToasters();
+        }, 2000);
       },
       error: (err) => {
         this.toasterMessage = err.message;
         this.toasterType = 'error';
+
+        this.resetToasters();
       },
     });
   }
@@ -343,11 +353,16 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
         this.toasterMessage =
           'Успешно редактирано събитие! Събитието очаква одобрение от администратор.';
         this.toasterType = 'success';
-        setTimeout(() => this.router.navigateByUrl(`/tabs/events`), 2000);
+        setTimeout(() => {
+          this.router.navigateByUrl(`/tabs/events`);
+          this.resetToasters();
+        }, 2000);
       },
       error: (err) => {
         this.toasterMessage = err.message;
         this.toasterType = 'error';
+
+        this.resetToasters();
       },
     });
   }
@@ -360,6 +375,11 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       const yOffset = -80;
       this.content?.scrollToPoint(0, firstErrorInput.offsetTop + yOffset, 500);
     }
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   ngOnDestroy(): void {

@@ -43,7 +43,12 @@ export class EditPasswordModalComponent implements OnInit {
             'Успешно редактирана парола! Моля влезте отново с профила си с новите данни.';
           this.toasterType = 'success';
 
-          setTimeout(() => this.router.navigateByUrl('/'), 1000);
+          setTimeout(() => {
+            this.router.navigateByUrl('/');
+
+            this.toasterMessage = '';
+            this.toasterType = '';
+          }, 1000);
 
           await this.modalController.dismiss();
         },

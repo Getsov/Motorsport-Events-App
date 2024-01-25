@@ -35,6 +35,8 @@ export class HeaderComponent implements OnInit {
 
     setTimeout(() => {
       this.router.navigateByUrl('/');
+      this.toasterMessage = '';
+      this.toasterType = '';
     }, 1000);
   }
 }

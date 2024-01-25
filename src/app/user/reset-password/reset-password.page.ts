@@ -43,6 +43,9 @@ export class ResetPasswordPage implements OnInit {
 
           setTimeout(() => {
             this.router.navigateByUrl('/');
+
+            this.toasterMessage = '';
+            this.toasterType = '';
           }, 1000);
         }
         // TODO: error handling when error is returned from BE that there is no such email.

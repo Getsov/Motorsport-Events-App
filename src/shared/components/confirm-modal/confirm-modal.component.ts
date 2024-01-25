@@ -67,13 +67,21 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
           this.toasterType = 'success';
 
           this.router.navigateByUrl('/tabs/events');
+          this.resetToasters();
           this.modalController.dismiss();
         },
         error: (err) => {
           this.toasterType = 'error';
           this.toasterMessage = err.error.error;
+
+          this.resetToasters();
         },
       });
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   ngOnDestroy(): void {

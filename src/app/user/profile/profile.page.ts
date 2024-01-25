@@ -75,7 +75,12 @@ export class ProfilePage implements OnInit {
             'Успешно редактиран профил! Моля влезте отново в профила си';
           this.toasterType = 'success';
 
-          setTimeout(() => this.router.navigateByUrl('/'), 2000);
+          setTimeout(() => {
+            this.router.navigateByUrl('/');
+
+            this.toasterMessage = '';
+            this.toasterType = '';
+          }, 2000);
         },
         error: (error) => (this.errorMessage = error.error.error),
       });
