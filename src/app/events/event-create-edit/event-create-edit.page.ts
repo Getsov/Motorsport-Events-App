@@ -294,7 +294,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     errorMessageVariable: string
   ): boolean {
     for (let i = 0; i < priceArr.length; i++) {
-      if (!priceArr[i].price || !priceArr[i].description) {
+      if (!this.isPriceValid(priceArr[i].price) || !priceArr[i].description) {
         this[errorMessageVariable] = ['Некоректно попълнени полета', i];
         return false;
       }
@@ -308,11 +308,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     errorMessageVariable: string
   ): boolean {
     for (let i = 0; i < datesArr.length; i++) {
-      if (
-        !datesArr[i].date ||
-        datesArr[i].endTime === '00:00' ||
-        datesArr[i].startTime >= datesArr[i].endTime
-      ) {
+      if (!datesArr[i].date || datesArr[i].startTime >= datesArr[i].endTime) {
         this[errorMessageVariable] = ['Некоректно попълнени полета', i];
         return false;
       }
@@ -380,6 +376,11 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
   resetToasters() {
     this.toasterMessage = '';
     this.toasterType = '';
+  }
+
+  isPriceValid(price: string | number): boolean {
+    const regex = /^0$|^[1-9][0-9]*$/;
+    return regex.test(price.toString());
   }
 
   ngOnDestroy(): void {

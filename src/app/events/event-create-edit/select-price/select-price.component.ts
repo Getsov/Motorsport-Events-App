@@ -37,4 +37,9 @@ export class SelectPriceComponent implements OnInit {
       this.participantPrices.splice(index, 1);
     }
   }
+
+  isPriceValid(price: string | number): boolean {
+    const regex = /^0$|^[1-9][0-9]*$/;
+    return regex.test(price.toString());
+  }
 }

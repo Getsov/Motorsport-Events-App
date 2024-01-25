@@ -10,9 +10,7 @@
           : 'date-hour-select'
       "
       [ngClass]="
-        dates[i].date &&
-        dates[i].startTime !== '00:00' &&
-        dates[i].endTime !== '00:00'
+        dates[i].date && dates[i].startTime < dates[i].endTime
           ? 'custom-valid-input date-hour-select'
           : 'date-hour-select'
       "
@@ -58,9 +56,7 @@
           : 'date-hour-select'
       "
       [ngClass]="
-        dates[i].date &&
-        dates[i].startTime !== '00:00' &&
-        dates[i].endTime !== '00:00'
+        dates[i].date && dates[i].startTime < dates[i].endTime
           ? 'custom-valid-input date-hour-select'
           : 'date-hour-select'
       "
@@ -118,9 +114,7 @@
           : 'date-hour-select'
       "
       [ngClass]="
-        dates[i].date &&
-        dates[i].startTime !== '00:00' &&
-        dates[i].endTime !== '00:00'
+        dates[i].date && dates[i].startTime < dates[i].endTime
           ? 'custom-valid-input date-hour-select'
           : 'date-hour-select'
       "

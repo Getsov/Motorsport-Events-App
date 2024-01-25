@@ -6,9 +6,9 @@
         <div class="event-input">
           <div class="prices-inputs-wrapper">
             <ion-input
-              type="number"
+              type="text"
               fill="solid"
-              label="Цена (лв.)"
+              label="Цена (лв.)*"
               labelPlacement="floating"
               [ngClass]="
                 visitorError[0] && i === visitorError[1]
@@ -16,7 +16,8 @@
                   : 'price-input'
               "
               [ngClass]="
-                visitorPrices[i].price && visitorPrices[i].description
+                isPriceValid(visitorPrices[i].price) &&
+                visitorPrices[i].description
                   ? 'custom-valid-input price-input'
                   : 'price-input'
               "
@@ -26,7 +27,7 @@
             <ion-input
               type="text"
               fill="solid"
-              label="Описание на ценовото предложение"
+              label="Описание на ценовото предложение*"
               labelPlacement="floating"
               [ngClass]="
                 visitorError[0] && i === visitorError[1]
@@ -34,7 +35,8 @@
                   : 'price-description-input'
               "
               [ngClass]="
-                visitorPrices[i].price && visitorPrices[i].description
+                isPriceValid(visitorPrices[i].price) &&
+                visitorPrices[i].description
                   ? 'custom-valid-input price-description-input'
                   : 'price-description-input'
               "
