@@ -60,17 +60,27 @@ export class OrganizationRegisterPage implements OnInit, OnDestroy {
           setTimeout(() => {
             this.router.navigateByUrl('/');
 
-            this.toasterMessage = '';
-            this.toasterType = '';
+            this.resetToasters();
           }, 1000);
 
           organizatorRegisterForm.reset();
         },
         error: (error) => {
-          this.authResponseError = error.error.error;
+          this.toasterMessage = error.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
+
           organizatorRegisterForm.reset();
         },
       });
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   onRegionChange(region: string) {

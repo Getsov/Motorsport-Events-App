@@ -51,17 +51,25 @@ export class UserRegisterPage implements OnInit, OnDestroy {
           setTimeout(() => {
             this.router.navigateByUrl('/');
 
-            this.toasterMessage = '';
-            this.toasterType = '';
+            registerForm.reset();
           }, 1000);
+        },
+        error: (error) => {
+          this.toasterMessage = error.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
 
           registerForm.reset();
         },
-        error: (error) => {
-          this.authResponseError = error.error.error;
-          registerForm.reset();
-        },
       });
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   onRegionChange(region: string) {
