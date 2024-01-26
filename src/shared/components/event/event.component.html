@@ -19,13 +19,13 @@
         {{ event.contacts.region }}
       </p>
       <p *ngIf="event.dates.length > 1" class="event-date">
-        <ion-icon [src]="date" name="date" class="date-img" />
+        <ion-icon [src]="date" class="date-img" />
         От {{ event.dates[0].date | date : "dd.MM.yyyy" }} г. до
         {{ event.dates[event.dates.length - 1].date | date : "dd.MM.yyyy" }}
         г.
       </p>
       <p *ngIf="event.dates.length === 1" class="event-date">
-        <ion-icon [src]="date" name="date" class="date-img" />
+        <ion-icon [src]="date" class="date-img" />
         {{ event.dates[0].date | date : "dd.MM.yyyy" }} г.
       </p>
       <p class="event-description">{{ event.shortDescription }}</p>

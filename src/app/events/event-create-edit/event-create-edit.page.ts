@@ -22,7 +22,6 @@ import Categories from 'src/shared/data/categories';
 import { Event } from 'src/shared/interfaces/Event';
 import { IonContent, ModalController } from '@ionic/angular';
 import { ConfirmModalComponent } from 'src/shared/components/confirm-modal/confirm-modal.component';
-import { IonModal } from '@ionic/angular/common';
 
 @Component({
   selector: 'app-event-create',
