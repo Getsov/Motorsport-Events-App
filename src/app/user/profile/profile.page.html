@@ -213,8 +213,11 @@
           Редактирай профила
         </button>
       </div>
-      <div class="cancel-button-wrapper">
-        <a class="cancel-button" routerLink="/tabs/home">Отмени промените</a>
+      <div
+        class="cancel-button-wrapper"
+        (click)="presentConfirmModal('dismiss')"
+      >
+        <a class="cancel-button">Отмени промените</a>
       </div>
     </form>
     <!-- success toaster -->
