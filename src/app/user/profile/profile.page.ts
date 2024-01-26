@@ -18,6 +18,14 @@ import { Subscription } from 'rxjs';
 })
 export class ProfilePage implements OnInit {
   editForm$?: Subscription;
+  showClearInput: boolean = false;
+
+  clearInputIcon: any = {
+    firstName: false,
+    lastName: false,
+    organizatorName: false,
+    phone: false,
+  };
 
   errorMessage: string = '';
 
@@ -127,5 +135,13 @@ export class ProfilePage implements OnInit {
       .catch(console.log);
 
     await modal.present();
+  }
+
+  onInputFocus(inputProp: string) {
+    this.clearInputIcon[inputProp] = true;
+  }
+
+  onInputBlur(inputProp: string) {
+    this.clearInputIcon[inputProp] = false;
   }
 }
