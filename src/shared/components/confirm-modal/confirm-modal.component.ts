@@ -66,7 +66,7 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
           this.toasterMessage = 'Успешно изтрито събитие';
           this.toasterType = 'success';
 
-          this.router.navigateByUrl('/tabs/events');
+          this.router.navigateByUrl('/');
           this.modalController.dismiss();
         },
         error: (err) => {

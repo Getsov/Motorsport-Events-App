@@ -6,12 +6,14 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 import { Subscription } from 'rxjs';
 import { Event } from 'src/shared/interfaces/Event';
 import { User } from 'src/shared/interfaces/User';
 import { AuthService } from 'src/shared/services/auth.service';
 import { EventsService } from 'src/shared/services/events.service';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-event',
@@ -35,12 +37,13 @@ export class EventComponent implements OnInit {
     organizatorName: '',
     phone: '',
     isDeleted: false,
-    isApproved: false
+    isApproved: false,
   };
 
   constructor(
     private authService: AuthService,
-    private eventService: EventsService
+    private eventService: EventsService,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -75,6 +78,18 @@ export class EventComponent implements OnInit {
       },
     });
   }
+
+  // open delete modal and pass the id for deleting
+  async presentDeleteModal(modalType: string) {
+    const modal = await this.modalController.create({
+      component: ConfirmModalComponent,
+      componentProps: { eventId: this.event._id, modalType },
+      cssClass: 'confirm-modal',
+    });
+
+    await modal.present();
+  }
+
   ionViewDidLeave(): void {
     if (this.deleteSubscription) {
       this.deleteSubscription.unsubscribe();

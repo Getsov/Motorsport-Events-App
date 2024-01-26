@@ -51,7 +51,7 @@
         <button class="more-btn organizer" [routerLink]="event._id">
           <p class="btn-text">Прочети повече</p>
         </button>
-        <button class="del btn" (click)="deleteEvent(event)">
+        <button class="del btn" (click)="presentDeleteModal('delete')">
           <p class="del-btn-text">Изтрий</p>
         </button>
       </div>
