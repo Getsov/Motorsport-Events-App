@@ -202,7 +202,7 @@ export class EventDetailPage implements OnInit, OnDestroy {
         lng: Number(this.event.contacts.coordinates.lng),
       },
       title: this.event.shortTitle,
-      snippet: `${this.event.contacts.region}, ${this.event.contacts.address}`,
+      snippet: `${this.event.contacts.address}`,
     };
 
     await this.map.addMarker(marker);
@@ -213,8 +213,8 @@ export class EventDetailPage implements OnInit, OnDestroy {
         componentProps: {
           marker,
         },
-        breakpoints: [0, 0.12],
-        initialBreakpoint: 0.12,
+        breakpoints: [0.15],
+        initialBreakpoint: 0.15,
         showBackdrop: false,
       });
 
