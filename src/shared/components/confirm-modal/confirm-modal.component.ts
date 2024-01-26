@@ -25,6 +25,9 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
   discardMessage: string =
     'Сигурни ли сте, че искате да откажете направените промени?';
 
+  logoutMessage: string =
+    'Сигурни ли сте, че искате да излезнете от профила си?';
+
   createMessage: string = 'Сигурни ли сте, че искате да създадете събитието?';
 
   constructor(
@@ -57,6 +60,7 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
       case 'edit':
       case 'editProfile':
       case 'create':
+      case 'logout':
         await this.modalController.dismiss(true);
         break;
 
