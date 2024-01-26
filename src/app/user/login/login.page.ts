@@ -45,7 +45,8 @@ export class LoginPage implements OnInit, OnDestroy {
           loginFormData.reset();
         },
         error: (error) => {
-          this.loginResponseError = error.error.error;
+          this.toasterMessage = error.error.error;
+          this.toasterType = 'error';
           loginFormData.reset();
         },
       });
