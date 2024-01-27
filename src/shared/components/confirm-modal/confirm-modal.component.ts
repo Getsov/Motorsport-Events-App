@@ -81,10 +81,12 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
           this.modalController.dismiss();
         },
         error: (err) => {
-          this.toasterType = 'error';
           this.toasterMessage = err.error.error;
+          this.toasterType = 'error';
 
-          this.resetToasters();
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
         },
       });
   }

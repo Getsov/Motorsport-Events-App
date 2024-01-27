@@ -86,11 +86,17 @@ export class ProfilePage implements OnInit {
           setTimeout(() => {
             this.router.navigateByUrl('/');
 
-            this.toasterMessage = '';
-            this.toasterType = '';
+            this.resetToasters();
           }, 2000);
         },
-        error: (error) => (this.errorMessage = error.error.error),
+        error: (error) => {
+          this.toasterMessage = error.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
+        },
       });
   }
 
@@ -137,6 +143,11 @@ export class ProfilePage implements OnInit {
       .catch(console.log);
 
     await modal.present();
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   onInputFocus(inputProp: string) {

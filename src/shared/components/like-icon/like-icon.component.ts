@@ -119,6 +119,14 @@ export class LikeIconComponent implements OnInit, OnDestroy {
           }
           this.likeIconSwitcher();
         },
+        error: (error) => {
+          this.toasterMessage = error.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
+        },
       })
     );
   }
@@ -150,6 +158,11 @@ export class LikeIconComponent implements OnInit, OnDestroy {
         : (this.likeIconSrc =
             '../../../assets/icon/like-icons/not-liked-large.svg');
     }
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   ngOnDestroy(): void {

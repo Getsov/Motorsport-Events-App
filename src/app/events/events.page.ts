@@ -36,6 +36,10 @@ export class EventsPage {
     isApproved: false,
   };
 
+  // toaster info
+  toasterType: string = '';
+  toasterMessage: string = '';
+
   constructor(
     private eventService: EventsService,
     private authService: AuthService
@@ -56,10 +60,21 @@ export class EventsPage {
         this.eventsData = events;
       },
       error: (err) => {
-        console.error(err);
+        this.toasterMessage = err.error.error;
+        this.toasterType = 'error';
+
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
       },
     });
   }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
+  }
+
   ionViewDidLeave(): void {
     if (this.eventsSubscription) {
       this.eventsSubscription.unsubscribe();

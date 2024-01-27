@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   @Input() defaultHref: string = '';
 
   isLogged: boolean = false;
+
   toasterType: string = '';
   toasterMessage: string = '';
 
@@ -30,6 +31,14 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.authSubscription$ = this.authService.userData$.subscribe({
       next: (authData) => (this.isLogged = !!authData),
+      error: (err) => {
+        this.toasterMessage = err.error.error;
+        this.toasterType = 'error';
+
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
+      },
     });
   }
 
@@ -61,8 +70,12 @@ export class HeaderComponent implements OnInit {
 
     setTimeout(() => {
       this.router.navigateByUrl('/');
-      this.toasterMessage = '';
-      this.toasterType = '';
+      this.resetToasters();
     }, 1000);
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 }

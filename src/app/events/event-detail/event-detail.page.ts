@@ -113,7 +113,12 @@ export class EventDetailPage implements OnInit, OnDestroy {
         this.createMap();
       },
       error: (error) => {
-        this.errorMessage = error.message;
+        this.toasterMessage = error.error.error;
+        this.toasterType = 'error';
+
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
       },
     });
   }
@@ -220,6 +225,11 @@ export class EventDetailPage implements OnInit, OnDestroy {
 
       modal.present();
     });
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   ngOnDestroy(): void {

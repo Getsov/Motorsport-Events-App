@@ -10,7 +10,7 @@ import { Category } from 'src/shared/interfaces/Category';
 export class EventsTypeListComponent implements OnInit {
   @Input() eventsType: Category[] = [];
 
-  //  We set default values on titleText and titleColor.
+  // We set default values on titleText and titleColor.
   // If data is passed they will change its value.
   @Input() titleColor = 'yellow';
   @Input() titleText = 'Категории';
@@ -21,7 +21,5 @@ export class EventsTypeListComponent implements OnInit {
   constructor() {}
 
   // TODO: redirect to eventsList and pass the selected filter(type of the event)
-  ngOnInit() {
-    console.log(this.categories);
-  }
+  ngOnInit() {}
 }

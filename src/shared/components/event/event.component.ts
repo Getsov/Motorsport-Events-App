@@ -25,9 +25,11 @@ export class EventComponent implements OnInit {
   private eventsSubscription: Subscription = new Subscription();
   @Input() event!: Event;
   @Output() filteredEvents = new EventEmitter<any>();
+
   location = 'assets/icon/mdi_location.svg';
   date = 'assets/icon/date-icon.svg';
   myEventLineText = 'Мое събитие';
+
   user: User | null = {
     email: '',
     firstName: '',
@@ -39,6 +41,10 @@ export class EventComponent implements OnInit {
     isDeleted: false,
     isApproved: false,
   };
+
+  // toaster info
+  toasterType: string = '';
+  toasterMessage: string = '';
 
   constructor(
     private authService: AuthService,
@@ -61,8 +67,13 @@ export class EventComponent implements OnInit {
           next: () => {
             this.getEvents();
           },
-          error(err) {
-            console.log(err);
+          error: (err) => {
+            this.toasterMessage = err.error.error;
+            this.toasterType = 'error';
+
+            setTimeout(() => {
+              this.resetToasters();
+            }, 5000);
           },
         });
     }
@@ -74,7 +85,12 @@ export class EventComponent implements OnInit {
         this.filteredEvents.emit(events);
       },
       error: (err) => {
-        console.log(err);
+        this.toasterMessage = err.error.error;
+        this.toasterType = 'error';
+
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
       },
     });
   }
@@ -88,6 +104,11 @@ export class EventComponent implements OnInit {
     });
 
     await modal.present();
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   ionViewDidLeave(): void {

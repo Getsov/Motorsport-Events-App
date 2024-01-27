@@ -38,8 +38,7 @@ export class LoginPage implements OnInit, OnDestroy {
 
           setTimeout(() => {
             this.router.navigateByUrl('/');
-            this.toasterMessage = '';
-            this.toasterType = '';
+            this.resetToasters();
           }, 1000);
 
           loginFormData.reset();
@@ -47,9 +46,19 @@ export class LoginPage implements OnInit, OnDestroy {
         error: (error) => {
           this.toasterMessage = error.error.error;
           this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
+
           loginFormData.reset();
         },
       });
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   ngOnDestroy(): void {

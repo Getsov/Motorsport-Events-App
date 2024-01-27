@@ -122,11 +122,13 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
             this.eventData = eventResponse;
             this.populateEventDataInForm();
           },
-          error: (err) => {
-            this.toasterMessage = err.error.error;
+          error: (error) => {
+            this.toasterMessage = error.error.error;
             this.toasterType = 'error';
 
-            this.resetToasters();
+            setTimeout(() => {
+              this.resetToasters();
+            }, 5000);
           },
         });
     }
@@ -349,11 +351,13 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
           this.resetToasters();
         }, 2000);
       },
-      error: (err) => {
-        this.toasterMessage = err.message;
+      error: (error) => {
+        this.toasterMessage = error.error.error;
         this.toasterType = 'error';
 
-        this.resetToasters();
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
       },
     });
   }
@@ -370,11 +374,13 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
           this.resetToasters();
         }, 2000);
       },
-      error: (err) => {
-        this.toasterMessage = err.message;
+      error: (error) => {
+        this.toasterMessage = error.error.error;
         this.toasterType = 'error';
 
-        this.resetToasters();
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
       },
     });
   }
@@ -384,7 +390,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     const errorInputs = document.querySelectorAll('.validation-error-message');
     if (errorInputs.length > 0) {
       const firstErrorInput = errorInputs[0] as HTMLElement;
-      const yOffset = -80;
+      const yOffset = -100;
       this.content?.scrollToPoint(0, firstErrorInput.offsetTop + yOffset, 500);
     }
   }
