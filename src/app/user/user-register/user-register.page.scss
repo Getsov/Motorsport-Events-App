@@ -40,6 +40,17 @@
 
 .region-select-wrapper {
   position: relative;
+  ion-select.custom-valid-input {
+    border-bottom: 1px solid #00cc00 !important;
+  }
+
+  ion-select.custom-valid-input::part(icon) {
+    content: url("../../../assets/icon/arrow-up-down-success.png") !important;
+  }
+
+  ion-select.custom-valid-input::part(label) {
+    color: #00cc00;
+  }
 }
 
 ion-select::part(icon) {

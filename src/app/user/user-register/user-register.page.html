@@ -174,7 +174,7 @@
         <ion-select
           labelPlacement="floating"
           label="Населено място"
-          class="region-select"
+          [ngClass]="region.value ? 'region-select custom-valid-input' : 'region-select' "
           okText="Ок"
           cancelText="Откажи"
           slot="end"
@@ -189,11 +189,6 @@
           >
         </ion-select>
       </div>
-
-      <!-- Error returned from server -->
-      <p class="auth-validation-error-message" *ngIf="authResponseError">
-        {{authResponseError}}
-      </p>
     </div>
 
     <div

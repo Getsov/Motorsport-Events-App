@@ -19,7 +19,7 @@ export class SelectPriceComponent implements OnInit {
   ngOnInit() {}
 
   addVisitorPrice() {
-    this.visitorPrices.push({ price: 0, description: '' });
+    this.visitorPrices.push({ price: '', description: '' });
   }
 
   removeVisitorPrice(index: number) {
@@ -29,12 +29,17 @@ export class SelectPriceComponent implements OnInit {
   }
 
   addParticipantPrice() {
-    this.participantPrices.push({ price: 0, description: '' });
+    this.participantPrices.push({ price: '', description: '' });
   }
 
   removeParticipantPrice(index: number) {
     if (this.participantPrices.length > 1) {
       this.participantPrices.splice(index, 1);
     }
+  }
+
+  isPriceValid(price: string | number): boolean {
+    const regex = /^0$|^[1-9][0-9]*$/;
+    return regex.test(price.toString());
   }
 }

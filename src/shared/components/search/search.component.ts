@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import Categories from 'src/shared/data/categories';
+import { Categories } from 'src/shared/data/categories';
 import BulgarianRegions from 'src/shared/data/regions';
 import { EventsService } from 'src/shared/services/events.service';
 
@@ -23,6 +23,10 @@ export class SearchComponent implements OnInit {
   locationQuery: [] = [];
   selectedCategory: number[] = [];
   sortBy: string = '';
+
+  // toaster info
+  toasterType: string = '';
+  toasterMessage: string = '';
 
   regions: any = Object.keys(BulgarianRegions).filter((value) =>
     isNaN(Number(value))
@@ -104,7 +108,12 @@ export class SearchComponent implements OnInit {
             this.filteredEvents.emit(events);
           },
           error: (err) => {
-            console.log(err);
+            this.toasterMessage = err.error.error;
+            this.toasterType = 'error';
+
+            setTimeout(() => {
+              this.resetToasters();
+            }, 5000);
           },
         });
     } else {
@@ -113,10 +122,20 @@ export class SearchComponent implements OnInit {
           this.filteredEvents.emit(events);
         },
         error: (err) => {
-          console.log(err);
+          this.toasterMessage = err.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
         },
       });
     }
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   clearUrlQuery(): void {

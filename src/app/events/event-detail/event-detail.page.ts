@@ -45,6 +45,7 @@ export class EventDetailPage implements OnInit, OnDestroy {
     shortDescription: '',
     longDescription: '',
     visitorPrices: [],
+    participantPrices: [],
     dates: [],
     imageUrl: '',
     contacts: {
@@ -105,11 +106,19 @@ export class EventDetailPage implements OnInit, OnDestroy {
     return this.eventService.getEvent(this.eventId).subscribe({
       next: (response) => {
         this.event = response;
+        this.event.participantPrices = this.event.participantPrices?.filter(
+          (price) => price.description && price.price
+        );
         this.hasLiked = this.event.likes.includes(this.userId);
         this.createMap();
       },
       error: (error) => {
-        this.errorMessage = error.message;
+        this.toasterMessage = error.error.error;
+        this.toasterType = 'error';
+
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
       },
     });
   }
@@ -198,7 +207,7 @@ export class EventDetailPage implements OnInit, OnDestroy {
         lng: Number(this.event.contacts.coordinates.lng),
       },
       title: this.event.shortTitle,
-      snippet: `${this.event.contacts.region}, ${this.event.contacts.address}`,
+      snippet: `${this.event.contacts.address}`,
     };
 
     await this.map.addMarker(marker);
@@ -209,13 +218,18 @@ export class EventDetailPage implements OnInit, OnDestroy {
         componentProps: {
           marker,
         },
-        breakpoints: [0, 0.12],
-        initialBreakpoint: 0.12,
+        breakpoints: [0.15],
+        initialBreakpoint: 0.15,
         showBackdrop: false,
       });
 
       modal.present();
     });
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   ngOnDestroy(): void {

@@ -21,6 +21,10 @@ export class UpcomingEventsComponent implements OnInit, OnDestroy {
   isAllEventsLoaded: boolean = false;
   isAdminOrOrganization: boolean = false;
 
+  // toaster info
+  toasterType: string = '';
+  toasterMessage: string = '';
+
   addIcon = 'assets/icon/carbon_add-filled.svg';
 
   constructor(
@@ -38,7 +42,14 @@ export class UpcomingEventsComponent implements OnInit, OnDestroy {
           this.isAdminOrOrganization =
             userData?.role === 'organizer' || userData?.role === 'admin';
         },
-        error: (err) => console.log(err.error.error),
+        error: (err) => {
+          this.toasterMessage = err.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
+        },
       })
     );
   }
@@ -51,7 +62,14 @@ export class UpcomingEventsComponent implements OnInit, OnDestroy {
           this.upcomingEvents = response.results;
           this.pageToLoad++;
         },
-        error: (error) => console.log(error),
+        error: (error) => {
+          this.toasterMessage = error.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
+        },
       });
   }
 
@@ -74,16 +92,27 @@ export class UpcomingEventsComponent implements OnInit, OnDestroy {
 
                 this.upcomingEvents.push(...response.results);
                 this.pageToLoad++;
-                console.log(this.upcomingEvents);
               } else {
                 // Set the flag if no more events are available
                 this.isAllEventsLoaded = true;
               }
             },
-            error: (error) => console.log(error),
+            error: (error) => {
+              this.toasterMessage = error.error.error;
+              this.toasterType = 'error';
+
+              setTimeout(() => {
+                this.resetToasters();
+              }, 5000);
+            },
           })
       );
     }
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   ngOnDestroy(): void {

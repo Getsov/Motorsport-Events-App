@@ -50,15 +50,24 @@
     width: 12px;
   }
 
+  .edit-modal,
+  .edit-input {
+    position: relative;
+    ion-icon {
+      position: absolute;
+      right: 1.4em;
+    }
+  }
+
   // active state
-  .has-focus {
+  .edit-input.has-focus {
     border-bottom: 1px solid #ff7418 !important;
     ::ng-deep .label-text {
       color: #ff7418 !important;
     }
 
     ::ng-deep ion-icon {
-      content: url("../../../assets/icon/orange-edit-pen.png") !important;
+      content: url("../../../assets/icon/clear-input-icon.svg") !important;
     }
   }
 

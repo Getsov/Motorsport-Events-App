@@ -20,8 +20,13 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
   deleteModalMessage: string =
     'Сигурни ли сте, че искате да изтриете събитието?';
   editMessage: string = 'Сигурни ли сте, че искате да редактирате събитието?';
+  editProfileMessage: string =
+    'Сигурни ли сте, че искате да редактирате профила?';
   discardMessage: string =
     'Сигурни ли сте, че искате да откажете направените промени?';
+
+  logoutMessage: string =
+    'Сигурни ли сте, че искате да излезнете от профила си?';
 
   createMessage: string = 'Сигурни ли сте, че искате да създадете събитието?';
 
@@ -45,11 +50,17 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
         break;
       case 'dismiss':
         this.router.navigateByUrl('/tabs/events');
+
+        this.toasterMessage = 'Успешно отказахте направените промени';
+        this.toasterType = 'success';
+
         await this.modalController.dismiss();
         break;
 
       case 'edit':
+      case 'editProfile':
       case 'create':
+      case 'logout':
         await this.modalController.dismiss(true);
         break;
 
@@ -66,14 +77,23 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
           this.toasterMessage = 'Успешно изтрито събитие';
           this.toasterType = 'success';
 
-          this.router.navigateByUrl('/tabs/events');
+          this.router.navigateByUrl('/');
           this.modalController.dismiss();
         },
         error: (err) => {
-          this.toasterType = 'error';
           this.toasterMessage = err.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
         },
       });
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   ngOnDestroy(): void {

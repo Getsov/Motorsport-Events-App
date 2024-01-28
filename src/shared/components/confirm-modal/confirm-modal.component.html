@@ -7,6 +7,10 @@
         ? editMessage
         : modalType === "create"
         ? createMessage
+        : modalType === "editProfile"
+        ? editProfileMessage
+        : modalType === "logout"
+        ? logoutMessage
         : discardMessage
     }}
   </p>

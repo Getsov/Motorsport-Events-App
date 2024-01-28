@@ -48,15 +48,28 @@ export class UserRegisterPage implements OnInit, OnDestroy {
           this.toasterMessage = 'Успешно регистрирахте потребителски акаунт!';
           this.toasterType = 'success';
 
-          setTimeout(() => this.router.navigateByUrl('/'), 1000);
+          setTimeout(() => {
+            this.router.navigateByUrl('/');
+
+            registerForm.reset();
+          }, 1000);
+        },
+        error: (error) => {
+          this.toasterMessage = error.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
 
           registerForm.reset();
         },
-        error: (error) => {
-          this.authResponseError = error.error.error;
-          registerForm.reset();
-        },
       });
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   onRegionChange(region: string) {

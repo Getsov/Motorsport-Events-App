@@ -43,8 +43,12 @@ export class SlideCardComponent implements OnInit {
   ngOnInit() {
     this.lastDateIndex = this.event.dates.length - 1;
 
-    this.startDate = this.formatDate(this.event.dates[0].date);
-    this.endDate = this.formatDate(this.event.dates[this.lastDateIndex].date);
+    if (this.event.dates.length > 1) {
+      this.startDate = this.formatDate(this.event.dates[0].date);
+      this.endDate = this.formatDate(this.event.dates[this.lastDateIndex].date);
+    } else {
+      this.startDate = this.formatDate(this.event.dates[0].date);
+    }
   }
 
   private formatDate(date: string): string {

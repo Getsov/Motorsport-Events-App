@@ -6,12 +6,14 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 import { Subscription } from 'rxjs';
 import { Event } from 'src/shared/interfaces/Event';
 import { User } from 'src/shared/interfaces/User';
 import { AuthService } from 'src/shared/services/auth.service';
 import { EventsService } from 'src/shared/services/events.service';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-event',
@@ -23,9 +25,11 @@ export class EventComponent implements OnInit {
   private eventsSubscription: Subscription = new Subscription();
   @Input() event!: Event;
   @Output() filteredEvents = new EventEmitter<any>();
+
   location = 'assets/icon/mdi_location.svg';
   date = 'assets/icon/date-icon.svg';
   myEventLineText = 'Мое събитие';
+
   user: User | null = {
     email: '',
     firstName: '',
@@ -35,12 +39,17 @@ export class EventComponent implements OnInit {
     organizatorName: '',
     phone: '',
     isDeleted: false,
-    isApproved: false
+    isApproved: false,
   };
+
+  // toaster info
+  toasterType: string = '';
+  toasterMessage: string = '';
 
   constructor(
     private authService: AuthService,
-    private eventService: EventsService
+    private eventService: EventsService,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -58,8 +67,13 @@ export class EventComponent implements OnInit {
           next: () => {
             this.getEvents();
           },
-          error(err) {
-            console.log(err);
+          error: (err) => {
+            this.toasterMessage = err.error.error;
+            this.toasterType = 'error';
+
+            setTimeout(() => {
+              this.resetToasters();
+            }, 5000);
           },
         });
     }
@@ -71,10 +85,32 @@ export class EventComponent implements OnInit {
         this.filteredEvents.emit(events);
       },
       error: (err) => {
-        console.log(err);
+        this.toasterMessage = err.error.error;
+        this.toasterType = 'error';
+
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
       },
     });
   }
+
+  // open delete modal and pass the id for deleting
+  async presentDeleteModal(modalType: string) {
+    const modal = await this.modalController.create({
+      component: ConfirmModalComponent,
+      componentProps: { eventId: this.event._id, modalType },
+      cssClass: 'confirm-modal',
+    });
+
+    await modal.present();
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
+  }
+
   ionViewDidLeave(): void {
     if (this.deleteSubscription) {
       this.deleteSubscription.unsubscribe();

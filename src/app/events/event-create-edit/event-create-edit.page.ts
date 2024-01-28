@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -12,11 +18,10 @@ import {
   transformDateFromBackend,
 } from 'src/shared/utils/date-utils';
 import BulgarianRegions from 'src/shared/data/regions';
-import Categories from 'src/shared/data/categories';
+import { Categories } from 'src/shared/data/categories';
 import { Event } from 'src/shared/interfaces/Event';
 import { IonContent, ModalController } from '@ionic/angular';
 import { ConfirmModalComponent } from 'src/shared/components/confirm-modal/confirm-modal.component';
-import { IonModal } from '@ionic/angular/common';
 
 @Component({
   selector: 'app-event-create',
@@ -34,9 +39,9 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
 
   // get price values
   @ViewChild(SelectPriceComponent) selectPricesComponent!: SelectPriceComponent;
-  visitorPrices = [{ price: 0, description: '' }];
+  visitorPrices: any = [{ price: '', description: '' }];
   visitorError: any = false;
-  participantPrices = [{ price: 0, description: '' }];
+  participantPrices: any = [{ price: '', description: '' }];
   participantError: any = false;
 
   // get date values
@@ -101,7 +106,8 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     private eventService: EventsService,
     private router: Router,
     private route: ActivatedRoute,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -116,9 +122,13 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
             this.eventData = eventResponse;
             this.populateEventDataInForm();
           },
-          error: (err) => {
-            this.toasterMessage = err.message;
+          error: (error) => {
+            this.toasterMessage = error.error.error;
             this.toasterType = 'error';
+
+            setTimeout(() => {
+              this.resetToasters();
+            }, 5000);
           },
         });
     }
@@ -160,10 +170,17 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       ) ||
       !this.validateDatesField(this.dates, 'datesError') ||
       !this.validatePriceField(this.visitorPrices, 'visitorError') ||
-      !this.validatePriceField(this.participantPrices, 'participantError') ||
+      !this.validateParticipants(this.participantPrices, 'participantError') ||
       eventForm.invalid
     ) {
-      this.content?.scrollToTop(500);
+      this.resetToasters();
+
+      setTimeout(() => {
+        this.scrollToErrorInput();
+        this.toasterMessage = 'Моля, попълнете коректно полето!';
+        this.toasterType = 'error';
+      }, 100);
+
       return;
     }
 
@@ -254,8 +271,13 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
   }
 
   onConfirmedAddress(confirmedAddress: any) {
-    this.selectedAddress = confirmedAddress;
-    this.addressErrorMessage = '';
+    if (confirmedAddress.title && confirmedAddress.address) {
+      this.selectedAddress = confirmedAddress;
+      this.addressErrorMessage = '';
+    } else {
+      this.selectedAddress = null;
+      this.addressErrorMessage = 'Полето е задължително';
+    }
   }
 
   // function to validate inputs which can not be validated from the template
@@ -273,9 +295,26 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     errorMessageVariable: string
   ): boolean {
     for (let i = 0; i < priceArr.length; i++) {
-      if (!priceArr[i].price || !priceArr[i].description) {
+      if (!this.isPriceValid(priceArr[i].price) || !priceArr[i].description) {
         this[errorMessageVariable] = ['Некоректно попълнени полета', i];
         return false;
+      }
+    }
+
+    this[errorMessageVariable] = false;
+    return true;
+  }
+
+  validateParticipants(
+    priceArr: { price: string | number; description: string }[],
+    errorMessageVariable: string
+  ) {
+    for (let i = 0; i < priceArr.length; i++) {
+      if (priceArr[i].price || priceArr[i].description) {
+        if (!this.isPriceValid(priceArr[i].price) || !priceArr[i].description) {
+          this[errorMessageVariable] = ['Некоректно попълнени полета', i];
+          return false;
+        }
       }
     }
     this[errorMessageVariable] = false;
@@ -287,12 +326,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     errorMessageVariable: string
   ): boolean {
     for (let i = 0; i < datesArr.length; i++) {
-      if (
-        !datesArr[i].date ||
-        datesArr[i].startTime === '00:00' ||
-        datesArr[i].endTime === '00:00' ||
-        datesArr[i].startTime >= datesArr[i].endTime
-      ) {
+      if (!datesArr[i].date || datesArr[i].startTime >= datesArr[i].endTime) {
         this[errorMessageVariable] = ['Некоректно попълнени полета', i];
         return false;
       }
@@ -311,11 +345,19 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
         this.toasterMessage =
           'Успешно създадено събитие! Събитието очаква одобрение от администратор.';
         this.toasterType = 'success';
-        setTimeout(() => this.router.navigateByUrl('/tabs/events'), 2000);
+        setTimeout(() => {
+          this.router.navigateByUrl('/tabs/events');
+
+          this.resetToasters();
+        }, 2000);
       },
-      error: (err) => {
-        this.toasterMessage = err.message;
+      error: (error) => {
+        this.toasterMessage = error.error.error;
         this.toasterType = 'error';
+
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
       },
     });
   }
@@ -327,13 +369,40 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
         this.toasterMessage =
           'Успешно редактирано събитие! Събитието очаква одобрение от администратор.';
         this.toasterType = 'success';
-        setTimeout(() => this.router.navigateByUrl(`/tabs/events`), 2000);
+        setTimeout(() => {
+          this.router.navigateByUrl(`/tabs/events`);
+          this.resetToasters();
+        }, 2000);
       },
-      error: (err) => {
-        this.toasterMessage = err.message;
+      error: (error) => {
+        this.toasterMessage = error.error.error;
         this.toasterType = 'error';
+
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
       },
     });
+  }
+
+  // find the first validation error message and scroll to it
+  scrollToErrorInput(): void {
+    const errorInputs = document.querySelectorAll('.validation-error-message');
+    if (errorInputs.length > 0) {
+      const firstErrorInput = errorInputs[0] as HTMLElement;
+      const yOffset = -100;
+      this.content?.scrollToPoint(0, firstErrorInput.offsetTop + yOffset, 500);
+    }
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
+  }
+
+  isPriceValid(price: string | number): boolean {
+    const regex = /^0$|^[1-9][0-9]*$/;
+    return regex.test(price.toString());
   }
 
   ngOnDestroy(): void {

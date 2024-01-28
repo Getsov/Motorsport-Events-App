@@ -36,6 +36,10 @@ export class FavouritesPage {
     isApproved: true,
   };
 
+  // toaster info
+  toasterType: string = '';
+  toasterMessage: string = '';
+
   constructor(
     private eventService: EventsService,
     private authService: AuthService
@@ -58,10 +62,21 @@ export class FavouritesPage {
           this.favouritesData = events;
         },
         error: (err) => {
-          console.error(err);
+          this.toasterMessage = err.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
         },
       });
   }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
+  }
+
   ionViewDidLeave(): void {
     if (this.favouritesSubscription) {
       this.favouritesSubscription.unsubscribe();

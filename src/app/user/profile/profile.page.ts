@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 
 import BulgarianRegions from 'src/shared/data/regions';
 import { User } from 'src/shared/interfaces/User';
@@ -9,7 +10,6 @@ import { AuthService } from 'src/shared/services/auth.service';
 import { EditPasswordModalComponent } from './edit-password-modal/edit-password-modal.component';
 import { ConfirmModalComponent } from 'src/shared/components/confirm-modal/confirm-modal.component';
 import { EditEmailModalComponent } from './edit-email-modal/edit-email-modal.component';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -18,6 +18,14 @@ import { Subscription } from 'rxjs';
 })
 export class ProfilePage implements OnInit {
   editForm$?: Subscription;
+  showClearInput: boolean = false;
+
+  clearInputIcon: any = {
+    firstName: false,
+    lastName: false,
+    organizatorName: false,
+    phone: false,
+  };
 
   errorMessage: string = '';
 
@@ -75,9 +83,20 @@ export class ProfilePage implements OnInit {
             'Успешно редактиран профил! Моля влезте отново в профила си';
           this.toasterType = 'success';
 
-          setTimeout(() => this.router.navigateByUrl('/'), 2000);
+          setTimeout(() => {
+            this.router.navigateByUrl('/');
+
+            this.resetToasters();
+          }, 2000);
         },
-        error: (error) => (this.errorMessage = error.error.error),
+        error: (error) => {
+          this.toasterMessage = error.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
+        },
       });
   }
 
@@ -104,10 +123,12 @@ export class ProfilePage implements OnInit {
   }
 
   // confirm edit info modal
-  async presentConfirmModal(userEditForm: NgForm) {
+  async presentConfirmModal(userEditForm: any) {
     const modal = await this.modalController.create({
       component: ConfirmModalComponent,
-      componentProps: { modalType: 'editProfile' },
+      componentProps: {
+        modalType: userEditForm === 'dismiss' ? 'dismiss' : 'editProfile',
+      },
       cssClass: 'confirm-modal',
     });
 
@@ -122,5 +143,18 @@ export class ProfilePage implements OnInit {
       .catch(console.log);
 
     await modal.present();
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
+  }
+
+  onInputFocus(inputProp: string) {
+    this.clearInputIcon[inputProp] = true;
+  }
+
+  onInputBlur(inputProp: string) {
+    this.clearInputIcon[inputProp] = false;
   }
 }

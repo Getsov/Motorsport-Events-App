@@ -8,7 +8,7 @@
       addressConfirmed || selectedAddress.title ? selectedAddress.title : ''
     "
     [ngClass]="addressInvalid ? 'custom-invalid-input' : ''"
-    [ngClass]="selectedAddress.title ? 'custom-valid-input' : ''"
+    [ngClass]="addressConfirmed ? 'custom-valid-input' : ''"
   ></ion-input>
   <ion-modal
     [trigger]="'address-picker'"

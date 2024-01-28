@@ -36,15 +36,29 @@ export class LoginPage implements OnInit, OnDestroy {
           this.toasterMessage = 'Успешно влязохте във Вашия акаунт!';
           this.toasterType = 'success';
 
-          setTimeout(() => this.router.navigateByUrl('/'), 1000);
+          setTimeout(() => {
+            this.router.navigateByUrl('/');
+            this.resetToasters();
+          }, 1000);
 
           loginFormData.reset();
         },
         error: (error) => {
-          this.loginResponseError = error.error.error;
+          this.toasterMessage = error.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
+
           loginFormData.reset();
         },
       });
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   ngOnDestroy(): void {

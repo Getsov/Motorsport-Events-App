@@ -8,18 +8,29 @@ import { EventsService } from 'src/shared/services/events.service';
   styleUrls: ['./calendar.page.scss'],
 })
 export class CalendarPage implements OnInit {
-  constructor(
-    private eventService: EventsService,
-    private datePipe: DatePipe
-  ) {}
-
   @Input() pageTitle: string = 'Календар';
   @Input() selectedDate: string = '';
+
   selectedYearMonth: any = '';
   currentYearMonth: string = '';
   highlightedDates: [] = [];
   currentMonthEvents: any = [];
   isLoading: boolean = false;
+
+  // toaster info
+  toasterType: string = '';
+  toasterMessage: string = '';
+
+  constructor(
+    private eventService: EventsService,
+    private datePipe: DatePipe
+  ) {}
+
+  ngOnInit() {
+    const currentDate = new Date();
+    this.currentYearMonth = this.datePipe.transform(currentDate, 'yyyy/MM')!;
+    this.loadEvents(this.currentYearMonth);
+  }
 
   handleSelectedDateChange(date: string) {
     this.selectedDate = date;
@@ -34,12 +45,6 @@ export class CalendarPage implements OnInit {
       this.currentYearMonth = newSelectedYearMonth;
       this.loadEvents(this.currentYearMonth);
     }
-  }
-
-  ngOnInit() {
-    const currentDate = new Date();
-    this.currentYearMonth = this.datePipe.transform(currentDate, 'yyyy/MM')!;
-    this.loadEvents(this.currentYearMonth);
   }
 
   private loadEvents(yearMonth: string) {
@@ -68,9 +73,19 @@ export class CalendarPage implements OnInit {
         this.isLoading = false;
       },
       error: (error) => {
-        console.log(error);
+        this.toasterMessage = error.error.error;
+        this.toasterType = 'error';
         this.isLoading = false;
+
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
       },
     });
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 }

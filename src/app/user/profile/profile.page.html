@@ -13,42 +13,50 @@
     <form #userEditForm="ngForm" (submit)="presentConfirmModal(userEditForm)">
       <div class="auth-wrapper">
         <!-- email modal -->
-        <div class="auth-input">
+        <div class="auth-input" (click)="presentEmailModal()">
           <ion-input
+            class="edit-modal"
             type="email"
             label="Имейл*"
             labelPlacement="floating"
             [value]="user?.email"
-            clearInput
             required
-            (click)="presentEmailModal()"
+            ><ion-icon name="chevron-up-outline" slot="end"></ion-icon
           ></ion-input>
         </div>
 
         <!-- password modal -->
-        <div class="auth-input">
+        <div class="auth-input" (click)="presentPasswordModal()">
           <ion-input
+            class="edit-modal"
             type="password"
             label="Парола*"
             labelPlacement="floating"
             [value]="userPassword"
-            clearInput
-            (click)="presentPasswordModal()"
+            ><ion-icon name="chevron-up-outline" slot="end"></ion-icon
           ></ion-input>
         </div>
 
         <ng-container *ngIf="user?.role == 'regular'">
           <div class="auth-input">
             <ion-input
+              class="edit-input"
               type="text"
               label="Име"
               labelPlacement="floating"
-              clearInput
+              [clearInput]="clearInputIcon.firstName"
               name="firstName"
               ngModel
               #firstName="ngModel"
               [ngModel]="user?.firstName"
               pattern="^[a-zA-Zа-яА-Я \-]+$"
+              (focus)="onInputFocus('firstName')"
+              (blur)="onInputBlur('firstName')"
+              ><ion-icon
+                name="chevron-up-outline"
+                slot="end"
+                *ngIf="!showClearInput"
+              ></ion-icon
             ></ion-input>
           </div>
 
@@ -63,14 +71,22 @@
 
           <div class="auth-input">
             <ion-input
+              class="edit-input"
               type="text"
               label="Фамилия"
               labelPlacement="floating"
-              clearInput
+              [clearInput]="clearInputIcon.lastName"
               name="lastName"
               [ngModel]="user?.lastName"
               #lastName="ngModel"
               pattern="^[a-zA-Zа-яА-Я \-]+$"
+              (ionFocus)="onInputFocus('lastName')"
+              (ionBlur)="onInputBlur('lastName')"
+              ><ion-icon
+                name="chevron-up-outline"
+                slot="end"
+                *ngIf="!showClearInput"
+              ></ion-icon
             ></ion-input>
           </div>
 
@@ -87,16 +103,24 @@
         <ng-container *ngIf="user?.role == 'organizer'">
           <div class="auth-input">
             <ion-input
+              class="edit-input"
               type="text"
               label="Име на организатор*"
               labelPlacement="floating"
-              clearInput
+              [clearInput]="clearInputIcon.organizatorName"
               name="organizatorName"
               ngModel
               #organizatorName="ngModel"
               [ngModel]="user?.organizatorName"
               required
               pattern="^[^<>\/]+$"
+              (ionFocus)="onInputFocus('organizatorName')"
+              (ionBlur)="onInputBlur('organizatorName')"
+              ><ion-icon
+                name="chevron-up-outline"
+                slot="end"
+                *ngIf="!showClearInput"
+              ></ion-icon
             ></ion-input>
           </div>
 
@@ -117,16 +141,24 @@
 
           <div class="auth-input">
             <ion-input
+              class="edit-input"
               type="text"
               label="Телефон*"
               labelPlacement="floating"
               name="phone"
-              clearInput
               required
               ngModel
               #phone="ngModel"
               [ngModel]="user?.phone"
               pattern="^[\d\+\-\(\) ]+$"
+              [clearInput]="clearInputIcon.phone"
+              (ionFocus)="onInputFocus('phone')"
+              (ionBlur)="onInputBlur('phone')"
+              ><ion-icon
+                name="chevron-up-outline"
+                slot="end"
+                *ngIf="!showClearInput"
+              ></ion-icon
             ></ion-input>
           </div>
 
@@ -181,8 +213,11 @@
           Редактирай профила
         </button>
       </div>
-      <div class="cancel-button-wrapper">
-        <a class="cancel-button" routerLink="/tabs/home">Отмени промените</a>
+      <div
+        class="cancel-button-wrapper"
+        (click)="presentConfirmModal('dismiss')"
+      >
+        <a class="cancel-button">Отмени промените</a>
       </div>
     </form>
     <!-- success toaster -->
