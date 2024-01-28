@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import Categories from 'src/shared/data/categories';
+import { Categories } from 'src/shared/data/categories';
 import BulgarianRegions from 'src/shared/data/regions';
 import { EventsService } from 'src/shared/services/events.service';
 

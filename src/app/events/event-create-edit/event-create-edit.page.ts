@@ -18,7 +18,7 @@ import {
   transformDateFromBackend,
 } from 'src/shared/utils/date-utils';
 import BulgarianRegions from 'src/shared/data/regions';
-import Categories from 'src/shared/data/categories';
+import { Categories } from 'src/shared/data/categories';
 import { Event } from 'src/shared/interfaces/Event';
 import { IonContent, ModalController } from '@ionic/angular';
 import { ConfirmModalComponent } from 'src/shared/components/confirm-modal/confirm-modal.component';
