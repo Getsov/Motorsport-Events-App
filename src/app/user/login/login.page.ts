@@ -22,7 +22,10 @@ export class LoginPage implements OnInit, OnDestroy {
 
   onLoginSubmit(loginFormData: NgForm) {
     if (loginFormData.invalid) {
-      return;
+      // touch every input so the invalid become red
+      return Object.values(loginFormData.controls).forEach((control) => {
+        control.markAsTouched();
+      });
     }
 
     const { email, password } = loginFormData.value;
@@ -39,21 +42,25 @@ export class LoginPage implements OnInit, OnDestroy {
           setTimeout(() => {
             this.router.navigateByUrl('/');
             this.resetToasters();
+            loginFormData.reset();
           }, 1000);
-
-          loginFormData.reset();
         },
         error: (error) => {
-          this.toasterMessage = error.error.error;
-          this.toasterType = 'error';
-
-          setTimeout(() => {
-            this.resetToasters();
-          }, 5000);
+          this.errorToaster(error.error.error);
 
           loginFormData.reset();
         },
       });
+  }
+
+  // present error toaster
+  errorToaster(errorMessage: string) {
+    this.toasterMessage = errorMessage;
+    this.toasterType = 'error';
+
+    setTimeout(() => {
+      this.resetToasters();
+    }, 5000);
   }
 
   resetToasters() {

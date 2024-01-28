@@ -31,7 +31,10 @@ export class UserRegisterPage implements OnInit, OnDestroy {
 
   onRegisterUserSubmit(registerForm: NgForm) {
     if (registerForm.invalid) {
-      return;
+      // touch every input so the invalid become red
+      return Object.values(registerForm.controls).forEach((control) => {
+        control.markAsTouched();
+      });
     }
 
     const { email, password, repassword, firstName, lastName } =
@@ -55,16 +58,20 @@ export class UserRegisterPage implements OnInit, OnDestroy {
           }, 1000);
         },
         error: (error) => {
-          this.toasterMessage = error.error.error;
-          this.toasterType = 'error';
-
-          setTimeout(() => {
-            this.resetToasters();
-          }, 5000);
-
+          this.errorToaster(error.error.error);
           registerForm.reset();
         },
       });
+  }
+
+  // present error toaster
+  errorToaster(errorMessage: string) {
+    this.toasterMessage = errorMessage;
+    this.toasterType = 'error';
+
+    setTimeout(() => {
+      this.resetToasters();
+    }, 5000);
   }
 
   resetToasters() {
