@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthResponseData, User } from '../interfaces/User';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Event } from '../interfaces/Event';
 
 const { baseUrl } = environment;
@@ -173,6 +173,27 @@ export class AuthService {
       headers: {
         'Content-Type': 'application/json',
         'X-Authorization': accessToken!,
+      },
+    });
+  }
+
+  // refresh token
+  refreshToken(): Observable<any> {
+    return this.http.post(
+      `${baseUrl}/refreshToken`,
+      {},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  }
+
+  revokeRefreshToken(): Observable<any> {
+    return this.http.delete(`${baseUrl}/refreshToken`, {
+      headers: {
+        'Content-Type': 'application/json',
       },
     });
   }
