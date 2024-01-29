@@ -1,14 +1,23 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Calendar</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <div class="loader" *ngIf="isLoading">
+    <p>loading...</p>
+  </div>
+  <app-header [headerTitle]="pageTitle" />
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Calendar</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <app-explore-container name="Calendar"></app-explore-container>
+  <ng-container *ngIf="!isLoading">
+    <app-dates
+      (selectedDateChange)="handleSelectedDateChange($event)"
+      [highlightedDates]="highlightedDates"
+    ></app-dates>
+
+    <app-calendar-list
+      [selectedDate]="selectedDate"
+      [currentMonthEvents]="currentMonthEvents"
+    />
+  </ng-container>
 </ion-content>
+<!-- toaster message -->
+<app-toaster
+  [toasterMessage]="toasterMessage"
+  [toasterType]="toasterType"
+></app-toaster>

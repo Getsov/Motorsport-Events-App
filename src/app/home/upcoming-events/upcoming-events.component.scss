@@ -1,0 +1,38 @@
+swiper-container {
+  --swiper-pagination-color: rgba(255, 116, 24, 1);
+  --swiper-pagination-bullet-inactive-color: rgba(194, 191, 190, 1);
+  --swiper-pagination-bullet-inactive-opacity: 100%;
+  --swiper-pagination-bullet-size: 16px;
+  --swiper-pagination-bullet-horizontal-gap: 8px;
+  --swiper-pagination-bottom: 26px;
+  padding: 0 16px;
+  min-height: 216px;
+  width: 100%;
+}
+
+swiper-slide {
+  margin-top: 16px;
+  margin-bottom: 42px;
+}
+
+.swiper-wrapper {
+  gap: 32px;
+}
+
+.main-button-wrapper {
+  margin-bottom: 1.5em;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  .add-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  span {
+    line-height: 2.5;
+  }
+}

@@ -1,0 +1,88 @@
+@import url("../../../shared/styles/select-inputs-styles.scss");
+
+.heading-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2em;
+  h1 {
+    margin-top: 16px;
+    font-size: 2.25em;
+    color: #ff7418;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+.container {
+  width: 91%;
+  margin: 0 auto;
+
+  ion-input {
+    ::ng-deep ion-icon {
+      content: url("../../../assets/icon/white-edit-pen.png") !important;
+      height: 18px;
+      width: 18px;
+      position: absolute;
+      top: 50%;
+    }
+  }
+
+  ion-input::part(icon) {
+    content: url("../../../assets/icon/white-edit-pen.png") !important;
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    top: 50%;
+  }
+
+  ion-select::part(icon) {
+    content: url("../../../assets/icon/arrow-up-down.svg");
+    position: absolute;
+    right: 1.6em;
+    top: calc(50% - 5px);
+    height: 24px;
+    width: 12px;
+  }
+
+  .edit-modal,
+  .edit-input {
+    position: relative;
+    ion-icon {
+      position: absolute;
+      right: 1.4em;
+    }
+  }
+
+  // active state
+  .edit-input.has-focus {
+    border-bottom: 1px solid #ff7418 !important;
+    ::ng-deep .label-text {
+      color: #ff7418 !important;
+    }
+
+    ::ng-deep ion-icon {
+      content: url("../../../assets/icon/clear-input-icon.svg") !important;
+    }
+  }
+
+  ::ng-deep .ng-valid {
+    border-color: #fff !important;
+    .label-text {
+      color: #fff !important;
+    }
+
+    ::ng-deep ion-icon {
+      content: url("../../../assets/icon/white-edit-pen.png") !important;
+    }
+  }
+}
+
+.cancel-button-wrapper {
+  margin-top: 16px;
+}

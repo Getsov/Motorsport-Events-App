@@ -1,0 +1,144 @@
+.auth-wrapper,
+.create-event-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5em;
+
+  .auth-input,
+  .region-select-wrapper,
+  .category-select-wrapper,
+  .event-address-wrapper {
+    position: relative;
+    height: 54px;
+
+    ion-input {
+      --padding-start: 1em;
+      border-bottom: 1px solid #fff;
+
+      label .label-text-wrapper {
+        position: absolute;
+        top: -15%;
+      }
+
+      label .native-input {
+        position: absolute;
+        top: 50%;
+      }
+
+      .input-clear-icon {
+        margin: auto 1em 1px auto;
+        z-index: 1;
+        ion-icon {
+          content: url("../../assets/icon/clear-input-icon.svg");
+          height: 11.7px;
+          width: 11.7px;
+        }
+      }
+    }
+
+    .has-focus {
+      border-bottom: 1px solid #ff7418;
+      .label-text {
+        color: #ff7418;
+      }
+      .native-input {
+        caret-color: #fff;
+      }
+    }
+
+    // error form state
+    ion-input.ng-invalid.ng-touched {
+      border-bottom: 1px solid #ff0000;
+
+      .label-text {
+        color: #ff0000;
+      }
+
+      .input-clear-icon {
+        margin: auto 1em 1px auto;
+        z-index: 1;
+        ion-icon {
+          content: url("../../assets/icon/error-clear-input-icon.svg");
+        }
+      }
+    }
+
+    // success form state
+    ion-input.ng-valid.ng-touched {
+      border-bottom: 1px solid #00cc00;
+
+      .label-text {
+        color: #00cc00;
+      }
+
+      .input-clear-icon {
+        margin: auto 1em 1px auto;
+        z-index: 1;
+        ion-icon {
+          content: url("../../assets/icon/success-input-icon.svg");
+        }
+      }
+    }
+
+    // region and category select inputs
+    ion-select.region-select,
+    ion-select.event-type-select,
+    ion-select.date-hour-select {
+      --placeholder-color: #ffffff;
+      --placeholder-opacity: 1;
+      width: 100%;
+      justify-content: flex-end;
+      position: relative;
+      background: transparent;
+      height: 56px;
+      border-bottom: 1px solid white;
+      padding-left: 1em;
+    }
+
+    ion-select.region-select::part(icon),
+    ion-select.event-type-select::part(icon),
+    ion-select.date-hour-select::part(icon) {
+      color: #ffffff;
+      content: url("../../assets/icon/arrow-up-down.svg");
+      position: absolute;
+      right: 1.6em;
+      top: transform(translateY(-50%));
+      height: 20px;
+      width: 10px;
+    }
+
+    ::placeholder {
+      color: #ffffff;
+    }
+
+    .input-icons {
+      position: absolute;
+      left: 0.5em;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 22px;
+    }
+
+    ion-input::part(icon) {
+      color: white;
+    }
+  }
+
+  .auth-validation-error-message,
+  .validation-error-message {
+    color: #ff0000;
+    padding-left: 16px;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+}
+
+//ion-select scrollbar (it was hidden by default)
+.alert-radio-group::-webkit-scrollbar {
+  width: 0.75em;
+  display: block !important;
+}
+
+.alert-radio-group::-webkit-scrollbar-thumb {
+  background-color: #a6a2a0;
+}

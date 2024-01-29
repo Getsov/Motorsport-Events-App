@@ -1,0 +1,39 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="none" class="toolbar">
+    <div class="page-header">
+      <div *ngIf="backButton; else logoContainer" class="back-button-container">
+        <ion-buttons slot="start">
+          <ion-back-button
+            [defaultHref]="defaultHref"
+            text=""
+          ></ion-back-button>
+        </ion-buttons>
+      </div>
+
+      <ng-template #logoContainer>
+        <div class="logo-container" [routerLink]="['/tabs/home']">
+          <img src="../../../assets/icon/Logo-white-transparent.png" />
+        </div>
+      </ng-template>
+
+      <div class="header-title" *ngIf="headerTitle">
+        <h1>{{ headerTitle }}</h1>
+      </div>
+
+      <div class="spacer" *ngIf="!isLogged">
+        <div></div>
+      </div>
+
+      <div class="logout-wrapper" *ngIf="isLogged">
+        <div class="logout-icon" (click)="presentLogoutModal('logout')">
+          <img src="../../../assets/icon/logout.svg" />
+        </div>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<!-- logout toaster -->
+<app-toaster
+  [toasterMessage]="toasterMessage"
+  [toasterType]="toasterType"
+></app-toaster>

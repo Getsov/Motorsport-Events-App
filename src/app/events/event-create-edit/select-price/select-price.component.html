@@ -1,0 +1,165 @@
+<div class="prices-wrapper ion-padding-horizontal">
+  <div>
+    <p class="price-heading">За зрители</p>
+    <div class="visitor-price-wrapper">
+      <div *ngFor="let visitorPrice of visitorPrices; let i = index">
+        <div class="event-input">
+          <div class="prices-inputs-wrapper">
+            <ion-input
+              type="text"
+              fill="solid"
+              label="Цена (лв.)*"
+              labelPlacement="floating"
+              [ngClass]="
+                visitorError[0] && i === visitorError[1]
+                  ? 'custom-invalid-input price-input'
+                  : 'price-input'
+              "
+              [ngClass]="
+                isPriceValid(visitorPrices[i].price) &&
+                visitorPrices[i].description
+                  ? 'custom-valid-input price-input'
+                  : 'price-input'
+              "
+              [(ngModel)]="visitorPrices[i].price"
+              required
+            ></ion-input>
+            <ion-input
+              type="text"
+              fill="solid"
+              label="Описание на ценовото предложение*"
+              labelPlacement="floating"
+              [ngClass]="
+                visitorError[0] && i === visitorError[1]
+                  ? 'custom-invalid-input price-description-input'
+                  : 'price-description-input'
+              "
+              [ngClass]="
+                isPriceValid(visitorPrices[i].price) &&
+                visitorPrices[i].description
+                  ? 'custom-valid-input price-description-input'
+                  : 'price-description-input'
+              "
+              [(ngModel)]="visitorPrices[i].description"
+              required
+            ></ion-input>
+
+            <!-- error message -->
+            <p
+              *ngIf="
+                visitorError[0] &&
+                i === visitorError[1] &&
+                (!visitorPrices[i].price || !visitorPrices[i].description)
+              "
+              class="validation-error-message"
+            >
+              {{ visitorError[0] }}
+            </p>
+          </div>
+          <!-- Add new price and delete buttons -->
+          <div
+            [ngClass]="{
+              'buttons-wrapper': true,
+              'button-wrapper-single': i === 0
+            }"
+          >
+            <div class="main-button-wrapper">
+              <a (click)="addVisitorPrice()" class="main-button">
+                Добави опция
+              </a>
+            </div>
+
+            <div class="secondary-button-wrapper" *ngIf="i !== 0">
+              <a (click)="removeVisitorPrice(i)" class="secondary-button">
+                Изтрий
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p class="price-heading">За участници</p>
+    <div class="participant-price-wrapper">
+      <div *ngFor="let participantPrice of participantPrices; let i = index">
+        <div class="event-input">
+          <div class="prices-inputs-wrapper">
+            <ion-input
+              type="text"
+              fill="solid"
+              label="Цена (лв.)"
+              labelPlacement="floating"
+              [ngClass]="
+                participantError[0] &&
+                i === participantError[1] &&
+                (participantPrices[i].price || participantPrices[i].description)
+                  ? 'custom-invalid-input price-input'
+                  : 'price-input'
+              "
+              [ngClass]="
+                participantPrices[i].price && participantPrices[i].description
+                  ? 'custom-valid-input price-input'
+                  : 'price-input'
+              "
+              [(ngModel)]="participantPrices[i].price"
+              required
+            ></ion-input>
+            <ion-input
+              type="text"
+              fill="solid"
+              label="Описание на ценовото предложение"
+              labelPlacement="floating"
+              [ngClass]="
+                participantError[0] &&
+                i === participantError[1] &&
+                (participantPrices[i].price || participantPrices[i].description)
+                  ? 'custom-invalid-input price-description-input'
+                  : 'price-description-input'
+              "
+              [ngClass]="
+                participantPrices[i].price && participantPrices[i].description
+                  ? 'custom-valid-input price-description-input'
+                  : 'price-descritpion-input'
+              "
+              [(ngModel)]="participantPrices[i].description"
+              required
+            ></ion-input>
+
+            <!-- error message -->
+            <p
+              *ngIf="
+                participantError[0] &&
+                i === participantError[1] &&
+                (!participantPrices[i].price ||
+                  !participantPrices[i].description)
+              "
+              class="validation-error-message"
+            >
+              {{ participantError[0] }}
+            </p>
+          </div>
+          <!-- Add new price and delete buttons -->
+          <div
+            [ngClass]="{
+              'buttons-wrapper': true,
+              'button-wrapper-single': i === 0
+            }"
+          >
+            <div class="main-button-wrapper">
+              <a (click)="addParticipantPrice()" class="main-button">
+                Добави опция
+              </a>
+            </div>
+
+            <div class="secondary-button-wrapper" *ngIf="i !== 0">
+              <a (click)="removeParticipantPrice(i)" class="secondary-button">
+                Изтрий
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

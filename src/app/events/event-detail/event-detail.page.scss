@@ -1,0 +1,147 @@
+.ion-padding-horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  .long-description,
+  .badge {
+    font-size: 14px;
+  }
+
+  .long-title {
+    text-align: center;
+    font-weight: 600;
+    font-family: "Open Sans";
+  }
+
+  //   event image
+
+  .image-wrapper {
+    position: relative;
+    height: 200px;
+    width: 100%;
+  }
+
+  .image-wrapper img {
+    border-radius: 4px;
+    box-shadow: 0px 0px 8px 1px rgba(255, 116, 24, 0.3);
+    margin: 0 auto;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .event-like-btn {
+    position: absolute;
+    font-size: 24px;
+    color: #f44336;
+    top: 1%;
+    right: 5%;
+  }
+
+  .event-title {
+    font-size: 1.5em;
+    font-weight: 600;
+  }
+
+  .info-title {
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .date-wrapper ion-grid {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  //   city and category badges
+
+  .category-city-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    color: #acacac;
+    border: 1px solid #acacac;
+    border-radius: 6px;
+    padding: 4px 10px;
+  }
+
+  //   prices
+
+  .prices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .price-wrapper {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .price-holder {
+    color: #0d0d0d;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 4px;
+    width: 60px;
+    height: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    flex: 0 0 60px;
+  }
+
+  .price-visitors {
+    background-color: #ffdc23;
+  }
+
+  .price-participants {
+    background-color: #ff7418;
+  }
+
+  //   location
+  .info-details {
+    color: #c2bfbe;
+  }
+
+  //   contacts
+  .contacts-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .contacts-wrapper a {
+    text-decoration: none;
+  }
+
+  // edit or delete buttons
+
+  .manage-buttons-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+  }
+
+  // google maps
+  .google-maps-wrapper {
+    display: inline-block;
+    height: 240px;
+    width: 100%;
+  }
+
+  capacitor-google-map {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0px 0px 8px 1px rgba(255, 220, 35, 0.3);
+    border-radius: 4px;
+  }
+}
+.ion-padding-horizontal:last-of-type {
+  margin-bottom: 24px;
+}

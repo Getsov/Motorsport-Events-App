@@ -1,0 +1,91 @@
+ion-input {
+  label {
+    color: #fff;
+  }
+}
+
+ion-input.has-focus {
+  border-bottom: 1px solid #fff !important;
+
+  ::ng-deep .label-text {
+    color: #fff !important;
+  }
+}
+// success state
+ion-input.custom-valid-input {
+  border-bottom: 1px solid #00cc00 !important;
+
+  ::ng-deep .label-text {
+    color: #00cc00 !important;
+  }
+}
+
+// error state
+ion-input.custom-invalid-input {
+  border-bottom: 1px solid red !important;
+
+  ::ng-deep .label-text {
+    color: #ff0000 !important;
+  }
+}
+
+ion-modal {
+  ion-item {
+    --background: #0b0b0b;
+  }
+
+  .search-suggestions {
+    ion-icon {
+      margin-right: 0;
+    }
+    ion-label {
+      padding-left: 0.5em;
+    }
+  }
+}
+
+ion-searchbar {
+  --background: transparent;
+  --border-radius: 0;
+  --placeholder-color: #fff;
+  --icon-color: #fff;
+  --placeholder-opacity: 1;
+  --clear-button-color: #fff;
+  border-bottom: 1px solid #fff;
+  margin-top: 1em;
+  ::ng-deep.searchbar-input {
+    margin-left: 0.5em;
+  }
+}
+
+ion-searchbar.searchbar-has-focus {
+  --icon-color: #ff7418;
+  border-bottom: 1px solid #ff7418;
+}
+
+// modal size when there are suggested addresses or not
+ion-modal.address-modal-no-suggestions::part(content) {
+  height: 384px;
+  width: 90%;
+}
+
+ion-modal.address-modal-suggestions::part(content) {
+  height: 704px;
+  width: 90%;
+}
+
+// google maps
+.google-maps-wrapper {
+  margin-top: 0.75em;
+  display: inline-block;
+  height: 240px;
+  width: 100%;
+}
+
+capacitor-google-map {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0px 0px 8px 1px rgba(255, 220, 35, 0.3);
+  border-radius: 4px;
+}

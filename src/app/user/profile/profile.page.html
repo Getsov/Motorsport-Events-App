@@ -1,0 +1,229 @@
+<ion-content [fullscreen]="true">
+  <app-header />
+  <div collapse="condense">
+    <div class="heading-title">
+      <h1>Профил</h1>
+      <p>
+        {{user?.role === "regular" ? 'на потребител' : user?.role ===
+        "organizer" ? 'на организатор' : 'на администратор' }}
+      </p>
+    </div>
+  </div>
+  <div class="container">
+    <form #userEditForm="ngForm" (submit)="presentConfirmModal(userEditForm)">
+      <div class="auth-wrapper">
+        <!-- email modal -->
+        <div class="auth-input" (click)="presentEmailModal()">
+          <ion-input
+            class="edit-modal"
+            type="email"
+            label="Имейл*"
+            labelPlacement="floating"
+            [value]="user?.email"
+            required
+            ><ion-icon name="chevron-up-outline" slot="end"></ion-icon
+          ></ion-input>
+        </div>
+
+        <!-- password modal -->
+        <div class="auth-input" (click)="presentPasswordModal()">
+          <ion-input
+            class="edit-modal"
+            type="password"
+            label="Парола*"
+            labelPlacement="floating"
+            [value]="userPassword"
+            ><ion-icon name="chevron-up-outline" slot="end"></ion-icon
+          ></ion-input>
+        </div>
+
+        <ng-container *ngIf="user?.role == 'regular'">
+          <div class="auth-input">
+            <ion-input
+              class="edit-input"
+              type="text"
+              label="Име"
+              labelPlacement="floating"
+              [clearInput]="clearInputIcon.firstName"
+              name="firstName"
+              ngModel
+              #firstName="ngModel"
+              [ngModel]="user?.firstName"
+              pattern="^[a-zA-Zа-яА-Я \-]+$"
+              (focus)="onInputFocus('firstName')"
+              (blur)="onInputBlur('firstName')"
+              ><ion-icon
+                name="chevron-up-outline"
+                slot="end"
+                *ngIf="!showClearInput"
+              ></ion-icon
+            ></ion-input>
+          </div>
+
+          <ng-container *ngIf="firstName.touched">
+            <p
+              class="auth-validation-error-message"
+              *ngIf="firstName.errors?.['pattern']"
+            >
+              Неползволен символ в името!
+            </p>
+          </ng-container>
+
+          <div class="auth-input">
+            <ion-input
+              class="edit-input"
+              type="text"
+              label="Фамилия"
+              labelPlacement="floating"
+              [clearInput]="clearInputIcon.lastName"
+              name="lastName"
+              [ngModel]="user?.lastName"
+              #lastName="ngModel"
+              pattern="^[a-zA-Zа-яА-Я \-]+$"
+              (ionFocus)="onInputFocus('lastName')"
+              (ionBlur)="onInputBlur('lastName')"
+              ><ion-icon
+                name="chevron-up-outline"
+                slot="end"
+                *ngIf="!showClearInput"
+              ></ion-icon
+            ></ion-input>
+          </div>
+
+          <ng-container *ngIf="lastName.touched">
+            <p
+              class="auth-validation-error-message"
+              *ngIf="lastName.errors?.['pattern']"
+            >
+              Неползволен символ в името!
+            </p>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="user?.role == 'organizer'">
+          <div class="auth-input">
+            <ion-input
+              class="edit-input"
+              type="text"
+              label="Име на организатор*"
+              labelPlacement="floating"
+              [clearInput]="clearInputIcon.organizatorName"
+              name="organizatorName"
+              ngModel
+              #organizatorName="ngModel"
+              [ngModel]="user?.organizatorName"
+              required
+              pattern="^[^<>\/]+$"
+              (ionFocus)="onInputFocus('organizatorName')"
+              (ionBlur)="onInputBlur('organizatorName')"
+              ><ion-icon
+                name="chevron-up-outline"
+                slot="end"
+                *ngIf="!showClearInput"
+              ></ion-icon
+            ></ion-input>
+          </div>
+
+          <ng-container *ngIf="organizatorName.touched">
+            <p
+              class="auth-validation-error-message"
+              *ngIf="organizatorName.errors?.['required']"
+            >
+              Полето е задължително за попълване!
+            </p>
+            <p
+              class="auth-validation-error-message"
+              *ngIf="organizatorName.errors?.['pattern']"
+            >
+              Използват се непозволени символи!
+            </p>
+          </ng-container>
+
+          <div class="auth-input">
+            <ion-input
+              class="edit-input"
+              type="text"
+              label="Телефон*"
+              labelPlacement="floating"
+              name="phone"
+              required
+              ngModel
+              #phone="ngModel"
+              [ngModel]="user?.phone"
+              pattern="^[\d\+\-\(\) ]+$"
+              [clearInput]="clearInputIcon.phone"
+              (ionFocus)="onInputFocus('phone')"
+              (ionBlur)="onInputBlur('phone')"
+              ><ion-icon
+                name="chevron-up-outline"
+                slot="end"
+                *ngIf="!showClearInput"
+              ></ion-icon
+            ></ion-input>
+          </div>
+
+          <ng-container *ngIf="phone.touched">
+            <p
+              class="auth-validation-error-message"
+              *ngIf="phone.errors?.['required']"
+            >
+              Полето е задължително за попълване!
+            </p>
+            <p
+              class="auth-validation-error-message"
+              *ngIf="phone.errors?.['pattern']"
+            >
+              Телефона трябва да съдържа само числа
+            </p>
+          </ng-container>
+        </ng-container>
+
+        <div class="auth-input">
+          <ion-select
+            labelPlacement="floating"
+            label="Населено място"
+            class="region-select"
+            slot="end"
+            name="region"
+            #region="ngModel"
+            [ngModel]="user?.region"
+            okText="Ок"
+            cancelText="Откажи"
+          >
+            <ion-select-option
+              value="{{region}}"
+              *ngFor="let region of bulgarianRegions"
+              >{{region}}</ion-select-option
+            >
+          </ion-select>
+        </div>
+      </div>
+
+      <p class="auth-validation-error-message" *ngIf="errorMessage">
+        {{errorMessage}}
+      </p>
+
+      <div
+        [ngClass]="userEditForm.invalid ? 'main-button-wrapper-disabled' : 'main-button-wrapper' "
+      >
+        <button
+          [ngClass]="userEditForm.invalid ? 'main-button-disabled' : 'main-button' "
+          [disabled]="userEditForm.invalid"
+        >
+          Редактирай профила
+        </button>
+      </div>
+      <div
+        class="cancel-button-wrapper"
+        (click)="presentConfirmModal('dismiss')"
+      >
+        <a class="cancel-button">Отмени промените</a>
+      </div>
+    </form>
+    <!-- success toaster -->
+    <app-toaster
+      [toasterMessage]="toasterMessage"
+      [toasterType]="toasterType"
+    ></app-toaster>
+  </div>
+</ion-content>

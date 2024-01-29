@@ -1,0 +1,13 @@
+<section class="calendar-list" *ngIf="selectedDate">
+  <ng-container *ngIf="filteredDates.length > 0; else noEvents">
+    <app-title-fades [title]="selectedDate" [color]="titleColor" />
+
+    <div class="events-list" *ngFor="let event of filteredDates">
+      <app-event [event]="event" />
+    </div>
+  </ng-container>
+</section>
+
+<ng-template #noEvents>
+  <p class="empty-text">Няма предвидени събития за избраната дата!</p>
+</ng-template>

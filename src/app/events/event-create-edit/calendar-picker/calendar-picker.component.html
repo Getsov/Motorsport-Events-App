@@ -1,0 +1,8 @@
+<ion-datetime
+  presentation="date"
+  locale="bg-BG"
+  firstDayOfWeek="1"
+  (ionChange)="onDateChange($event.target.value)"
+  [min]="todayDate"
+  max="2040-12-31"
+></ion-datetime>

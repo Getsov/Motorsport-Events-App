@@ -1,0 +1,88 @@
+<form #loginForm="ngForm" (submit)="onLoginSubmit(loginForm)">
+  <div class="auth-wrapper">
+    <div class="auth-input">
+      <ion-input
+        type="text"
+        fill="solid"
+        label="Имейл*"
+        name="email"
+        labelPlacement="floating"
+        clearInput
+        ngModel
+        #email="ngModel"
+        required
+        pattern="^[a-zA-Z0-9\._+\-]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,}$"
+      >
+      </ion-input>
+    </div>
+
+    <ng-container *ngIf="email.touched">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="email.errors?.['required']"
+      >
+        Полето е задължително за попълване!
+      </p>
+      <p
+        class="auth-validation-error-message"
+        *ngIf="email.errors?.['pattern']"
+      >
+        Моля въведете валиден имейл!
+      </p>
+    </ng-container>
+
+    <div class="auth-input">
+      <ion-input
+        type="password"
+        fill="solid"
+        label="Парола*"
+        name="password"
+        labelPlacement="floating"
+        clearInput
+        ngModel
+        #password="ngModel"
+        required
+        minlength="6"
+        maxlength="24"
+      ></ion-input>
+    </div>
+
+    <ng-container *ngIf="password.touched">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="password.errors?.['required']"
+      >
+        Полето е задължително за попълване!
+      </p>
+      <p
+        class="auth-validation-error-message"
+        *ngIf="password.errors?.['minlength']"
+      >
+        Парола трябва да е с дължина поне 6 символа!
+      </p>
+      <p
+        class="auth-validation-error-message"
+        *ngIf="password.errors?.['maxlength']"
+      >
+        Паролата трябва да е с максимална дължина 24 символа!
+      </p>
+    </ng-container>
+  </div>
+
+  <div
+    [ngClass]="loginForm.invalid ? 'main-button-wrapper-disabled' : 'main-button-wrapper' "
+  >
+    <button
+      [ngClass]="loginForm.invalid ? 'main-button-disabled' : 'main-button' "
+      [disabled]="loginForm.invalid"
+    >
+      Вход
+    </button>
+  </div>
+
+  <!-- toaster message -->
+  <app-toaster
+    [toasterMessage]="toasterMessage"
+    [toasterType]="toasterType"
+  ></app-toaster>
+</form>

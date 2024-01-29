@@ -1,0 +1,22 @@
+@import url("../../../shared/styles/select-inputs-styles.scss");
+
+.ion-select-wrapper {
+  position: relative;
+}
+
+ion-select::part(icon) {
+  position: absolute;
+  top: calc(50% - 10px);
+}
+
+ion-select.custom-valid-input {
+  border-bottom: 1px solid #00cc00 !important;
+}
+
+ion-select.custom-valid-input::part(icon) {
+  content: url("../../../assets/icon/arrow-up-down-success.png") !important;
+}
+
+ion-select.custom-valid-input::part(label) {
+  color: #00cc00;
+}

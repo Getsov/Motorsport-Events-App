@@ -1,0 +1,34 @@
+<ion-content [fullscreen]="true">
+  <div class="page-title">
+    <app-header
+      [headerTitle]="headerTitle"
+      [backButton]="backButton"
+      [defaultHref]="defaultHref"
+    ></app-header>
+    <app-search
+      [parent]="parent"
+      show-clear-button="focus"
+      placeholder="Търсене"
+      (filteredEvents)="getFilteredEvents($event)"
+    ></app-search>
+  </div>
+  <app-title-fades [color]="titleColor" [title]="titleText" />
+  <div
+    class="ion-padding-horizontal"
+    *ngIf="(user?.role == 'admin') || (user?.role == 'organizer')"
+  ></div>
+  <ng-container *ngFor="let event of favouritesData">
+    <app-event [event]="event" (filteredEvents)="getFilteredEvents($event)" />
+  </ng-container>
+  <div *ngIf="favouritesData.length == 0">
+    <p class="no-events">
+      В момента нямате любими събития.<br />Започнете да добавяте Вашите любими
+      още днес!
+    </p>
+  </div>
+</ion-content>
+<!-- toaster message -->
+<app-toaster
+  [toasterMessage]="toasterMessage"
+  [toasterType]="toasterType"
+></app-toaster>

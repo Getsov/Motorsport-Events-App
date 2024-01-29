@@ -1,0 +1,9 @@
+<ion-toast
+  [isOpen]="!!toasterMessage"
+  [message]="toasterMessage"
+  duration="5000"
+  (didDismiss)="setOpen()"
+  [icon]="toasterType === 'success' ? 'checkmark-circle' : 'close-circle'"
+  [ngClass]="toasterType === 'success' ? 'success-toaster' : 'error-toaster'"
+  mode="ios"
+></ion-toast>

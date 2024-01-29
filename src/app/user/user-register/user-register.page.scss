@@ -1,0 +1,59 @@
+@import url("../../../shared/styles/select-inputs-styles.scss");
+
+.user-organization-toggle-wrapper {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  color: #a6a2a0;
+  margin: 1em 0 2em 0;
+}
+
+.user-organization-toggle-wrapper {
+  ion-toggle {
+    --track-background: #ddd;
+    --track-background-checked: #ddd;
+
+    --handle-width: 1em;
+    --handle-height: 1em;
+    --handle-background: var(--ion-color-primary);
+    --handle-background-checked: var(--ion-color-primary);
+  }
+
+  ion-toggle::part(track) {
+    width: 40px;
+    height: 20px;
+    overflow: visible;
+    box-shadow: 0 0 6px -2px #ff7418;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .checked-toggle {
+    color: var(--ion-color-primary);
+    font-weight: 600;
+  }
+}
+
+.region-select-wrapper {
+  position: relative;
+  ion-select.custom-valid-input {
+    border-bottom: 1px solid #00cc00 !important;
+  }
+
+  ion-select.custom-valid-input::part(icon) {
+    content: url("../../../assets/icon/arrow-up-down-success.png") !important;
+  }
+
+  ion-select.custom-valid-input::part(label) {
+    color: #00cc00;
+  }
+}
+
+ion-select::part(icon) {
+  position: absolute;
+  top: calc(50% - 10px);
+}

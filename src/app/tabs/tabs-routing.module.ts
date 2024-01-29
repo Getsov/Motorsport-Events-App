@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { AuthGuard } from 'src/shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -9,36 +10,48 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
+        loadChildren: () =>
+          import('../home/home.module').then((m) => m.HomePageModule),
       },
       {
         path: 'calendar',
-        loadChildren: () => import('../calendar/calendar.module').then(m => m.CalendarPageModule)
+        loadChildren: () =>
+          import('../calendar/calendar.module').then(
+            (m) => m.CalendarPageModule
+          ),
       },
       {
         path: 'events',
-        loadChildren: () => import('../events/events.module').then(m => m.EventsPageModule)
+        loadChildren: () =>
+          import('../events/events.module').then((m) => m.EventsPageModule),
       },
       {
-        path: 'profile',
-        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+        path: 'user',
+        loadChildren: () =>
+          import('../user/user-routing.module').then(
+            (m) => m.UserRoutingModule
+          ),
       },
       {
-        path: 'notifications',
-        loadChildren: () => import('../notifications/notifications.module').then(m => m.NotificationsPageModule)
+        path: 'favourites',
+        loadChildren: () =>
+          import('../favourites/favourites.module').then(
+            (m) => m.FavouritesPageModule
+          ),
+        canActivate: [AuthGuard],
       },
       {
         path: '',
         redirectTo: '/tabs/home',
-        pathMatch: 'full'
-      }
-    ]
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: '',
     redirectTo: '/tabs/home',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

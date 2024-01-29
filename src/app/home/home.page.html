@@ -1,14 +1,8 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> Categories </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ul class="cateogries">
-    <li *ngFor="let item of items">
-      <h3>{{item.type}}</h3>
-      <img src="{{item.imageUrl}}" alt="asdasd" />
-    </li>
-  </ul>
+<ion-content>
+  <app-header />
+  <h1>Всички събития за моторни спортове в България на едно място</h1>
+  <app-upcoming-events />
+  <app-events-type-list [eventsType]="categories" />
+  <app-about-us />
+  <app-footer />
 </ion-content>

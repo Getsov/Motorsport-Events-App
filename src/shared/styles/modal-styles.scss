@@ -1,0 +1,123 @@
+.date-input-wrapper {
+  ion-input {
+    width: 100%;
+  }
+}
+
+ion-modal.modal-picker {
+  --background: #0d0d0d;
+  --height: auto;
+  --border-radius: 4px;
+  --box-shadow: 0px 0px 8px 1px rgba(255, 116, 24, 0.3);
+  ion-toolbar,
+  ion-content {
+    --background: transparent;
+  }
+}
+
+ion-modal.modal-picker::part(content) {
+  height: 250px;
+  width: 90%;
+}
+
+// confirm modal styles
+.confirm-modal {
+  --background: #0d0d0d;
+  --height: auto;
+  --border-radius: 4px;
+  --border-width: 30px;
+  --border-color: #a6a2a0;
+
+  ion-content {
+    p {
+      height: 67%;
+      padding: 1.5em;
+      text-align: center;
+    }
+  }
+}
+
+ion-modal.confirm-modal::part(content) {
+  height: 144px;
+  width: 90%;
+}
+
+// edit password modal
+.edit-password-modal,
+.edit-email-modal {
+  --height: auto;
+
+  ion-content {
+    --background: #0d0d0d;
+    display: flex;
+    flex-direction: column;
+
+    p {
+      text-align: center;
+      padding-top: 0.75em;
+      padding-bottom: 0.75em;
+    }
+
+    form {
+      flex: 1;
+      height: 70%;
+      padding: 0 0.5em;
+      margin-bottom: 2em;
+    }
+  }
+}
+
+ion-modal.edit-password-modal::part(content),
+ion-modal.edit-email-modal::part(content) {
+  height: 430px;
+  width: 90%;
+  --background: #0d0d0d;
+}
+
+// edit email modal
+.edit-email-modal {
+  ion-content {
+    form {
+      height: 45%;
+    }
+  }
+}
+
+ion-modal.edit-email-modal::part(content) {
+  height: 230px;
+}
+
+.ion-page {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #a6a2a0;
+}
+
+ion-footer {
+  border-top: 1px solid #a6a2a0;
+  height: 3em;
+  .modal-picker-action-buttons {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+
+    ion-buttons {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      ion-button {
+        margin: 0 auto;
+      }
+    }
+
+    ion-buttons:first-of-type {
+      border-right: 1px solid #a6a2a0;
+    }
+
+    .modal-confirm-button {
+      font-weight: 600;
+    }
+  }
+}

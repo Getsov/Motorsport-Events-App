@@ -1,0 +1,15 @@
+<ion-card class="events-card">
+  <div class="link-to-details" [routerLink]="['/tabs/events', event._id]">
+    <img
+      [src]="'data:image;base64,' + event.imageUrl"
+      alt="{{ event.shortTitle }}"
+    />
+
+    <p class="event-title">{{ event.shortTitle }}</p>
+    <p class="event-dates">
+      {{ endDate ? startDate + " - " + endDate : startDate }}
+    </p>
+  </div>
+
+  <app-like-icon [eventId]="event._id" [likes]="event.likes" />
+</ion-card>

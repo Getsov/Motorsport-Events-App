@@ -1,0 +1,107 @@
+h2 {
+  height: 32px;
+  font-weight: 900;
+  font-size: 18px;
+  padding-left: 80px;
+  line-height: 21.6px;
+  color: rgba(13, 13, 13, 1);
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.fade {
+  border: 9px solid black;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+div {
+  position: relative;
+  overflow: hidden;
+  height: 32px;
+}
+.orange-title {
+  background: linear-gradient(270deg, transparent, rgba(255, 116, 24, 0.8) 20%);
+}
+
+.yellow-title {
+  background: linear-gradient(270deg, transparent, rgba(255, 220, 35, 0.8) 20%);
+}
+
+.first-fade {
+  top: 50%;
+  right: 92%;
+}
+
+.second-fade {
+  top: 50%;
+  right: 98%;
+}
+
+.invalid-color {
+  background-color: red;
+}
+
+@media (min-width: 380px) {
+  .first-fade {
+    right: 93%;
+  }
+
+  .second-fade {
+    right: 99%;
+  }
+}
+
+@media (min-width: 410px) {
+  .first-fade {
+    right: 94%;
+  }
+
+  .second-fade {
+    right: 100%;
+  }
+}
+
+@media (min-width: 460px) {
+  .first-fade {
+    right: 94.5%;
+  }
+}
+
+@media (min-width: 500px) {
+  .first-fade {
+    right: 95%;
+  }
+}
+
+@media (min-width: 550px) {
+  .first-fade {
+    right: 96%;
+  }
+}
+
+@media (min-width: 650px) {
+  .first-fade {
+    right: 97;
+  }
+}
+@media (min-width: 850px) {
+  .first-fade {
+    right: 97.5%;
+  }
+}
+
+@media (min-width: 1300px) {
+  .first-fade {
+    right: 98%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .first-fade {
+    right: 98.5%;
+  }
+}

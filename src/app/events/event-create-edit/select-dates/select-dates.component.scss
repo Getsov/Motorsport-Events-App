@@ -1,0 +1,97 @@
+.event-hour-wrapper {
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+}
+
+ion-input.date-hour-select {
+  position: relative;
+  --padding-start: 1em;
+  --placeholder-color: white;
+  --placeholder-opacity: 1;
+  width: calc(50% - 1em);
+  border-bottom: 1px solid #fff;
+  height: 3.5em;
+  ion-icon {
+    position: absolute;
+    content: url("../../../../assets/icon/arrow-up-down.svg");
+    height: 20px;
+    width: 10px;
+    top: 30%;
+    right: 1em;
+  }
+}
+
+ion-input.custom-valid-input {
+  border-bottom: 1px solid #00cc00;
+  --placeholder-color: #00cc00;
+  color: #00cc00;
+  ion-icon {
+    content: url("../../../../assets/icon/arrow-up-down-success.png");
+  }
+}
+
+ion-input.custom-invalid-input {
+  border-bottom: 1px solid red;
+  --placeholder-color: #ff0000;
+  color: #ff0000;
+  ion-icon {
+    content: url("../../../../assets/icon/arrow-up-down-error.png");
+  }
+}
+
+// modal picker
+ion-modal.modal-picker {
+  ion-datetime {
+    margin: 0 auto;
+    --background: transparent;
+    --wheel-fade-background-rgb: transparent;
+  }
+
+  ion-footer {
+    ion-toolbar {
+      --background: #0b0b0b;
+      padding: 0;
+    }
+  }
+
+  .hour-picker-action-buttons .toolbar-container {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+// calendar modal fine tunning
+ion-modal.calendar-date-picker::part(content) {
+  height: 394px;
+  width: 90%;
+}
+
+.buttons-wrapper {
+  margin-top: 1.5em;
+  display: flex;
+  gap: 1em;
+}
+
+// class for the add another date if it is the first date pick option
+.button-wrapper-single {
+  width: calc(50% - 1em);
+}
+
+@media (max-width: 380px) {
+  .button-wrapper-single {
+    width: calc(50%);
+  }
+
+  ion-input.date-hour-select {
+    ion-icon {
+      right: 0.5em;
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .button-wrapper-single {
+    width: calc(60%);
+  }
+}

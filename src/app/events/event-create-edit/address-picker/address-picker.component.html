@@ -1,0 +1,76 @@
+<div class="picker-wrapper">
+  <ion-input
+    label="Избери адрес*"
+    labelPlacement="floating"
+    id="address-picker"
+    (click)="onOpenModal()"
+    [value]="
+      addressConfirmed || selectedAddress.title ? selectedAddress.title : ''
+    "
+    [ngClass]="addressInvalid ? 'custom-invalid-input' : ''"
+    [ngClass]="addressConfirmed ? 'custom-valid-input' : ''"
+  ></ion-input>
+  <ion-modal
+    [trigger]="'address-picker'"
+    [ngClass]="
+      suggestions.length > 0
+        ? 'modal-picker address-modal-suggestions'
+        : 'modal-picker address-modal-no-suggestions'
+    "
+  >
+    <ng-template>
+      <ion-toolbar>
+        <ion-searchbar
+          placeholder="Търси адрес"
+          (input)="onSearchChange($event.target)"
+          [(ngModel)]="selectedAddress.title"
+        ></ion-searchbar>
+      </ion-toolbar>
+      <ion-content>
+        <div
+          class="search-suggestions ion-padding-end"
+          *ngIf="suggestions.length"
+        >
+          <ion-list>
+            <ion-item
+              *ngFor="let address of suggestions"
+              (click)="onAddressSelect(address)"
+            >
+              <ion-icon
+                src="../../../../assets/icon/mdi_location.svg"
+                slot="start"
+              ></ion-icon>
+              <ion-label>
+                {{ address.structured_formatting.main_text }}
+                <p>
+                  <ion-text>{{
+                    address.structured_formatting.secondary_text
+                  }}</ion-text>
+                </p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+        <div class="google-maps-wrapper ion-padding-horizontal">
+          <capacitor-google-map #map></capacitor-google-map>
+        </div>
+      </ion-content>
+      <ion-footer>
+        <ion-toolbar>
+          <div class="modal-picker-action-buttons">
+            <ion-buttons>
+              <ion-button slot="start" (click)="closeModal()"
+                >Откажи</ion-button
+              >
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button (click)="onConfirmAddress()"
+                >Потвърди адрес</ion-button
+              >
+            </ion-buttons>
+          </div>
+        </ion-toolbar>
+      </ion-footer>
+    </ng-template>
+  </ion-modal>
+</div>
