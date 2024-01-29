@@ -4,6 +4,10 @@
   duration="5000"
   (didDismiss)="setOpen()"
   [icon]="toasterType === 'success' ? 'checkmark-circle' : 'close-circle'"
-  [ngClass]="toasterType === 'success' ? 'success-toaster' : 'error-toaster'"
+  [ngClass]="
+    toasterType === 'success'
+      ? 'success-toaster tabs-bottom'
+      : 'error-toaster tabs-bottom  '
+  "
   mode="ios"
 ></ion-toast>
