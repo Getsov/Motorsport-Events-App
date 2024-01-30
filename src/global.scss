@@ -117,7 +117,6 @@ select {
 
 // Add global styling for the main button
 .main-button-wrapper,
-.main-button-wrapper-disabled,
 .cancel-button-wrapper,
 .secondary-button-wrapper,
 .delete-button-wrapper {
@@ -129,7 +128,6 @@ select {
 }
 
 .main-button,
-.main-button-disabled,
 .cancel-button,
 .secondary-button,
 .delete-button {
@@ -150,14 +148,6 @@ select {
 }
 
 // main button disabled
-
-.main-button-wrapper-disabled {
-  background-color: #c2bfbe;
-}
-
-.main-button-disabled {
-  color: #43403e;
-}
 
 .cancel-button-wrapper {
   border: 2px solid #ff7418;

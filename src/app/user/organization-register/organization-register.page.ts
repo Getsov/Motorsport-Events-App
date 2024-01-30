@@ -30,7 +30,12 @@ export class OrganizationRegisterPage implements OnInit, OnDestroy {
 
   onOrganizatorRegisterSubmit(organizatorRegisterForm: NgForm) {
     if (organizatorRegisterForm.invalid) {
-      return;
+      // touch every input so the invalid become red
+      return Object.values(organizatorRegisterForm.controls).forEach(
+        (control) => {
+          control.markAsTouched();
+        }
+      );
     }
 
     const { email, password, repassword, organizatorName, phone } =
@@ -61,21 +66,25 @@ export class OrganizationRegisterPage implements OnInit, OnDestroy {
             this.router.navigateByUrl('/');
 
             this.resetToasters();
+            organizatorRegisterForm.reset();
           }, 1000);
-
-          organizatorRegisterForm.reset();
         },
         error: (error) => {
-          this.toasterMessage = error.error.error;
-          this.toasterType = 'error';
-
-          setTimeout(() => {
-            this.resetToasters();
-          }, 5000);
+          this.errorToaster(error.error.error);
 
           organizatorRegisterForm.reset();
         },
       });
+  }
+
+  // present error toaster
+  errorToaster(errorMessage: string) {
+    this.toasterMessage = errorMessage;
+    this.toasterType = 'error';
+
+    setTimeout(() => {
+      this.resetToasters();
+    }, 5000);
   }
 
   resetToasters() {

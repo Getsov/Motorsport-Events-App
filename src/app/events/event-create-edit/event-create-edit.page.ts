@@ -164,16 +164,26 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       !this.validateRequiredField(this.imageUrl, 'imageErrorMessage') ||
       !this.validateRequiredField(this.selectedEventType, 'typeErrorMessage') ||
       !this.validateRequiredField(this.selectedRegion, 'regionErrorMessage') ||
-      !this.validateRequiredField(
-        this.selectedAddress,
-        'addressErrorMessage'
-      ) ||
+      !this.validateAddress(this.selectedAddress, 'addressErrorMessage') ||
       !this.validateDatesField(this.dates, 'datesError') ||
       !this.validatePriceField(this.visitorPrices, 'visitorError') ||
-      !this.validateParticipants(this.participantPrices, 'participantError') ||
-      eventForm.invalid
+      !this.validateParticipants(this.participantPrices, 'participantError')
     ) {
       this.resetToasters();
+
+      setTimeout(() => {
+        this.scrollToErrorInput();
+        this.toasterMessage = 'Моля, попълнете коректно полето!';
+        this.toasterType = 'error';
+      }, 100);
+
+      return;
+    }
+
+    if (eventForm.invalid) {
+      Object.values(eventForm.controls).forEach((control) => {
+        control.markAsTouched();
+      });
 
       setTimeout(() => {
         this.scrollToErrorInput();
@@ -282,10 +292,21 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
 
   // function to validate inputs which can not be validated from the template
   validateRequiredField(value: any, errorMessageVariable: string): boolean {
+    if (!value || !value[0]) {
+      this[errorMessageVariable] = 'Полето е задължително';
+      return false;
+    }
+
+    this[errorMessageVariable] = '';
+    return true;
+  }
+
+  validateAddress(value: any, errorMessageVariable: string): boolean {
     if (!value) {
       this[errorMessageVariable] = 'Полето е задължително';
       return false;
     }
+
     this[errorMessageVariable] = '';
     return true;
   }

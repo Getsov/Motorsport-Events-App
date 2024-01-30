@@ -203,15 +203,8 @@
         {{errorMessage}}
       </p>
 
-      <div
-        [ngClass]="userEditForm.invalid ? 'main-button-wrapper-disabled' : 'main-button-wrapper' "
-      >
-        <button
-          [ngClass]="userEditForm.invalid ? 'main-button-disabled' : 'main-button' "
-          [disabled]="userEditForm.invalid"
-        >
-          Редактирай профила
-        </button>
+      <div class="main-button-wrapper">
+        <button class="main-button">Редактирай профила</button>
       </div>
       <div
         class="cancel-button-wrapper"
