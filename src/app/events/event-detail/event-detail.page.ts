@@ -17,6 +17,7 @@ import { EventsService } from 'src/shared/services/events.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/shared/services/auth.service';
 import { ConfirmModalComponent } from 'src/shared/components/confirm-modal/confirm-modal.component';
+import { Categories } from 'src/shared/data/categories';
 
 @Component({
   selector: 'app-event-detail',
@@ -75,6 +76,10 @@ export class EventDetailPage implements OnInit, OnDestroy {
 
   errorMessage: string = '';
   getDayOfWeek = getDayOfWeek;
+  categories: any = Object.entries(Categories).filter(
+    (entry) => typeof entry[1] === 'string'
+  );
+  categoriesMap: Map<string, string> = new Map();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -83,7 +88,11 @@ export class EventDetailPage implements OnInit, OnDestroy {
     private eventService: EventsService,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    this.categoriesMap = new Map(
+      this.categories.map((item: any[]) => [item[1], item[0]])
+    );
+  }
 
   ngOnInit() {}
 

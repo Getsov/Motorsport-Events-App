@@ -14,6 +14,7 @@ export class SearchComponent implements OnInit {
   @Input() parent: string = '';
   @Input() titleColor: string = 'orange';
   @Input() titleText: string = 'Филтриране на събития';
+  @Input() externalSelectedCategory: number[] | undefined; // Input property to receive selected category from parent
   @Output() filteredEvents = new EventEmitter<any>();
   private eventsSubscription: Subscription = new Subscription();
 
@@ -42,95 +43,101 @@ export class SearchComponent implements OnInit {
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        const currentQuery = this.activatedRoute.snapshot.queryParams['sortBy'];
-        if (this.sortBy != currentQuery) {
-          this.sortBy = currentQuery;
-          if (this.sortBy) {
-            this.selectedCategory = this.sortBy.split(',').map(Number);
-            this.searchEvents();
-          }
-        }
+        this.loadEventsBasedOnRoute();
       }
     });
   }
 
   ngOnInit() {}
 
-  searchEvents(): void {
-    let query = '';
-
-    if (this.searchQuery.length > 0) {
-      query += `search=${this.searchQuery}&`;
+  ionViewWillEnter() {
+    if (this.externalSelectedCategory) {
+      this.selectedCategory = this.externalSelectedCategory;
     }
+    this.loadEventsBasedOnRoute();
+  }
 
-    if (this.selectedCategory.length > 0) {
-      if (this.selectedCategory.length > 1) {
-        this.selectedCategory.forEach((el) => {
-          query += `category=${el}&`;
-        });
-      } else {
-        query += `category=${this.selectedCategory}&`;
-      }
+  loadEventsBasedOnRoute(): void {
+    const queryParams = this.activatedRoute.snapshot.queryParams;
+
+    if (queryParams['sortBy']) {
+      // If 'sortBy' query parameter is present, update selectedCategory.
+      // Assumes 'sortBy' query parameter is a single category index.
+      this.selectedCategory = [parseInt(queryParams['sortBy'])];
+
+      // Call searchEvents to load events based on the selected category.
+      this.searchEvents();
+    } else if (Object.keys(queryParams).length === 0) {
+      // If there are no query parameters, load all events and reset selectedCategory.
+      this.selectedCategory = [];
+      this.getEvents();
     } else {
-      query = '';
-      this.clearUrlQuery();
+      // For other query parameters, update the search criteria.
+      this.updateSearchCriteriaFromQueryParams(queryParams);
+      this.searchEvents();
     }
+  }
 
-    if (this.locationQuery.length > 0) {
-      if (this.locationQuery.length > 1) {
-        this.locationQuery.forEach((el: string) => {
-          query += `region=${el}&`;
-        });
-      } else {
-        query += `region=${this.locationQuery}&`;
-      }
+  updateSearchCriteriaFromQueryParams(queryParams: any): void {
+    // Extract and set relevant search criteria based on queryParams
+    // For example, this.sortBy = queryParams['sortBy'] || '';
+    // Update other properties like searchQuery, selectedCategory, locationQuery as needed
+    this.searchQuery = queryParams['search']
+      ? queryParams['search'].split(',')
+      : [];
+    this.selectedCategory = queryParams['category']
+      ? queryParams['category'].split(',').map(Number)
+      : [];
+    this.locationQuery = queryParams['region']
+      ? queryParams['region'].split(',')
+      : [];
+  }
+
+  searchEvents(clearInput?: boolean): void {
+    if (clearInput) {
+      this.searchQuery = [];
     }
-
-    query = query.slice(0, -1);
-
-    if (
-      this.searchQuery.length == 0 &&
-      this.selectedCategory.length == 0 &&
-      this.locationQuery.length == 0
-    ) {
-      query = '';
-      this.clearUrlQuery();
-    }
+    let query = this.buildQuery();
     this.getEvents(query);
   }
 
-  getEvents(query: string = '') {
-    if (this.parent == 'favourites') {
-      this.eventsSubscription = this.eventService
-        .getMyFavourites(query)
-        .subscribe({
-          next: (events) => {
-            this.filteredEvents.emit(events);
-          },
-          error: (err) => {
-            this.toasterMessage = err.error.error;
-            this.toasterType = 'error';
+  buildQuery(): string {
+    let queryParts = [];
 
-            setTimeout(() => {
-              this.resetToasters();
-            }, 5000);
-          },
-        });
-    } else {
-      this.eventsSubscription = this.eventService.getEvents(query).subscribe({
-        next: (events) => {
-          this.filteredEvents.emit(events);
-        },
-        error: (err) => {
-          this.toasterMessage = err.error.error;
-          this.toasterType = 'error';
+    if (this.searchQuery.length > 0) {
+      queryParts.push(`search=${this.searchQuery}`);
+    }
 
-          setTimeout(() => {
-            this.resetToasters();
-          }, 5000);
-        },
+    if (this.selectedCategory.length > 0) {
+      this.selectedCategory.forEach((category) => {
+        queryParts.push(`category=${category}`);
       });
     }
+
+    if (this.locationQuery.length > 0) {
+      this.locationQuery.forEach((location) => {
+        queryParts.push(`region=${location}`);
+      });
+    }
+
+    return queryParts.join('&');
+  }
+
+  getEvents(query: string = '') {
+    const fetchMethod =
+      this.parent == 'favourites'
+        ? () => this.eventService.getMyFavourites(query)
+        : () => this.eventService.getEvents(query);
+    this.eventsSubscription = fetchMethod().subscribe({
+      next: (events) => this.filteredEvents.emit(events),
+      error: (err) => this.handleEventFetchError(err),
+    });
+  }
+
+  handleEventFetchError(err: any): void {
+    this.toasterMessage = err.error.error;
+    this.toasterType = 'error';
+    setTimeout(() => this.resetToasters(), 5000);
   }
 
   resetToasters() {

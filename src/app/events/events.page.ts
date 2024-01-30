@@ -47,7 +47,7 @@ export class EventsPage {
 
   ionViewWillEnter() {
     this.user = this.authService.getUserFromLocalStorage();
-    this.getEvents();
+    // this.getEvents();
   }
 
   getFilteredEvents(event: any): any {

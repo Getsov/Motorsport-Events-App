@@ -37,7 +37,7 @@ ion-searchbar.custom.ng-dirty.searchbar-has-value {
 ion-select {
   flex: 1 0 47%;
   background: transparent;
-  display: flex;
+  // display: flex;
   width: 47%;
   height: 56px;
   align-items: center;
@@ -58,7 +58,6 @@ ion-select {
 // :host(.select-label-placement-floating) .select-wrapper {
 //   width: 100%;
 // }
-
 ion-select.select-item::part(icon):hover {
   color: #ff7418;
 }
