@@ -27,4 +27,8 @@ export class TabsPage {
         this.selectedPath = event.url;
       });
   }
+
+  navigateToEvents() {
+    this.router.navigate(['/tabs/events'], { queryParams: {} });
+  }
 }
