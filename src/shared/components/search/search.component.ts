@@ -1,6 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { Categories } from 'src/shared/data/categories';
 import BulgarianRegions from 'src/shared/data/regions';
 import { EventsService } from 'src/shared/services/events.service';
@@ -36,6 +43,7 @@ export class SearchComponent implements OnInit {
   categories: any = Object.keys(Categories).filter((value) =>
     isNaN(Number(value))
   );
+  private destroy$ = new Subject<void>();
   constructor(
     private eventService: EventsService,
     private activatedRoute: ActivatedRoute,
@@ -58,16 +66,18 @@ export class SearchComponent implements OnInit {
   }
 
   loadEventsBasedOnRoute(): void {
-    const queryParams = this.activatedRoute.snapshot.queryParams;
-
-    if (queryParams['sortBy']) {
+    const route = this.router.parseUrl(this.router.url);
+    const queryParams = route.queryParamMap.keys;
+    if (queryParams.includes('sortBy')) {
       // If 'sortBy' query parameter is present, update selectedCategory.
-      // Assumes 'sortBy' query parameter is a single category index.
-      this.selectedCategory = [parseInt(queryParams['sortBy'])];
-
+      const categoryToSort = route.queryParamMap.get('sortBy');
+      this.selectedCategory = categoryToSort ? [Number(categoryToSort)] : [];
       // Call searchEvents to load events based on the selected category.
       this.searchEvents();
-    } else if (Object.keys(queryParams).length === 0) {
+    } else if (
+      Object.keys(queryParams).length === 0 ||
+      route.queryParamMap.keys.length === 0
+    ) {
       // If there are no query parameters, load all events and reset selectedCategory.
       this.selectedCategory = [];
       this.getEvents();
