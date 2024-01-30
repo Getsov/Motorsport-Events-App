@@ -30,9 +30,19 @@
 
     <div class="category-city-wrapper">
       <ng-container *ngFor="let category of event.categories">
-        <span class="badge">{{category}}</span>
+        <span
+          class="badge"
+          [routerLink]="['/tabs/events']"
+          [queryParams]="{ sortBy: categoriesMap.get(category) }"
+          >{{category}}</span
+        >
       </ng-container>
-      <span class="badge">{{event.contacts.region}}</span>
+      <span
+        class="badge"
+        [routerLink]="['/tabs/events']"
+        [queryParams]="{ sortBy: event.contacts.region }"
+        >{{event.contacts.region}}</span
+      >
     </div>
 
     <p class="long-description">{{event.longDescription}}</p>
