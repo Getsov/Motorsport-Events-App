@@ -3,7 +3,14 @@
     <app-event-line
       *ngIf="user?._id == event?.creator"
       class="my-event-line"
-      [inputString]="myEventLineText"
+      [inputString]="'Мое събитие'"
+      [inputColor]="'yellow'"
+    ></app-event-line>
+    <app-event-line
+      *ngIf="event.dates[0].date < formattedDate && user?._id != event?.creator"
+      class="my-event-line"
+      [inputString]="'Отминало'"
+      [inputColor]="'red'"
     ></app-event-line>
     <div class="image-wrapper" [routerLink]="event._id">
       <img
