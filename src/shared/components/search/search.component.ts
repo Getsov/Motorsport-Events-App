@@ -2,8 +2,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnDestroy,
-  OnInit,
   Output,
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
@@ -17,7 +15,7 @@ import { EventsService } from 'src/shared/services/events.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
   @Input() parent: string = '';
   @Input() titleColor: string = 'orange';
   @Input() titleText: string = 'Филтриране на събития';
@@ -55,8 +53,6 @@ export class SearchComponent implements OnInit {
       }
     });
   }
-
-  ngOnInit() {}
 
   ionViewWillEnter() {
     if (this.externalSelectedCategory) {
@@ -139,7 +135,7 @@ export class SearchComponent implements OnInit {
         ? () => this.eventService.getMyFavourites(query)
         : () => this.eventService.getEvents(query);
     this.eventsSubscription = fetchMethod().subscribe({
-      next: (events) => this.filteredEvents.emit(events),
+      next: (events) => this.filteredEvents.emit(events.results),
       error: (err) => this.handleEventFetchError(err),
     });
   }

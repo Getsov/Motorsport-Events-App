@@ -39,7 +39,7 @@ export class EventsService {
   }
 
   // get events and set them in the events subject
-  getEvents(query: string = ''): Observable<Event[]> {
+  getEvents(query: string = ''): Observable<any> {
     if (query) {
       return this.http.get<Event[]>(`${baseUrl}/events?${query}`);
       // .pipe(tap((eventData) => this.setEventsInSubject(eventData)));
