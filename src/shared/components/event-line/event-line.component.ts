@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class EventLineComponent  implements OnInit {
   @Input() inputString!: string;
+  @Input() inputColor!: string;
   constructor() { }
 
   ngOnInit() {}

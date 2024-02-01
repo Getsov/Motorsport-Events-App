@@ -1,8 +1,17 @@
+.my-event-line.yellow{
+  background-color: #FFDC23;
+}
+.my-event-line.red{
+  background-color: #FF0000;
+  .my-event-text{
+    color: #FFFFFF;
+  }
+}
+
 .my-event-line {
     width: 135.723px;
     height: 24px;
     transform: rotate(-45deg);
-    background-color: #FFDC23;
     display: flex;
     align-items: center;
   
