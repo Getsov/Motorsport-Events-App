@@ -1,10 +1,16 @@
-<ion-content>
+<ion-content mode="ios">
   <p>
     {{
       modalType === "delete"
         ? deleteModalMessage
         : modalType === "edit"
         ? editMessage
+        : modalType === "create"
+        ? createMessage
+        : modalType === "editProfile"
+        ? editProfileMessage
+        : modalType === "logout"
+        ? logoutMessage
         : discardMessage
     }}
   </p>

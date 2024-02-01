@@ -3,21 +3,29 @@ ion-input {
     color: #fff;
   }
 }
-// success state
-ion-input.custom-valid-input {
-  border-bottom: 1px solid #00cc00;
+
+ion-input.has-focus {
+  border-bottom: 1px solid #fff !important;
 
   ::ng-deep .label-text {
-    color: #00cc00;
+    color: #fff !important;
+  }
+}
+// success state
+ion-input.custom-valid-input {
+  border-bottom: 1px solid #00cc00 !important;
+
+  ::ng-deep .label-text {
+    color: #00cc00 !important;
   }
 }
 
 // error state
 ion-input.custom-invalid-input {
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid red !important;
 
   ::ng-deep .label-text {
-    color: #ff0000;
+    color: #ff0000 !important;
   }
 }
 

@@ -2,7 +2,6 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { Event } from 'src/shared/interfaces/Event';
 import { EventsService } from 'src/shared/services/events.service';
 
 @Component({
@@ -21,8 +20,15 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
   deleteModalMessage: string =
     'Сигурни ли сте, че искате да изтриете събитието?';
   editMessage: string = 'Сигурни ли сте, че искате да редактирате събитието?';
+  editProfileMessage: string =
+    'Сигурни ли сте, че искате да редактирате профила?';
   discardMessage: string =
     'Сигурни ли сте, че искате да откажете направените промени?';
+
+  logoutMessage: string =
+    'Сигурни ли сте, че искате да излезнете от профила си?';
+
+  createMessage: string = 'Сигурни ли сте, че искате да създадете събитието?';
 
   constructor(
     private modalController: ModalController,
@@ -42,10 +48,20 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
       case 'delete':
         this.deleteSubscription$ = this.deleteEvent();
         break;
-      // TODO: handle create/edit case
       case 'dismiss':
         this.router.navigateByUrl('/tabs/events');
+
+        this.toasterMessage = 'Успешно отказахте направените промени';
+        this.toasterType = 'success';
+
         await this.modalController.dismiss();
+        break;
+
+      case 'edit':
+      case 'editProfile':
+      case 'create':
+      case 'logout':
+        await this.modalController.dismiss(true);
         break;
 
       default:
@@ -61,14 +77,23 @@ export class ConfirmModalComponent implements OnInit, OnDestroy {
           this.toasterMessage = 'Успешно изтрито събитие';
           this.toasterType = 'success';
 
-          this.router.navigateByUrl('/tabs/events');
+          this.router.navigateByUrl('/');
           this.modalController.dismiss();
         },
         error: (err) => {
-          this.toasterType = 'error';
           this.toasterMessage = err.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
         },
       });
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   ngOnDestroy(): void {

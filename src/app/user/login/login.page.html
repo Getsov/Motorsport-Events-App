@@ -66,15 +66,16 @@
       >
         Паролата трябва да е с максимална дължина 24 символа!
       </p>
-
-      <!-- TODO: When server returns email already taken -->
     </ng-container>
-    <p class="auth-validation-error-message" *ngIf="loginResponseError">
-      {{loginResponseError}}
-    </p>
   </div>
 
   <div class="main-button-wrapper">
-    <button class="main-button" [disabled]="loginForm.invalid">Вход</button>
+    <button class="main-button">Вход</button>
   </div>
+
+  <!-- toaster message -->
+  <app-toaster
+    [toasterMessage]="toasterMessage"
+    [toasterType]="toasterType"
+  ></app-toaster>
 </form>

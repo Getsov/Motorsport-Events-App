@@ -19,10 +19,10 @@ ion-searchbar.custom:hover {
   --clear-button-color: #ff7418;
 }
 
-ion-searchbar.custom.ng-dirty.searchbar-has-value{
-  border-color: #00CC00;
-  --icon-color: #00CC00;
-  --clear-button-color: #00CC00;
+ion-searchbar.custom.ng-dirty.searchbar-has-value {
+  border-color: #00cc00;
+  --icon-color: #00cc00;
+  --clear-button-color: #00cc00;
 }
 /* select style */
 .select-section {
@@ -31,24 +31,35 @@ ion-searchbar.custom.ng-dirty.searchbar-has-value{
   margin-bottom: 24px;
   display: flex;
   justify-content: space-between;
-  gap: 16px
+  gap: 16px;
 }
 
 ion-select {
   flex: 1 0 47%;
   background: transparent;
-  display: flex;
+  // display: flex;
   width: 47%;
   height: 56px;
   align-items: center;
   gap: 12px;
   padding-left: 1em;
   border-bottom: 1px solid #fff;
+  // this will fix the truncating when multiple categories or regions selected but it can not be selected. It is a part of the shadow dom but does not have ::part
+  .select-wrapper,
+  #select-label {
+    width: 100%;
+  }
 }
 
-ion-select.select-item::part(icon):hover{
+// this will fix the truncating when multiple categories or regions selected but it can not be selected. It is a part of the shadow dom but does not have ::part
+// ::ng-deep label.select-wrapper,
+// ::ng-deep label#select-label,
+// :host(.select-label-placement-stacked) .select-wrapper,
+// :host(.select-label-placement-floating) .select-wrapper {
+//   width: 100%;
+// }
+ion-select.select-item::part(icon):hover {
   color: #ff7418;
-  
 }
 ion-select.select-item::part(icon) {
   bottom: 1em;
@@ -63,10 +74,10 @@ ion-select:hover {
   border-color: #ff7418;
 }
 
-ion-select.has-value{
-  border-color: #00CC00;
-  --icon-color: #00CC00;;
-  --highlight-color-valid: #00CC00;;
+ion-select.has-value {
+  border-color: #00cc00;
+  --icon-color: #00cc00;
+  --highlight-color-valid: #00cc00;
 }
 
 ion-select::part(placeholder) {
@@ -76,14 +87,14 @@ ion-select::part(placeholder) {
   font-size: 14px;
 }
 
-::ng-deep .sc-ion-alert-ios-h{
+::ng-deep .sc-ion-alert-ios-h {
   --max-width: 100%;
 }
 ::ng-deep .alert-wrapper {
-  border: 1px solid #A6A2A0 !important;
+  border: 1px solid #a6a2a0 !important;
   border-radius: 4px !important;
   width: 91.7% !important;
-  
+
   .alert-head {
     display: flex;
     align-items: center;
@@ -91,7 +102,7 @@ ion-select::part(placeholder) {
     justify-content: space-between;
     padding: 0;
     margin: 0;
-    background-color: #0D0D0D;
+    background-color: #0d0d0d;
 
     .alert-title.sc-ion-alert-ios {
       color: rgb(255, 117, 26);
@@ -106,12 +117,12 @@ ion-select::part(placeholder) {
   .alert-checkbox-group::-webkit-scrollbar {
     width: 0.75em;
     display: block !important;
-    background-color: #33312F;
+    background-color: #33312f;
   }
 
-  .alert-checkbox-group{
+  .alert-checkbox-group {
     min-height: 322px !important;
-    border-top: 1px solid #A6A2A0;
+    border-top: 1px solid #a6a2a0;
   }
   .alert-checkbox-group::-webkit-scrollbar-thumb {
     background-color: #a6a2a0;
@@ -122,39 +133,39 @@ ion-select::part(placeholder) {
   }
 
   .alert-checkbox-icon {
-    background-color: #A6A2A0 !important;
+    background-color: #a6a2a0 !important;
   }
 
-  [aria-checked=true].sc-ion-alert-ios .alert-checkbox-icon.sc-ion-alert-ios {
+  [aria-checked="true"].sc-ion-alert-ios .alert-checkbox-icon.sc-ion-alert-ios {
     background-color: rgb(255, 117, 26) !important;
   }
 
-  [aria-checked=true].sc-ion-alert-ios .alert-checkbox-inner.sc-ion-alert-ios {
-    color: #FFFFFF;
-    border-color: #FFFFFF;
+  [aria-checked="true"].sc-ion-alert-ios
+    .alert-checkbox-inner.sc-ion-alert-ios {
+    color: #ffffff;
+    border-color: #ffffff;
   }
 
   .alert-button-inner.sc-ion-alert-ios {
-    background-color: #0D0D0D;
-    border-bottom: 1px solid #A6A2A0 !important;
-    border-right: 1px solid #A6A2A0 !important;
+    background-color: #0d0d0d;
+    border-bottom: 1px solid #a6a2a0 !important;
+    border-right: 1px solid #a6a2a0 !important;
   }
 
   .alert-button-group {
-    border-top: 1px solid #A6A2A0 !important;
+    border-top: 1px solid #a6a2a0 !important;
     .alert-button {
-      background-color: #0D0D0D;
+      background-color: #0d0d0d;
       padding: 0;
     }
-    .alert-button:active{
+    .alert-button:active {
       background-color: rgb(255, 117, 26) !important;
-      color:#000;
-      
+      color: #000;
     }
-    .alert-button-role-cancel{
-      border-right: 1px solid #A6A2A0 !important;
+    .alert-button-role-cancel {
+      border-right: 1px solid #a6a2a0 !important;
     }
-    .alert-button>span {
+    .alert-button > span {
       background: none !important;
       padding: 0;
       border-bottom: 0px !important;

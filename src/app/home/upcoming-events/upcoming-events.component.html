@@ -1,19 +1,20 @@
-<!-- TODO: what we will display then there are no dates? -->
+<ng-container *ngIf="upcomingEvents.length > 0">
+  <app-title-fades [color]="titleColor" [title]="titleText" />
 
-<app-title-fades [color]="titleColor" [title]="titleText" />
+  <swiper-container
+    [slidesPerView]="1.7"
+    [spaceBetween]="16"
+    pagination="true"
+    pagination-dynamic-bullets="true"
+    (swiperslidechange)="swiperSlideChanged($event)"
+    [paginationCenteredSlides]="true"
+  >
+    <swiper-slide *ngFor="let event of upcomingEvents">
+      <app-slide-card [event]="event" />
+    </swiper-slide>
+  </swiper-container>
+</ng-container>
 
-<swiper-container
-  [slidesPerView]="1.7"
-  [spaceBetween]="16"
-  pagination="true"
-  pagination-dynamic-bullets="true"
-  (swiperslidechange)="swiperSlideChanged($event)"
-  [paginationCenteredSlides]="true"
->
-  <swiper-slide *ngFor="let event of upcomingEvents">
-    <app-slide-card [event]="event" />
-  </swiper-slide>
-</swiper-container>
 <div class="ion-padding-horizontal" *ngIf="isAdminOrOrganization">
   <div class="main-button-wrapper">
     <ion-icon [src]="addIcon" name="addIcon" class="add-icon" />
@@ -22,3 +23,9 @@
     >
   </div>
 </div>
+
+<!-- toaster message -->
+<app-toaster
+  [toasterMessage]="toasterMessage"
+  [toasterType]="toasterType"
+></app-toaster>

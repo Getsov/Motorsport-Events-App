@@ -137,6 +137,8 @@ select {
   line-height: 1;
 }
 
+// Main button
+
 .main-button-wrapper {
   background-color: #ff7418;
 }
@@ -144,6 +146,8 @@ select {
 .main-button {
   color: #0d0d0d;
 }
+
+// main button disabled
 
 .cancel-button-wrapper {
   border: 2px solid #ff7418;
@@ -195,7 +199,6 @@ select {
   right: -19px;
 }
 
-
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
@@ -232,3 +235,18 @@ select {
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+/* Toast position to be above bottom bar fixes */
+
+.md .tabs-bottom {
+  transform: translateY(-56px) !important;
+}
+.ios .tabs-bottom {
+  transform: translateY(-50px) !important;
+}
+.md .header-top {
+  top: 56px !important;
+}
+.ios .header-top {
+  top: 44px !important;
+}

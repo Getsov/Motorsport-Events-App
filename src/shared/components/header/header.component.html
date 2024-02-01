@@ -25,7 +25,7 @@
       </div>
 
       <div class="logout-wrapper" *ngIf="isLogged">
-        <div class="logout-icon" (click)="onLogout()">
+        <div class="logout-icon" (click)="presentLogoutModal('logout')">
           <img src="../../../assets/icon/logout.svg" />
         </div>
       </div>

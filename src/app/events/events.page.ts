@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EventsService } from '../../shared/services/events.service';
 import { Event } from 'src/shared/interfaces/Event';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { AuthService } from 'src/shared/services/auth.service';
   templateUrl: './events.page.html',
   styleUrls: ['./events.page.scss'],
 })
-export class EventsPage implements OnInit {
+export class EventsPage {
   parent: string = 'events';
   eventsData: Event[] = [];
   query: any = [];
@@ -36,20 +36,18 @@ export class EventsPage implements OnInit {
     isApproved: false,
   };
 
+  // toaster info
+  toasterType: string = '';
+  toasterMessage: string = '';
+
   constructor(
     private eventService: EventsService,
     private authService: AuthService
   ) {}
 
-  ngOnInit(): void {
-    this.getEvents();
-    this.user = this.authService.getUserFromLocalStorage();
-  }
-
-  // this works when edited/deleted event goes back to all events - the changes are applied
-  // - onInit does not go inside after edit/delete - TODO: decide if oninit is needed here
   ionViewWillEnter() {
-    this.getEvents();
+    this.user = this.authService.getUserFromLocalStorage();
+    // this.getEvents();
   }
 
   getFilteredEvents(event: any): any {
@@ -62,10 +60,21 @@ export class EventsPage implements OnInit {
         this.eventsData = events;
       },
       error: (err) => {
-        console.error(err);
+        this.toasterMessage = err.error.error;
+        this.toasterType = 'error';
+
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
       },
     });
   }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
+  }
+
   ionViewDidLeave(): void {
     if (this.eventsSubscription) {
       this.eventsSubscription.unsubscribe();

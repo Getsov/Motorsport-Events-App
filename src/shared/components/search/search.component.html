@@ -1,17 +1,53 @@
 <div mode="md">
   <app-title-fades [color]="titleColor" [title]="titleText" />
-  <ion-searchbar [(ngModel)]="searchQuery" placeholder="Търси събитие" class="custom"
-    (input)="searchEvents()"></ion-searchbar>
+  <ion-searchbar
+    [(ngModel)]="searchQuery"
+    placeholder="Търси събитие"
+    class="custom"
+    (input)="searchEvents()"
+    (ionClear)="searchEvents(true)"
+  ></ion-searchbar>
 </div>
-<div class="select-section">
-
-  <ion-select [(ngModel)]="selectedCategory" labelPlacement="floating" okText="Ок" cancelText="Откажи" slot="end"
-    label="{{ category }}" class="select-item" [multiple]="true" (ionChange)="searchEvents()">
-    <ion-select-option *ngFor="let item of categories; let i = index" [value]="i+1">{{ item }}</ion-select-option>
+<div class="select-section" mode="ios">
+  <ion-select
+    [(ngModel)]="selectedCategory"
+    labelPlacement="floating"
+    okText="Ок"
+    cancelText="Откажи"
+    slot="end"
+    label="{{ category }}"
+    class="select-item"
+    [multiple]="true"
+    (ionChange)="searchEvents()"
+  >
+    <ion-select-option
+      *ngFor="let item of categories; let i = index"
+      [value]="i + 1"
+      >{{ item }}</ion-select-option
+    >
   </ion-select>
 
-  <ion-select [(ngModel)]="locationQuery" labelPlacement="floating" okText="Ок" cancelText="Откажи" slot="end"
-    label="{{ location }}" class="select-item" [multiple]="true" (ionChange)="searchEvents()">
-    <ion-select-option *ngFor=" let item of regions; let i = index" [value]="i+1">{{ item }}</ion-select-option>
+  <ion-select
+    [(ngModel)]="locationQuery"
+    labelPlacement="floating"
+    okText="Ок"
+    cancelText="Откажи"
+    slot="end"
+    label="{{ location }}"
+    class="select-item"
+    [multiple]="true"
+    (ionChange)="searchEvents()"
+  >
+    <ion-select-option
+      *ngFor="let item of regions; let i = index"
+      [value]="i + 1"
+      >{{ item }}</ion-select-option
+    >
   </ion-select>
 </div>
+
+<!-- toaster message -->
+<app-toaster
+  [toasterMessage]="toasterMessage"
+  [toasterType]="toasterType"
+></app-toaster>

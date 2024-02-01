@@ -170,11 +170,13 @@
         </p>
       </ng-container>
 
-      <div class="auth-input">
+      <div class="auth-input region-select-wrapper">
         <ion-select
-          interface="popover"
-          placeholder="Населено място"
-          class="region-select"
+          labelPlacement="floating"
+          label="Населено място"
+          [ngClass]="region.value ? 'region-select custom-valid-input' : 'region-select' "
+          okText="Ок"
+          cancelText="Откажи"
           slot="end"
           name="region"
           #region
@@ -187,17 +189,18 @@
           >
         </ion-select>
       </div>
-
-      <!-- Error returned from server -->
-      <p class="auth-validation-error-message" *ngIf="authResponseError">
-        {{authResponseError}}
-      </p>
     </div>
 
     <div class="main-button-wrapper">
       <button class="main-button">Регистрация</button>
     </div>
   </form>
+
+  <!-- toaster message -->
+  <app-toaster
+    [toasterMessage]="toasterMessage"
+    [toasterType]="toasterType"
+  ></app-toaster>
 </ng-container>
 <ng-container *ngIf="!userChecked">
   <app-organization-register></app-organization-register>

@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -12,7 +18,7 @@ import {
   transformDateFromBackend,
 } from 'src/shared/utils/date-utils';
 import BulgarianRegions from 'src/shared/data/regions';
-import Categories from 'src/shared/data/categories';
+import { Categories } from 'src/shared/data/categories';
 import { Event } from 'src/shared/interfaces/Event';
 import { IonContent, ModalController } from '@ionic/angular';
 import { ConfirmModalComponent } from 'src/shared/components/confirm-modal/confirm-modal.component';
@@ -33,9 +39,9 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
 
   // get price values
   @ViewChild(SelectPriceComponent) selectPricesComponent!: SelectPriceComponent;
-  visitorPrices = [{ price: 0, description: '' }];
+  visitorPrices: any = [{ price: '', description: '' }];
   visitorError: any = false;
-  participantPrices = [{ price: 0, description: '' }];
+  participantPrices: any = [{ price: '', description: '' }];
   participantError: any = false;
 
   // get date values
@@ -68,6 +74,9 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
   );
   typeErrorMessage = '';
 
+  // confirm modal
+  modal: any;
+
   // header separator settings
   headerTitle: string = 'Създай събитие';
   defaultHref: string = '/tabs/events';
@@ -97,7 +106,8 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     private eventService: EventsService,
     private router: Router,
     private route: ActivatedRoute,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -112,9 +122,13 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
             this.eventData = eventResponse;
             this.populateEventDataInForm();
           },
-          error: (err) => {
-            this.toasterMessage = err.message;
+          error: (error) => {
+            this.toasterMessage = error.error.error;
             this.toasterType = 'error';
+
+            setTimeout(() => {
+              this.resetToasters();
+            }, 5000);
           },
         });
     }
@@ -145,21 +159,38 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     }
   }
 
-  onCreateEventSubmit(eventForm: NgForm) {
+  async onCreateEventSubmit(eventForm: NgForm) {
     if (
       !this.validateRequiredField(this.imageUrl, 'imageErrorMessage') ||
       !this.validateRequiredField(this.selectedEventType, 'typeErrorMessage') ||
       !this.validateRequiredField(this.selectedRegion, 'regionErrorMessage') ||
-      !this.validateRequiredField(
-        this.selectedAddress,
-        'addressErrorMessage'
-      ) ||
+      !this.validateAddress(this.selectedAddress, 'addressErrorMessage') ||
       !this.validateDatesField(this.dates, 'datesError') ||
       !this.validatePriceField(this.visitorPrices, 'visitorError') ||
-      !this.validatePriceField(this.participantPrices, 'participantError') ||
-      eventForm.invalid
+      !this.validateParticipants(this.participantPrices, 'participantError')
     ) {
-      this.content?.scrollToTop(500);
+      this.resetToasters();
+
+      setTimeout(() => {
+        this.scrollToErrorInput();
+        this.toasterMessage = 'Моля, попълнете коректно полето!';
+        this.toasterType = 'error';
+      }, 100);
+
+      return;
+    }
+
+    if (eventForm.invalid) {
+      Object.values(eventForm.controls).forEach((control) => {
+        control.markAsTouched();
+      });
+
+      setTimeout(() => {
+        this.scrollToErrorInput();
+        this.toasterMessage = 'Моля, попълнете коректно полето!';
+        this.toasterType = 'error';
+      }, 100);
+
       return;
     }
 
@@ -196,55 +227,43 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
       participantPrices: this.participantPrices,
       dates: formattedDates,
     };
-    // TODO: Confirm modal for event edit/create
+
+    // Confirm modal for event edit/create
     if (this.eventId) {
-      this.eventSubscription$ = this.eventService
-        .editEvent(formValue, this.eventId)
-        .subscribe({
-          next: () => {
-            this.toasterMessage =
-              'Успешно редактирано събитие! Събитието очаква одобрение от администратор.';
-            this.toasterType = 'success';
-            setTimeout(
-              () => this.router.navigateByUrl(`/tabs/events/${this.eventId}`),
-              2000
-            );
-          },
-          error: (err) => {
-            this.toasterMessage = err.message;
-            this.toasterType = 'error';
-          },
-        });
+      await this.presentModal('edit');
+
+      this.modal
+        .onDidDismiss()
+        .then((hasConfirmed: any) => {
+          if (hasConfirmed.data && this.eventId) {
+            this.eventSubscription$ = this.editEvent(formValue);
+          }
+        })
+        .catch(console.log);
     } else {
       formValue.creator = user._id;
-      this.eventSubscription$ = this.eventService
-        .createEvent(formValue)
-        .subscribe({
-          next: () => {
-            // update user info in subject and localstorage. Previously newly created event was not added to createdEvents in FE.
-            this.authService.updateUserAuthData(formValue.creator);
 
-            this.toasterMessage =
-              'Успешно създадено събитие! Събитието очаква одобрение от администратор.';
-            this.toasterType = 'success';
-            setTimeout(() => this.router.navigateByUrl('/tabs/events'), 2000);
-          },
-          error: (err) => {
-            this.toasterMessage = err.message;
-            this.toasterType = 'error';
-          },
-        });
+      await this.presentModal('create');
+
+      this.modal
+        .onDidDismiss()
+        .then((hasConfirmed: any) => {
+          if (hasConfirmed.data) {
+            this.eventSubscription$ = this.createEvent(formValue);
+          }
+        })
+        .catch(console.log);
     }
   }
 
   async presentModal(modalType: string) {
-    const modal = await this.modalController.create({
+    this.modal = await this.modalController.create({
       component: ConfirmModalComponent,
       componentProps: { eventId: this.eventId, modalType },
       cssClass: 'confirm-modal',
     });
 
-    await modal.present();
+    await this.modal.present();
   }
 
   onRegionChange(region: string): void {
@@ -262,16 +281,32 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
   }
 
   onConfirmedAddress(confirmedAddress: any) {
-    this.selectedAddress = confirmedAddress;
-    this.addressErrorMessage = '';
+    if (confirmedAddress.title && confirmedAddress.address) {
+      this.selectedAddress = confirmedAddress;
+      this.addressErrorMessage = '';
+    } else {
+      this.selectedAddress = null;
+      this.addressErrorMessage = 'Полето е задължително';
+    }
   }
 
   // function to validate inputs which can not be validated from the template
   validateRequiredField(value: any, errorMessageVariable: string): boolean {
+    if (!value || !value[0]) {
+      this[errorMessageVariable] = 'Полето е задължително';
+      return false;
+    }
+
+    this[errorMessageVariable] = '';
+    return true;
+  }
+
+  validateAddress(value: any, errorMessageVariable: string): boolean {
     if (!value) {
       this[errorMessageVariable] = 'Полето е задължително';
       return false;
     }
+
     this[errorMessageVariable] = '';
     return true;
   }
@@ -281,9 +316,26 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     errorMessageVariable: string
   ): boolean {
     for (let i = 0; i < priceArr.length; i++) {
-      if (!priceArr[i].price || !priceArr[i].description) {
+      if (!this.isPriceValid(priceArr[i].price) || !priceArr[i].description) {
         this[errorMessageVariable] = ['Некоректно попълнени полета', i];
         return false;
+      }
+    }
+
+    this[errorMessageVariable] = false;
+    return true;
+  }
+
+  validateParticipants(
+    priceArr: { price: string | number; description: string }[],
+    errorMessageVariable: string
+  ) {
+    for (let i = 0; i < priceArr.length; i++) {
+      if (priceArr[i].price || priceArr[i].description) {
+        if (!this.isPriceValid(priceArr[i].price) || !priceArr[i].description) {
+          this[errorMessageVariable] = ['Некоректно попълнени полета', i];
+          return false;
+        }
       }
     }
     this[errorMessageVariable] = false;
@@ -295,18 +347,83 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
     errorMessageVariable: string
   ): boolean {
     for (let i = 0; i < datesArr.length; i++) {
-      if (
-        !datesArr[i].date ||
-        datesArr[i].startTime === '00:00' ||
-        datesArr[i].endTime === '00:00' ||
-        datesArr[i].startTime >= datesArr[i].endTime
-      ) {
+      if (!datesArr[i].date || datesArr[i].startTime >= datesArr[i].endTime) {
         this[errorMessageVariable] = ['Некоректно попълнени полета', i];
         return false;
       }
     }
     this[errorMessageVariable] = false;
     return true;
+  }
+
+  // creat event handler
+  createEvent(formValue: any) {
+    return this.eventService.createEvent(formValue).subscribe({
+      next: () => {
+        // update user info in subject and localstorage. Previously newly created event was not added to createdEvents in FE.
+        this.authService.updateUserAuthData(formValue.creator);
+
+        this.toasterMessage =
+          'Успешно създадено събитие! Събитието очаква одобрение от администратор.';
+        this.toasterType = 'success';
+        setTimeout(() => {
+          this.router.navigateByUrl('/tabs/events');
+
+          this.resetToasters();
+        }, 2000);
+      },
+      error: (error) => {
+        this.toasterMessage = error.error.error;
+        this.toasterType = 'error';
+
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
+      },
+    });
+  }
+
+  // edit event handler
+  editEvent(formValue: any) {
+    return this.eventService.editEvent(formValue, this.eventId!).subscribe({
+      next: () => {
+        this.toasterMessage =
+          'Успешно редактирано събитие! Събитието очаква одобрение от администратор.';
+        this.toasterType = 'success';
+        setTimeout(() => {
+          this.router.navigateByUrl(`/tabs/events`);
+          this.resetToasters();
+        }, 2000);
+      },
+      error: (error) => {
+        this.toasterMessage = error.error.error;
+        this.toasterType = 'error';
+
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
+      },
+    });
+  }
+
+  // find the first validation error message and scroll to it
+  scrollToErrorInput(): void {
+    const errorInputs = document.querySelectorAll('.validation-error-message');
+    if (errorInputs.length > 0) {
+      const firstErrorInput = errorInputs[0] as HTMLElement;
+      const yOffset = -100;
+      this.content?.scrollToPoint(0, firstErrorInput.offsetTop + yOffset, 500);
+    }
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
+  }
+
+  isPriceValid(price: string | number): boolean {
+    const regex = /^0$|^[1-9][0-9]*$/;
+    return regex.test(price.toString());
   }
 
   ngOnDestroy(): void {

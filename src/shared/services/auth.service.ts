@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthResponseData, User } from '../interfaces/User';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Event } from '../interfaces/Event';
 
 const { baseUrl } = environment;
@@ -47,17 +47,15 @@ export class AuthService {
     region: string,
     role: string
   ) {
-    return this.http
-      .post<AuthResponseData>(`${baseUrl}/user/register`, {
-        email,
-        password,
-        repassword,
-        organizatorName,
-        phone,
-        region,
-        role,
-      })
-      .pipe(tap((userData) => this.setUserData(userData)));
+    return this.http.post<AuthResponseData>(`${baseUrl}/user/register`, {
+      email,
+      password,
+      repassword,
+      organizatorName,
+      phone,
+      region,
+      role,
+    });
   }
 
   login(email: string, password: string) {
@@ -131,5 +129,72 @@ export class AuthService {
     }
 
     return null;
+  }
+
+  // Edit profile
+
+  editUserPassword(
+    newPasswords: {
+      oldPassword: string;
+      newPassword: string;
+      newRepassword: string;
+    },
+    userId: string
+  ) {
+    const accessToken = this.getUserToken();
+
+    return this.http.put(
+      `${baseUrl}/user/editUserPassword/${userId}`,
+      newPasswords,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Authorization': accessToken!,
+        },
+      }
+    );
+  }
+
+  editEmail(email: { email: string }, userId: string) {
+    const accessToken = this.getUserToken();
+
+    return this.http.put(`${baseUrl}/user/editUserEmail/${userId}`, email, {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Authorization': accessToken!,
+      },
+    });
+  }
+
+  editUserInfo(userInfo: any, userId: string) {
+    const accessToken = this.getUserToken();
+
+    return this.http.put(`${baseUrl}/user/editUserInfo/${userId}`, userInfo, {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Authorization': accessToken!,
+      },
+    });
+  }
+
+  // refresh token
+  refreshToken(): Observable<any> {
+    return this.http.post(
+      `${baseUrl}/refreshToken`,
+      {},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  }
+
+  revokeRefreshToken(): Observable<any> {
+    return this.http.delete(`${baseUrl}/refreshToken`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 }

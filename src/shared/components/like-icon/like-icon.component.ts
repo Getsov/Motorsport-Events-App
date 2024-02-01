@@ -19,6 +19,9 @@ export class LikeIconComponent implements OnInit, OnDestroy {
   @Input() userId: string = '';
   @Input() source: string = '';
 
+  toasterMessage: string = '';
+  toasterType: string = '';
+
   constructor(
     private eventService: EventsService,
     private router: Router,
@@ -89,17 +92,40 @@ export class LikeIconComponent implements OnInit, OnDestroy {
     this.subscriptions$.push(
       this.eventService.likeUnlikeEvent(this.eventId, this.userId).subscribe({
         next: (response: string) => {
+          //  if it does have a source this means the like comes from event detail page
           if (!this.source) {
             if (response === 'Event UnLiked!') {
               this.isLiked = false;
               const indexToRemove = this.likes.indexOf(this.userId);
               this.likes.splice(indexToRemove, 1);
+
+              this.toasterMessage = 'Успешно премахнахте събитието от любими!';
+              this.toasterType = 'success';
             } else {
               this.isLiked = true;
               this.likes.push(this.userId);
+
+              this.toasterMessage = 'Успешно добавихте събитието в любими!';
+              this.toasterType = 'success';
+            }
+          } else {
+            if (response === 'Event UnLiked!') {
+              this.toasterMessage = 'Успешно премахнахте събитието от любими!';
+              this.toasterType = 'success';
+            } else {
+              this.toasterMessage = 'Успешно добавихте събитието в любими!';
+              this.toasterType = 'success';
             }
           }
           this.likeIconSwitcher();
+        },
+        error: (error) => {
+          this.toasterMessage = error.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
         },
       })
     );
@@ -132,6 +158,11 @@ export class LikeIconComponent implements OnInit, OnDestroy {
         : (this.likeIconSrc =
             '../../../assets/icon/like-icons/not-liked-large.svg');
     }
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   ngOnDestroy(): void {

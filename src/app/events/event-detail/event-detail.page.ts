@@ -17,6 +17,7 @@ import { EventsService } from 'src/shared/services/events.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/shared/services/auth.service';
 import { ConfirmModalComponent } from 'src/shared/components/confirm-modal/confirm-modal.component';
+import { Categories } from 'src/shared/data/categories';
 
 @Component({
   selector: 'app-event-detail',
@@ -35,13 +36,17 @@ export class EventDetailPage implements OnInit, OnDestroy {
   eventId: string = '';
   eventLikes: string[] = [];
   userId: string = '';
+
   hasLiked: boolean = false;
+  toasterMessage: string = '';
+  toasterType: string = '';
 
   event: Event = {
     shortTitle: '',
     shortDescription: '',
     longDescription: '',
     visitorPrices: [],
+    participantPrices: [],
     dates: [],
     imageUrl: '',
     contacts: {
@@ -71,6 +76,10 @@ export class EventDetailPage implements OnInit, OnDestroy {
 
   errorMessage: string = '';
   getDayOfWeek = getDayOfWeek;
+  categories: any = Object.entries(Categories).filter(
+    (entry) => typeof entry[1] === 'string'
+  );
+  categoriesMap: Map<string, string> = new Map();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -79,7 +88,11 @@ export class EventDetailPage implements OnInit, OnDestroy {
     private eventService: EventsService,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    this.categoriesMap = new Map(
+      this.categories.map((item: any[]) => [item[1], item[0]])
+    );
+  }
 
   ngOnInit() {}
 
@@ -102,11 +115,19 @@ export class EventDetailPage implements OnInit, OnDestroy {
     return this.eventService.getEvent(this.eventId).subscribe({
       next: (response) => {
         this.event = response;
+        this.event.participantPrices = this.event.participantPrices?.filter(
+          (price) => price.description && price.price
+        );
         this.hasLiked = this.event.likes.includes(this.userId);
         this.createMap();
       },
       error: (error) => {
-        this.errorMessage = error.message;
+        this.toasterMessage = error.error.error;
+        this.toasterType = 'error';
+
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
       },
     });
   }
@@ -141,8 +162,14 @@ export class EventDetailPage implements OnInit, OnDestroy {
         next: (response: string) => {
           if (response === 'Event UnLiked!') {
             this.hasLiked = false;
+
+            this.toasterMessage = 'Успешно премахнахте събитието от любими!';
+            this.toasterType = 'success';
           } else {
             this.hasLiked = true;
+
+            this.toasterMessage = 'Успешно добавихте събитието в любими!';
+            this.toasterType = 'success';
           }
         },
       })
@@ -189,7 +216,7 @@ export class EventDetailPage implements OnInit, OnDestroy {
         lng: Number(this.event.contacts.coordinates.lng),
       },
       title: this.event.shortTitle,
-      snippet: `${this.event.contacts.region}, ${this.event.contacts.address}`,
+      snippet: `${this.event.contacts.address}`,
     };
 
     await this.map.addMarker(marker);
@@ -200,13 +227,18 @@ export class EventDetailPage implements OnInit, OnDestroy {
         componentProps: {
           marker,
         },
-        breakpoints: [0, 0.12],
-        initialBreakpoint: 0.12,
+        breakpoints: [0.15],
+        initialBreakpoint: 0.15,
         showBackdrop: false,
       });
 
       modal.present();
     });
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   ngOnDestroy(): void {

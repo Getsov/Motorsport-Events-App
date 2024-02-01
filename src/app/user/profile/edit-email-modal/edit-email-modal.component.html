@@ -1,0 +1,64 @@
+<ion-content mode="ios">
+  <p>Въведи нов имейл</p>
+
+  <form
+    #editEmail="ngForm"
+    class="auth-wrapper"
+    (submit)="onConfirmNewEmail(editEmail)"
+  >
+    <!-- old password input -->
+    <div class="auth-input">
+      <ion-input
+        type="email"
+        fill="solid"
+        label="Имейл*"
+        labelPlacement="floating"
+        name="email"
+        ngModel
+        #email="ngModel"
+        clearInput
+        required
+        pattern="^[a-zA-Z0-9\._+\-]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,}$"
+      ></ion-input>
+    </div>
+
+    <ng-container *ngIf="email.touched">
+      <p
+        class="auth-validation-error-message"
+        *ngIf="email.errors?.['required']"
+      >
+        Полето е задължително за попълване!
+      </p>
+      <p
+        class="auth-validation-error-message"
+        *ngIf="email.errors?.['pattern']"
+      >
+        Моля въведете валиден имейл!
+      </p>
+    </ng-container>
+
+    <!-- error message from backend -->
+    <p class="auth-validation-error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+  </form>
+
+  <ion-footer>
+    <div class="modal-picker-action-buttons">
+      <ion-buttons (click)="closeModal($event)">
+        <ion-button slot="start">Откажи</ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end" (click)="onConfirmNewEmail(editEmail)">
+        <ion-button class="modal-confirm-button" type="submit"
+          >Смени имейла</ion-button
+        >
+      </ion-buttons>
+    </div>
+  </ion-footer>
+
+  <!-- success toaster -->
+  <app-toaster
+    [toasterMessage]="toasterMessage"
+    [toasterType]="toasterType"
+  ></app-toaster>
+</ion-content>

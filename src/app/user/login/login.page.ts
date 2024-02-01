@@ -15,11 +15,17 @@ export class LoginPage implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  toasterMessage: string = '';
+  toasterType: string = '';
+
   ngOnInit() {}
 
   onLoginSubmit(loginFormData: NgForm) {
     if (loginFormData.invalid) {
-      return;
+      // touch every input so the invalid become red
+      return Object.values(loginFormData.controls).forEach((control) => {
+        control.markAsTouched();
+      });
     }
 
     const { email, password } = loginFormData.value;
@@ -29,14 +35,37 @@ export class LoginPage implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           this.loginResponseError = '';
-          this.router.navigateByUrl('/');
-          loginFormData.reset();
+
+          this.toasterMessage = 'Успешно влязохте във Вашия акаунт!';
+          this.toasterType = 'success';
+
+          setTimeout(() => {
+            this.router.navigateByUrl('/');
+            this.resetToasters();
+            loginFormData.reset();
+          }, 1000);
         },
         error: (error) => {
-          this.loginResponseError = error.error.error;
+          this.errorToaster(error.error.error);
+
           loginFormData.reset();
         },
       });
+  }
+
+  // present error toaster
+  errorToaster(errorMessage: string) {
+    this.toasterMessage = errorMessage;
+    this.toasterType = 'error';
+
+    setTimeout(() => {
+      this.resetToasters();
+    }, 5000);
+  }
+
+  resetToasters() {
+    this.toasterMessage = '';
+    this.toasterType = '';
   }
 
   ngOnDestroy(): void {

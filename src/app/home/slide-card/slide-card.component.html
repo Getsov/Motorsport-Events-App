@@ -6,7 +6,9 @@
     />
 
     <p class="event-title">{{ event.shortTitle }}</p>
-    <p class="event-dates">{{ startDate }} - {{ endDate }}</p>
+    <p class="event-dates">
+      {{ endDate ? startDate + " - " + endDate : startDate }}
+    </p>
   </div>
 
   <app-like-icon [eventId]="event._id" [likes]="event.likes" />
