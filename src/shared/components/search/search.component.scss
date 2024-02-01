@@ -80,6 +80,11 @@ ion-select.has-value {
   --highlight-color-valid: #00cc00;
 }
 
+ion-select::part(label) {
+  position: relative;
+  top: 2px;
+}
+
 ion-select::part(placeholder) {
   color: #fff;
   margin-right: 2.2em;
