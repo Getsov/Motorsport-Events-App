@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit {
 
   category: string = 'Категория';
   location: string = 'Регион';
-  searchQuery: [] = [];
+  searchQuery: [] | string = '';
   locationQuery: [] = [];
   selectedCategory: number[] = [];
   sortBy: string = '';

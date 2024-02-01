@@ -7,7 +7,7 @@
     box-shadow: 0px 0px 8px 1px rgba(255, 220, 35, 0.3);
     padding: 8px;
     width: 91.1%;
-    margin: 16px auto;
+    margin: 24px auto;
     position: relative;
     overflow: hidden;
 
@@ -15,14 +15,14 @@
       display: flex;
       align-items: center;
       margin: 0 auto;
-      min-height: 156px;
+      height: 156px;
 
       .event-image {
         display: block;
         margin: 0 auto;
         border-radius: 4px;
         max-width: 100%;
-        height: auto;
+        height: 100%;
         object-fit: contain;
       }
     }
@@ -39,20 +39,20 @@
       }
 
       .event-location {
-        color: #FFF;
+        color: #fff;
         font-family: Open Sans;
         font-size: 12px;
         font-style: normal;
         font-weight: 600;
         line-height: 150%;
-        display: inline-flex;
+        display: flex;
         align-items: flex-start;
         gap: 4px;
 
         .location-img {
           width: 18px;
           height: 18px;
-          color: #FFF;
+          color: #fff;
         }
       }
 
@@ -60,7 +60,7 @@
         display: flex;
         align-items: flex-start;
         gap: 4px;
-        color: #FFF;
+        color: #fff;
         /* font-family: Open Sans; */
         font-size: 12px;
         font-style: normal;
@@ -70,7 +70,7 @@
         .date-img {
           width: 18px;
           height: 18px;
-          color: #FFF;
+          color: #fff;
         }
       }
 
@@ -92,11 +92,11 @@
         justify-content: center;
         align-items: center;
         border-radius: 4px;
-        border: 2px solid #FFDC23;
+        border: 2px solid #ffdc23;
         background: none;
 
         .btn-text {
-          color: #FFDC23;
+          color: #ffdc23;
           text-align: center;
           font-family: Open Sans;
           font-size: 14px;
@@ -130,24 +130,23 @@
         .del {
           width: 100%;
           flex: 1 0 48%;
-          border: 2px solid #FF0000;
-          color: #FF0000;
+          border: 2px solid #ff0000;
+          color: #ff0000;
           font-weight: 600;
           font-size: 14px;
         }
 
         .edit {
-          background-color:  #FFDC23;
-          color: #0D0D0D;
+          background-color: #ffdc23;
+          color: #0d0d0d;
           font-weight: 600;
           font-size: 14px;
         }
-        .more-btn.organizer{
+        .more-btn.organizer {
           flex: 1 0 48%;
         }
       }
     }
-
   }
 
   .like-icon-wrapper {
@@ -170,13 +169,3 @@
   left: -30.056px;
   top: 23.658px;
 }
-
-
-
-
-
-
-
-
-
-

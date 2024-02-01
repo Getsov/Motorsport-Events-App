@@ -134,7 +134,11 @@
       </div>
     </div>
 
-    <div class="main-button-wrapper" (click)="addRemoveFromFavorites()">
+    <div
+      class="main-button-wrapper"
+      (click)="addRemoveFromFavorites()"
+      *ngIf="userId"
+    >
       <button class="main-button">
         {{hasLiked ? 'Премахни от любими ' : 'Добави в любими'}}
       </button>

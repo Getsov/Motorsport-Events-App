@@ -36,6 +36,8 @@
 // segment
 ion-segment {
   --background: #d6d4d3;
+  border-radius: 4px;
+  height: 44px;
   ion-label {
     color: #0d0d0d;
     font-weight: 600;
@@ -61,7 +63,7 @@ ion-segment {
   p {
     color: #c2bfbe;
     font-size: 12px;
-
+    padding: 0 20px;
     span {
       a {
         font-weight: 700;

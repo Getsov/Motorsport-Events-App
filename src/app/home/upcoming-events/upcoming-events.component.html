@@ -1,4 +1,4 @@
-<ng-container *ngIf="upcomingEvents.length > 0">
+<ng-container *ngIf="upcomingEvents && upcomingEvents.length > 0">
   <app-title-fades [color]="titleColor" [title]="titleText" />
 
   <swiper-container
@@ -17,7 +17,7 @@
 
 <div class="ion-padding-horizontal" *ngIf="isAdminOrOrganization">
   <div class="main-button-wrapper">
-    <ion-icon [src]="addIcon" name="addIcon" class="add-icon" />
+    <ion-icon [src]="addIcon" class="add-icon" />
     <span [routerLink]="['/tabs/events/create']" class="main-button"
       >Създай събитие</span
     >
