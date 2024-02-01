@@ -176,6 +176,10 @@ select {
   color: #ff0000;
 }
 
+a {
+  text-decoration: none;
+}
+
 // FORM: Universal auth form styles
 @import "shared/styles/auth-form-styles.scss";
 
