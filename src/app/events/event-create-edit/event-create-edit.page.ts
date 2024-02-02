@@ -250,10 +250,28 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
         .then((hasConfirmed: any) => {
           if (hasConfirmed.data) {
             this.eventSubscription$ = this.createEvent(formValue);
+            this.clearForm(eventForm);
           }
         })
         .catch(console.log);
     }
+  }
+
+  // reset create form on submit
+  clearForm(eventForm: NgForm) {
+    eventForm.resetForm();
+    this.imageUrl = '';
+    this.selectedEventType = [];
+    this.selectedRegion = '';
+    this.selectedAddress = {
+      title: '',
+      address: '',
+      lat: '',
+      lng: '',
+    };
+    this.dates = [{ date: '', startTime: '00:00', endTime: '00:00' }];
+    this.visitorPrices = [{ price: '', description: '' }];
+    this.participantPrices = [{ price: '', description: '' }];
   }
 
   async presentModal(modalType: string) {

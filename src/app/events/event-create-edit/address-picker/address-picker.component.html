@@ -9,6 +9,14 @@
     "
     [ngClass]="addressInvalid ? 'custom-invalid-input' : ''"
     [ngClass]="addressConfirmed ? 'custom-valid-input' : ''"
+    [ngClass]="
+      !selectedAddress.title &&
+      !selectedAddress.address &&
+      !selectedAddress.lat &&
+      !selectedAddress.lng
+        ? 'neutral-input'
+        : ''
+    "
   ></ion-input>
   <ion-modal
     [trigger]="'address-picker'"
