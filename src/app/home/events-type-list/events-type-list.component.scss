@@ -1,8 +1,6 @@
 .categories-list {
-  display: grid;
-  grid-template-columns: repeat(auto);
-  justify-content: center;
-  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   background: #0d0d0d;
   padding: 16px 16px 24px 16px;
@@ -13,7 +11,7 @@
   text-align: center;
   height: 160px;
   width: 156px;
-  width: auto;
+  width: calc(50% - 8px);
   background: transparent;
   box-shadow: 0 0 10.5px -5px #ffdc23;
   margin: 0;
@@ -21,11 +19,11 @@
 }
 
 .category-card.all {
-  grid-column: span 2;
+  width: 100%;
 }
 
 .category-image {
-  width: 100%;
+  margin: 0 auto;
   height: 127px;
   border-radius: 4px;
   object-fit: contain;

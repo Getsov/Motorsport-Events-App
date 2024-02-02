@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnDestroy,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Event } from 'src/shared/interfaces/Event';
 import { AuthService } from 'src/shared/services/auth.service';
@@ -34,6 +41,30 @@ export class UpcomingEventsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.Subscriptions$.push(this.loadEvents());
+    console.log('loaded');
+
+    // check if user is admin or organizer to show create event button
+    this.Subscriptions$.push(
+      this.authService.userData$.subscribe({
+        next: (userData) => {
+          this.isAdminOrOrganization =
+            userData?.role === 'organizer' || userData?.role === 'admin';
+        },
+        error: (err) => {
+          this.toasterMessage = err.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
+        },
+      })
+    );
+  }
+
+  ionViewWillEnter() {
+    this.Subscriptions$.push(this.loadEvents());
+    console.log('loaded');
 
     // check if user is admin or organizer to show create event button
     this.Subscriptions$.push(
