@@ -134,6 +134,7 @@
           ngModel
           #firstName="ngModel"
           pattern="^[a-zA-Zа-яА-Я \-]+$"
+          [ngClass]="!firstName.value ? 'neutral-input' : ''"
         ></ion-input>
       </div>
 
@@ -158,6 +159,7 @@
           ngModel
           #lastName="ngModel"
           pattern="^[a-zA-Zа-яА-Я \-]+$"
+          [ngClass]="!lastName.value ? 'neutral-input' : ''"
         ></ion-input>
       </div>
 

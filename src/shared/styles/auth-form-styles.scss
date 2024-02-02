@@ -80,6 +80,23 @@
       }
     }
 
+    // neutral form state on inputs
+    .neutral-input {
+      border-bottom: 1px solid #fff !important;
+
+      .label-text {
+        color: #fff !important;
+      }
+
+      // .input-clear-icon {
+      //   margin: auto 1em 1px auto;
+      //   z-index: 1;
+      //   ion-icon {
+      //     content: url("../../assets/icon/success-input-icon.svg");
+      //   }
+      // }
+    }
+
     // region and category select inputs
     ion-select.region-select,
     ion-select.event-type-select,
