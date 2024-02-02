@@ -31,6 +31,14 @@
       }
     }
 
+    ion-input.has-focus {
+      border-bottom: 1px solid #ff7418;
+
+      ::ng-deep .label-text {
+        color: #ff7418;
+      }
+    }
+
     .prices-inputs-wrapper {
       margin-bottom: 1.5em;
       .price-input {

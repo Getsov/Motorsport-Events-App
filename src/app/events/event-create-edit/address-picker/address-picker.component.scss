@@ -12,7 +12,8 @@ ion-input.has-focus {
   }
 }
 // success state
-ion-input.custom-valid-input {
+ion-input.custom-valid-input,
+ion-input.has-value {
   border-bottom: 1px solid #00cc00 !important;
 
   ::ng-deep .label-text {
@@ -41,6 +42,14 @@ ion-modal {
     ion-label {
       padding-left: 0.5em;
     }
+  }
+  // this will fix the issue with the modal buttons border but can not be selected
+  // ::ng-deep div.toolbar-container {
+  //   padding: 0 !important;
+  // }
+
+  .modal-picker-action-buttons {
+    height: 2.5em !important;
   }
 }
 

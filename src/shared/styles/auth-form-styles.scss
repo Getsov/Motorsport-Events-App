@@ -46,6 +46,11 @@
       }
     }
 
+    .email.has-focus,
+    .phone.has-focus {
+      border-bottom: 1px solid #ff7418;
+    }
+
     // error form state
     ion-input.ng-invalid.ng-touched {
       border-bottom: 1px solid #ff0000;
