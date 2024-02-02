@@ -12,7 +12,8 @@ ion-input.has-focus {
   }
 }
 // success state
-ion-input.custom-valid-input {
+ion-input.custom-valid-input,
+ion-input.has-value {
   border-bottom: 1px solid #00cc00 !important;
 
   ::ng-deep .label-text {
