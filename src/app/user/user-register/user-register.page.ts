@@ -32,6 +32,7 @@ export class UserRegisterPage implements OnInit, OnDestroy {
   onRegisterUserSubmit(registerForm: NgForm) {
     if (registerForm.invalid) {
       // touch every input so the invalid become red
+      this.selectedRegion = '';
       return Object.values(registerForm.controls).forEach((control) => {
         control.markAsTouched();
       });
@@ -59,6 +60,7 @@ export class UserRegisterPage implements OnInit, OnDestroy {
         },
         error: (error) => {
           this.errorToaster(error.error.error);
+          this.selectedRegion = '';
           registerForm.reset();
         },
       });

@@ -134,6 +134,7 @@
           ngModel
           #firstName="ngModel"
           pattern="^[a-zA-Zа-яА-Я \-]+$"
+          [ngClass]="!firstName.value ? 'neutral-input' : ''"
         ></ion-input>
       </div>
 
@@ -158,6 +159,7 @@
           ngModel
           #lastName="ngModel"
           pattern="^[a-zA-Zа-яА-Я \-]+$"
+          [ngClass]="!lastName.value ? 'neutral-input' : ''"
         ></ion-input>
       </div>
 
@@ -178,6 +180,7 @@
           okText="Ок"
           cancelText="Откажи"
           slot="end"
+          [ngModel]="selectedRegion"
           name="region"
           #region
           (ionChange)="onRegionChange($event.detail.value)"
