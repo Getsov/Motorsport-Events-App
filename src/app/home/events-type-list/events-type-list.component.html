@@ -3,7 +3,7 @@
 <ion-list lines="none" class="categories-list">
   <ion-card class="category-card all" [routerLink]="['/tabs/events']">
     <img
-      src="../../../assets//images/category-images/all.jpg"
+      src="../../../assets//images/category-images/all.png"
       alt="Category Image"
       class="category-image"
     />
@@ -17,11 +17,10 @@
     [queryParams]="{ sortBy: category[0] }"
   >
     <img
-      src="assets/images/category-images/{{ category[0] }}.jpg"
+      src="assets/images/category-images/{{ category[0] }}.png"
       alt="Category Image"
       class="category-image"
     />
-
     <p class="category-title">{{ category[1] }}</p>
   </ion-card>
 </ion-list>

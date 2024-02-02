@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Categories } from 'src/shared/data/categories';
+import { HomepageCategories } from 'src/shared/data/categories';
 import { Category } from 'src/shared/interfaces/Category';
 
 @Component({
@@ -14,7 +14,7 @@ export class EventsTypeListComponent implements OnInit {
   // If data is passed they will change its value.
   @Input() titleColor = 'yellow';
   @Input() titleText = 'Категории';
-  categories: any = Object.entries(Categories).filter(
+  categories: any = Object.entries(HomepageCategories).filter(
     (entry) => typeof entry[1] === 'string'
   );
 
