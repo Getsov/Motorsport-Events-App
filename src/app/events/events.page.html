@@ -15,7 +15,7 @@
   <app-title-fades [color]="titleColor" [title]="titleText" />
   <div
     class="ion-padding-horizontal"
-    *ngIf="(user?.role == 'admin') || (user?.role == 'organizer')"
+    *ngIf="(user?.role === 'admin') || (user?.role === 'organizer')"
   >
     <div class="main-button-wrapper">
       <ion-icon [src]="addIcon" class="add-icon" />
@@ -27,7 +27,7 @@
   <ng-container *ngFor="let event of eventsData">
     <app-event [event]="event" (filteredEvents)="getFilteredEvents($event)" />
   </ng-container>
-  <div *ngIf="eventsData.length == 0">
+  <div *ngIf="eventsData.length === 0">
     <p class="no-events">Няма налични събития!</p>
   </div>
 </ion-content>
