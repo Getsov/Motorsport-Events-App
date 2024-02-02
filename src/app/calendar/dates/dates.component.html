@@ -10,6 +10,9 @@
     min="2000-01-01"
     max="2040-12-31"
     (ionChange)="onDateChange($event)"
+    mode="ios"
+    [firstDayOfWeek]="1"
+    [(ngModel)]="selectedDate"
   ></ion-datetime>
 
   <div class="calendar-info">

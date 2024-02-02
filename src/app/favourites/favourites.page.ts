@@ -47,10 +47,11 @@ export class FavouritesPage {
 
   ionViewWillEnter(): void {
     this.user = this.authService.getUserFromLocalStorage();
-    this.getEvents();
+    //this.getEvents();
   }
 
   getFilteredEvents(event: any): any {
+    console.log(event);
     this.favouritesData = event;
   }
 

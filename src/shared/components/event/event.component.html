@@ -5,7 +5,10 @@
       class="my-event-line"
       [inputString]="myEventLineText"
     ></app-event-line>
-    <div class="image-wrapper" [routerLink]="event._id">
+    <div
+      class="image-wrapper"
+      [routerLink]="['/', 'tabs', 'events', event._id]"
+    >
       <img
         alt="{{ event.shortTitle }}"
         [src]="'data:image;base64,' + event.imageUrl"
@@ -32,7 +35,7 @@
       <button
         *ngIf="user?._id != event?.creator && user?.role != 'admin'"
         class="more-btn"
-        [routerLink]="event._id"
+        [routerLink]="['/', 'tabs', 'events', event._id]"
       >
         <p class="btn-text">Прочети повече</p>
       </button>
@@ -40,7 +43,10 @@
         *ngIf="user?._id == event?.creator || user?.role == 'admin'"
         class="organizer-btn"
       >
-        <button class="btn edit" [routerLink]="['/edit', event._id]">
+        <button
+          class="btn edit"
+          [routerLink]="['/', 'tabs', 'events', 'edit', event._id]"
+        >
           <p class="edit-btn-text">Редактирай</p>
         </button>
       </div>
@@ -48,7 +54,10 @@
         *ngIf="user?._id == event?.creator || user?.role == 'admin'"
         class="organizer-btn"
       >
-        <button class="more-btn organizer" [routerLink]="event._id">
+        <button
+          class="more-btn organizer"
+          [routerLink]="['/', 'tabs', 'events', event._id]"
+        >
           <p class="btn-text">Прочети повече</p>
         </button>
         <button class="del btn" (click)="presentDeleteModal('delete')">

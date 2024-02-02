@@ -12,10 +12,13 @@ export class DatesComponent implements OnInit {
   @Output() selectedDateChange: EventEmitter<string> =
     new EventEmitter<string>();
 
-  @Input() highlightedDates: [] = [];
-
-  ngOnInit() {}
-
+  @Input() highlightedDates: [] | undefined;
+  public selectedDate: any;
+  ngOnInit() {
+    const date = new Date();
+    date.setDate(date.getDate());
+    this.selectedDate = date.toISOString();
+  }
   onDateChange(event: any) {
     const date = event.detail.value;
     const formattedDate = this.datePipe.transform(

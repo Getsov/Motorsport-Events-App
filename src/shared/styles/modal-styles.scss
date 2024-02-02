@@ -1,3 +1,8 @@
+ion-modal.confirm-modal {
+  ::part(background) {
+    --background: #0d0d0d;
+  }
+}
 .date-input-wrapper {
   ion-input {
     width: 100%;

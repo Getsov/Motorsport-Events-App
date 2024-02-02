@@ -1,5 +1,9 @@
 <ion-content>
-  <app-header [headerTitle]="pageTitle" [backButton]="true" />
+  <app-header
+    [headerTitle]="pageTitle"
+    [backButton]="true"
+    [defaultHref]="'/'"
+  />
   <section *ngFor="let section of pageContent">
     <header>
       <app-title-fades [color]="section.titleColor" [title]="section.title" />

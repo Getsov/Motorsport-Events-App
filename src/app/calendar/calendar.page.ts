@@ -7,7 +7,7 @@ import { EventsService } from 'src/shared/services/events.service';
   templateUrl: './calendar.page.html',
   styleUrls: ['./calendar.page.scss'],
 })
-export class CalendarPage implements OnInit {
+export class CalendarPage {
   @Input() pageTitle: string = 'Календар';
   @Input() selectedDate: string = '';
 
@@ -26,7 +26,7 @@ export class CalendarPage implements OnInit {
     private datePipe: DatePipe
   ) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
     const currentDate = new Date();
     this.currentYearMonth = this.datePipe.transform(currentDate, 'yyyy/MM')!;
     this.loadEvents(this.currentYearMonth);
@@ -40,7 +40,6 @@ export class CalendarPage implements OnInit {
       .reverse()
       .slice(0, 2)
       .join('/');
-
     if (newSelectedYearMonth !== this.currentYearMonth) {
       this.currentYearMonth = newSelectedYearMonth;
       this.loadEvents(this.currentYearMonth);

@@ -4,7 +4,7 @@
   </div>
   <app-header [headerTitle]="pageTitle" />
 
-  <ng-container *ngIf="!isLoading">
+  <ng-container>
     <app-dates
       (selectedDateChange)="handleSelectedDateChange($event)"
       [highlightedDates]="highlightedDates"
@@ -13,6 +13,7 @@
     <app-calendar-list
       [selectedDate]="selectedDate"
       [currentMonthEvents]="currentMonthEvents"
+      *ngIf="!isLoading"
     />
   </ng-container>
 </ion-content>
