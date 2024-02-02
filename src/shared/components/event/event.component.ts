@@ -2,7 +2,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
@@ -14,6 +13,7 @@ import { User } from 'src/shared/interfaces/User';
 import { AuthService } from 'src/shared/services/auth.service';
 import { EventsService } from 'src/shared/services/events.service';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-event',
@@ -29,6 +29,9 @@ export class EventComponent implements OnInit {
   location = 'assets/icon/mdi_location.svg';
   date = 'assets/icon/date-icon.svg';
   myEventLineText = 'Мое събитие';
+
+  currentDate: Date = new Date();
+  formattedDate: any = '';
 
   user: User | null = {
     email: '',
@@ -49,11 +52,13 @@ export class EventComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private eventService: EventsService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit() {
     this.user = this.authService.getUserFromLocalStorage();
+    this.formattedDate = this.datePipe.transform(this.currentDate, 'yyyy-MM-ddTHH:mm:ss.SSSZ');
   }
 
   deleteEvent(event: Event): void {

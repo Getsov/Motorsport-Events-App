@@ -59,8 +59,8 @@ export class FavouritesPage {
     this.favouritesSubscription = this.eventService
       .getMyFavourites()
       .subscribe({
-        next: (events: Event[]) => {
-          this.favouritesData = events;
+        next: (events: any) => {
+          this.favouritesData = events.results;
         },
         error: (err) => {
           this.toasterMessage = err.error.error;

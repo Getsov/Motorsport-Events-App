@@ -47,7 +47,7 @@ export class EventsPage {
 
   ionViewWillEnter() {
     this.user = this.authService.getUserFromLocalStorage();
-    // this.getEvents();
+    //this.getEvents();
   }
 
   getFilteredEvents(event: any): any {
@@ -56,8 +56,8 @@ export class EventsPage {
 
   getEvents(): void {
     this.eventsSubscription = this.eventService.getEvents().subscribe({
-      next: (events: Event[]) => {
-        this.eventsData = events;
+      next: (events: any) => {
+        this.eventsData = events.results;
       },
       error: (err) => {
         this.toasterMessage = err.error.error;
