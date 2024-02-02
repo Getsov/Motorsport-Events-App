@@ -31,6 +31,7 @@ export class OrganizationRegisterPage implements OnInit, OnDestroy {
   onOrganizatorRegisterSubmit(organizatorRegisterForm: NgForm) {
     if (organizatorRegisterForm.invalid) {
       // touch every input so the invalid become red
+      this.selectedRegion = '';
       return Object.values(organizatorRegisterForm.controls).forEach(
         (control) => {
           control.markAsTouched();
@@ -72,6 +73,7 @@ export class OrganizationRegisterPage implements OnInit, OnDestroy {
         error: (error) => {
           this.errorToaster(error.error.error);
 
+          this.selectedRegion = '';
           organizatorRegisterForm.reset();
         },
       });

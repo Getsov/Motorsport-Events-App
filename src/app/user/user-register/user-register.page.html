@@ -178,6 +178,7 @@
           okText="Ок"
           cancelText="Откажи"
           slot="end"
+          [ngModel]="selectedRegion"
           name="region"
           #region
           (ionChange)="onRegionChange($event.detail.value)"
