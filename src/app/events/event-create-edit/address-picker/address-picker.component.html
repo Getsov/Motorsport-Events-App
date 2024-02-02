@@ -58,10 +58,8 @@
       <ion-footer>
         <ion-toolbar>
           <div class="modal-picker-action-buttons">
-            <ion-buttons>
-              <ion-button slot="start" (click)="closeModal()"
-                >Откажи</ion-button
-              >
+            <ion-buttons slot="start">
+              <ion-button (click)="closeModal()">Откажи</ion-button>
             </ion-buttons>
             <ion-buttons slot="end">
               <ion-button (click)="onConfirmAddress()"
