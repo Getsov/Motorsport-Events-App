@@ -43,6 +43,14 @@ ion-modal {
       padding-left: 0.5em;
     }
   }
+  // this will fix the issue with the modal buttons border but can not be selected
+  // ::ng-deep div.toolbar-container {
+  //   padding: 0 !important;
+  // }
+
+  .modal-picker-action-buttons {
+    height: 2.5em !important;
+  }
 }
 
 ion-searchbar {
