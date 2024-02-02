@@ -18,6 +18,12 @@ ion-modal.modal-picker {
   ion-content {
     --background: transparent;
   }
+  ion-toolbar {
+    padding: 0 !important;
+    .toolbar-container {
+      padding: 0 !important;
+    }
+  }
 }
 
 ion-modal.modal-picker::part(content) {
@@ -119,6 +125,9 @@ ion-footer {
 
     ion-buttons:first-of-type {
       border-right: 1px solid #a6a2a0;
+    }
+    ion-buttons:last-of-type ion-button {
+      font-weight: 600;
     }
 
     .modal-confirm-button {

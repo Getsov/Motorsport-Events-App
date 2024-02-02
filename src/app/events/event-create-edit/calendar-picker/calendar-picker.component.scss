@@ -1,5 +1,6 @@
 ion-datetime {
-  background-color: inherit;
+  --background: transparent;
+  --wheel-fade-background-rgb: transparent;
 }
 
 ion-datetime::part(calendar-day):focus {

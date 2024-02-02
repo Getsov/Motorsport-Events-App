@@ -100,6 +100,23 @@
             [ngModel]="eventData ? eventData.longDescription : ''"
           ></ion-textarea>
 
+          <!-- address-->
+          <div class="event-address-wrapper">
+            <app-address-picker
+              (confirmedAddress)="onConfirmedAddress($event)"
+              [addressInvalid]="!!addressErrorMessage"
+              [selectedAddress]="selectedAddress ? selectedAddress : {title: '',
+              address: '',
+              lat: 0,
+              lng: 0}"
+            ></app-address-picker>
+          </div>
+
+          <!-- address error message -->
+          <p *ngIf="addressErrorMessage" class="validation-error-message">
+            {{addressErrorMessage}}
+          </p>
+
           <!-- event category selector -->
           <div class="category-select-wrapper">
             <ion-select
@@ -153,22 +170,6 @@
           <!-- region error message -->
           <p *ngIf="regionErrorMessage" class="validation-error-message">
             {{regionErrorMessage}}
-          </p>
-          <!-- address-->
-          <div class="event-address-wrapper">
-            <app-address-picker
-              (confirmedAddress)="onConfirmedAddress($event)"
-              [addressInvalid]="!!addressErrorMessage"
-              [selectedAddress]="selectedAddress ? selectedAddress : {title: '',
-              address: '',
-              lat: 0,
-              lng: 0}"
-            ></app-address-picker>
-          </div>
-
-          <!-- address error message -->
-          <p *ngIf="addressErrorMessage" class="validation-error-message">
-            {{addressErrorMessage}}
           </p>
 
           <!-- email -->
