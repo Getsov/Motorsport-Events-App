@@ -1,7 +1,10 @@
-.tab-container{
-  background-color: rgb(13, 13, 13);
+ion-tabs .tab-container.md.hydrated{
+  background-color: rgb(13, 13, 13) !important;
   border-top: 1px solid white;
   height: 56px;
+  .tab-has-label{
+    background-color: rgb(13, 13, 13) !important;
+  }
 }
 .tab-container {
   padding: 0 12px;
