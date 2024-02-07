@@ -16,6 +16,12 @@ export class EventsService {
   private paginatedEventsSubject = new BehaviorSubject<any>([]);
   paginatedEventsSubscription$ = this.paginatedEventsSubject.asObservable();
 
+  private favouriteEvents = new BehaviorSubject<Event[]>([]);
+  favouriteEvents$ = this.favouriteEvents.asObservable();
+
+  private unlikedEvent = new BehaviorSubject<string>('');
+  unlikedEvent$ = this.unlikedEvent.asObservable();
+
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   createEvent(eventData: any): Observable<Event> {
@@ -84,11 +90,24 @@ export class EventsService {
           // Get the current events array
           const event = this.eventSubject.getValue();
 
+          const favouriteEvents = this.favouriteEvents.getValue();
+
           if (response === 'Event UnLiked!') {
             const userIndex = event?.likes.indexOf(userId);
+            const eventIndex = favouriteEvents.findIndex(
+              (event) => event._id === eventId
+            );
+
             if (userIndex !== -1) {
               // Remove the userId from likes array
               event?.likes.splice(userIndex!, 1);
+            }
+
+            // Remove the event from the favourite events subject
+            if (eventIndex !== -1) {
+              console.log(eventId);
+              this.unlikedEvent.next(eventId);
+              favouriteEvents.splice(eventIndex, 1);
             }
           } else {
             // Add userId to likes array
@@ -97,6 +116,9 @@ export class EventsService {
 
           // Update the event in the BehaviorSubject
           this.eventSubject.next(event);
+
+          // Update the favourite events in BehaviorSubject
+          this.setFavouriteEvents(favouriteEvents);
         })
       );
   }
@@ -128,21 +150,26 @@ export class EventsService {
   getMyFavourites(query: string = ''): Observable<Event[]> {
     const accessToken = this.authService.getUserToken();
     if (query) {
-      return this.http.get<Event[]>(
-        `${baseUrl}/user/getMyFavourites/?${query}`,
-        {
+      return this.http
+        .get<Event[]>(`${baseUrl}/user/getMyFavourites/?${query}`, {
           headers: {
             'Content-Type': 'application/json',
             'X-Authorization': accessToken!,
           },
-        }
-      );
+        })
+        .pipe(tap((events: any) => this.setFavouriteEvents(events.results)));
     }
-    return this.http.get<Event[]>(`${baseUrl}/user/getMyFavourites`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Authorization': accessToken!,
-      },
-    });
+    return this.http
+      .get<Event[]>(`${baseUrl}/user/getMyFavourites`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Authorization': accessToken!,
+        },
+      })
+      .pipe(tap((events: any) => this.setFavouriteEvents(events.results)));
+  }
+
+  setFavouriteEvents(events: Event[]) {
+    this.favouriteEvents.next(events);
   }
 }
