@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Event } from 'src/shared/interfaces/Event';
 import { AuthService } from 'src/shared/services/auth.service';
@@ -12,7 +12,7 @@ import { EventsService } from 'src/shared/services/events.service';
 export class UpcomingEventsComponent implements OnInit, OnDestroy {
   Subscriptions$: Subscription[] = [];
   @Input() upcomingEvents: Event[] = [];
-  @Input() loadEventsCount: number = 5;
+  @Input() loadEventsCount: number = 10;
 
   @Input() titleText: string = 'Предстоящи събития';
   @Input() titleColor: string = 'orange';
@@ -71,43 +71,6 @@ export class UpcomingEventsComponent implements OnInit, OnDestroy {
           }, 5000);
         },
       });
-  }
-
-  swiperSlideChanged(e: any) {
-    let activeIndex = e.detail[0].activeIndex;
-
-    // Add a flag to track whether all events have been loaded
-    // Load more events 2 dots before the end.
-    if (
-      !this.isAllEventsLoaded &&
-      this.upcomingEvents.length - activeIndex == 3
-    ) {
-      this.Subscriptions$.push(
-        this.eventService
-          .getPaginationEvents(this.pageToLoad, this.loadEventsCount)
-          .subscribe({
-            next: (response) => {
-              if (response.nextPage) {
-                console.log(response.nextPage);
-
-                this.upcomingEvents.push(...response.results);
-                this.pageToLoad++;
-              } else {
-                // Set the flag if no more events are available
-                this.isAllEventsLoaded = true;
-              }
-            },
-            error: (error) => {
-              this.toasterMessage = error.error.error;
-              this.toasterType = 'error';
-
-              setTimeout(() => {
-                this.resetToasters();
-              }, 5000);
-            },
-          })
-      );
-    }
   }
 
   resetToasters() {

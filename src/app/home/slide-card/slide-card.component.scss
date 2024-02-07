@@ -1,5 +1,5 @@
 .events-card {
-  margin: 0 0 16px 0;
+  margin: 0 8px 16px 8px;
   padding: 0;
   background-color: rgba(13, 13, 13, 1);
   box-shadow: 0 0 6px -2px #ff7418;
@@ -39,8 +39,4 @@
       line-height: 15px;
     }
   }
-}
-
-.events-card:first-child {
-  margin-left: 2px;
 }

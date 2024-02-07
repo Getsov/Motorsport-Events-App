@@ -9,32 +9,4 @@ import { EventsService } from 'src/shared/services/events.service';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage {
-  private eventsSubscription: Subscription = new Subscription();
-
-  eventsData: Event[] = [];
-  constructor(private eventService: EventsService) {}
-
-  categories: Category[] = [];
-
-  ionViewWillEnter() {
-    this.getEvents();
-  }
-
-  getEvents(): void {
-    this.eventsSubscription = this.eventService.getEvents().subscribe({
-      next: (events: Event[]) => {
-        this.eventsData = events;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
-
-  ionViewDidLeave(): void {
-    if (this.eventsSubscription) {
-      this.eventsSubscription.unsubscribe();
-    }
-  }
-}
+export class HomePage {}
