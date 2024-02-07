@@ -60,8 +60,6 @@ export class UserRegisterPage implements OnInit, OnDestroy {
         },
         error: (error) => {
           this.errorToaster(error.error.error);
-          this.selectedRegion = '';
-          registerForm.reset();
         },
       });
   }
