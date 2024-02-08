@@ -72,9 +72,6 @@ export class OrganizationRegisterPage implements OnInit, OnDestroy {
         },
         error: (error) => {
           this.errorToaster(error.error.error);
-
-          this.selectedRegion = '';
-          organizatorRegisterForm.reset();
         },
       });
   }

@@ -24,6 +24,8 @@ export class FavouritesPage {
   backButton: boolean = true;
   addIcon = 'assets/icon/carbon_add-filled.svg';
 
+  unlikedEvent: any;
+
   user: User | null = {
     email: '',
     firstName: '',
@@ -47,30 +49,41 @@ export class FavouritesPage {
 
   ionViewWillEnter(): void {
     this.user = this.authService.getUserFromLocalStorage();
-    //this.getEvents();
-  }
 
-  getFilteredEvents(event: any): any {
-    console.log(event);
-    this.favouritesData = event;
-  }
-
-  getEvents(): void {
-    this.favouritesSubscription = this.eventService
-      .getMyFavourites()
-      .subscribe({
-        next: (events: any) => {
-          this.favouritesData = events.results;
-        },
-        error: (err) => {
-          this.toasterMessage = err.error.error;
-          this.toasterType = 'error';
+    // when unlikedEvent subject is changed this means an event is unliked => show toaster
+    // this was needed because upon unlike the event do not exist on the page and toaster was not showing
+    this.eventService.unlikedEvent$.subscribe({
+      next: (eventId) => {
+        if (eventId) {
+          this.toasterMessage = 'Успешно премахнахте събитието от любими!';
+          this.toasterType = 'success';
 
           setTimeout(() => {
             this.resetToasters();
           }, 5000);
-        },
-      });
+        }
+      },
+    });
+  }
+
+  getFilteredEvents(event: any): any {
+    this.favouritesData = event;
+  }
+
+  getEvents(): void {
+    this.favouritesSubscription = this.eventService.favouriteEvents$.subscribe({
+      next: (events: any) => {
+        this.favouritesData = events.results;
+      },
+      error: (err) => {
+        this.toasterMessage = err.error.error;
+        this.toasterType = 'error';
+
+        setTimeout(() => {
+          this.resetToasters();
+        }, 5000);
+      },
+    });
   }
 
   resetToasters() {

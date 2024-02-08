@@ -250,7 +250,6 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
         .then((hasConfirmed: any) => {
           if (hasConfirmed.data) {
             this.eventSubscription$ = this.createEvent(formValue);
-            this.clearForm(eventForm);
           }
         })
         .catch(console.log);
@@ -386,7 +385,7 @@ export class EventCreateEditPage implements OnInit, OnDestroy {
         this.toasterType = 'success';
         setTimeout(() => {
           this.router.navigateByUrl('/tabs/events');
-
+          this.clearForm(formValue);
           this.resetToasters();
         }, 2000);
       },
