@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package app.race.fanatic;
 
 import com.getcapacitor.BridgeActivity;
 

@@ -98,7 +98,7 @@ ion-modal.edit-email-modal::part(content) {
   height: 230px;
 }
 
-.ion-page {
+ion-modal > .ion-page {
   height: 100%;
   width: 100%;
   border: 1px solid #a6a2a0;

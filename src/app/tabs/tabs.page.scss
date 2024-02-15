@@ -1,13 +1,14 @@
-ion-tabs .tab-container.md.hydrated{
+ion-tabs .tab-container.md.hydrated {
   background-color: rgb(13, 13, 13) !important;
   border-top: 1px solid white;
   height: 56px;
-  .tab-has-label{
+  .tab-has-label {
     background-color: rgb(13, 13, 13) !important;
   }
 }
 .tab-container {
   padding: 0 12px;
+  border-top: 1px solid #a6a2a0;
 }
 .tab-icon {
   width: 24px;

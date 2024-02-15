@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'motorsport-app',
+  appId: 'app.race.fanatic',
+  appName: 'Race Fanatic',
   webDir: 'www',
   server: {
     androidScheme: 'https',
