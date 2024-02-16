@@ -5,162 +5,174 @@
     [defaultHref]="defaultHref"
   ></app-header>
 
-  <div class="ion-margin-vertical">
-    <app-title-fades [color]="titleSeparatorColor" [title]="event.shortTitle" />
+  <!-- show loading spinner while loading event data -->
+  <div class="loader-wrapper" *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
   </div>
 
-  <div class="ion-padding-horizontal">
-    <p class="long-title">{{event.longTitle}}</p>
-
-    <div class="image-wrapper">
-      <img
-        alt="{{event.shortTitle}}"
-        [src]="'data:image;base64,' + event.imageUrl"
-        class="event-image"
+  <ng-container *ngIf="!isLoading">
+    <div class="ion-margin-vertical">
+      <app-title-fades
+        [color]="titleSeparatorColor"
+        [title]="event.shortTitle"
       />
-      <app-like-icon
-        *ngIf="event._id"
-        [likes]="eventLikes"
-        [eventId]="event._id"
-        [isLiked]="hasLiked"
-        [userId]="userId"
-        source="details"
-      ></app-like-icon>
     </div>
 
-    <div class="category-city-wrapper">
-      <ng-container *ngFor="let category of event.categories">
+    <div class="ion-padding-horizontal">
+      <p class="long-title">{{event.longTitle}}</p>
+
+      <div class="image-wrapper">
+        <img
+          alt="{{event.shortTitle}}"
+          [src]="'data:image;base64,' + event.imageUrl"
+          class="event-image"
+        />
+        <app-like-icon
+          *ngIf="event._id"
+          [likes]="eventLikes"
+          [eventId]="event._id"
+          [isLiked]="hasLiked"
+          [userId]="userId"
+          source="details"
+        ></app-like-icon>
+      </div>
+
+      <div class="category-city-wrapper">
+        <ng-container *ngFor="let category of event.categories">
+          <span
+            class="badge"
+            [routerLink]="['/tabs/events']"
+            [queryParams]="{ sortBy: categoriesMap.get(category) }"
+            >{{category}}</span
+          >
+        </ng-container>
         <span
           class="badge"
           [routerLink]="['/tabs/events']"
-          [queryParams]="{ sortBy: categoriesMap.get(category) }"
-          >{{category}}</span
+          [queryParams]="{ sortBy: event.contacts.region }"
+          >{{event.contacts.region}}</span
         >
-      </ng-container>
-      <span
-        class="badge"
-        [routerLink]="['/tabs/events']"
-        [queryParams]="{ sortBy: event.contacts.region }"
-        >{{event.contacts.region}}</span
-      >
-    </div>
-
-    <p class="long-description">{{event.longDescription}}</p>
-  </div>
-
-  <div class="ion-margin-vertical">
-    <app-title-fades [color]="infoSeparatorColor" [title]="infoSeparatorText" />
-  </div>
-
-  <div class="ion-padding-horizontal">
-    <div>
-      <p class="info-title">Организатор на събитието:</p>
-      <p class="info-details">{{event.creator.organizatorName}}</p>
-    </div>
-
-    <div class="date-wrapper">
-      <p class="info-title">{{event.dates.length > 1 ? 'Дати:' : 'Дата:'}}</p>
-      <ion-grid class="ion-no-padding">
-        <ion-row *ngFor="let date of event.dates">
-          <ion-col class="ion-text-justify" size="medium" class="info-details"
-            >{{date.date | date:'dd.MM.yyyy'}} г.</ion-col
-          >
-          <ion-col size="auto" class="ion-text-center info-details">
-            &nbsp; - &nbsp; от {{ date.startTime }}
-          </ion-col>
-          <ion-col size="auto" class="info-details">&nbsp; до &nbsp;</ion-col>
-          <ion-col size="auto" class="ion-text-center info-details">
-            {{ date.endTime }}</ion-col
-          >
-        </ion-row>
-      </ion-grid>
-    </div>
-
-    <div>
-      <p class="info-title">Цени за зрители:</p>
-      <div class="prices-container">
-        <div
-          class="price-wrapper"
-          *ngFor="let visitorPrice of event.visitorPrices"
-        >
-          <div class="price-holder price-visitors">
-            {{visitorPrice.price}} лв.
-          </div>
-          <span class="info-details">{{visitorPrice.description}}</span>
-        </div>
       </div>
+      <p class="long-description">{{event.longDescription}}</p>
     </div>
 
-    <div *ngIf="event.participantPrices!.length > 0 ">
-      <p class="info-title">Цени за участници:</p>
-      <div class="prices-container">
-        <div
-          class="price-wrapper"
-          *ngFor="let participantPrice of event.participantPrices"
-        >
-          <ng-container
-            *ngIf="participantPrice.price && participantPrice.description"
+    <div class="ion-margin-vertical">
+      <app-title-fades
+        [color]="infoSeparatorColor"
+        [title]="infoSeparatorText"
+      />
+    </div>
+
+    <div class="ion-padding-horizontal">
+      <div>
+        <p class="info-title">Организатор на събитието:</p>
+        <p class="info-details">{{event.creator.organizatorName}}</p>
+      </div>
+
+      <div class="date-wrapper">
+        <p class="info-title">{{event.dates.length > 1 ? 'Дати:' : 'Дата:'}}</p>
+        <ion-grid class="ion-no-padding">
+          <ion-row *ngFor="let date of event.dates">
+            <ion-col class="ion-text-justify" size="medium" class="info-details"
+              >{{date.date | date:'dd.MM.yyyy'}} г.</ion-col
+            >
+            <ion-col size="auto" class="ion-text-center info-details">
+              &nbsp; - &nbsp; от {{ date.startTime }}
+            </ion-col>
+            <ion-col size="auto" class="info-details">&nbsp; до &nbsp;</ion-col>
+            <ion-col size="auto" class="ion-text-center info-details">
+              {{ date.endTime }}</ion-col
+            >
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <div>
+        <p class="info-title">Цени за зрители:</p>
+        <div class="prices-container">
+          <div
+            class="price-wrapper"
+            *ngFor="let visitorPrice of event.visitorPrices"
           >
-            <div class="price-holder price-participants">
-              {{participantPrice.price}} лв.
+            <div class="price-holder price-visitors">
+              {{visitorPrice.price}} лв.
             </div>
-            <span class="info-details">{{participantPrice.description}}</span>
-          </ng-container>
+            <span class="info-details">{{visitorPrice.description}}</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="location">
-      <p class="info-title">Локация:</p>
-      <p class="info-details">{{event.contacts.address}}</p>
-      <div class="google-maps-wrapper">
-        <capacitor-google-map #map></capacitor-google-map>
-      </div>
-    </div>
-
-    <div class="contacts">
-      <p class="info-title">Контакти:</p>
-      <div class="contacts-wrapper">
-        <div>
-          <a href="tel:{{event.contacts.phone}}" class="info-details"
-            >{{event.contacts.phone}}</a
+      <div *ngIf="event.participantPrices!.length > 0 ">
+        <p class="info-title">Цени за участници:</p>
+        <div class="prices-container">
+          <div
+            class="price-wrapper"
+            *ngFor="let participantPrice of event.participantPrices"
           >
-        </div>
-        <div *ngIf="event.contacts.email">
-          <a href="mailto:{{event.contacts.email}}" class="info-details"
-            >{{event.contacts.email}}</a
-          >
+            <ng-container
+              *ngIf="participantPrice.price && participantPrice.description"
+            >
+              <div class="price-holder price-participants">
+                {{participantPrice.price}} лв.
+              </div>
+              <span class="info-details">{{participantPrice.description}}</span>
+            </ng-container>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div
-      class="main-button-wrapper"
-      (click)="addRemoveFromFavorites()"
-      *ngIf="userId"
-    >
-      <button class="main-button">
-        {{hasLiked ? 'Премахни от любими ' : 'Добави в любими'}}
-      </button>
-    </div>
-    <div class="manage-buttons-wrapper" *ngIf="isCreatorOrAdmin">
-      <div class="secondary-button-wrapper">
-        <button class="secondary-button" (click)="onEditEvent()">
-          Редактирай
+      <div class="location">
+        <p class="info-title">Локация:</p>
+        <p class="info-details">{{event.contacts.address}}</p>
+        <div class="google-maps-wrapper">
+          <capacitor-google-map #map></capacitor-google-map>
+        </div>
+      </div>
+
+      <div class="contacts">
+        <p class="info-title">Контакти:</p>
+        <div class="contacts-wrapper">
+          <div>
+            <a href="tel:{{event.contacts.phone}}" class="info-details"
+              >{{event.contacts.phone}}</a
+            >
+          </div>
+          <div *ngIf="event.contacts.email">
+            <a href="mailto:{{event.contacts.email}}" class="info-details"
+              >{{event.contacts.email}}</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="main-button-wrapper"
+        (click)="addRemoveFromFavorites()"
+        *ngIf="userId"
+      >
+        <button class="main-button">
+          {{hasLiked ? 'Премахни от любими ' : 'Добави в любими'}}
         </button>
       </div>
-      <div
-        class="delete-button-wrapper"
-        (click)="presentDeleteModal('delete')"
-        [id]="event._id"
-      >
-        <button class="delete-button">Изтрий</button>
+      <div class="manage-buttons-wrapper" *ngIf="isCreatorOrAdmin">
+        <div class="secondary-button-wrapper">
+          <button class="secondary-button" (click)="onEditEvent()">
+            Редактирай
+          </button>
+        </div>
+        <div
+          class="delete-button-wrapper"
+          (click)="presentDeleteModal('delete')"
+          [id]="event._id"
+        >
+          <button class="delete-button">Изтрий</button>
+        </div>
       </div>
     </div>
-  </div>
-  <!-- toaster message -->
-  <app-toaster
-    [toasterMessage]="toasterMessage"
-    [toasterType]="toasterType"
-  ></app-toaster>
+    <!-- toaster message -->
+    <app-toaster
+      [toasterMessage]="toasterMessage"
+      [toasterType]="toasterType"
+    ></app-toaster>
+  </ng-container>
 </ion-content>
