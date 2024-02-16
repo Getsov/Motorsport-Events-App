@@ -11,6 +11,7 @@ import { ToasterComponent } from './components/toaster/toaster.component';
 import { EventLineComponent } from './components/event-line/event-line.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { SearchComponent } from './components/search/search.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, RouterModule],
@@ -23,6 +24,7 @@ import { SearchComponent } from './components/search/search.component';
     EventLineComponent,
     ConfirmModalComponent,
     SearchComponent,
+    LoadingSpinnerComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
@@ -33,6 +35,7 @@ import { SearchComponent } from './components/search/search.component';
     ToasterComponent,
     EventLineComponent,
     SearchComponent,
+    LoadingSpinnerComponent,
   ],
 })
 export class SharedModule {}
