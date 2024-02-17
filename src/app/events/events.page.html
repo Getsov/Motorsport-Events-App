@@ -10,25 +10,36 @@
       show-clear-button="focus"
       placeholder="Търсене"
       (filteredEvents)="getFilteredEvents($event)"
+      (isLoadingEvents)="setLoading($event)"
     ></app-search>
   </div>
   <app-title-fades [color]="titleColor" [title]="titleText" />
-  <div
-    class="ion-padding-horizontal"
-    *ngIf="(user?.role === 'admin') || (user?.role === 'organizer')"
-  >
-    <div class="main-button-wrapper">
-      <ion-icon [src]="addIcon" class="add-icon" />
-      <span [routerLink]="['/tabs/events/create']" class="main-button"
-        >Създай събитие</span
-      >
+  <ng-container *ngIf="!isLoading">
+    <div
+      class="ion-padding-horizontal"
+      *ngIf="(user?.role === 'admin') || (user?.role === 'organizer')"
+    >
+      <div class="main-button-wrapper">
+        <ion-icon [src]="addIcon" class="add-icon" />
+        <span [routerLink]="['/tabs/events/create']" class="main-button"
+          >Създай събитие</span
+        >
+      </div>
     </div>
-  </div>
-  <ng-container *ngFor="let event of eventsData">
-    <app-event [event]="event" (filteredEvents)="getFilteredEvents($event)" />
+
+    <ng-container *ngFor="let event of eventsData">
+      <app-event [event]="event" (filteredEvents)="getFilteredEvents($event)" />
+    </ng-container>
+
+    <!-- show if no events -->
+    <div *ngIf="eventsData.length === 0">
+      <p class="no-events">Няма налични събития!</p>
+    </div>
   </ng-container>
-  <div *ngIf="eventsData.length === 0">
-    <p class="no-events">Няма налични събития!</p>
+
+  <!-- loading spinner -->
+  <div *ngIf="isLoading" class="loader-wrapper">
+    <app-loading-spinner></app-loading-spinner>
   </div>
 </ion-content>
 

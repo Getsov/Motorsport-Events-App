@@ -19,6 +19,8 @@ export class EventsPage {
   @Input() titleColor: string = 'yellow';
   @Input() titleText: string = 'Списък със събития';
 
+  isLoading: boolean = false;
+
   headerTitle: string = 'Събития';
   defaultHref: string = '/tabs/home';
   backButton: boolean = true;
@@ -40,10 +42,7 @@ export class EventsPage {
   toasterType: string = '';
   toasterMessage: string = '';
 
-  constructor(
-    private eventService: EventsService,
-    private authService: AuthService
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ionViewWillEnter() {
     this.user = this.authService.getUserFromLocalStorage();
@@ -51,6 +50,10 @@ export class EventsPage {
 
   getFilteredEvents(event: any): any {
     this.eventsData = event;
+  }
+
+  setLoading(isLoading: boolean): void {
+    this.isLoading = isLoading;
   }
 
   resetToasters() {
