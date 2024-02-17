@@ -19,6 +19,8 @@ export class FavouritesPage {
   @Input() titleColor: string = 'yellow';
   @Input() titleText: string = 'Списък със събития';
 
+  isLoading: boolean = false;
+
   headerTitle: string = 'Любими';
   defaultHref: string = '/tabs/home';
   backButton: boolean = true;
@@ -66,24 +68,12 @@ export class FavouritesPage {
     });
   }
 
-  getFilteredEvents(event: any): any {
-    this.favouritesData = event;
+  setLoading(isLoading: boolean): void {
+    this.isLoading = isLoading;
   }
 
-  getEvents(): void {
-    this.favouritesSubscription = this.eventService.favouriteEvents$.subscribe({
-      next: (events: any) => {
-        this.favouritesData = events.results;
-      },
-      error: (err) => {
-        this.toasterMessage = err.error.error;
-        this.toasterType = 'error';
-
-        setTimeout(() => {
-          this.resetToasters();
-        }, 5000);
-      },
-    });
+  getFilteredEvents(event: any): any {
+    this.favouritesData = event;
   }
 
   resetToasters() {
