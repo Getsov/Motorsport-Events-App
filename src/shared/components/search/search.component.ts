@@ -143,9 +143,11 @@ export class SearchComponent {
   }
 
   handleEventFetchError(err: any): void {
-    this.toasterMessage = err.error.error;
-    this.toasterType = 'error';
-    setTimeout(() => this.resetToasters(), 5000);
+    if (err.error) {
+      this.toasterMessage = err.error.error;
+      this.toasterType = 'error';
+      setTimeout(() => this.resetToasters(), 5000);
+    }
   }
 
   resetToasters() {

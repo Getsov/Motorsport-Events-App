@@ -10,6 +10,7 @@
       show-clear-button="focus"
       placeholder="Търсене"
       (filteredEvents)="getFilteredEvents($event)"
+      (isLoadingEvents)="setLoading($event)"
     ></app-search>
   </div>
   <app-title-fades [color]="titleColor" [title]="titleText" />
@@ -17,14 +18,22 @@
     class="ion-padding-horizontal"
     *ngIf="(user?.role == 'admin') || (user?.role == 'organizer')"
   ></div>
-  <ng-container *ngFor="let event of favouritesData">
-    <app-event [event]="event" (filteredEvents)="getFilteredEvents($event)" />
+
+  <ng-container *ngIf="!isLoading">
+    <ng-container *ngFor="let event of favouritesData">
+      <app-event [event]="event" (filteredEvents)="getFilteredEvents($event)" />
+    </ng-container>
+    <div *ngIf="favouritesData.length == 0">
+      <p class="no-events">
+        В момента нямате любими събития.<br />Започнете да добавяте Вашите
+        любими още днес!
+      </p>
+    </div>
   </ng-container>
-  <div *ngIf="favouritesData.length == 0">
-    <p class="no-events">
-      В момента нямате любими събития.<br />Започнете да добавяте Вашите любими
-      още днес!
-    </p>
+
+  <!-- loading spinner -->
+  <div *ngIf="isLoading" class="loader-wrapper">
+    <app-loading-spinner></app-loading-spinner>
   </div>
 </ion-content>
 <!-- toaster message -->

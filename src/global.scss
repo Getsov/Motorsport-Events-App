@@ -180,6 +180,13 @@ a {
   text-decoration: none;
 }
 
+// loading spinner position
+.loader-wrapper {
+  position: fixed;
+  top: calc(50% - 20px);
+  left: calc(50% - 30px);
+}
+
 // FORM: Universal auth form styles
 @import "shared/styles/auth-form-styles.scss";
 
