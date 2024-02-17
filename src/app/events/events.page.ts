@@ -47,27 +47,10 @@ export class EventsPage {
 
   ionViewWillEnter() {
     this.user = this.authService.getUserFromLocalStorage();
-    //this.getEvents();
   }
 
   getFilteredEvents(event: any): any {
     this.eventsData = event;
-  }
-
-  getEvents(): void {
-    this.eventsSubscription = this.eventService.getEvents().subscribe({
-      next: (events: any) => {
-        this.eventsData = events.results;
-      },
-      error: (err) => {
-        this.toasterMessage = err.error.error;
-        this.toasterType = 'error';
-
-        setTimeout(() => {
-          this.resetToasters();
-        }, 5000);
-      },
-    });
   }
 
   resetToasters() {
