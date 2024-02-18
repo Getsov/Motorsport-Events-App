@@ -179,6 +179,14 @@ export class EventDetailPage implements OnInit, OnDestroy {
             this.toasterType = 'success';
           }
         },
+        error: (err) => {
+          this.toasterMessage = err.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
+        },
       })
     );
   }
