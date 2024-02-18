@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EventsService } from '../../shared/services/events.service';
 import { Event } from 'src/shared/interfaces/Event';
 import { Subscription } from 'rxjs';
@@ -14,6 +14,7 @@ export class FavouritesPage {
   parent: string = 'favourites';
   favouritesData: Event[] = [];
   query: any = [];
+
   private favouritesSubscription: Subscription = new Subscription();
 
   @Input() titleColor: string = 'yellow';
@@ -47,11 +48,7 @@ export class FavouritesPage {
   constructor(
     private eventService: EventsService,
     private authService: AuthService
-  ) {}
-
-  ionViewWillEnter(): void {
-    this.user = this.authService.getUserFromLocalStorage();
-
+  ) {
     // when unlikedEvent subject is changed this means an event is unliked => show toaster
     // this was needed because upon unlike the event do not exist on the page and toaster was not showing
     this.eventService.unlikedEvent$.subscribe({
@@ -66,6 +63,10 @@ export class FavouritesPage {
         }
       },
     });
+  }
+
+  ionViewWillEnter(): void {
+    this.user = this.authService.getUserFromLocalStorage();
   }
 
   setLoading(isLoading: boolean): void {
