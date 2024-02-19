@@ -67,6 +67,7 @@ export class EventDetailPage implements OnInit, OnDestroy {
     _id: '',
   };
 
+  isLoading: boolean = false;
   isCreatorOrAdmin: boolean | undefined = false;
 
   titleSeparatorColor: string = 'orange';
@@ -97,6 +98,7 @@ export class EventDetailPage implements OnInit, OnDestroy {
   ngOnInit() {}
 
   ionViewWillEnter() {
+    this.isLoading = true;
     this.Subscriptions$.push(this.getEventId());
 
     this.Subscriptions$.push(this.setEvent());
@@ -114,12 +116,17 @@ export class EventDetailPage implements OnInit, OnDestroy {
   setEvent(): Subscription {
     return this.eventService.getEvent(this.eventId).subscribe({
       next: (response) => {
+        this.isLoading = false;
         this.event = response;
         this.event.participantPrices = this.event.participantPrices?.filter(
           (price) => price.description && price.price
         );
         this.hasLiked = this.event.likes.includes(this.userId);
-        this.createMap();
+
+        // needed to be set inside timeout, otherwise maps throws error
+        setTimeout(() => {
+          this.createMap();
+        }, 100);
       },
       error: (error) => {
         this.toasterMessage = error.error.error;
@@ -171,6 +178,14 @@ export class EventDetailPage implements OnInit, OnDestroy {
             this.toasterMessage = 'Успешно добавихте събитието в любими!';
             this.toasterType = 'success';
           }
+        },
+        error: (err) => {
+          this.toasterMessage = err.error.error;
+          this.toasterType = 'error';
+
+          setTimeout(() => {
+            this.resetToasters();
+          }, 5000);
         },
       })
     );

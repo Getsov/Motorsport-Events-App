@@ -1,9 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { Categories } from 'src/shared/data/categories';
@@ -21,6 +16,8 @@ export class SearchComponent {
   @Input() titleText: string = 'Филтриране на събития';
   @Input() externalSelectedCategory: number[] | undefined; // Input property to receive selected category from parent
   @Output() filteredEvents = new EventEmitter<any>();
+  @Output() isLoadingEvents = new EventEmitter<boolean>();
+
   private eventsSubscription: Subscription = new Subscription();
 
   category: string = 'Категория';
@@ -130,20 +127,27 @@ export class SearchComponent {
   }
 
   getEvents(query: string = '') {
+    this.isLoadingEvents.emit(true);
+
     const fetchMethod =
       this.parent == 'favourites'
         ? () => this.eventService.getMyFavourites(query)
         : () => this.eventService.getEvents(query);
     this.eventsSubscription = fetchMethod().subscribe({
-      next: (events) => this.filteredEvents.emit(events.results),
+      next: (events) => {
+        this.filteredEvents.emit(events.results);
+        this.isLoadingEvents.emit(false);
+      },
       error: (err) => this.handleEventFetchError(err),
     });
   }
 
   handleEventFetchError(err: any): void {
-    this.toasterMessage = err.error.error;
-    this.toasterType = 'error';
-    setTimeout(() => this.resetToasters(), 5000);
+    if (err.error) {
+      this.toasterMessage = err.error.error;
+      this.toasterType = 'error';
+      setTimeout(() => this.resetToasters(), 5000);
+    }
   }
 
   resetToasters() {
