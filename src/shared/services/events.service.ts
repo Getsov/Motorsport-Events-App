@@ -105,7 +105,6 @@ export class EventsService {
 
             // Remove the event from the favourite events subject
             if (eventIndex !== -1) {
-              console.log(eventId);
               this.unlikedEvent.next(eventId);
               favouriteEvents.splice(eventIndex, 1);
             }

@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { EventsService } from '../../shared/services/events.service';
 import { Event } from 'src/shared/interfaces/Event';
 import { Subscription } from 'rxjs';
 import { User } from 'src/shared/interfaces/User';
 import { AuthService } from 'src/shared/services/auth.service';
+import { SearchComponent } from 'src/shared/components/search/search.component';
 
 @Component({
   selector: 'app-favourites',
@@ -14,6 +15,8 @@ export class FavouritesPage {
   parent: string = 'favourites';
   favouritesData: Event[] = [];
   query: any = [];
+
+  @ViewChild(SearchComponent) searchComponent!: SearchComponent;
 
   private favouritesSubscription: Subscription = new Subscription();
 
@@ -67,6 +70,7 @@ export class FavouritesPage {
 
   ionViewWillEnter(): void {
     this.user = this.authService.getUserFromLocalStorage();
+    this.searchComponent.loadEventsBasedOnRoute();
   }
 
   setLoading(isLoading: boolean): void {
@@ -85,6 +89,12 @@ export class FavouritesPage {
   ionViewDidLeave(): void {
     if (this.favouritesSubscription) {
       this.favouritesSubscription.unsubscribe();
+    }
+
+    // lifecycle hooks inside SearchComponent are not triggered
+    // unsubscribe from SearchComponent subscriptions
+    if (this.searchComponent.eventsSubscription) {
+      this.searchComponent.eventsSubscription.unsubscribe();
     }
   }
 }

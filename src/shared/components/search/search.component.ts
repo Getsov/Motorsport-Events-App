@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { Categories } from 'src/shared/data/categories';
 import BulgarianRegions from 'src/shared/data/regions';
@@ -18,7 +18,7 @@ export class SearchComponent {
   @Output() filteredEvents = new EventEmitter<any>();
   @Output() isLoadingEvents = new EventEmitter<boolean>();
 
-  private eventsSubscription: Subscription = new Subscription();
+  eventsSubscription!: Subscription;
 
   category: string = 'Категория';
   location: string = 'Регион';
@@ -43,24 +43,12 @@ export class SearchComponent {
     private eventService: EventsService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.loadEventsBasedOnRoute();
-      }
-    });
-  }
-
-  ionViewWillEnter() {
-    if (this.externalSelectedCategory) {
-      this.selectedCategory = this.externalSelectedCategory;
-    }
-    this.loadEventsBasedOnRoute();
-  }
+  ) {}
 
   loadEventsBasedOnRoute(): void {
     const route = this.router.parseUrl(this.router.url);
     const queryParams = route.queryParamMap.keys;
+
     if (queryParams.includes('sortBy')) {
       // If 'sortBy' query parameter is present, update selectedCategory.
       const categoryToSort = route.queryParamMap.get('sortBy');
@@ -72,6 +60,7 @@ export class SearchComponent {
       route.queryParamMap.keys.length === 0
     ) {
       // If there are no query parameters, load all events and reset selectedCategory.
+
       this.selectedCategory = [];
       this.getEvents();
     } else {
@@ -128,7 +117,6 @@ export class SearchComponent {
 
   getEvents(query: string = '') {
     this.isLoadingEvents.emit(true);
-
     const fetchMethod =
       this.parent == 'favourites'
         ? () => this.eventService.getMyFavourites(query)
@@ -161,11 +149,5 @@ export class SearchComponent {
       queryParams: {},
       replaceUrl: true,
     });
-  }
-
-  ionViewDidLeave(): void {
-    if (this.eventsSubscription) {
-      this.eventsSubscription.unsubscribe();
-    }
   }
 }
