@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { EventsService } from '../../shared/services/events.service';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Event } from 'src/shared/interfaces/Event';
 import { Subscription } from 'rxjs';
 import { User } from 'src/shared/interfaces/User';
 import { AuthService } from 'src/shared/services/auth.service';
+import { SearchComponent } from 'src/shared/components/search/search.component';
 
 @Component({
   selector: 'app-events',
@@ -14,6 +14,9 @@ export class EventsPage {
   parent: string = 'events';
   eventsData: Event[] = [];
   query: any = [];
+
+  @ViewChild(SearchComponent) searchComponent!: SearchComponent;
+
   private eventsSubscription: Subscription = new Subscription();
 
   @Input() titleColor: string = 'yellow';
@@ -46,6 +49,7 @@ export class EventsPage {
 
   ionViewWillEnter() {
     this.user = this.authService.getUserFromLocalStorage();
+    this.searchComponent.loadEventsBasedOnRoute();
   }
 
   getFilteredEvents(event: any): any {
@@ -64,6 +68,12 @@ export class EventsPage {
   ionViewDidLeave(): void {
     if (this.eventsSubscription) {
       this.eventsSubscription.unsubscribe();
+    }
+
+    // lifecycle hooks inside SearchComponent are not triggered
+    // unsubscribe from SearchComponent subscriptions
+    if (this.searchComponent.eventsSubscription) {
+      this.searchComponent.eventsSubscription.unsubscribe();
     }
   }
 }
