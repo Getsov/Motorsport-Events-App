@@ -23,7 +23,7 @@ export class SearchComponent {
   category: string = 'Категория';
   location: string = 'Регион';
   searchQuery: [] | string = '';
-  locationQuery: [] = [];
+  locationQuery: number[] = [];
   selectedCategory: number[] = [];
   sortBy: string = '';
 
@@ -50,17 +50,23 @@ export class SearchComponent {
     const queryParams = route.queryParamMap.keys;
 
     if (queryParams.includes('category')) {
-      // If 'sortBy' query parameter is present, update selectedCategory.
+      // If 'category' query parameter is present, update selectedCategory.
       const categoryToSort = route.queryParamMap.get('category');
       this.selectedCategory = categoryToSort ? [Number(categoryToSort)] : [];
       // Call searchEvents to load events based on the selected category.
+      this.searchEvents();
+    } else if (queryParams.includes('region')) {
+      // If 'region' query parameter is present, update selectedRegion.
+      const regionToSort = route.queryParamMap.get('region');
+      this.locationQuery = regionToSort ? [Number(regionToSort)] : [];
+      // Call searchEvents to load events based on the selected region.
       this.searchEvents();
     } else if (
       Object.keys(queryParams).length === 0 ||
       route.queryParamMap.keys.length === 0
     ) {
-      // If there are no query parameters, load all events and reset selectedCategory.
-
+      // If there are no query parameters, load all events and reset selectedCategory and locationQuery.
+      this.locationQuery = [];
       this.selectedCategory = [];
       this.getEvents();
     } else {

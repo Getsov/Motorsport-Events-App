@@ -49,7 +49,7 @@
         <span
           class="badge"
           [routerLink]="['/tabs/events']"
-          [queryParams]="{ region: event.contacts.region }"
+          [queryParams]="{ region: regionsMap.get(event.contacts.region) }"
           >{{event.contacts.region}}</span
         >
       </div>
