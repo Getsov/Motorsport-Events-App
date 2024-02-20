@@ -42,14 +42,14 @@
           <span
             class="badge"
             [routerLink]="['/tabs/events']"
-            [queryParams]="{ sortBy: categoriesMap.get(category) }"
+            [queryParams]="{ category: categoriesMap.get(category) }"
             >{{category}}</span
           >
         </ng-container>
         <span
           class="badge"
           [routerLink]="['/tabs/events']"
-          [queryParams]="{ sortBy: event.contacts.region }"
+          [queryParams]="{ region: event.contacts.region }"
           >{{event.contacts.region}}</span
         >
       </div>

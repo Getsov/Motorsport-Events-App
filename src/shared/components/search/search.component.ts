@@ -49,9 +49,9 @@ export class SearchComponent {
     const route = this.router.parseUrl(this.router.url);
     const queryParams = route.queryParamMap.keys;
 
-    if (queryParams.includes('sortBy')) {
+    if (queryParams.includes('category')) {
       // If 'sortBy' query parameter is present, update selectedCategory.
-      const categoryToSort = route.queryParamMap.get('sortBy');
+      const categoryToSort = route.queryParamMap.get('category');
       this.selectedCategory = categoryToSort ? [Number(categoryToSort)] : [];
       // Call searchEvents to load events based on the selected category.
       this.searchEvents();
