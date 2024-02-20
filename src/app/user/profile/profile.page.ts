@@ -124,6 +124,18 @@ export class ProfilePage implements OnInit {
 
   // confirm edit info modal
   async presentConfirmModal(userEditForm: any) {
+
+    if(typeof(userEditForm) == "object"){
+      if(userEditForm.form.pristine){
+        this.toasterMessage = "Няма направени промени по профила.";
+        this.toasterType = 'error';
+        setTimeout(() => {
+        this.resetToasters();
+      }, 2000);
+      return;
+    }
+    }
+    
     const modal = await this.modalController.create({
       component: ConfirmModalComponent,
       componentProps: {

@@ -27,6 +27,7 @@ enum BulgarianRegions {
   'Хасково' = 26,
   'Шумен' = 27,
   'Ямбол' = 28,
+  'Чужбина' = 29
 }
 
 export default BulgarianRegions;
