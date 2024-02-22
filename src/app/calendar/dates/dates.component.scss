@@ -18,12 +18,16 @@ ion-datetime {
 
 ion-datetime::part(today) {
   color: #fff !important;
-  font-weight: 600 !important;
+  font-weight: 00 !important;
   background: none;
 }
 ion-datetime::part(today):focus {
   color: #000 !important;
   font-weight: 400 !important;
+}
+
+ion-datetime::part(month-year-button) {
+  font-weight: 500 !important;
 }
 
 ion-datetime::part(calendar-day) {
