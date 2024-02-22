@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   mapsKey: 'AIzaSyBZsTJ5gzHoqRJOQONn4ioYWlx7_TqRyXQ',
-  baseUrl: 'https://race-fanatic-server.onrender.com',
-  /* baseUrl: 'http://localhost:3030', */
+  // baseUrl: 'https://race-fanatic-server.onrender.com',
+  baseUrl: 'http://localhost:3030',
 };
 
 /*

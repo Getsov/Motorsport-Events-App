@@ -1,15 +1,25 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+} from '@angular/core';
 import { Event } from 'src/shared/interfaces/Event';
-import { EventsService } from 'src/shared/services/events.service';
+import { BulgarianDateFormatPipe } from 'src/shared/pipes/BulgarianMonthPipe';
 
 @Component({
   selector: 'app-calendar-list',
   templateUrl: './calendar-list.component.html',
   styleUrls: ['./calendar-list.component.scss'],
+  providers: [BulgarianDateFormatPipe],
 })
 export class CalendarListComponent implements OnInit, OnChanges {
-  constructor(private datePipe: DatePipe) {}
+  constructor(
+    private datePipe: DatePipe,
+    private bulgarianDatePipe: BulgarianDateFormatPipe
+  ) {}
 
   @Input() selectedDate: string = '';
   @Input() titleColor: string = 'orange';
@@ -20,12 +30,7 @@ export class CalendarListComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.filteredDates = this.currentMonthEvents;
-    const today = new Date();
-
-    // Getting full month name (e.g. "февруари")
-    const month = today.toLocaleString('bg-BG', { month: 'long' });
-    this.initialMonth = `${month}` + ` ${new Date().getFullYear()}`;
-    this.selectedMonth = new Date(Date.parse(this.selectedDate)).getMonth();
+    this.initialMonth = this.bulgarianDatePipe.transform(this.selectedDate);
   }
 
   ngOnChanges() {
@@ -35,5 +40,7 @@ export class CalendarListComponent implements OnInit, OnChanges {
         return this.selectedDate === currentDate;
       });
     });
+
+    this.initialMonth = this.bulgarianDatePipe.transform(this.selectedDate);
   }
 }
