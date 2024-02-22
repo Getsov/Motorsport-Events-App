@@ -7,7 +7,7 @@ import { EventsService } from 'src/shared/services/events.service';
   templateUrl: './calendar.page.html',
   styleUrls: ['./calendar.page.scss'],
 })
-export class CalendarPage {
+export class CalendarPage implements OnInit {
   @Input() pageTitle: string = 'Календар';
   @Input() selectedDate: string = '';
 
@@ -26,14 +26,18 @@ export class CalendarPage {
     private datePipe: DatePipe
   ) {}
 
+  ngOnInit(): void {}
+
   ionViewWillEnter() {
     const currentDate = new Date();
+    this.selectedDate = this.datePipe.transform(currentDate, 'dd.MM.yyyy')!;
     this.currentYearMonth = this.datePipe.transform(currentDate, 'yyyy/MM')!;
     this.loadEvents(this.currentYearMonth);
   }
 
   handleSelectedDateChange(date: string) {
     this.selectedDate = date;
+
     // Format the selectedYearMonth to a specific string required by the service.
     const newSelectedYearMonth = date
       .split('.')
