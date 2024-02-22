@@ -8,10 +8,12 @@ ion-datetime {
   // box-shadow: rgba(255, 116, 24, 0.3) 0px 0px 8px;
   // border-radius: 4px;
   --ion-color-step-650: white;
-
+  background-color: rgba(13, 13, 13, 1);
   .calendar-day.calendar-day-active {
     color: black;
   }
+  --ion-color-step-300: rgba(166, 162, 160, 1);
+  --ion-color-light-rgb: none;
 }
 
 ion-datetime::part(today) {
@@ -25,7 +27,6 @@ ion-datetime::part(today):focus {
 }
 
 ion-datetime::part(calendar-day) {
-  color: #c2bfbe;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
