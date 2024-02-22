@@ -7,7 +7,7 @@ import { EventsService } from 'src/shared/services/events.service';
   templateUrl: './calendar.page.html',
   styleUrls: ['./calendar.page.scss'],
 })
-export class CalendarPage implements OnInit {
+export class CalendarPage {
   @Input() pageTitle: string = 'Календар';
   @Input() selectedDate: string = '';
 
@@ -25,8 +25,6 @@ export class CalendarPage implements OnInit {
     private eventService: EventsService,
     private datePipe: DatePipe
   ) {}
-
-  ngOnInit(): void {}
 
   ionViewWillEnter() {
     const currentDate = new Date();

@@ -18,8 +18,7 @@ import { BulgarianDateFormatPipe } from 'src/shared/pipes/BulgarianMonthPipe';
 export class CalendarListComponent implements OnInit, OnChanges {
   constructor(
     private datePipe: DatePipe,
-    private bulgarianDatePipe: BulgarianDateFormatPipe,
-    private cdr: ChangeDetectorRef
+    private bulgarianDatePipe: BulgarianDateFormatPipe
   ) {}
 
   @Input() selectedDate: string = '';
@@ -42,8 +41,6 @@ export class CalendarListComponent implements OnInit, OnChanges {
       });
     });
 
-    // Transform the selected date using the BulgarianDateFormatPipe
     this.initialMonth = this.bulgarianDatePipe.transform(this.selectedDate);
-    this.cdr.detectChanges();
   }
 }
