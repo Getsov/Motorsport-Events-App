@@ -25,7 +25,7 @@ import { TokenInterceptor } from 'src/shared/interceptos/tokenInterceptor';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     EventsService,
     DatePipe,
-    // { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
