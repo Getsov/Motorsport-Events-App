@@ -8,15 +8,17 @@ ion-datetime {
   // box-shadow: rgba(255, 116, 24, 0.3) 0px 0px 8px;
   // border-radius: 4px;
   --ion-color-step-650: white;
-
+  background-color: rgba(13, 13, 13, 1);
   .calendar-day.calendar-day-active {
     color: black;
   }
+  --ion-color-step-300: rgba(166, 162, 160, 1);
+  --ion-color-light-rgb: none;
 }
 
 ion-datetime::part(today) {
   color: #fff !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
   background: none;
 }
 ion-datetime::part(today):focus {
@@ -24,10 +26,13 @@ ion-datetime::part(today):focus {
   font-weight: 400 !important;
 }
 
+ion-datetime::part(month-year-button) {
+  font-weight: 500 !important;
+}
+
 ion-datetime::part(calendar-day) {
-  color: #c2bfbe;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 24px;
   border-radius: 4px;
   border: none;

@@ -28,12 +28,14 @@ export class CalendarPage {
 
   ionViewWillEnter() {
     const currentDate = new Date();
+    this.selectedDate = this.datePipe.transform(currentDate, 'dd.MM.yyyy')!;
     this.currentYearMonth = this.datePipe.transform(currentDate, 'yyyy/MM')!;
     this.loadEvents(this.currentYearMonth);
   }
 
   handleSelectedDateChange(date: string) {
     this.selectedDate = date;
+
     // Format the selectedYearMonth to a specific string required by the service.
     const newSelectedYearMonth = date
       .split('.')
