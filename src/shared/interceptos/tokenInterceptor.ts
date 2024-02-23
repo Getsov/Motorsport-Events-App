@@ -49,7 +49,7 @@ export class TokenInterceptor implements HttpInterceptor {
     } else {
       // Reset the counter when it is not 401 error
       this.errorCounter = 0;
-      return throwError(() => new Error('Non-Authentication Error'));
+      return throwError(() => err);
     }
   }
 }
