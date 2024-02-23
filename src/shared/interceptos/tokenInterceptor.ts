@@ -6,7 +6,8 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -27,26 +28,28 @@ export class TokenInterceptor implements HttpInterceptor {
 
   handleAuthError(err: HttpErrorResponse): Observable<any> {
     if (err && err.status === 401 && this.errorCounter !== 1) {
-      this.authService.refreshToken().subscribe({
-        next: () => {
-          // token gets refreshed
-          // todo: notify the user to try again?
-        },
-        error: () => {
-          // user has token but it is invalid - delete the refresh token and redirect to login
+      return this.authService.refreshToken().pipe(
+        switchMap(() => {
+          // Reset the counter if the refresh token is successful
+          this.errorCounter = 0;
+          return of('Token refreshed successfully');
+        }),
+        catchError(() => {
+          this.errorCounter++;
+          // User has a token but it is invalid - delete the refresh token and redirect to login
           this.authService.revokeRefreshToken().subscribe({
             next: () => {
               this.authService.logout();
               this.router.navigateByUrl('/tabs/user/auth');
             },
           });
-        },
-      });
-      return of('Refreshing token...');
+          return throwError('Invalid token, user logged out');
+        })
+      );
     } else {
-      // reset the counter and throw error so it can go to error on the 35 line above
+      // Reset the counter when it is not 401 error
       this.errorCounter = 0;
-      return throwError(() => new Error('Non Authentication Error'));
+      return throwError(() => new Error('Non-Authentication Error'));
     }
   }
 }
