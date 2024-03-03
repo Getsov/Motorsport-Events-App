@@ -27,8 +27,8 @@ export class EventCreatorGuard implements CanActivate {
 
     return this.authService.userData$.pipe(
       take(1),
-      map((userData) => {
-        const isCreator = userData?.createdEvents.includes(eventId!);
+      map((user) => {
+        const isCreator = user?.userData.createdEvents.includes(eventId!);
         if (!isCreator) {
           this.router.navigateByUrl('tabs/events');
           return false;

@@ -100,7 +100,7 @@ export class AuthService {
   getUserFromLocalStorage(): User | null {
     const userData = localStorage.getItem('authData');
     if (userData) {
-      return JSON.parse(userData);
+      return JSON.parse(userData).userData;
     }
     return null;
   }
@@ -132,7 +132,6 @@ export class AuthService {
   }
 
   // Edit profile
-
   editUserPassword(
     newPasswords: {
       oldPassword: string;
