@@ -172,6 +172,7 @@ export class AuthService {
           'Content-Type': 'application/json',
           'X-Authorization': accessToken!,
         },
+        withCredentials: true,
       }
     );
   }
@@ -184,12 +185,12 @@ export class AuthService {
         'Content-Type': 'application/json',
         'X-Authorization': accessToken!,
       },
+      withCredentials: true,
     });
   }
 
   editUserInfo(userInfo: any, userId: string) {
     const accessToken = this.getUserToken();
-    console.log('edit user info service', accessToken);
     return this.http.put(`${baseUrl}/user/editUserInfo/${userId}`, userInfo, {
       headers: {
         'Content-Type': 'application/json',
@@ -206,6 +207,3 @@ export class AuthService {
     });
   }
 }
-
-// attach cookie when received from the client
-//
