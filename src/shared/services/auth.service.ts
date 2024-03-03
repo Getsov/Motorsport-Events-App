@@ -60,10 +60,14 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http
-      .post<AuthResponseData>(`${baseUrl}/user/login`, {
-        email,
-        password,
-      })
+      .post<AuthResponseData>(
+        `${baseUrl}/user/login`,
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      )
       .pipe(tap((userData) => this.setUserData(userData)));
   }
 
@@ -73,8 +77,26 @@ export class AuthService {
     const userData: AuthResponseData | null = storedData
       ? JSON.parse(storedData)
       : null;
-
+    console.log(userData?.accessToken);
     return userData ? userData.accessToken : null;
+  }
+
+  // set new user token
+  updateAccessToken(accessToken: string) {
+    // Get the current user data from the BehaviorSubject
+    const currentUserData = this.userDataSubject.value;
+
+    // Update the access token in the current user data
+    const updatedUserData: any = {
+      ...currentUserData,
+      accessToken: accessToken,
+    };
+
+    // Update the BehaviorSubject with the new user data
+    this.userDataSubject.next(updatedUserData);
+
+    // Update localStorage with the new user data
+    localStorage.setItem('authData', JSON.stringify(updatedUserData));
   }
 
   // update user auth data
@@ -167,33 +189,23 @@ export class AuthService {
 
   editUserInfo(userInfo: any, userId: string) {
     const accessToken = this.getUserToken();
-
+    console.log('edit user info service', accessToken);
     return this.http.put(`${baseUrl}/user/editUserInfo/${userId}`, userInfo, {
       headers: {
         'Content-Type': 'application/json',
         'X-Authorization': accessToken!,
       },
+      withCredentials: true,
     });
   }
 
   // refresh token
-  refreshToken(): Observable<any> {
-    return this.http.post(
-      `${baseUrl}/refreshToken`,
-      {},
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-  }
-
-  revokeRefreshToken(): Observable<any> {
-    return this.http.delete(`${baseUrl}/refreshToken`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
+  getNewAccessToken(): Observable<any> {
+    return this.http.get(`${baseUrl}/user/accessToken`, {
+      withCredentials: true,
     });
   }
 }
+
+// attach cookie when received from the client
+//

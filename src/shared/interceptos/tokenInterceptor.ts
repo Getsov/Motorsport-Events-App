@@ -13,8 +13,6 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  errorCounter: number = 0;
-
   constructor(private authService: AuthService, private router: Router) {}
 
   intercept(
@@ -23,32 +21,36 @@ export class TokenInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next
       .handle(req)
-      .pipe(catchError((err) => this.handleAuthError(err)));
+      .pipe(catchError((err) => this.handleAuthError(err, req, next)));
   }
 
-  handleAuthError(err: HttpErrorResponse): Observable<any> {
-    if (err && err.status === 401 && this.errorCounter !== 1) {
-      return this.authService.refreshToken().pipe(
-        switchMap(() => {
-          // Reset the counter if the refresh token is successful
-          this.errorCounter = 0;
-          return of('Token refreshed successfully');
+  handleAuthError(
+    err: HttpErrorResponse,
+    originalRequest: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<any> {
+    if (err && err.status === 401) {
+      return this.authService.getNewAccessToken().pipe(
+        switchMap((response) => {
+          console.log(response, '401 error');
+
+          // set the received new access token
+          this.authService.updateAccessToken(response.accessToken);
+
+          // retry the original request
+          // Issue is here: error from BE "Invalid authorization token" regardless it is updated in the function updateAccessToken above?
+          return next.handle(originalRequest);
         }),
-        catchError(() => {
-          this.errorCounter++;
+        catchError((err) => {
+          console.log('error', err);
           // User has a token but it is invalid - delete the refresh token and redirect to login
-          this.authService.revokeRefreshToken().subscribe({
-            next: () => {
-              this.authService.logout();
-              this.router.navigateByUrl('/tabs/user/auth');
-            },
-          });
+          this.authService.logout();
+          this.router.navigateByUrl('/tabs/user/auth');
           return throwError('Invalid token, user logged out');
         })
       );
     } else {
-      // Reset the counter when it is not 401 error
-      this.errorCounter = 0;
+      // Throw original error
       return throwError(() => err);
     }
   }
