@@ -30,27 +30,34 @@ export class TokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<any> {
     if (err && err.status === 401) {
+      // Attempt to refresh the token
       return this.authService.getNewAccessToken().pipe(
         switchMap((response) => {
-          console.log(response, '401 error');
+          const newAccessToken = response.accessToken;
 
-          // set the received new access token
-          this.authService.updateAccessToken(response.accessToken);
+          // Update the access token in AuthService state and local storage
+          this.authService.updateAccessToken(newAccessToken);
 
-          // retry the original request
-          // Issue is here: error from BE "Invalid authorization token" regardless it is updated in the function updateAccessToken above?
-          return next.handle(originalRequest);
+          // Clone the failed request and add the new access token in the headers
+          const updatedRequest = originalRequest.clone({
+            setHeaders: { 'X-Authorization': newAccessToken },
+          });
+
+          // Retry the request with the updated access token
+          return next.handle(updatedRequest);
         }),
-        catchError((err) => {
-          console.log('error', err);
-          // User has a token but it is invalid - delete the refresh token and redirect to login
+        catchError((refreshErr) => {
+          // Handle failure (e.g., refresh token is invalid or expired)
+          console.error('Error refreshing token:', refreshErr);
           this.authService.logout();
           this.router.navigateByUrl('/tabs/user/auth');
-          return throwError('Invalid token, user logged out');
+          return throwError(
+            () => new Error('Session expired, please login again.')
+          );
         })
       );
     } else {
-      // Throw original error
+      // If the error is not 401, just forward the original error
       return throwError(() => err);
     }
   }
