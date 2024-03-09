@@ -15,15 +15,17 @@ export interface User {
 }
 
 export interface AuthResponseData {
-  _id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  role: string;
-  region: string;
-  phone: string;
-  isDeleted: boolean;
-  isApproved: boolean;
+  userData: {
+    _id: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    role: string;
+    region: string;
+    phone: string;
+    isDeleted: boolean;
+    isApproved: boolean;
+    createdEvents: string[];
+  }
   accessToken: string;
-  createdEvents: string[];
 }

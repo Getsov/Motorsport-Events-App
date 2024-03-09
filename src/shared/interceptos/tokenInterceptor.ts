@@ -13,8 +13,6 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  errorCounter: number = 0;
-
   constructor(private authService: AuthService, private router: Router) {}
 
   intercept(
@@ -23,32 +21,43 @@ export class TokenInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next
       .handle(req)
-      .pipe(catchError((err) => this.handleAuthError(err)));
+      .pipe(catchError((err) => this.handleAuthError(err, req, next)));
   }
 
-  handleAuthError(err: HttpErrorResponse): Observable<any> {
-    if (err && err.status === 401 && this.errorCounter !== 1) {
-      return this.authService.refreshToken().pipe(
-        switchMap(() => {
-          // Reset the counter if the refresh token is successful
-          this.errorCounter = 0;
-          return of('Token refreshed successfully');
-        }),
-        catchError(() => {
-          this.errorCounter++;
-          // User has a token but it is invalid - delete the refresh token and redirect to login
-          this.authService.revokeRefreshToken().subscribe({
-            next: () => {
-              this.authService.logout();
-              this.router.navigateByUrl('/tabs/user/auth');
-            },
+  handleAuthError(
+    err: HttpErrorResponse,
+    originalRequest: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<any> {
+    if (err && err.status === 401) {
+      // Attempt to refresh the token
+      return this.authService.getNewAccessToken().pipe(
+        switchMap((response) => {
+          const newAccessToken = response.accessToken;
+
+          // Update the access token in AuthService state and local storage
+          this.authService.updateAccessToken(newAccessToken);
+
+          // Clone the failed request and add the new access token in the headers
+          const updatedRequest = originalRequest.clone({
+            setHeaders: { 'X-Authorization': newAccessToken },
           });
-          return throwError('Invalid token, user logged out');
+
+          // Retry the request with the updated access token
+          return next.handle(updatedRequest);
+        }),
+        catchError((refreshErr) => {
+          // Handle failure (e.g., refresh token is invalid or expired)
+          console.error('Error refreshing token:', refreshErr);
+          this.authService.logout();
+          this.router.navigateByUrl('/tabs/user/auth');
+          return throwError(
+            () => new Error('Session expired, please login again.')
+          );
         })
       );
     } else {
-      // Reset the counter when it is not 401 error
-      this.errorCounter = 0;
+      // If the error is not 401, just forward the original error
       return throwError(() => err);
     }
   }

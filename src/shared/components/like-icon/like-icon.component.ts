@@ -34,7 +34,7 @@ export class LikeIconComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // Get user id and check if he has liked
     this.authService.userData$.subscribe(
-      (userData) => (this.userId = userData ? userData?._id : '')
+      (user) => (this.userId = user ? user?.userData._id : '')
     );
 
     // if it has source this means it comes from the event details component

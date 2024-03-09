@@ -38,9 +38,9 @@ export class UpcomingEventsComponent implements OnInit, OnDestroy {
     // check if user is admin or organizer to show create event button
     this.Subscriptions$.push(
       this.authService.userData$.subscribe({
-        next: (userData) => {
+        next: (user) => {
           this.isAdminOrOrganization =
-            userData?.role === 'organizer' || userData?.role === 'admin';
+            user?.userData.role === 'organizer' || user?.userData.role === 'admin';
         },
         error: (err) => {
           this.toasterMessage = err.error.error;

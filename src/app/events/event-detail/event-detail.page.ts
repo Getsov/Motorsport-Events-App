@@ -154,11 +154,11 @@ export class EventDetailPage implements OnInit, OnDestroy {
   // check if user is the creator or admin so he can edit/delete
   creatorAdminChecker(): Subscription {
     return this.authService.userData$.subscribe({
-      next: (userData) => {
-        this.isCreatorOrAdmin = userData?.createdEvents.includes(this.eventId);
+      next: (user) => {
+        this.isCreatorOrAdmin = user?.userData.createdEvents.includes(this.eventId);
 
-        if (userData?._id) {
-          this.userId = userData?._id;
+        if (user?.userData._id) {
+          this.userId = user?.userData._id;
         }
       },
     });
